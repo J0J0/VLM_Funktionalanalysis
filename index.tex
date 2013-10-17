@@ -151,6 +151,8 @@
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \DeclarePairedDelimiter{\Spann}{\langle}{\rangle}
 
+\newcommand{\SP}[1]{\Spann*{#1}}
+
 % define missing arrows
 \newcommand{\longto}{\longrightarrow}
 \newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
@@ -165,9 +167,12 @@
 \newcommand{\setboundary}[1]{\partial #1}
 
 % just some shortcuts
+\newcommand{\conj}{\overline}
 \newcommand{\defeq}{\coloneqq}
 \newcommand{\ddt}{\diff{}{t}}
 \newcommand{\dif}[2][\;]{#1\mathrm{d} #2}
+\newcommand{\emptyNorm}{\norm\scdot}
+\newcommand{\emptySP}{\SP{\scdot,\scdot}}
 \newcommand{\eqdef}{\eqqcolon}
 \newcommand{\half}{\frac{1}{2}}
 \newcommand{\hbreak}{\hfill\\}
@@ -180,6 +185,7 @@
 \newcommand{\nSeq}[1]{\left(#1_n\right)_{n\in\N}}
 \newcommand{\iSeq}[1]{\left(#1_n\right)_{n\in\N}}
 \newcommand{\pot}[1]{\Potmenge(#1)}
+\newcommand{\scdot}{\,\cdot\,}
 \newcommand{\setOneto}[1]{\{1,\ldots,#1\}}
 \newcommand{\setZeroto}[1]{\{0,\ldots,#1\}}
 \newcommand{\supnorm}[1]{\norm{#1}_\infty}
@@ -218,7 +224,8 @@
 \thispagestyle{empty}\mbox{}\newpage  % leave blank for second page of the toc
 \setcounter{page}{1}
 
-\input{vl_14-10-2013}
+\input{vl01_14-10-2013}
+\input{vl02_17-10-2013}
 
 \end{document}
 

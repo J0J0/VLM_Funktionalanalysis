@@ -1,0 +1,273 @@
+% 2.5
+\begin{thEmpty}[Fr\'echet-Metrik]
+    Sei $X$ ein Vektorraum. Eine Abbildung $d\colon X\to\R$ heißt
+    \emph{Fr\'echet-Metrik}, falls
+    \begin{enumerate}[({F}1),leftmargin=2cm]
+        \item
+            $\forall\,x\in X\colon\quad 
+            d(x) \geq 0$ und $d(x)=0 \iff x=0$
+        \item
+            $\forall\,x\in X\colon\quad
+            d(-x) = d(x)$
+        \item
+            $\forall x,y\in X\colon\quad d(x+y) \leq d(x) + d(y)$
+    \end{enumerate}
+    Dann ist $(x,y)\mapsto d(x-y)$ eine Metrik auf $X$.
+
+    Beispiel: Fr\'echet-Metriken auf $\R$:
+    \begin{gather*}
+        x\mapsto \abs{x}^\alpha \quad\text{mit $0<\alpha\leq1$}
+        \\
+        x\mapsto \frac{\abs{x}}{1+\abs{x}}
+    \end{gather*}
+\end{thEmpty}
+
+
+% 2.6
+\begin{thEmpty}[Norm]
+    $X$ sei ein $\K$-Vektorraum (mit $\K=\R$ oder $\K=\C$).\\
+    Eine Abbildung $\emptyNorm\colon X\to\R$ heißt \emph{Norm}, falls folgende
+    Bedingungen erfüllt sind:
+    \begin{enumerate}[({N}1),leftmargin=2cm]
+        \item 
+            $\forall\,x\in X\colon\quad
+            \norm{x}\geq 0$ und $\norm{x}=0 \iff x=0$
+        \item
+            $\forall\,\alpha\in\K,x\in X\colon\quad
+            \norm{\alpha\,x} = \abs\alpha \, \norm x$
+        \item
+            $\norm{x+y} \leq \norm{x} + \norm{y}$
+    \end{enumerate}
+    Dann ist $x\mapsto\norm{x}$ eine Fr\'echet-Metrik. Wir nennen $X$
+    \emph{Banachraum}, falls $X$ mit einer gegebenen Metrik vollständig ist.
+\end{thEmpty}
+
+$X$ ist Banachalgebra, falls $X$ Algebra ist (d.\,h. es gibt ein Produkt
+auf~$X$, das dem Assoziativgesetz und Distributivgestz genügt) und 
+$\norm{x\cdot y} \leq \norm x \cdot \norm y$ für alle $x,y\in X$ gilt.
+
+% 2.7
+\begin{thEmpty}[Skalarprodukt]
+    Sei $X$ ein $\K$-Vektorraum.
+    \begin{enumerate}[a)]
+        \item
+            $\emptySP\colon X\times X \to \K$ heißt \emph{Hermitische Form}
+            ($\K=\R$ symmetrische Biliniearform, $\K=\C$ symmetrische
+            Sesqulinearform), falls für alle $x,x_1,x_2,y\in X,\alpha\in\K$ gilt:
+            \begin{enumerate}[({S}1),leftmargin=2cm]
+                \item\label{vl02:S1}
+                    $\SP{x,y} = \conj{\SP{y,x}}$
+                \item\label{vl02:S2}
+                    $\SP{\alpha\,x,y} = \alpha\,\SP{x,y}$
+                \item\label{vl02:S3}
+                    $\SP{x_1+x_2,y} = \SP{x_1,y} + \SP{x_2,y}$
+            \end{enumerate}
+            (Es folgt: für alle $x\in X$ gilt $\SP{x,x}\in\R$.)
+
+        \item
+            $\SP{\,\cdot\,,\,\cdot\,}$ heißt \emph{positiv-semidefinit}, falls
+            \begin{enumerate}[({S}4'),leftmargin=2cm]
+                \item\label{vl02:S4p}
+                    $\SP{x,x} \geq 0$
+            \end{enumerate}
+            und \emph{positiv definit}, falls
+            \begin{enumerate}[({S}4),leftmargin=2cm]
+                \item\label{vl02:S4}
+                    $\SP{x,x} \geq 0$ und $\SP{x,x}=0 \iff x=0$
+            \end{enumerate}
+
+        \item
+            $\SP{\,\cdot\,,\,\cdot\,}$ heißt \emph{Skalarprodukt}, falls 
+            \ref{vl02:S1}--\ref{vl02:S4} erfüllt sind.
+            Dann ist $\norm{x}\defeq\sqrt{\SP{x,x}}$ eine Norm auf $X$ und wir
+            nennen $X$ dann einen \emph{Prä-Hilbertraum}.
+            Falls $X$ zusätzlich vollständig ist, so heißt $X$~\emph{Hilbertraum}
+
+            Beispiele:
+            \begin{enumerate}[i)]
+                \item 
+                    $\R^n$ mit $\SP{x,y} = \isum[1]^n x_i\,y_i$, 
+                    $\norm{x}_2 = \sqrt{\isum[1]^n x_i^2}$
+                \item
+                    $X=C^0(K,\R)$ für $K\subset\R^n$ kompakt.
+                    \[ \SP{f,g} \defeq \int_K f(x)\,g(x)\dif{x} \]
+                    Dann ist $\bigl( C^0(K), \SP{\cdot,\cdot} \bigr)$ ein
+                    Prä-Hilbertraum (aber kein Hilbertraum!)
+            \end{enumerate}
+    \end{enumerate}
+\end{thEmpty}
+
+% 2.8
+\begin{thSatz}\label{vl02:satz2.8}
+    Sei $\emptySP$ ein Skalarprodukt auf einem Vektorraum~$X$. Dann gelten:
+    \begin{enumerate}[(1)]
+        \item 
+            Cauchy-Schwarz-Ungleichung (CSU): \quad
+            $\forall\,x,y\in X\colon\quad
+            \abs{\SP{x,y}} \leq \norm x\cdot\norm y$.\\
+            Gleichheit gilt nur, falls $y$ ein Vielfaches von $x$ ist.
+        \item
+            Dreiecksungleichung: \quad
+            $\forall\,x,y\in X\colon\quad \norm{x+y}\leq\norm x+\norm y$
+        \item
+            Parallelogrammidentität:\quad
+            $\forall\,x,y\in X\colon\quad
+                \norm{x+y}^2 + \norm{x-y}^2 = 2\left( \norm{x}^2+\norm{y}^2
+                \right)$
+    \end{enumerate}
+\end{thSatz}
+
+\emph{Bemerkung:} Im Fall $\K=\R$ folgt aus der CSU für $x,y\in X\setminus\{0\}$:
+\[ \label{2.8star} \tag{$\ast$}
+    \SP{ \frac{x}{\norm x}, \frac{y}{\norm y} } \in [-1,1]
+\] 
+D.\,h. es gibt genau ein $\theta\in[0,\pi]$, s.\,d. 
+\[ \SP{ \frac{x}{\norm x}, \frac{y}{\norm y} } = \cos\theta 
+. \]
+Wir interpretieren $\theta$ als den Winkel zwischen $x$ und $y$.
+
+\begin{proof}[Beweis von \cref{vl02:satz2.8}]\hfill
+    \begin{enumerate}[(3)]
+        \item
+            \begin{align*}
+                \norm{x+y}^2 
+                &= \SP{x+y,x+y} 
+                \\
+                &= \SP{x,y} + \SP{x,y} + \SP{y,x} + \SP{y,y}
+                \\
+                &= \norm{x}^2 + 2\,\Re\SP{x,y} + \norm{y}^2
+            \end{align*}
+            Ersetze $y$ durch $-y$ und addiere beide Gleichungen.
+            
+        \item[(1)]
+            Ersetze in \eqref{2.8star} $y$ durch
+            $-\frac{\SP{x,y}}{\norm{y}^2}\,y$ (o.\,E. $y\neq 0$). Dann ergibt
+            sich:
+            \begin{align*}
+                0
+                &\leq \SP{
+                    x-\frac{\SP{x,y}}{\norm{y}^2}\,y, x - \frac{\SP{x,y}}{\norm{y}^2}\,y 
+                }
+                \\
+                &= \norm{x}^2 - 2\,\frac{\abs{\SP{x,y}}^2}{\norm{y}^2} +
+                \frac{\abs{\SP{x,y}}^2}{\norm{y}^2}
+                \\
+                &= \norm{x}^2 - \frac{\abs{\SP{x,y}}^2}{\norm{y}^2}
+            \end{align*}
+            Es folgt die CSU. Bei $\leq$ gilt dabei Gleichheit genau dann, wenn
+            $x$ ein Vielfaches von $y$ ist.
+            
+        \item
+            \[
+                \norm{x+y}^2 = \norm{x}^2 + \norm{y}^2 + 
+                2\,\underbrace{\Re\SP{x,y}}_{\smash{\mathclap{\qquad\leq\, \abs{\SP{x,y}}
+                \,\leq\, \norm x\,\norm y}}}
+                \leq \left( \norm x + \norm y \right)^2
+            \]
+    \end{enumerate}
+\end{proof}
+
+% 2.9
+\begin{thEmpty}[Vergleich von Topologien]
+    Seien $\Topo_1,\Topo_2$ zwei Topologien auf einer Menge~$X$. Wir sagen
+    $\Topo_2$ ist \emph{stärker (bzw. feiner) als $\Topo_1$} und $\Topo_1$ ist
+    \emph{schwächer (bzw. gröber) als $\Topo_2$}, falls
+    $\Topo_1\subset\Topo_2$ gilt.
+    
+    Sind $d_1,d_2$ zwei Metriken auf $X$ und $\Topo_1,\Topo_2$ die induzierten
+    Topologien (siehe \cref{vl01:topometrik}),
+    so heißt die Metrik~$d_1$ \emph{stärker (bzw. schwächer)} als $d_2$, falls
+    $\Topo_1$ stärker (bzw. schwächer) als $\Topo_2$ ist. Die Metriken heißen
+    äquivalent, falls $\Topo_1=\Topo_2$. Entsprechend heißt eine Norm stärker
+    bzw. schwächer als eine zweite, wenn dies für die induzierten Metriken gilt.
+    Analog für Äquivalenz von Normen.
+\end{thEmpty}
+
+% 2.10
+\begin{thEmpty}[Vergleich von Normen]
+    Seien $\emptyNorm_1$ und $\emptyNorm_2$ zwei Normen auf einem
+    $\K$-Vektorraum~$X$. Dann gilt:
+    \begin{enumerate}[(1)]
+        \item\label{vl02:2.10(1)}
+            $\emptyNorm_2$ ist stärker als $\emptyNorm_1$ genau dann, wenn es
+            ein $c\in\R[>0]$ gibt mit
+            \[ \forall\,x\in X\colon\quad \norm{x}_1 \leq c\,\norm{x}_2 \]
+        \item
+            Die beiden Normen sind genau dann äquivalent, wenn es $c,C\in\R[>0]$
+            gibt mit
+            \[ c\,\norm{x}_2 \leq \norm{x}_1 \leq C\,\norm{x}_2 \]
+            für alle $x\in X$.
+    \end{enumerate}
+\end{thEmpty}
+
+\begin{proof}
+    \begin{enumerate}[(1)]
+        \item
+            Es sei $B_r^i(x) = \{ x'\in X \Mid \norm{x-x'}_i < r \}$ und $\Topo_i$ sei die von
+            $\emptyNorm_i$ induzierte Topologie.
+            \\
+            Sei $\Topo_1\subset\Topo_2$. Da $B_1^1(0) \in \Topo_1$ gilt, ist
+            $B_1^1(0)$ offen
+            bezüglich $\Topo_1$ und bezüglich $\Topo_2$. Es liegt $0$ im Inneren
+            (bezüglich $\emptyNorm_2$) von $B_1^1(0)$. Somit gilt
+            $B_\epsilon^2(0) \subset
+            B_1^1(0)$ für ein $\epsilon\in(0,1)$. Daher gilt für $x\in X\setminus\{0\}$:
+            \begin{gather*}
+                \norm*{ \frac{\epsilon\,x}{2\norm{x}_2} }_2 = \frac{\epsilon}{2} 
+                < \epsilon
+                \\
+                \implies \norm*{\frac{\epsilon\,x}{2\,\norm{x}_2}}_2 \leq 1
+                \implies \norm{x}_1 \leq \frac{\epsilon}{2}\,\norm{x}_2
+            \end{gather*}
+
+            Gilt umgekehrt die Ungleichung in \ref{vl02:2.10(1)} 
+            so ist für alle $x\in X$ und $r\in\R[>0]$
+            \[ B_r^2(x) \subset B_{cr}^1(x) \]
+            Sei nun $A\in\Topo_1$. Dann ist $A=\setinterior{A}$ bezüglich $\Topo_1$.
+            D.\,h. zu $x\in A$ existiert ein $\epsilon\in\R[>0]$, so dass
+            $B_\epsilon^1(x)\subset A$. Also gilt:
+            \[ B_{\epsilon/c}^2(x) \subset A \]
+            Dies zeigt $A\in\Topo_2$.
+
+        \item
+            Wende den ersten Teil zweimal an.
+    \end{enumerate}
+\end{proof}
+
+\begin{thSatz}
+    Auf einem endlich-dimensionalen Vektorraum sind alle Normen äquivalent.
+    Endlich-dimensionale Vektorräume sind Banachräume. Endlich-dimensionale
+    Unterräume normierter Räume sind abgeschlossen.
+\end{thSatz}
+
+\begin{proof}
+    Sei $X$ ein endlich-dimensionaler $\K$-Vektorraum und $\emptyNorm$ eine Norm.
+    Sei $e_1,\dots,e_n$ eine Basis von $(X,\emptyNorm)$. 
+    Jedem $x\in X$ mit $x=\isum[1]^n \alpha_i\,e_i$ ordnen wir den Vektor
+    $\alpha=(\alpha_1,\dots,\alpha_n)\mt \in\K^n$ zu.
+    
+    Die Abbildungen
+    \begin{alignat*}{2}
+        \K^n   &\to X     &&\to\R \\
+        \alpha &\mapsto x &&\mapsto\norm{x}
+    \end{alignat*}
+    sind stetig.
+    
+    Daher nimmt $\norm{x}$ auf der kompakten Menge
+    \[ S \defeq \{ \alpha \Mid \norm{\alpha}_2 = 1 \} \]
+    ein Maxmimum~$M$ und ein Minumum~$m$ an. (Dabei gilt $m>0$, da $\norm{x}>0$
+    auf~$S$.)
+    Damit gilt für $x$ mit $\norm{\alpha(x)}_2 = 1$
+    \[ m \leq \norm{x} \leq M . \]
+    Für allgemeine $x$ gilt
+    \[ \norm{ \alpha\,\frac{x}{\norm{x}_2} }_2 = 1 
+        \qtextq{und somit}
+        m \leq \norm{\frac{x}{\norm{\alpha}_2}} \leq M
+    \]
+    
+    Dies zeigt die Äquivalenz einer beliebigen Norm zur Norm
+    $x\mapsto\norm{\alpha(x)}_2$. Damit sind zwei beliebige Normen äquivalent.
+\end{proof}
+
+
+
