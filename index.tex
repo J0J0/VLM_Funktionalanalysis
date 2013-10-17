@@ -1,0 +1,224 @@
+\documentclass[11pt,a4paper,ngerman,DIV=11,bibliography=totoc]{scrreprt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+%\usepackage[all]{xy}
+\usepackage{tikz}
+
+\usepackage[babel]{csquotes}
+\usepackage[shortlabels]{enumitem}
+%\usepackage[numbers,sort&compress]{natbib}
+\usepackage{ifmtarg}
+\usepackage{xstring}
+\usepackage{remreset}
+
+
+\usepackage[pdftex,bookmarks,colorlinks=false,pdfborder={0 0 0},%
+            pdfauthor={Johannes Prem}]{hyperref}
+%
+\usepackage{cleveref}
+\let\cref=\Cref
+
+\usepackage{myhelpers}  % my own myhelpers.sty
+\usepackage{mymathmisc} % my own mymathmisc.sty
+
+% we have to call this outside of \usepackage's options to make umlauts work
+\hypersetup{pdftitle={Vorlesungsmitschrift: Funktionalanalysis im 
+                      Wintersemester 13/14 von Prof. H. Garcke 
+                      an der Universität Regensburg}%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% macro definitions and other things
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% don't reset footnote numbers
+% (uses the 'remreset' package)
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother
+
+
+% make parenthesized versions of \ref and cleveref's \cref
+\newcommand*{\pref}[1]{(\ref{#1})}
+\newcommand*{\pcref}[1]{(\cref{#1})}
+
+% make a even more clever \mycref that produces "Lemma 42a)" etc.
+% (uses the 'xstring' package)
+\newcommand{\mycref}[1]{%
+    \begingroup%
+    \StrCount{#1}{:}[\mycrefCount]%
+    \StrBefore[\mycrefCount]{#1}{:}[\myrefMain]%
+    \expandafter\cref\expandafter{\myrefMain}\,\ref{#1}%
+    \endgroup%
+}
+
+% make \varepsilon and \varphi default
+\varifygreekletters{\epsilon\phi}
+
+% change the qedsymbol to my favoured blacksquare
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% style for /all/ theorem like environments
+\newtheoremstyle{mythms}
+ {15pt}% space above
+ {12pt}% space below 
+ {}% body font
+ {}% indent amount
+ {\bfseries}% theorem head font
+ {.}% punctuation after theorem head
+ {0.6cm plus 0.25cm minus 0.1cm}% space after theorem head (\newline possible)
+ {}% theorem head spec 
+ 
+% set style and define thm like environments
+\theoremstyle{mythms}
+\newtheorem{globalnum}{DUMMY DUMMY DUMMY}[chapter]
+\newtheorem{thEmpty}[globalnum]{}
+\newtheorem{thDef}[globalnum]{Definition}
+\newtheorem{thNotation}[globalnum]{Notation}
+\newtheorem{thSatz}[globalnum]{Satz}
+%\newtheorem{thPropos}[globalnum]{Proposition}
+\newtheorem{thLemma}[globalnum]{Lemma}
+\newtheorem{thKorollar}[globalnum]{Korollar}
+
+\newtheorem{thBemerkung}[globalnum]{Bemerkung}
+%\newtheorem{thWarnung}[globalnum]{Warnung}
+\newtheorem{thBeispiel}[globalnum]{Beispiel}
+\newtheorem{thBeispiele}[globalnum]{Beispiele}
+\newenvironment{BspList}[1][]{%
+\nopagebreak\begin{thBeispiele}#1%
+\hfill\begin{enumerate}[a),parsep=0pt,itemsep=0.8ex,leftmargin=2em]%
+}{%
+\end{enumerate}\end{thBeispiele}
+}
+
+
+% also define a 'proofsketch' version of 'proof'
+\newenvironment{proofsketch}[1][]{%
+\begin{proof}[Beweisskizze#1]
+}{%
+\end{proof}
+}
+
+% inject pdfbookmarks at thm like environments
+\makeatletter
+\let\origthmhead=\thmhead
+\renewcommand{\thmhead}[3]{%
+\origthmhead{#1}{#2}{#3}%
+\belowpdfbookmark{#1\@ifnotempty{#1}{ }#2\thmnote{ (#3)}}{#1#2}%
+}
+\makeatother
+
+
+% overwrite \Re and \Im with less fancier definitions
+\DeclareMathOperator{\Realteil}{Re}
+\DeclareMathOperator{\Imaginaerteil}{Im}
+\let\Re=\Realteil
+\let\Im=\Imaginaerteil
+
+
+% new math operators
+\DeclareMathOperator*{\bigdotcup}{\overset{\mkern0mu\scalebox{0.6}{$\bullet$}}{\bigcup}}
+
+% new math 'operators'
+\newcommand{\sDMO}[1]{\expandafter\DeclareMathOperator\csname#1\endcsname{#1}}
+
+\sDMO{id}
+\sDMO{diam}
+\sDMO{dist}
+\DeclareMathOperator{\powerset}{\mathcal{P}}
+\sDMO{supp}
+\DeclareMathOperator{\Topo}{\mathcal{T}}
+
+
+% make quantors that use \limits per default
+\DeclareMathOperator*{\Exists}{\exists}
+\DeclareMathOperator*{\forAll}{\forall}
+
+% define an 'abs', 'norm' and 'Spann' command
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\Spann}{\langle}{\rangle}
+
+% define missing arrows
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
+
+% provide mathbb symbols \N \Z \Q \R and \C, additionally \K
+\defmathbbsymbols{N Z Q C K}
+\defmathbbsymbolsubs{R}
+
+% define some set specific macros
+\newcommand{\setclosure}[1]{\overline{#1}}
+\newcommand{\setinterior}[1]{#1^\circ}
+\newcommand{\setboundary}[1]{\partial #1}
+
+% just some shortcuts
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\ddt}{\diff{}{t}}
+\newcommand{\dif}[2][\;]{#1\mathrm{d} #2}
+\newcommand{\eqdef}{\eqqcolon}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\hbreak}{\hfill\\}
+\newcommand{\I}{[0,1]}
+\newcommand{\isum}[1][0]{\sum_{i=#1}}
+\newcommand{\kron}[1]{\delta_{#1}}
+\newcommand{\mr}{\mathrm}
+\newcommand{\mt}{^\mathsf{t}}
+\newcommand{\nsum}[1][0]{\sum_{n=#1}}
+\newcommand{\nSeq}[1]{\left(#1_n\right)_{n\in\N}}
+\newcommand{\iSeq}[1]{\left(#1_n\right)_{n\in\N}}
+\newcommand{\pot}[1]{\Potmenge(#1)}
+\newcommand{\setOneto}[1]{\{1,\ldots,#1\}}
+\newcommand{\setZeroto}[1]{\{0,\ldots,#1\}}
+\newcommand{\supnorm}[1]{\norm{#1}_\infty}
+\newcommand{\thalf}{\tfrac{1}{2}}
+
+% some text shortcuts
+\qXq{iff}
+\qXq{implies}
+\qTXq{oder}
+\qTXq{und}
+\qqTXqq{und}
+
+
+% listing with -- is nicer than with bullets 
+\setlist[itemize,1]{label=--}
+
+% start at chapter 1
+\setcounter{chapter}{0}
+
+
+% set parsindent and parskip
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2ex plus 4pt minus 3pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{titlepage}
+
+\tableofcontents
+\thispagestyle{empty}
+\clearpage
+\thispagestyle{empty}\mbox{}\newpage  % leave blank for second page of the toc
+\setcounter{page}{1}
+
+\input{vl_14-10-2013}
+
+\end{document}
+
