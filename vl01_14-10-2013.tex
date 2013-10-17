@@ -146,7 +146,7 @@ der Operatornorm
 \begin{thEmpty}[Topologie]
     Sei $X$ eine Menge, $\Topo$ ein System von Teilmengen. Dann heißt $\Topo$
     \emph{Topologie (auf $X$)}, falls gilt:
-    \begin{enumerate}[({T}1),leftmargin=2cm]
+    \begin{enumerate}[({T}1),labelsep=1em,leftmargin=2cm]
         \item
             \quad $\emptyset\in\Topo,\;X\in\Topo$
         \item
@@ -157,7 +157,7 @@ der Operatornorm
 
     Ein topologischer Raum $(X,\Topo)$ heißt \emph{Hausdorff-Raum}, falls er
     zusätzlich das Hausdorffsche Trennungsaxiom erfüllt:
-    \begin{enumerate}[({T}4),leftmargin=2cm]
+    \begin{enumerate}[({T}4),labelsep=1em,leftmargin=2cm]
         \item
             \quad $\forall\, x_1,x_2\in X, x_1\neq x_2\;\; \exists\,
             U_1,U_2\in\Topo\colon\; U_1\cap U_2=\emptyset \wedge x_i\in U_i$
@@ -194,15 +194,14 @@ der Operatornorm
 
 \begin{thEmpty}[Metrik]
     Ein Tupel $(X,d)$ heißt \emph{metrischer Raum}, falls $X$ eine Menge ist 
-    und $d\colon X\times X\to\R$ folgende Bedingungen erfüllt:
-    \begin{enumerate}[({M}1),leftmargin=2cm]
+    und $d\colon X\times X\to\R$ folgende Bedingungen für alle $x,y,z\in X$ erfüllt:
+    \begin{enumerate}[({M}1),labelsep=1em,leftmargin=2cm]
         \item
-            $\forall\,x,y\in X\colon\quad
-            d(x,y)\geq 0$~~und~~$d(x,y) = 0 \iff x=y$
+            $d(x,y)\geq 0 \qundq d(x,y) = 0 \iff x=y$
         \item
-            $\forall\,x,y\in X\colon\quad d(x,y) = d(y,x)$
+            $d(x,y) = d(y,x)$
         \item
-            $\forall\,x,y,z\in X\colon\quad d(x,z)\leq d(x,y)+d(y,z)$
+            $d(x,z)\leq d(x,y)+d(y,z)$
     \end{enumerate}
     
     Konvergenz:\\

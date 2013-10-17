@@ -1,16 +1,14 @@
 % 2.5
 \begin{thEmpty}[Fr\'echet-Metrik]
     Sei $X$ ein Vektorraum. Eine Abbildung $d\colon X\to\R$ heißt
-    \emph{Fr\'echet-Metrik}, falls
-    \begin{enumerate}[({F}1),leftmargin=2cm]
+    \emph{Fr\'echet-Metrik}, falls für alle $x,y\in X$ gilt:
+    \begin{enumerate}[({F}1),labelsep=1em,leftmargin=2cm]
         \item
-            $\forall\,x\in X\colon\quad 
-            d(x) \geq 0$ und $d(x)=0 \iff x=0$
+            $d(x) \geq 0 \qundq d(x)=0 \iff x=0$
         \item
-            $\forall\,x\in X\colon\quad
-            d(-x) = d(x)$
+            $d(-x) = d(x)$
         \item
-            $\forall x,y\in X\colon\quad d(x+y) \leq d(x) + d(y)$
+            $d(x+y) \leq d(x) + d(y)$
     \end{enumerate}
     Dann ist $(x,y)\mapsto d(x-y)$ eine Metrik auf $X$.
 
@@ -27,14 +25,12 @@
 \begin{thEmpty}[Norm]
     $X$ sei ein $\K$-Vektorraum (mit $\K=\R$ oder $\K=\C$).\\
     Eine Abbildung $\emptyNorm\colon X\to\R$ heißt \emph{Norm}, falls folgende
-    Bedingungen erfüllt sind:
-    \begin{enumerate}[({N}1),leftmargin=2cm]
+    Bedingungen für alle $x,y\in X,\alpha\in\K$ erfüllt sind:
+    \begin{enumerate}[({N}1),labelsep=1em,leftmargin=2cm]
         \item 
-            $\forall\,x\in X\colon\quad
-            \norm{x}\geq 0$ und $\norm{x}=0 \iff x=0$
+            $\norm{x}\geq 0 \qundq \norm{x}=0 \iff x=0$
         \item
-            $\forall\,\alpha\in\K,x\in X\colon\quad
-            \norm{\alpha\,x} = \abs\alpha \, \norm x$
+            $\norm{\alpha\,x} = \abs\alpha \, \norm x$
         \item
             $\norm{x+y} \leq \norm{x} + \norm{y}$
     \end{enumerate}
@@ -42,8 +38,8 @@
     \emph{Banachraum}, falls $X$ mit einer gegebenen Metrik vollständig ist.
 \end{thEmpty}
 
-$X$ ist Banachalgebra, falls $X$ Algebra ist (d.\,h. es gibt ein Produkt
-auf~$X$, das dem Assoziativgesetz und Distributivgestz genügt) und 
+$X$ ist eine \emph{Banachalgebra}, falls $X$ eine Algebra ist (d.\,h. es gibt 
+ein Produkt auf~$X$, das dem Assoziativgesetz und Distributivgestz genügt) und 
 $\norm{x\cdot y} \leq \norm x \cdot \norm y$ für alle $x,y\in X$ gilt.
 
 % 2.7
@@ -53,8 +49,8 @@ $\norm{x\cdot y} \leq \norm x \cdot \norm y$ für alle $x,y\in X$ gilt.
         \item
             $\emptySP\colon X\times X \to \K$ heißt \emph{Hermitische Form}
             ($\K=\R$ symmetrische Biliniearform, $\K=\C$ symmetrische
-            Sesqulinearform), falls für alle $x,x_1,x_2,y\in X,\alpha\in\K$ gilt:
-            \begin{enumerate}[({S}1),leftmargin=2cm]
+            Sesquilinearform), falls für alle $x,x_1,x_2,y\in X,\alpha\in\K$ gilt:
+            \begin{enumerate}[({S}1),labelsep=1em,leftmargin=2cm]
                 \item\label{vl02:S1}
                     $\SP{x,y} = \conj{\SP{y,x}}$
                 \item\label{vl02:S2}
@@ -66,15 +62,16 @@ $\norm{x\cdot y} \leq \norm x \cdot \norm y$ für alle $x,y\in X$ gilt.
 
         \item
             $\SP{\,\cdot\,,\,\cdot\,}$ heißt \emph{positiv-semidefinit}, falls
-            \begin{enumerate}[({S}4'),leftmargin=2cm]
+            \begin{enumerate}[({S}4'),labelsep=1em,leftmargin=2cm]
                 \item\label{vl02:S4p}
                     $\SP{x,x} \geq 0$
             \end{enumerate}
             und \emph{positiv definit}, falls
-            \begin{enumerate}[({S}4),leftmargin=2cm]
+            \begin{enumerate}[({S}4),labelsep=1em,leftmargin=2cm]
                 \item\label{vl02:S4}
-                    $\SP{x,x} \geq 0$ und $\SP{x,x}=0 \iff x=0$
+                    $\SP{x,x} \geq 0 \qundq \SP{x,x}=0 \iff x=0$
             \end{enumerate}
+            gilt.
 
         \item
             $\SP{\,\cdot\,,\,\cdot\,}$ heißt \emph{Skalarprodukt}, falls 
@@ -82,7 +79,8 @@ $\norm{x\cdot y} \leq \norm x \cdot \norm y$ für alle $x,y\in X$ gilt.
             Dann ist $\norm{x}\defeq\sqrt{\SP{x,x}}$ eine Norm auf $X$ und wir
             nennen $X$ dann einen \emph{Prä-Hilbertraum}.
             Falls $X$ zusätzlich vollständig ist, so heißt $X$~\emph{Hilbertraum}
-
+            
+            \pagebreak[2]
             Beispiele:
             \begin{enumerate}[i)]
                 \item 
@@ -154,8 +152,8 @@ Wir interpretieren $\theta$ als den Winkel zwischen $x$ und $y$.
                 \\
                 &= \norm{x}^2 - \frac{\abs{\SP{x,y}}^2}{\norm{y}^2}
             \end{align*}
-            Es folgt die CSU. Bei $\leq$ gilt dabei Gleichheit genau dann, wenn
-            $x$ ein Vielfaches von $y$ ist.
+            Es folgt die CSU. In der ersten Zeile gilt bei $\leq$ die
+            Gleichheit genau dann, wenn $x$ ein Vielfaches von $y$ ist.
             
         \item
             \[
@@ -170,8 +168,8 @@ Wir interpretieren $\theta$ als den Winkel zwischen $x$ und $y$.
 % 2.9
 \begin{thEmpty}[Vergleich von Topologien]
     Seien $\Topo_1,\Topo_2$ zwei Topologien auf einer Menge~$X$. Wir sagen
-    $\Topo_2$ ist \emph{stärker (bzw. feiner) als $\Topo_1$} und $\Topo_1$ ist
-    \emph{schwächer (bzw. gröber) als $\Topo_2$}, falls
+    $\Topo_2$ ist \emph{stärker} (oder \emph{feiner}) als $\Topo_1$ und $\Topo_1$ ist
+    \emph{schwächer} (oder \emph{gröber}) als $\Topo_2$, falls
     $\Topo_1\subset\Topo_2$ gilt.
     
     Sind $d_1,d_2$ zwei Metriken auf $X$ und $\Topo_1,\Topo_2$ die induzierten
@@ -190,13 +188,12 @@ Wir interpretieren $\theta$ als den Winkel zwischen $x$ und $y$.
     \begin{enumerate}[(1)]
         \item\label{vl02:2.10(1)}
             $\emptyNorm_2$ ist stärker als $\emptyNorm_1$ genau dann, wenn es
-            ein $c\in\R[>0]$ gibt mit
+            ein $c\in\R[>0]$ gibt mit:
             \[ \forall\,x\in X\colon\quad \norm{x}_1 \leq c\,\norm{x}_2 \]
         \item
             Die beiden Normen sind genau dann äquivalent, wenn es $c,C\in\R[>0]$
-            gibt mit
-            \[ c\,\norm{x}_2 \leq \norm{x}_1 \leq C\,\norm{x}_2 \]
-            für alle $x\in X$.
+            gibt mit:
+            \[ \forall\,x\in X\colon\quad c\,\norm{x}_2 \leq \norm{x}_1 \leq C\,\norm{x}_2 \]
     \end{enumerate}
 \end{thEmpty}
 
@@ -211,13 +208,13 @@ Wir interpretieren $\theta$ als den Winkel zwischen $x$ und $y$.
             bezüglich $\Topo_1$ und bezüglich $\Topo_2$. Es liegt $0$ im Inneren
             (bezüglich $\emptyNorm_2$) von $B_1^1(0)$. Somit gilt
             $B_\epsilon^2(0) \subset
-            B_1^1(0)$ für ein $\epsilon\in(0,1)$. Daher gilt für $x\in X\setminus\{0\}$:
+            B_1^1(0)$ für ein $\epsilon\in\R[>0]$. Daher gilt für $x\in X\setminus\{0\}$:
             \begin{gather*}
                 \norm*{ \frac{\epsilon\,x}{2\norm{x}_2} }_2 = \frac{\epsilon}{2} 
                 < \epsilon
-                \\
-                \implies \norm*{\frac{\epsilon\,x}{2\,\norm{x}_2}}_2 \leq 1
-                \implies \norm{x}_1 \leq \frac{\epsilon}{2}\,\norm{x}_2
+                \\[2ex]
+                \implies\quad \norm*{\frac{\epsilon\,x}{2\,\norm{x}_2}}_1 < 1
+                \qquad\implies\quad \norm{x}_1 < \frac{2}{\epsilon}\,\norm{x}_2
             \end{gather*}
 
             Gilt umgekehrt die Ungleichung in \ref{vl02:2.10(1)} 
@@ -255,18 +252,19 @@ Wir interpretieren $\theta$ als den Winkel zwischen $x$ und $y$.
     
     Daher nimmt $\norm{x}$ auf der kompakten Menge
     \[ S \defeq \{ \alpha \Mid \norm{\alpha}_2 = 1 \} \]
-    ein Maxmimum~$M$ und ein Minumum~$m$ an. (Dabei gilt $m>0$, da $\norm{x}>0$
-    auf~$S$.)
+    ein Maximum~$M$ und ein Minimum~$m$ an. (Dabei gilt $m>0$, da $\norm{x}>0$
+    für alle $x\in S$.)
     Damit gilt für $x$ mit $\norm{\alpha(x)}_2 = 1$
     \[ m \leq \norm{x} \leq M . \]
-    Für allgemeine $x$ gilt
-    \[ \norm{ \alpha\,\frac{x}{\norm{x}_2} }_2 = 1 
+    Für allgemeine $x\neq0$ gilt
+    \[ \norm*{ \alpha\left(\frac{x}{\norm{\alpha(x)}_2}\right) }_2 = 1 
         \qtextq{und somit}
-        m \leq \norm{\frac{x}{\norm{\alpha}_2}} \leq M
+        m \leq \norm*{\frac{x}{\norm{\alpha(x)}_2}} \leq M
     \]
     
     Dies zeigt die Äquivalenz einer beliebigen Norm zur Norm
     $x\mapsto\norm{\alpha(x)}_2$. Damit sind zwei beliebige Normen äquivalent.
+    \\
 \end{proof}
 
 
