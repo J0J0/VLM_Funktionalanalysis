@@ -120,6 +120,9 @@
 }
 \makeatother
 
+%
+\newcommand{\nnSatz}{\textbf{Satz:} }
+
 
 % overwrite \Re and \Im with less fancier definitions
 \DeclareMathOperator{\Realteil}{Re}
@@ -171,18 +174,23 @@
 \newcommand{\defeq}{\coloneqq}
 \newcommand{\ddt}{\diff{}{t}}
 \newcommand{\dif}[2][\;]{#1\mathrm{d} #2}
+\newcommand{\diff}[2]{\frac{\mr d#1}{\mr d#2}}
 \newcommand{\emptyNorm}{\norm\scdot}
 \newcommand{\emptySP}{\SP{\scdot,\scdot}}
 \newcommand{\eqdef}{\eqqcolon}
 \newcommand{\half}{\frac{1}{2}}
 \newcommand{\hbreak}{\hfill\\}
 \newcommand{\I}{[0,1]}
-\newcommand{\iSeq}[1]{\left(#1_n\right)_{n\in\N}}
-\newcommand{\isum}[1][0]{\sum_{i=#1}}
+\newcommand{\iSeq}[1]{\left(#1_i\right)_{i\in\N}}
+\newcommand{\isum}[1][1]{\sum_{i=#1}}
 \newcommand{\kron}[1]{\delta_{#1}}
+\newcommand{\kSeq}[1]{\left(#1_k\right)_{k\in\N}}
+\newcommand{\ksum}[1][1]{\sum_{k=#1}}
 \newcommand{\mr}{\mathrm}
 \newcommand{\mt}{^\mathsf{t}}
-\newcommand{\nsum}[1][0]{\sum_{n=#1}}
+\newcommand{\normlp}[2][p]{\norm{#2}_{\ell^{#1}}}
+\newcommand{\normlinf}[1]{\norm{#1}_{\ell^{\infty}}}
+\newcommand{\nsum}[1][1]{\sum_{n=#1}}
 \newcommand{\nSeq}[1]{\left(#1_n\right)_{n\in\N}}
 \newcommand{\pot}[1]{\Potmenge(#1)}
 \newcommand{\scdot}{\,\cdot\,}
@@ -226,6 +234,7 @@
 
 \input{vl01_14-10-2013}
 \input{vl02_17-10-2013}
+\input{vl03_21-10-2013}
 
 \end{document}
 

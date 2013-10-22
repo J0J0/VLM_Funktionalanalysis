@@ -1,0 +1,233 @@
+% 2.12
+\begin{thEmpty}[Folgenräume]
+    Wir bezeichnen mit $\K^\N$ die Menge aller Folgen über $\K$, d.\,h.
+    \[ \K^\N \defeq \left\{ x=\nSeq x \Mid x_n\in\K \text{ für alle $n\in\N$}
+        \right\} 
+    \]
+    Es gilt:
+    \begin{enumerate}[1)]
+        \item 
+            $\K^\N$ ist ein metrischer Raum mit der Fr\'echet-Metrik
+            \[ \rho(x) \defeq \sum_{n\in\N} 2^{-n}\,
+                \frac{\abs{x_n}}{1+\abs{x_n}}
+                \qquad\text{für $x=\nSeq x$}
+            \]
+        \item
+            Ist $(x^k)_{k\in\N} = (\iSeq{x}^k)_{k\in\N}$ eine Folge in $\K^\N$ und ist
+            $x=\iSeq x \in \K^\N$, so gilt:
+            \[ \rho(x^k-x) \to 0 \text{ für } k\to\infty
+                \qiffq \forall\,i\in\N\colon\; x_i^k \to x_i
+                \text{ für } k\to\infty
+            . \]
+            (Vergleiche Aufgabe~2 von Blatt~1.)
+        \item
+            $\K^\N$ ist mit dieser Metrik vollständig.
+        \item
+            Definiere für $x=\iSeq x\in\K^\N$:
+            \begin{align*} 
+                \normlp{x} &\defeq \Bigl( \sum_{i\in\N} \abs{x_i}^p
+                \Bigr)^{\frac{1}{p}} \;\in[0,\infty]
+                \quad\text{für $1\leq p<\infty$}
+                \\
+                \normlinf{x} &\defeq \sup_{i\in\N} \, \abs{x_i}
+                \;\in[0,\infty]
+            \end{align*}
+            
+            Wir betrachten für $1\leq p\leq \infty$ die Mengen
+            \[ \ell^p(\K) \defeq \bigl\{ x\in\K^\N \cMid\big
+                    \normlp{x} < \infty \bigr\}
+            \]
+            Diese Räume sind normierte Vektorräume und auch vollständig (also
+            Banachräume). (Beweis, siehe später.) % TODO: ref
+            Wenn der Körper~$\K$ aus dem Kontext klar ist, lassen wir diesen in
+            der Notation auch weg.
+        \item
+            Interessante Unterräume von $\ell^\infty$ sind:
+            \begin{align*}
+                c &\defeq \bigl\{ x\in\ell^\infty \cMid\big \lim_{i\to\infty} x_i
+                \text{ existiert} \bigr\} \qquad\text{und}
+                \\
+                c_0 &\defeq \bigl\{ x\in\ell^\infty \cMid\big \lim_{i\to\infty} x_i =
+                0\bigr\}
+            . \end{align*}
+            Beide Räume versehen wir mit der $\emptyNorm_\infty$-Norm. Es gilt:%
+            \; $\displaystyle c_0 \subset c \subset \ell^\infty$
+        \item
+            Der Raum $\ell^2$ besitzt das Skalarprodukt
+            \[ (x,y) \defeq \isum^\infty x_i\,y_i
+                \quad\text{für } x,y\in\ell^2
+            \]
+    \end{enumerate}
+\end{thEmpty}
+
+\begin{thLemma}[Youngsche Ungleichung]
+    Es seien $p,p'\in(1,\infty)$, so dass $\frac{1}{p}+\frac{1}{p'}=1$ gilt.
+    Dann gilt für alle $a,b\in\R[>0]$:
+    \[ ab \leq \frac{1}{p}\, a^p + \frac{1}{p'}\, b^{\mkern2mu p'}  . \]
+\end{thLemma}
+
+\begin{proof}
+    \begin{align*}
+        \log(ab) 
+        &= \log(a) + \log(b)
+        = \frac{1}{p} \log(a^p) + \frac{1}{p'} \log(b^{\mkern2mu p'})
+        \\
+        &\leq \log\mkern-3mu\left( \frac{1}{p}\,a^p + \frac{1}{p'}\,b^{\mkern2mu p'} \right)
+    \end{align*}
+    Die letzte Ungleichheit folgt daraus, dass der Logarithmus eine konkave
+    Funktion ist. Da außerdem $\exp$ monoton ist, folgt hieraus die Behauptung.
+    \\
+\end{proof}
+
+\begin{thSatz}[Höldersche Ungleichung\texorpdfstring{ auf $\ell^p$}{}]
+    Es sei $1\leq p,p'\leq\infty$ mit $\frac{1}{p}+\frac{1}{p'}=1$. Für
+    $x\in\ell^p$ und $y\in\ell^{p'}$ ist $xy\in\ell^1$ (dabei sei für 
+    $x=\nSeq x$ und $y=\nSeq y$ das Produkt definiert als: $xy \defeq
+    (x_n\,y_n)_{n\in\N}$) und es gilt:
+    \[ \normlp[1]{xy} \leq \normlp{x} \cdot \normlp[p']{y}  . \]
+\end{thSatz}
+
+\begin{proof}
+    Falls $p=\infty$ setzte $p'=1$ (und umgekehrt). In diesem Fall ist der
+    Beweis einfach. Sei nun $1<p<\infty$ und $\normlp{x}>0, \normlp[p']{y}>0$.
+    Die Youngsche Ungleichung liefert:
+    \[ %\tag{$\ast$}\label{vl03:ast}
+        \frac{\abs{x_k} \; \abs{y_k}}{\normlp{x}\,\normlp[p']{y}}
+        \leq \frac{1}{p} \, \frac{\abs{x_k}^p}{\normlp{x}^p}
+        + \frac{1}{p'} \, \frac{\abs{y_k}^{p'}}{\normlp[p']{y}^{p'}}
+    \]
+    Die Reihe über die Terme der rechten Seite ist eine konvergente Reihe und
+    damit folgt aus dem Majorantenkriterium, dass $xy\in\ell^1$ erfüllt sein
+    muss.
+    \\
+\end{proof}
+
+% 2.15
+\begin{thSatz}
+    Der Raum $\ell^p$ ist für $1\leq p\leq\infty$ ein Banachraum.
+\end{thSatz}
+
+\begin{proof}
+    Die Vollständigkeit von $\ell^1$ ist eine Übungsaufgabe. Für $\ell^p$ folgt
+    dies ähnlich (vergleiche mit dem späteren Beweis über $L^p(\mu)$.) % TODO: ref
+    Die Normeigenschaften abgesehn von der $\triangle$-Ungleichung ergeben sich
+    einfach. Wir zeigen die $\triangle$-Ungleichung für $p\in(1,\infty)$. Es
+    seien also $p,p'\in(1,\infty)$ mit $\frac{1}{p}+\frac{1}{p'}=1$. Dann gilt:
+    \begin{align*}
+        \normlp{x+y}^p 
+        &= \ksum^\infty \abs{x_k+y_k}^p
+        \leq \ksum^\infty \abs{x_k} \, \abs{x_k+y_k}^{p-1}
+        + \ksum^\infty \abs{y_k}\, \abs{x_k+y_k}^{p-1}
+        \\
+        &\overset{(\star)}\leq 
+        \Bigl( \ksum^\infty \abs{x_k}^p \Bigr)^{\frac{1}{p}}
+        \Bigl( \ksum^\infty \abs{x_k+y_k}^{(p-1)p'} \Bigr)^{\frac{1}{p'}} 
+        +
+        \Bigl( \ksum^\infty \abs{y_k}^p \Bigr)^{\frac{1}{p}} 
+        \Bigl( \ksum^\infty \abs{x_k+y_k}^{(p-1)p'} \Bigr)^{\frac{1}{p'}}
+        \\
+        &= (\normlp x + \normlp y) \, (\normlp{x+y}^{p-1})
+    \end{align*}
+    Bei $(\star)$ geht die Höldersche Ungleichung ein.
+    Dies zeigt $\normlp{x+y} \leq \normlp x + \normlp y$.
+    \\
+\end{proof}
+
+% 2.16
+\begin{thEmpty}[Stetige Funktionen auf kompakten Mengen]
+    Ist $K\subset\R^n$ abgeschlossen und beschränkt (also nach Heine-Borel
+    äquivalenterweise kompakt) und $Y$ ein Banachraum über~$\K$, so ist
+    $C^0(K,Y)$ ein Unterraum von $B(K,Y)$. (Vergleiche Aufgabe~1 von Blatt~2.)
+    
+    \nnSatz
+    Mit $\norm{f}_{C^0} \defeq \supnorm{f} \defeq \sup_{x\in K} \, \abs{f(x)}$
+    wird $C^0(K,Y)$ ein Banachraum.
+\end{thEmpty}
+
+\begin{proof}
+    Jedes $f\in C^0(K,Y)$ ist beschränkt, denn: Zu $x\in K$ existiert ein
+    $\delta_x\in\R[>0]$ mit $f\bigl( B_{\delta_x}(x)\bigr) \subset B_1\bigl(
+    f(x)\bigr)$. Da $K$ kompakt ist, existieren endlich viele Punkte
+    $x_1,\dots,x_m\in K$ mit 
+    \[ K \subset \bigcup_{i=1}^m B_{\delta_{x_i}}(x_i)  . \]
+    Es folgt:
+    \[ f(K) \subset \bigcup_{i=1}^m B_1\bigl( f(x_i) \bigr) . \]
+    Die rechte Menge ist beschränkt, also ist auch $f$ beschränkt.
+    
+    Aufgabe~1\,(iv) von Blatt~2 zeigt, dass $B(K,Y)$ ein Banachraum ist. Eine
+    Cauchy-Folge in $C^0(K,Y)$ ist auch eine Cauchy-Folge in $B(K,Y)$. Da
+    $B(K,Y)$ vollständig ist, besitzt jede Cauchy-Folge einen Grenzwert.
+    
+    Sei jetzt $\nSeq f$ eine Cauchy-Folge in $C^0(K,Y)$ mit Grenzwert $f$ in
+    $B(Y,K)$. Für $x,y\in K$ gilt:
+    \[
+        \norm{f(y)-f(x)} 
+        \leq
+        \underbrace{\norm{f_i(y)-f_i(x)}}_{\substack{\to 0 \text{ für } y\to x\\
+                                            \text{ und jedes $i$}}}
+        +
+        \underbrace{2\supnorm{f-f_i}}_{\to0 \text{ für } i\to\infty}
+    \]
+    Dies beweist $f\in C^0(K,Y)$.
+    \\
+\end{proof}
+
+% 2.17
+\begin{thEmpty}[Räume differenzierbarer Funktionen]
+    Es sei $\Omega\subset\R^n$ offen und beschränkt und $m\in\N_0$. Dann
+    definieren wir:
+    \[ C^m(\setclosure{\Omega}) \defeq \{ f\colon\Omega\to\R \Mid
+        \parbox[t]{9cm}{$f$ ist $m$-mal stetig diffenzierbar auf $\Omega$ und für
+            $s\in\N^n$ mit $\abs{s}\leq m$ ist $\partial^s f$ auf
+            $\setclosure\Omega$ stetig fortsetzbar $\}.$}
+    \]
+    (Dabei ist $s$ ein Multiindex mit $\abs{s}=s_1+\dots+s_n$.)
+
+    \nnSatz
+    Der Raum $C^m(\setclosure\Omega)$ ist mit der Norm
+    \[ \norm{f}_{C^m(\setclosure\Omega)} \defeq \sum_{\abs{s}\leq m}
+        \norm{\partial^s f}_{C^0(\setclosure\Omega)}
+    \]
+    ein Banachraum.
+\end{thEmpty}
+
+\begin{proof}
+    Wir beweisen die Vollständigkeit von $C^1(\setclosure\Omega)$. (Der Fall 
+    $m>1$ folgt induktiv.) Ist $\kSeq f$ eine Cauchy-Folge in
+    $C^1(\setclosure\Omega)$, so sind $\kSeq f$ und $\kSeq{\partial_if}$
+    Cauchy-Folgen in $C^0(\setclosure\Omega)$ für alle $i\in\setOneto n$.
+    
+    Daher existieren $f$ und $g_i$ in $C^0(\setclosure\Omega)$, so dass
+    $f_k\to f$ sowie $\partial_i f_k\to g_i$ gleichmäßig für $k\to\infty$ in
+    $C^0(\setclosure\Omega)$. Für $x\in\Omega$ und $y$ nahe $x$ mit
+    $x_t \defeq (1-t) x + ty$ folgt aus dem HDI:
+    \[
+        f_k(x_1) - f_k(x_0) 
+        = \int_0^1 \ddt f_k(x_t) \dif{t}
+        = \int_0^1 (y-x) \cdot \nabla f_k(x_t) \dif{t}
+    \]
+    Es folgt (mit $g=(g_1,\dots,g_n)$):
+    \begin{align*}
+        \norm{f_k(y)-f_k(x)- (y-x)\cdot\nabla f_k(x) }
+        &= \norm*{ \int_0^1 \bigl( (y-x) \cdot \nabla f_k(x_t) 
+            - (y-x) \cdot \nabla f_k(x) \bigr) \dif{t} }
+        \\[1ex]
+        &\overset{\mathclap{\hyperref[vl02:CSU]{\text{CSU}}}}\leq
+        \int_0^1 \norm{\nabla f_k(x_t) - \nabla f_k(x) } \dif{t} \;
+        \norm{y-x}
+        \\[1ex]
+        &\leq \Bigl( 2\supnorm{\nabla f_k - g} 
+        + \sup_{t\in[0,1]} \, \norm{g(x_t)-g(x)}
+        \Bigr) \, \norm{y-x}
+    \end{align*}
+    Für $k\to\infty$ gilt dann:
+    \begin{align*}
+        \norm{f(y)-f(x)-(y-x)\cdot g(x)}
+        \leq \underbrace{\sup_{0\leq t\leq1} \,
+        \norm{g(x_t)-g(x)}}_{\hspace*{1.5cm}\mathclap{
+            \to\,0 \text{ für $y\to x$ wegen Stetigkeit von $g$}}} \,
+        \; \norm{y-x}
+    \end{align*}
+    Dies bedeutet $f$ ist in $x$ diff'bar mit $\nabla f(x) = g(x)$.
+    \\
+\end{proof}
