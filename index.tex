@@ -96,9 +96,9 @@
 %\newtheorem{thWarnung}[globalnum]{Warnung}
 \newtheorem{thBeispiel}[globalnum]{Beispiel}
 \newtheorem{thBeispiele}[globalnum]{Beispiele}
-\newenvironment{BspList}[1][]{%
+\newenvironment{BspList}[2][]{%
 \nopagebreak\begin{thBeispiele}#1%
-\hfill\begin{enumerate}[a),parsep=0pt,itemsep=0.8ex,leftmargin=2em]%
+\hfill\begin{enumerate}[#2,parsep=0pt,itemsep=0.8ex,leftmargin=2em]%
 }{%
 \end{enumerate}\end{thBeispiele}
 }
@@ -138,6 +138,7 @@
 \newcommand{\sDMO}[1]{\expandafter\DeclareMathOperator\csname#1\endcsname{#1}}
 
 \sDMO{id}
+\sDMO{Id}
 \sDMO{diam}
 \sDMO{dist}
 \DeclareMathOperator{\powerset}{\mathcal{P}}
@@ -155,6 +156,7 @@
 \DeclarePairedDelimiter{\Spann}{\langle}{\rangle}
 
 \newcommand{\SP}[1]{\Spann*{#1}}
+\renewcommand{\opnorm}{\norm}
 
 % define missing arrows
 \newcommand{\longto}{\longrightarrow}
@@ -172,6 +174,7 @@
 % just some shortcuts
 \newcommand{\conj}{\overline}
 \newcommand{\defeq}{\coloneqq}
+\newcommand{\defiff}{\mathrel{\vcentcolon\Longleftrightarrow}}
 \newcommand{\ddt}{\diff{}{t}}
 \newcommand{\dif}[2][\;]{#1\mathrm{d} #2}
 \newcommand{\diff}[2]{\frac{\mr d#1}{\mr d#2}}
@@ -186,6 +189,7 @@
 \newcommand{\kron}[1]{\delta_{#1}}
 \newcommand{\kSeq}[1]{\left(#1_k\right)_{k\in\N}}
 \newcommand{\ksum}[1][1]{\sum_{k=#1}}
+\newcommand{\laplace}{\Delta}
 \newcommand{\mr}{\mathrm}
 \newcommand{\mt}{^\mathsf{t}}
 \newcommand{\normlp}[2][p]{\norm{#2}_{\ell^{#1}}}
@@ -205,6 +209,7 @@
 \qTXq{oder}
 \qTXq{und}
 \qqTXqq{und}
+\newcommand{\fuer}{\qquad\text{für }}
 
 
 % listing with -- is nicer than with bullets 
@@ -235,6 +240,7 @@
 \input{vl01_14-10-2013}
 \input{vl02_17-10-2013}
 \input{vl03_21-10-2013}
+\input{vl04_24-10-2013}
 
 \end{document}
 

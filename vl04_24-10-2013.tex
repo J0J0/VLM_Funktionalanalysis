@@ -1,0 +1,310 @@
+% 2.18
+\begin{thEmpty}[Vervollständigung]
+    Sei $(X,d)$ ein metrischer Raum. Wir definieren 
+    \[  \tilde X \defeq 
+        \bigl\{ x = \iSeq x \Mid x \text{ ist Cauchy-Folge in $X$} \bigr\}
+    \]
+    zusammen mit der Äquivalenzrelation
+    \[ \iSeq x = \iSeq y \text{ in $\tilde X$} \;\defiff\; \bigl( d(x_j,y_j)
+        \bigr)_{j\in\N} \text{ ist Nullfolge}
+    . \]
+    Führe Metrik auf $\tilde X$ ein: für $\iSeq x,\iSeq y\in\tilde X$ sei
+    \[ \tilde d\bigl( \iSeq x, \iSeq y \bigr) \defeq
+        \lim_{j\to\infty} d(x_j,y_j)
+    . \]
+    
+    \nnSatz
+    \begin{enumerate}[i)]
+        \item \label{vl04:satz2.18-i}
+            Dann ist $(\tilde X,\tilde d)$ ein vollständiger metrischer Raum.
+        \item \label{vl04:satz2.18-ii}
+            Durch $J(x) \defeq (x)_{j\in\N}$ ist eine injektive Abbildung
+            $J\colon X\to\tilde X$ definiert, welche isometrisch ist, d.\,h.
+            für alle $x,y\in X$ gilt
+            \[ \tilde d\bigl( J(x), J(y) \bigr) = d(x,y) . \]
+        \item \label{vl04:satz2.18-iii}
+            Es liegt $J(X)$ dicht in $\tilde X$.
+    \end{enumerate}
+\end{thEmpty}
+
+\begin{proof}
+    Für $\tilde x = \iSeq x$ und $\tilde y = \iSeq y$ in $\tilde X$ gilt 
+    (mithilfe der sog. \emph{Vierecksungleichung}):
+    %\begin{align*}
+    %    \abs{d(x_j,y_j)-d(x_i,y_i)}
+    %    % TODO: v  check indices // don't understand this line
+    %    &\leq \abs{d(x_j,y_i)-d(x_i,y_j)} + d(y_j,x_i) + d(y_i,x_j)
+    %    \\
+    %    &\leq d(x_j,x_i) + d(y_j,y_i) \to 0 \fuer i,j\to\infty
+    %\end{align*}
+    \[  \abs{d(x_j,y_j)-d(x_i,y_i)} \leq d(x_j,x_i) + d(y_j,y_i) \to 0 
+        \fuer i,j\to\infty
+    . \]
+    Somit existiert $\tilde d(\tilde x,\tilde y) = \lim_{j\to\infty}
+    d(x_j,y_j)$. Für $\tilde x^1=\tilde x^2$ und $\tilde
+    y^1=\tilde y^2$ in $\tilde X$ folgt:
+    \[ \abs{d(x_j^2,y_j^2)-d(x_j^1,y_j^1)} \to 0 \fuer i\to\infty . \]
+    Dies zeigt, dass $\tilde d$ wohldefiniert ist. Außerdem gilt:
+    \[ \tilde d(\tilde x,\tilde y) = 0 \qiffq
+        \tilde x = \tilde y
+    , \]
+    was direkt aus der Definition der Äquivalenzrelation folgt.
+    Die $\triangle$-Ungleichung und Symmetrie übertragen sich direkt.
+    
+    Zur Vollständigkeit: Es sei $(x^k)_{k\in\N}$ eine Cauchy-Folge in 
+    $\tilde X$, mit $x^k = (x_j^k)_{j\in\N}$ für alle $k\in\N$. Zu $k\in\N$
+    wähle $j_k\in\N$, so dass $d(x_i^k,x_j^k) \leq 1/k$ für alle $i,j\geq j_k$
+    erfüllt ist. Dann gilt:
+    \begin{align*}
+        d(x_{j_k}^k, x_{j_k}^\ell) 
+        &\leq d(x_{j_k}^k,x_j^k) + d(x_j^k,x_j^\ell) +
+        d(x_j^\ell,x_{j_\ell}^\ell)
+        \\[0.75ex]
+        &\leq \frac{1}{k} + d(x_j^k,x_j^\ell) + \frac{1}{\ell}
+        \fuer j\geq j_k,j_\ell
+        \\[0.75ex]
+        &\to \frac{1}{k} + \tilde d(x^k,x^\ell) + \frac{1}{\ell} 
+        \fuer j\to\infty
+        \\[0.75ex]
+        &\to 0 \fuer k,\ell\to\infty
+    \end{align*}
+    Also ist $x^\infty \defeq (x_{j_\ell}^\ell)_{\ell\in\N}$ in $\tilde X$ und es
+    gilt:
+    \begin{align*}
+        \tilde d(x^\ell, x^\infty)
+        \longleftarrow\;  &d(x_k^\ell, x_k^\infty)  \fuer k\to\infty
+        \\
+        &\leq d(x_k^\ell,x_{j_\ell}^\ell) + d(x_{j_\ell}^\ell,x_{j_k}^k)
+        \\
+        &\leq \frac{1}{\ell} + d(x_{j_\ell}^\ell,x_{j_k}^k)
+        \fuer k\geq j_\ell
+        \\
+        &\to 0 \fuer k,\ell\to\infty
+    \end{align*}
+    Es gilt also $x^\ell\to x^\infty$. Da $(x^k)_{k\in\N}$ eine beliebige
+    Cauchy-Folge in $\tilde X$ war, hat also jede Cauchy-Folge einen Grenzwert.
+    
+    Die Aussagen \ref{vl04:satz2.18-ii} und \ref{vl04:satz2.18-iii} sind
+    eine einfache Übung.
+    \\
+\end{proof}
+
+
+% 3
+\chapter{Lineare Operatoren}
+% 3.1
+\begin{thDef}\hfill
+    \begin{enumerate}[a)]
+        \item
+            Seien $X,Y$ zwei $\K$-Vektorräume mit Topologien $\Topo_X,\Topo_Y$.
+            Wir definieren 
+            \[ L(X,Y) \defeq
+                \left\{ T\colon X\to Y \Mid
+                    T \text{ ist linear und stetig} 
+                \right\}
+            . \]
+            Elemente in $L(X,Y)$ heißen \emph{lineare Operatoren von $X$ nach $Y$}.
+            (Für $T\in L(X,Y)$ und $x\in X$ schreiben wir auch oft $Tx$ statt
+            $T(x)$.)
+            
+        \item
+            Der \emph{Dualraum} von $X$ ist
+            \[ X' \defeq L(X,\K)  \]
+            und Elemente aus $X'$ nennen wir \emph{lineare Funktionale}.
+    \end{enumerate}
+\end{thDef}
+
+% 3.2
+\begin{BspList}{1)}
+\item
+    Gelte $X=C^2(\setclosure{\Omega})$ und $Y=C^0(\setclosure\Omega)$ für
+    $\Omega\subset\R^n$ offen. Betrachte dann $T\colon X\to Y$ mit
+    \[ (Tu)(x) \defeq -\laplace u(x) \]
+    für alle $u\in C^2(\setclosure\Omega), x\in\setclosure\Omega$.
+    
+\item
+    Sei $\Omega\subset\R^n$ offen und beschränkt und sei
+    $K\colon\setclosure\Omega\times\setclosure\Omega \to \R$ stetig.
+    Sei dann $T$ für alle $u\in C^0(\setclosure\Omega), x\in\setclosure\Omega$
+    gegeben durch:
+    \[ (Tu)(x) \defeq \int_{\setclosure\Omega} K(x,y)\, u(y) \dif{y}  . \]
+\end{BspList}
+
+% 3.3
+\begin{thLemma}
+    Seien $X,Y$ normierte Vektorräume und sei $T\colon X\to Y$ linear. Dann sind
+    die folgenden Aussagen äquivalent:
+    \begin{enumerate}[(1)]
+        \item \label{vl04:lemma3.3-1}
+            $T$ ist stetig, also $T\in L(X,Y)$.
+        \item \label{vl04:lemma3.3-2}
+            $T$ ist stetig in $x_0$ für ein $x_0\in X$.
+        \item \label{vl04:lemma3.3-3}
+            Es gilt für die Operatornorm von $T$:\quad
+            \[ \opnorm{T}_{L(X,Y)} \defeq 
+                \sup_{\substack{x\in X\\\norm{x}_X\leq1}} \norm{Tx}_Y < \infty
+            \]
+        \item \label{vl04:lemma3.3-4}
+            Es existiert ein $C\in\R[\geq0]$, so dass für alle $x\in X$ gilt:
+            $\norm{Tx}_Y \leq C\,\norm{x}_X$.
+            (Bemerkung: $C = \norm{T}_{L(X,Y)}$ ist die kleinste solche Zahl.)
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}
+    \ref{vl04:lemma3.3-1}$\implies$\ref{vl04:lemma3.3-2}: klar.
+    
+    \ref{vl04:lemma3.3-2}$\implies$\ref{vl04:lemma3.3-3}:
+    Es gibt ein $\delta\in\R[>0]$, so dass
+    \[ T\bigl( \setclosure{ B_\delta(x_0) } \bigr)
+        \subset \setclosure{ B_1\bigl( T(x_0) \bigr) }
+    \]
+    erfüllt ist. Für $x$ mit $\norm{x}_X\leq 1$ folgt $x_0+\delta x\in
+    \setclosure{ B_\delta(x_0) }$ und daraus: $T(x_0+\delta x) \in \setclosure{
+    B_1\bigl(T(x_0)\bigr) }$, d.\,h. es gilt:
+    \[ \norm{ T(x_0+\delta x) - T(x_0) } \leq 1 . \]
+    Wegen der Linearität von $T$ gilt $T(x_0+\delta x) - T(x_0) = \delta
+    T(x)$, weshalb wir $T(x)\leq 1/\delta$ bekommen.
+    
+    \ref{vl04:lemma3.3-3}$\implies$\ref{vl04:lemma3.3-4}: Für $x\neq 0$ gilt
+    $\norm*{ \frac{x}{\norm{x}} } = 1$. Daraus folgt:
+    \[ \norm{Tx} = \norm*{ \norm{x} \, T\left( \frac{x}{\norm{x}} \right) }
+        \leq \norm{T} \, \norm{x}
+    . \]
+    
+    \ref{vl04:lemma3.3-4}$\implies$\ref{vl04:lemma3.3-1}: 
+    Für $x,x_0\in X$ gilt:
+    \[ \norm{Tx-Tx_0} = \norm{T(x-x_0)} \leq C\,\norm{x-x_0}  . \]
+    Also ist $T$ Lipschitz-stetig und somit auch stetig.
+    \\
+\end{proof}
+
+% 3.4
+\begin{thLemma}\hfill
+    \begin{enumerate}[(1)]
+        \item \label{vl04:lemma3.4-1}
+            $X,Y$ normierte Räume $\implies$ $L(X,Y)$ normiert mit der
+            Operatornorm.
+        \item \label{vl04:lemma3.4-2}
+            $Y$ Banachraum $\implies$ $L(X,Y)$ Banachraum
+        \item \label{vl04:lemma3.4-3}
+            $X$ Banachraum $\implies$ $L(X) \defeq L(X,X)$ Banachalgebra
+        \item \label{vl04:lemma3.4-4}
+            $T\in L(X,Y), S\in L(Y,Z)$ $\implies$ $ST\in L(X,Z)$ mit
+            $\norm{ST}\leq\norm{S}\,\norm{T}$
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}
+    Zu \ref{vl04:lemma3.4-1}: Wir zeigen nur die $\triangle$-Ungleichung (der
+    Rest ist klar). Es gilt
+    \[ \norm{T_1+T_2)(x)} \leq \norm{T_1x} + \norm{T_2x}
+        \leq (\norm{T_1}+\norm{T_2}) \, \norm{x}
+    , \]
+    woraus folgt:
+    \[ \norm{T_1+T_2} \leq \norm{T_1} + \norm{T_2}  . \]
+    
+    Zu \ref{vl04:lemma3.4-2}: Es sei $\nSeq T$ eine Cauchy-Folge in $L(X,Y)$.
+    Für alle $x\in X$ ist dann $(T_n x)_{n\in\N}$ eine Cauchy-Folge in $Y$.
+    Setzte
+    \[ Tx \defeq \lim_{n\to\infty} T_n x  . \]
+    Da Grenzwertbilden linear ist, ist auch $L$ linear. Wir behaupten, dass
+    $T\in L(X,Y)$ und $\norm{T_n-T}\to0$ für $n\to0$ gelten.
+    
+    Zu $\epsilon\in\R[>0]$ wähle $n_0\in\N$, so dass für alle 
+    $n,m\in\N_{\geq n_0}$ gilt:
+    \[ \norm{T_n-T_m} < \epsilon  .\]
+    Sei $x\in X$ mit $\norm{x}\leq 1$. Wähle $m_0=m_0(\epsilon,x) \geq n_0$ mit
+    \[ \norm{T_{m_0} x - Tx} \leq \epsilon . \]
+    Für alle $n\in\N_{\geq n_0}$ folgt nun:
+    \[ \norm{T_n x -Tx} \leq \norm{T_n x - T_{m_0} x} + \norm{ T_{m_0} x - T x}
+        \leq \norm{T_n-T_m} + \epsilon \leq 2\epsilon
+    . \]
+    Damit folgen nun aber $\norm{T} \leq \infty$ sowie $\norm{T_n-T}\to0$ für
+    $n\to\infty$.
+    
+    Zu \ref{vl04:lemma3.4-3} und \ref{vl04:lemma3.4-4}: Es gilt:
+    \[ \norm{STx} \leq \norm{S} \, \norm{Tx} \leq \norm{S}\,\norm{T}\,\norm{x}
+    . \]
+    Also gilt allgemein: $\norm{ST} \leq \norm{S}\,\norm{T}$.
+    \\
+\end{proof}
+
+% 3.5
+\begin{thBemerkung}
+    Es sei $T\in L(X,Y)$ und $\nSeq T$ eine Folge in $L(X,Y)$ mit $T_k x\to Tx$
+    für $k\to\infty$ und für alle $x\in X$. Dann folgt i.\,A. \emph{nicht}
+    $T_k\to T$ in $L(X,Y)$.
+    
+    Beispiel: $X=c_0$ (Raum der Nullfolgen) % TODO: ref
+    mit der Supremumsnorm, $Y=\R$, $T_kx\defeq x_k$.
+    Dann gilt: $\lim_{k\to\infty} T_kx = \lim_{k\to\infty} x_k = 0 \eqdef Tx$.
+    Offensichtlich gilt $\norm{T_kx}=1$ für $x=e_k$.
+    Außerdem gilt $\norm{T_kx} = \norm{x_k} \leq 1$ für $\norm{x}\leq 1$. D.\,h.
+    $\norm{T_k}=1$, aber $\norm{T}=0$.
+\end{thBemerkung}
+
+% 3.6
+\begin{thDef}
+    Für $T\in L(X,Y)$ definieren wir den \emph{Nullraum (Kern) von $T$} als
+    \[ N(T) \defeq \{ x\in X \Mid T(x) = 0 \}
+        = T^{-1}(\{0\})
+    . \]
+    Es ist $N(T)$ ein abgeschlossener Unterraum von $L(X,Y)$.
+    
+    Weiter sei
+    \[ R(T) \defeq \{ Tx\in Y \Mid x\in X \} = T(X) \]
+    der \emph{Bildraum} (engl.: \enquote{range}) von $T$.
+    Es ist $R(T)$ ein linearer Unterraum von $Y$, i.\,A. aber nicht
+    abgeschlossen.
+    
+    Beispiel: $X=C^0(\I)$,
+    \begin{align*}
+        &T\colon X\to X, \quad (Tf)(x) \defeq \int_0^x f(\xi) \dif{\xi}
+        \\
+        &R(T) = \{ g\in C^1(\I) \Mid g(0) = 0 \}
+    \end{align*}
+    Es gilt $T \in L(X,Y)$ aber $R(T)$ ist nicht abgeschlossen in $X$, denn:
+    \[ \setclosure{R(T)} = \{ g\in C^0(\I) \Mid g(0) = 0 \}  \]
+    (denn stetige Funktionen können durch $C^1$-Funktionen in der $C^0$-Norm
+    approximiert werden, siehe später). % TODO: ref
+\end{thDef}
+
+\begin{thSatz}[Neumannsche Reihe]
+    Sei $X$ ein Banachraum und sei $A\in L(X)$ mit $\norm{A}<1$.
+    Es bezeichne $\Id$ den Identitätsoperator.
+    Dann liegt $(\Id-A)^{-1}$ in $L(X)$ und es gilt:
+    \[ (\Id-A)^{-1} = \nsum[0]^\infty A^n \]
+\end{thSatz}
+
+\begin{proof}
+    Sei für alle $n\in\N$:
+    \[ B_n \defeq \ksum[0]^n A^k \qquad\in L(X)  . \]
+    Mit $\norm{A^k}\leq \norm{A}^k$ folgt:
+    \begin{align*}
+        \norm{B_n x - B_m x} &= \norm*{ \ksum[m+1]^n A^k x }
+        \fuer n > m
+        \\
+        &\leq \ksum[m+1]^n \norm{A}^k \, \norm{x}
+        \to 0 \fuer n,m\to\infty \text{ für alle $x$ mit 
+            gleichmäßig $\norm{x}\leq 1$}
+    \end{align*}
+    
+    Also existiert $B\in L(X)$ mit $B=\lim_{n\to\infty} B_n$.
+    Noch zu zeigen: $B(\Id-A) = \Id = (\Id-A)B$. Es gilt:
+    \[ \ksum[0]^n A^k\, (\Id-A) 
+    = \ksum[0]^n (A^k-A^{k+1}) = \Id - A^{n+1} 
+    \to \Id \fuer n\to\infty
+    . \]
+    Also:
+    \[ B(\Id-A) = \lim_{n\to\infty} B_n \, (\Id-A)
+        = \lim_{n\to\infty} (\id-A^{n+1}) = \Id 
+    \]
+\end{proof}
+
+
+
+
+
+
+
