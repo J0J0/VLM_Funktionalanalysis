@@ -56,11 +56,13 @@
 
 % make a even more clever \mycref that produces "Lemma 42a)" etc.
 % (uses the 'xstring' package)
-\newcommand{\mycref}[1]{%
+\newcommand{\mycref}[1]{\mycrefA{#1}{}{\,}{}}
+
+\newcommand{\mycrefA}[4]{%
     \begingroup%
     \StrCount{#1}{:}[\mycrefCount]%
     \StrBefore[\mycrefCount]{#1}{:}[\myrefMain]%
-    \expandafter\cref\expandafter{\myrefMain}\,\ref{#1}%
+    #2\expandafter\cref\expandafter{\myrefMain}#3\ref{#1}#4%
     \endgroup%
 }
 
