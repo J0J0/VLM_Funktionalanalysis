@@ -1,0 +1,383 @@
+% 3.7
+\begin{thEmpty}[Invertierbarere Operatoren]
+    Seien $X,Y$ Banachräume. Wir sagen $T\in L(X,Y)$ ist invertierbar, falls $T$
+    bijektiv ist und $T^{-1}\in L(X,Y)$ gilt.
+    
+    \nnSatz:\hfill
+    \begin{enumerate}[i)]
+        \item 
+            Die Teilmenge $\{ T\in L(X,Y) \Mid \text{$T$ invertierbar} \}$
+            ist offen in $L(X,Y)$.
+        \item
+            Es gilt genauer für $T,S\in L(X,Y)$ mit invertierbarem~$T$:
+            \[ \norm{S} < \norm*{T^{-1}}^{-1}
+                \qimpliesq \text{$T-S$ invertierbar}
+            \]
+    \end{enumerate}
+\end{thEmpty}
+
+\begin{proof}
+    Es gilt:
+    \[ T-S = T \, (\Id_X - \underbrace{T^{-1}S}_{\in L(X)})  . \]
+    Also folgt mit $\norm{S}<\norm*{T^{-1}}^{-1}$:
+    \[ \norm*{T^{-1}S} \leq \norm*{T^{-1}} \, \norm{S} < 1  . \]
+    Mithilfe der Neumannschen Reihe \pcref{vl04:neumannreihe}
+    erhalten wir:
+    \[ (\Id-T^{-1}S) \text{ ist invertierbar}  . \]
+    Also ist auch $T-S$ invertierbar
+    \\
+\end{proof}
+
+
+\chapter{Der Satz von Hahn-Banach und seine Konsequenzen}
+Problem: Setzte ein Funktional stetig von einem Unterraum auf den gesamten Raum
+fort.
+
+Bisher wissen wir nicht, ob auf jedem normierten Vektorraum ein
+(nicht-triviales) stetiges lineares Funktional existiert. Da wir im Folgenden
+grundlegend das \emph{Zorn'sche Lemma} verwenden, wiederholen kurz dir
+Voraussetzungen dafür.
+
+\begin{thDef}\hfill
+    \begin{enumerate}[i)]
+        \item
+            Sei $M$ eine Menge. Eine Teilmenge $H\subset M\times M$ definiert
+            eine \emph{Halbordnung} (wir sagen $a\leq b$, falls $(a,b)\in H$ erfüllt
+            ist), wenn für alle $a,b\in M$ gilt:
+            \begin{enumerate}[a),labelsep=1em,leftmargin=1.3cm]
+                \item $a\leq a$
+                \item $a\leq b \wedge b\leq a \implies a=b$
+                \item $a\leq b \wedge b\leq c \implies a\leq c$
+            \end{enumerate}
+        \item
+            Eine Teilmenge $K\subset M$ heißt \emph{Kette} (oder \emph{total
+            geordnete Teilmenge}), falls für alle $a,b\in K$ entweder $a\leq b$
+            oder $b\leq a$ gilt.
+        \item
+            Eine \emph{obere Schranke} einer Teilmenge $K\subset M$ ist ein
+            Element $s\in M$ mit $a\leq s$ für alle $a\in K$. (Achtung: $s$ muss
+            \emph{nicht} in $K$ liegen!)
+        \item
+            Wir sagen $M$ ist \emph{induktiv geordnet}, falls jede Kette in $M$
+            eine obere Schranke besitzt.
+        \item
+            Ein $m\in K$ heißt \emph{maximales Element von $K$}, wenn für alle $a\in K$
+            aus $a\geq m$ schon $a=m$ folgt. 
+    \end{enumerate}
+\end{thDef}
+
+\begin{thEmpty}[Zorn'sches Lemma] \label{vl05:zorn}
+    Jede induktiv geordnete Menge besitzt (mindestens) ein maximales Element.
+    
+    Bemerkung: Das Zorn'sche Lemma ist äquivalent zum Auswahlaxiom.
+\end{thEmpty}
+
+\begin{thSatz}[Satz von Hahn-Banach] \label{vl05:hahnbanach}
+    Sei $X$ ein $\R$-Vektorraum und $Y\subset X$ ein Unterraum. Weiter gelte:
+    \begin{enumerate}[(1)]
+        \item 
+            $p\colon X\to\R$ ist sublinear, d.\,h. für alle $x,y\in X$ und
+            $\alpha\in\R[\geq0]$ gilt:
+            \[ p(x+y) \leq p(x) + p(y) \qundq p(\alpha x) = \alpha p(x)  . \]
+        \item
+            $f\colon Y\to\R$ ist linear.
+        \item
+            $f\leq p$ auf $Y$.
+    \end{enumerate}
+    Dann existiert eine lineare Abbildung $f\colon X\to\R$ 
+    mit $f\leq p$ auf $X$.
+\end{thSatz}
+
+\begin{proof}
+    Nutze das Zorn'sche Lemma \pcref{vl05:zorn}.
+    Es sei 
+    \begin{align*}
+        M \defeq 
+        \bigl\{ (Z,g) \cMid\big
+            &Y\subset Z\subset X, \; \text{$Z$ ist Unterraum},
+            \\
+            &g\colon Z\to\R \text{ ist linear}, \;
+            g=f \text{ auf $Y$}, \; g\leq p \text{ auf $Z$}
+        \,\bigr\}
+    .  \end{align*}
+    Wir definieren eine Halbordnung auf dieser Menge folgendermaßen:
+    \[ (Z_1,g_1) \leq (Z_2,g_2)  \quad\eqiff\quad
+        Z_1\subset Z_2 \wedge g_2\vert_{\raisebox{-2pt}{$\scriptstyle Z_1$}} = g_1
+    . \]
+    Es ist zunächst zu zeigen, dass es überhaupt ein $F$ gibt, so dass $(X,F)\in
+    M$ gilt. Hierzu brauchen wir folgende Konstruktion:
+    
+    Sei $(Z,g)\in M, z_0\in X\setminus Z$. Definiere dann $Z_0\defeq
+    Z\oplus\spann\{z_0\}$. Das Ziel ist es nun, $g$ auf $Z_0$ fortzusetzen.
+    Ansatz:
+    \[ g_0(z+\alpha z_0) = g(z) + \alpha c \]
+    für $z\in Z,\alpha\in\R$. Gesucht ist nun ein geeinetes $c\in\R$.
+    
+    Es muss für alle $z\in Z$ gelten:
+    \[ g(z) + \alpha c \leq p(z+\alpha z_0)  . \]
+    Für $\alpha=0$ ist dies klar. Für $\alpha>0$ haben wir:
+    \[ c \leq \frac{p(z+\alpha z_0)-g(z)}{\alpha} 
+        = p\left( \frac{z}{\alpha} + z_0 \right) - g\left( \frac{z}{\alpha} \right)
+    \]
+    und für $\alpha<0$:
+    \[ c \geq \frac{p(z+\alpha z_0)-g(z)}{\alpha} 
+        = -p\left( -\frac{z}{\alpha} - z_0 \right) + g\left( -\frac{z}{\alpha} \right)
+    . \]
+    Gesucht ist nun ein $c$, so dass
+    \[ \tag{$\star$} \label{vl05:star}
+        \sup_{z'\in Z} \left( g(z') - p(z'-z_0) \right)
+        \leq c \leq
+        \inf_{z\in Z} \left( p(z+z_0) - g(z) \right)
+    \]
+    erfüllt ist.
+    
+    Es gilt für alle $z',z\in Z$:
+    \[ g(z+z') \leq p(z+z') 
+        = p(z+z_0+z'-z_0) \leq p(z+z_0) + p(z'-z_0)
+    . \]
+    Daraus folgt für alle $z',z\in Z$:    
+    \[ g(z') - p(z'-z_0) \leq p(z+z_0) - g(z)  , \]
+    was wiederum bedeutet, dass wir für $c$ einfach den Wert des Supremums 
+    in \eqref{vl05:star} nehmen können.
+    Somit existiert also ein $c\in\R$, so dass $(Z_0,g_0)\in M$ gilt.
+    Sei nun $N\subset M$ eine Kette. Definiere dann
+    \[ Z_0 \defeq \bigcup_{(Z,g)\in N} Z \]
+    und
+    \[ g_0\colon Z_0\to\R, \quad z_0\mapsto g(z_0) \text{ falls $z_0\in Z$ mit
+        $(Z,g)\in N$}
+    . \]
+    Da $N$ eine Kette ist, ist $g_0$ tatsächlich wohldefiniert. Es folgt also
+    $(Z_0,g_0)\in M$ und für alle $(Z,g)\in N$ gilt $(Z,g)\leq (Z_0,g_0)$.
+    
+    Das Zorn'sche Lemma liefert nun: Es existiert ein maximales Element
+    $(Z,g)\in M$. Dann muss schon $Z=X$ gelten, denn:
+    Falls $z_0\in X\setminus Z$ existiert, konstruiere eine Fortsetzung von $g$
+    auf $Z\oplus\spann\{x_0\}$ wie oben. Dies liefert einen Widerspruch zur
+    Maximalität von $(Z,g)$. Damit ist der Satz gezeigt.
+    \\
+\end{proof}
+
+Wir wollen nun den Satz von Hahn-Banach auf den komplexen Fall verallgemeinern.
+Die Frage ist, wie wir \enquote{$f\leq p$\kern2pt} auf $\C$ umgehen. Dazu betrachten wir
+die Realteilfunktion $\Re f$ von $f$.
+
+% Aussagen über $\C$-Vektorräume als $\R$-Vektorräume
+% Dazu folgende Aussage
+
+% 4.4
+\begin{thLemma} \label{vl05:lemma4.4}
+    Sei $X$ ein $\C$-Vektorraum.
+    \begin{enumerate}[(a)]
+        \item \label{vl05:lemma4.4:a}
+            Sei $\ell\colon X\to\R$ ein $\R$-lineares Funktional, d.\,h.
+            \[ \ell(\lambda_1x_1+\lambda_2x_2) 
+                = \lambda_1 \ell(x_1) + \lambda_2 \ell(x_2)
+            \]
+            für alle $\lambda_1,\lambda_2\in\R,\; x_1,x_2\in X$. Setzten wir
+            \[ \tilde\ell(x) \defeq f(x) - i\,\ell(ix) , \]
+            so ist $\tilde\ell\colon X\to\C$ eine $\C$-lineare Abbildung mit
+            $\ell = \Re\tilde\ell$.
+            
+        \item \label{vl05:lemma4.4:b}
+            Ist $h\colon X\to\C$ eine $\C$-lineare Abbildung, $\ell=\Re h$ und
+            $\tilde\ell$ wie in \ref{vl05:lemma4.4:a},
+            so ist $\ell$ eine $\R$-lineare Abbildung mit $\tilde\ell = h$.
+            
+        \item \label{vl05:lemma4.4:c}
+            Ist $p\colon X\to\R$ eine Halbnorm (es gelten die Normaxiome bis auf
+            $p(x)=0 \implies x=0$) und ist $\ell\colon X\to\C$ eine $\C$-lineare
+            Abbildung, so gilt:
+            \[ \Bigl( \forall\,x\in X\colon\; \abs{\ell(x)} \leq p(x)  \Bigr)
+                \iff
+                \Bigl( \forall\,x\in X\colon\; \abs{\Re\ell(x)} \leq p(x) \Bigr)
+            . \]
+            
+        \item \label{vl05:lemma4.4:d}
+            Ist $X$ ein normierter Vektorraum und ist $\ell\colon X\to\C$ eine
+            $\C$-lineare Abbildung und stetig, so ist $\norm\ell =
+            \norm{\Re\ell}$.
+    \end{enumerate}
+\end{thLemma}
+
+Bemerkung: $\ell\mapsto\Re\ell$ ist also eine bijektive $\R$-lineare Abbildung
+zwischen den $\C$-linearen und den $\R$-linearen, $\R$-wertigen Abbildungen.
+Im normierten Fall ist die Abbildung sogar eine Isometrie.
+
+\begin{proof}\hfill
+    \begin{enumerate}[(a)]
+        \item
+            Da $x\mapsto ix$ eine $\R$-lineare Abbildung ist, folgt:
+            $\tilde\ell$ ist $\R$-linear. Die Gleichheit $\Re\tilde\ell = \ell$
+            gilt nach Konstruktion. Außerdem gilt:
+            \[ \tilde\ell(ix) = \ell(ix) - i\,\ell(i^2x) = \ell(ix) -
+                i\,\ell(-x) = i\,\bigl( \ell(x) - i \ell(ix) \bigr)
+                = i\,\tilde\ell(x)
+            . \]
+        \item
+            Natürlich ist $\ell=\Re h$ eine $\R$-lineare Abbildung. Es gilt
+            für alle $z\in\C$:
+            \begin{align*}
+                h(x) 
+                &= \Re h(x) + i\, \Im h(x)                  %
+                 = \Re h(x) - i\, \Re\bigl( i h(x) \bigr)   \\
+                &= \Re h(x) - i\, \Re h(ix)                 %
+                 = \ell(x) - i\, \ell(ix) = \tilde\ell(x)
+            \end{align*}
+        \item
+            Wegen $\abs{\Re z} \leq \abs z$ für alle $z\in\C$ gilt die
+            Hinrichtung. Die Rückrichtung ergibt sich wie folgt: Schreibe
+            $\ell(x) = \lambda \, \abs{\ell(x)}$ für ein geeignetes
+            $\lambda\in\C$ mit $\abs{\lambda}=1$.
+            Dann gilt für alle $x\in X$:
+            \[ \abs{\ell(x)} = \lambda^{-1} \ell(x) = \ell(\lambda^{-1} x)
+                = \abs{\Re \ell(\lambda^{-1} x)}  \leq p(\lambda^{-1} x)
+                = p(x)
+            . \]
+        \item
+            folgt sofort aus \ref{vl05:lemma4.4:c}.
+            \\
+            \qedhere % there's too much vertical blank space otherwise
+    \end{enumerate}
+\end{proof}
+
+% 4.5
+\begin{thSatz} \label{vl05:satz4.5}
+    Sei $X$ ein $\C$-Vektorraum und sei $U\subset X$ ein Unterraum. Weiter sei
+    $p\colon X\to\R$ sublinear und $\ell\colon U\to\C$ linear mit 
+    $\Re\ell(x)\leq p(x)$ für alle $x\in U$. Dann existiert eine lineare
+    Fortsetzung $L\colon X\to\C$ mit $L\vert_U=\ell$ und $\Re L(x) \leq p(x)$
+    für alle $x\in X$.
+\end{thSatz}
+
+\begin{proof}
+    Wende den Satz von Hahn-Banach \pref{vl05:hahnbanach}
+    auf das $\R$-lineare Funktional $\Re\ell\colon U\to\R$ an und erhalte eine
+    $\R$-lineare Abbildung $F\colon X\to\R$ mit $F\vert_U=\Re\ell$ und $F(x)\leq
+    p(x)$ für alle $x\in X$. Nach \cref{vl05:lemma4.4} ist $F=\Re L$ für ein
+    $\C$-lineares Funktional $L\colon X\to\C$. Dann ist $L$ eine
+    geeignete Fortsetzung.
+    \\
+\end{proof}
+
+% 4.6
+\begin{thSatz} \label{vl05:satz4.6}
+    Sei $X$ ein normierter Vektorraum und sei $U\subset X$ ein Unterraum. Zu
+    jedem stetigen linearen Funktional $u'\colon U\to\K$ existiert ein lineares
+    Funktional $x'\colon X\to\K$ mit $x'\vert_U = u'$ und $\norm{x'}=\norm{u'}$.
+\end{thSatz}
+
+\begin{proof}
+    Sei $X$ zunächst ein $\R$-Vektorraum. Definiere für alle $x\in X$
+    \[ p(x) \defeq \norm*{u'} \, \norm{x}  , \]
+    womit $p\colon X\to\R$ sublinear ist. Der Satz von Hahn-Banach
+    \pcref{vl05:hahnbanach} liefert: Es existiert eine lineare Abbildung
+    $x'\colon X\to\R$ mit $x'\vert_U = u'$ und $x'(x) \leq p(x)$ für alle
+    $x\in X$. Da auch $x'(-x) \leq p(-x) = p(x)$ gilt, folgt
+    \[ \abs*{x'(x)}\leq \norm*{u'} \, \norm{x}  \qtextq{also}
+        \norm*{x'}\leq\norm*{u'}
+    . \]
+    Umgekehrt gilt:
+    \[ \norm*{u'} = \sup_{\substack{u\in U\\\norm{u}\leq1}} \, \abs*{u'(u)}
+        = \sup_{\substack{u\in U\\\norm{u}\leq1}}           \, \abs*{x'(u)}
+        \leq \sup_{\substack{x\in X\\\norm{x}\leq1}}        \, \abs*{x'(x)}
+        = \norm*{x'}
+    . \]
+    
+    Sei $X$ nun ein $\C$-Vektorraum. Wir erhalten wie in \cref{vl05:satz4.5}
+    ein lineares Funktional $x'\colon X\to\C$ mit $x'\vert_U = u'$ und 
+    $\norm*{\Re x'} = \norm*{u'}$. \mycref{vl05:lemma4.4:d} liefert dann
+    wie gewünscht $\norm*{\Re x'} = \norm*{x'}$.
+    \\
+\end{proof}
+
+\begin{thBemerkung}\hfill
+    \begin{enumerate}[i)]
+        \item
+            Die Fortsetzung im Satz von Hahn-Banach \pcref{vl05:hahnbanach}
+            und seinen Folgerungen sind im Allgemeinen \emph{nicht} eindeutig.
+        \item
+            Für Operatoren (lineare Abbildungen von $X$ nach $Y$) ist die
+            Aussage in \cref{vl05:satz4.6} im Allgemeinen falsch.
+            
+            Beispiel: Es gibt keinen stetigen linearen Operator
+            $T\colon\ell^\infty\to c_0$, der die Identität $\Id\colon c_0\to
+            c_0$ fortsetzt.
+        \item
+            Es gibt eine eindeutige stetige Fortsetzung, falls der Unterraum
+            $U$ dicht in $X$ liegt.
+    \end{enumerate}
+\end{thBemerkung}
+
+% Skizze: zwei Menge, getrennt von Gerade ("Hyperebene")
+
+% 4.8
+\begin{thDef}
+    Eine affine Hyperebene in einem Vektorraum~$X$ ist eine Teilmenge
+    $H\subset X$ der Form
+    \[ H = \{ x\in X \Mid f(x)=\alpha \} \]
+    für eine (nicht-trivale) lineare Abbildung $f\colon X\to\C$ und
+    $\alpha\in\C$.
+    Wir schreiben auch kurz: $H = \{ f=\alpha \}$.
+\end{thDef}
+
+\begin{figure}[b]
+    %%%%
+    %% stolen from
+    %% "Finding centroid of the content in whole tikzpicture, scope or node"
+    %% see: http://tex.stackexchange.com/questions/21552/
+    %%%%
+    \newcommand\globallist[2]{\global\edef#1{#1#2}}
+    \newcommand{\refpoints}{}
+    \newcommand{\docentroid}[1]{
+        \coordinate (fake) at (0,0);
+        \globallist\refpoints{fake=0}
+        \coordinate (#1) at (barycentric cs:\refpoints);
+        \global\def\refpoints{}
+    }
+    %
+    \centering
+    \begin{tikzpicture}[y=0.5pt, x=0.5pt,yscale=-1,
+        bary markings/.style = {
+            decoration = {
+                markings,
+                mark = between positions 0 and 1 step .1 with {
+                    \edef\number{\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}}
+                    \coordinate (r\number);
+                    \globallist\refpoints{r\number=1,}
+                }
+            },
+            postaction = {decorate}
+        }
+    ]
+    
+    \path[draw=black,fill=black,fill opacity=0.2,line width=1.2pt,bary markings] 
+        (117.7308,37.6245) .. controls (117.7308,56.6020) and
+        (65.8544,33.7072) .. (60.6996,71.9863) .. controls (56.4959,103.2019) and
+        (3.6684,56.6020) .. (3.6684,37.6245) .. controls (3.6684,18.6470) and
+        (29.2021,3.2627) .. (60.6996,3.2627) .. controls (92.1970,3.2627) and
+        (117.7308,18.6470) .. (117.7308,37.6245) -- cycle;
+    \docentroid{A}
+    
+    \path[draw=black, line width=2pt,label=$H$]
+        (179.8484,5.6852) -- (31.9963,188.4629) node [above left] {$H$};
+    
+    \path[draw=black,fill=black,fill opacity=0.2,line width=1.2pt,bary markings] 
+        (169.0796,71.5129) .. controls (184.1424,62.6776) and
+        (210.9399,69.6605) .. (219.7752,84.7233) .. controls (223.3094,90.7484) and
+        (221.2085,103.0862) .. (214.4911,105.0015) .. controls (171.1662,117.3545) and
+        (182.1967,133.9541) .. (192.6510,147.3898) .. controls (199.1311,155.7180) and
+        (205.3899,162.8306) .. (198.3451,166.9628) .. controls (191.3158,171.0860) and
+        (182.5731,162.8529) .. (174.6872,160.7980) .. controls (165.6746,158.4495) and
+        (152.3617,161.7859) .. (147.6495,153.7524) .. controls (139.8940,140.5307) and
+        (155.3800,124.0861) .. (159.2453,109.2530) .. controls (162.5234,96.6730) and
+        (157.8662,78.0904) .. (169.0796,71.5129) -- cycle;
+    \docentroid{B}
+        
+    \path (A)++(-4pt,0) node {$A$}
+          (B)++(0,-9pt) node {$B$};
+          
+    \end{tikzpicture}
+    \caption{Zwei Teilmengen $A$ und $B$ eines Vektorraums, 
+            getrennt durch eine Hyperebene~$H$ (hier eine Gerade im $\R^2$)}
+    \label{vl05:fig:hyper}
+\end{figure}
