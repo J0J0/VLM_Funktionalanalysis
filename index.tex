@@ -55,6 +55,7 @@
 % make parenthesized versions of \ref and cleveref's \cref
 \newcommand*{\pref}[1]{(\ref{#1})}
 \newcommand*{\pcref}[1]{(\cref{#1})}
+\newcommand*{\pmycref}[1]{(\mycref{#1})}
 
 % make a even more clever \mycref that produces "Lemma 42a)" etc.
 % (uses the 'xstring' package)
@@ -92,6 +93,7 @@
 \newtheorem{thDef}[globalnum]{Definition}
 \newtheorem{thNotation}[globalnum]{Notation}
 \newtheorem{thSatz}[globalnum]{Satz}
+\newtheorem{thTheorem}[globalnum]{Theorem}
 %\newtheorem{thPropos}[globalnum]{Proposition}
 \newtheorem{thLemma}[globalnum]{Lemma}
 \newtheorem{thKorollar}[globalnum]{Korollar}
@@ -127,6 +129,7 @@
 %
 \newcommand{\nnSatz}{\textbf{Satz:} }
 \newcommand{\nnDef}{\textbf{Definition:} }
+\newcommand{\nnBemerkung}{\textbf{Bemerkung:} }
 
 
 % overwrite \Re and \Im with less fancier definitions
@@ -146,6 +149,7 @@
 \sDMO{Id}
 \sDMO{diam}
 \sDMO{dist}
+\sDMO{epi}
 \DeclareMathOperator{\powerset}{\mathcal{P}}
 \DeclareMathOperator{\spann}{span}
 \sDMO{supp}
@@ -167,6 +171,8 @@
 % define missing arrows
 \newcommand{\longto}{\longrightarrow}
 \newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
+\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+\newcommand{\longmapsfrom}{\mathrel{\reflectbox{\ensuremath{\longmapsto}}}}
 
 % provide mathbb symbols \N \Z \Q \R and \C, additionally \K
 \defmathbbsymbols{N Z Q C K}
@@ -200,6 +206,7 @@
 \newcommand{\laplace}{\Delta}
 \newcommand{\mr}{\mathrm}
 \newcommand{\mt}{^\mathsf{t}}
+\newcommand{\neginfinfoc}{(-\infty,\infty]}
 \newcommand{\normlp}[2][p]{\norm{#2}_{\ell^{#1}}}
 \newcommand{\normlinf}[1]{\norm{#1}_{\ell^{\infty}}}
 \newcommand{\nsum}[1][1]{\sum_{n=#1}}
@@ -253,6 +260,7 @@
 \input{vl04_24-10-2013}
 \input{vl05_28-10-2013}
 \input{vl06_31-10-2013}
+\input{vl07_04-11-2013}
 
 \end{document}
 

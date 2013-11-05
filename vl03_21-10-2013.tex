@@ -60,7 +60,7 @@
     \end{enumerate}
 \end{thEmpty}
 
-\begin{thLemma}[Youngsche Ungleichung]
+\begin{thLemma}[Youngsche Ungleichung] \label{vl03:young}
     Es seien $p,p'\in(1,\infty)$, so dass $\frac{1}{p}+\frac{1}{p'}=1$ gilt.
     Dann gilt für alle $a,b\in\R[>0]$:
     \[ ab \leq \frac{1}{p}\, a^p + \frac{1}{p'}\, b^{\mkern2mu p'}  . \]
@@ -90,7 +90,7 @@
 \begin{proof}
     Falls $p=\infty$ setzte $p'=1$ (und umgekehrt). In diesem Fall ist der
     Beweis einfach. Sei nun $1<p<\infty$ und $\normlp{x}>0, \normlp[p']{y}>0$.
-    Die Youngsche Ungleichung liefert:
+    Die Youngsche Ungleichung \pcref{vl03:young} liefert:
     \[ %\tag{$\ast$}\label{vl03:ast}
         \frac{\abs{x_k} \; \abs{y_k}}{\normlp{x}\,\normlp[p']{y}}
         \leq \frac{1}{p} \, \frac{\abs{x_k}^p}{\normlp{x}^p}

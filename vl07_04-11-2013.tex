@@ -1,0 +1,303 @@
+Im Allgemeinen lassen sich konvexe Mengen mit $A\cap B = \emptyset$ nicht
+trennen. Es gibt Beispiele mit $A,B$ zusätzlich abgeschlossen, in denen
+Trennungen nicht möglich ist. (Siehe Übungen.)
+
+% 4.16
+\begin{thKorollar} \label{vl07:korollar4.16}
+    Sei $X$ ein normierter Vektorraum und $U\subsetneq X$ ein Unterraum.
+    Dann existiert ein $x'\in X'$ mit $x'\neq 0$ und $x'(U) = \{0\}$.
+\end{thKorollar}
+
+\begin{proof}
+    Es sei $x_0\in X$ mit $x_0\notin \setclosure U$. 
+    Wende \cref{vl06:hahnbanachgeom2} auf $A=\setclosure U$ und $B=\{x_0\}$ an.
+    Wir erhalten somit ein $x'\in X'$ und ein $\alpha\in\R$ mit $\Re x'(x) <
+    \alpha < \Re x'(x_0)$ für alle $x\in\setclosure U$. Es folgt für alle
+    $\lambda\in\R,\;x\in\setclosure U$:
+    \[ \Re x'(\lambda x) < \alpha  . \]
+    Also muss schon $\Re x'(x) = 0$ für alle $x\in\setclosure U$ gelten. Wegen
+    $\Re x'(x_0) > \Re x'(x) = 0$ für alle $x\in U$ ist außerdem $x'\neq 0$.
+    \\
+\end{proof}
+
+% 4.17
+\begin{thBemerkung}
+    \cref{vl07:korollar4.16} wird genutzt, um zu zeigen, dass ein Unterraum~$U$
+    dicht in einem umgebenden Raum~$X$ liegt. Kann man zeigen, dass für alle
+    $x'\in X'$ aus $x'\vert_U = 0$ schon $x'=0$ folgt, so ergibt sich
+    $\setclosure U = X$.
+\end{thBemerkung}
+
+% 4.17
+\begin{thDef}
+    Sei $(X,\emptyNorm)$ ein normierter $\K$-Vektorraum und $X'$ der Dualraum zu~$X$
+    \pmycref{vl04:def3.1:dual}.
+    Dann ist $X'' \defeq (X')'$ der \emph{Bidualraum von $X$}.
+\end{thDef}
+    
+Wir können auf kanonische Weise eine Abbildung 
+$J_X\colon X\to X''$ wie folgt definieren:
+\[ x\mapsto \left( 
+        \begin{aligned}
+            X' &\to \K  \\
+            x' &\mapsto x'(x)
+        \end{aligned}
+    \right)
+. \]
+Dann ist $J_X$ linear und stetig, denn es gilt für alle $x'\in X'$ und
+alle $x\in X$ die Ungleichung
+$\abs{x'(x)} \leq \norm{x'}\cdot \norm{x}$ und damit für alle $x\in X$:
+\[ \tag{$\ast$} \label{vl07:ast}
+    \norm{ J_X(x) } \leq \norm{x}  . \]
+Es gilt sogar $\norm{x} = \sup_{x'\in X'} \,\abs{x'(x)}$ für alle $x\in X$.
+
+Sei $x_0\in X\setminus\{0\}$. Setze dann das Funktional
+\[ u'\colon \spann\{x_0\} \to \K, \qquad 
+    x \mapsto \lambda\,\norm{x_0} 
+    \text{\quad falls $\lambda\in\K$ mit $x=\lambda x_0$}
+\]
+normgleich auf $X$ fort.
+Es gilt dann $\norm{x'} = \norm{u'} = 1$ und $x'(x) = \norm{x}$. Damit ist
+in \eqref{vl07:ast} sogar Gleichheit gezeigt. Insgesamt folgt:
+% 4.18
+\begin{thSatz}
+    Die Abbildung $J_X$ ist eine (im Allgemeinen nicht surjektive) lineare
+    Isometrie, d.\,h. für alle $x\in X$ gilt $\norm{J_X(x)}_{X''} 
+    = \norm{x}_X$. (Insbesondere ist $J_X$ als Isometrie stets injektiv.)
+\end{thSatz}
+
+% 4.19
+\begin{thDef}
+    Ein Banachraum~$X$ ist \emph{reflexiv}, wenn $J_X$ surjektiv (also
+    bijektiv) ist.
+\end{thDef}
+
+\nnBemerkung
+Da $J_X$ injektiv ist, kann $X$ mit einem Unterraum von $X''$ identifiziert
+werden.
+
+% 4.20
+\begin{thDef}
+    Sei $X$ ein normierter Raum und $M\subset X$ ein Unterraum.
+    Wir definieren dann
+    \[ M^\perp \defeq \bigl\{ x'\in X' \Mid x'(M) = \{0\} \bigr\} . \]
+    Sei $N\subset X'$ ein Unterraum. Dann sei
+    \[ N^\perp \defeq \bigl\{ x\in X \Mid 
+        \forall\,x'\in N\colon\; x'(x) = 0 \bigr\}
+    . \]
+\end{thDef}
+
+% 4.21
+\begin{thBemerkung}\hfill
+    \begin{enumerate}[i)]
+        \item 
+            Es ist $N^\perp$ eine Teilmenge von $X$ und \emph{nicht} 
+            von $X''$.
+        \item
+            Es sind $M^\perp$ und $N^\perp$ abgeschlossene Unterräume.
+    \end{enumerate}
+\end{thBemerkung}
+
+% 4.22
+\begin{thSatz}
+    Sei $X$ ein normierter Raum und $M\subset X$ ein Unterraum. Dann gilt
+    \[ \bigl(M^\perp\bigr)^\perp = \setclosure M  . \] 
+    Sei außerdem $N\subset X'$ ein Unterraum.  Dann gilt 
+    \[ \bigl(N^\perp\bigr)^\perp \supset \setclosure N  . \]
+    (Im Allgemeinen ist diese Inklusion echt.)
+\end{thSatz}
+
+% 4.23
+\begin{thDef}\hfill
+    \begin{enumerate}[i)]
+        \item
+            Es sei $E$ eine Menge und $\phi\colon E\to \neginfinfoc
+            = \R \cup \{\infty\}$ eine Abbildung. Wir definieren dann
+            \[ D(\phi) \defeq \{ x\in E \Mid \phi(x) < \infty \} 
+                = \phi^{-1}(\R)
+            . \]
+            
+        \item
+            Der \emph{Epigraph von $\phi$} ist die Menge
+            \[ \epi(\phi) \defeq
+                \{ (x,\lambda) \in E\times\R \Mid \phi(x) \leq \lambda \}
+            . \]
+            % TODO: Skizze
+    \end{enumerate}
+\end{thDef}
+
+% 4.24
+\begin{thDef}
+    Sei $(E,\Topo)$ ein topologischer Raum. Eine Abbildung $\phi\colon E\to
+    \neginfinfoc$ ist \emph{unterhalbstetig}, wenn für alle $\lambda\in\R$
+    die Menge
+    \[ \{ \phi \leq \lambda \} \defeq \{ x\in E \Mid \phi(x) \leq \lambda \}
+        = \phi^{-1}(\R[\leq\lambda]) \subset E
+    \]
+    abgeschlossen ist.
+\end{thDef}
+% TODO: Skizzen
+
+% 4.25
+\begin{thLemma} \label{vl07:lemma4.25}
+    Sei $(E,\Topo)$ ein topologischer Raum und $\phi\colon E\to
+    \neginfinfoc$ eine Abbildung. Dann gelten folgende Aussagen:
+    \begin{enumerate}[(i)]
+        \item \label{vl07:lemma4.25:i}
+            Es ist $\phi$ genau dann unterhalbstetig, wenn $\epi(\phi)$
+            abgeschlossen in $E\times\R$ (mit der Produkttopologie) ist.
+            
+        \item \label{vl07:lemma4.25:ii}
+            Es ist $\phi$ genau dann unterhalbstetig, wenn für alle $x\in E$
+            und alle $\epsilon\in\R[>0]$ eine Umgebung~$V$ von $x$ existiert, so
+            dass für alle $y\in V$ gilt:
+            $\phi(y)\geq\phi(x)\cdot\epsilon$.
+            
+        \item \label{vl07:lemma4.25:iii}
+            Ist $\phi$ unterhalbstetig, so gilt für jede Folge $\nSeq x$ in $E$
+            mit $\lim_{n\to\infty} x_n = x\in E$:
+            \[ \liminf_{n\to\infty} \phi(x_n) \geq \phi(x) . \]
+            Falls $E$ ein metrischer Raum ist, so gilt auch die Umkehrung.
+            
+        \item \label{vl07:lemma4.25:iv}
+            Ist $\tilde\phi\colon E\to\neginfinfoc$ eine weitere
+            unterhalbstetige Abbildung, so ist auch $\phi+\tilde\phi$
+            unterhalbstetig.
+            
+        \item \label{vl07:lemma4.25:v}
+            Ist $(\phi_i)_{i\in I}$ eine Familie unterhalbstetiger
+            Abbildungen $E\to\neginfinfoc$ mit
+            \[ \phi(x) = \sup_{i\in I} \phi_i(x)  \]
+            für alle $x\in E$, so ist auch $\phi$ unterhalbstetig.
+            
+        \item \label{vl07:lemma4.25:vi}
+            Ist $E$ kompakt und $\phi$ unterhalbstetig, so existiert ein
+            $x_0\in E$ mit $\phi(x_0) = \inf_{x\in E} \phi(x)$.
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}
+    Siehe Übungen für Teile der Aussagen. Wir beweisen hier nur
+    \ref{vl07:lemma4.25:vi}:
+    % "direkte Methode der Variationsrechnung"  TODO: ?
+    
+    Sei also $E$ kompakt und $\phi$ unterhalbstetig. Sei $\nSeq x$ eine Folge in
+    $E$, für welche $\bigl(\phi(x_n)\bigr)_{n\in\N}$ gegen $\inf_{x\in E}
+    \phi(x)$ konvergiert. Weil $E$ kompakt ist, existiert dann eine konvergente
+    Teilfolge $(x_{n_k})_{k\in\N}$ und wir definieren $x_0 \defeq
+    \lim_{k\to\infty} x_{n_k}$. Aus \ref{vl07:lemma4.25:iii}\vphantom{)} folgt dann:
+    \[ \phi(x_0) \leq \inf_{x\in E} \phi(x) \leq \phi(x_0)  . \]
+\end{proof}
+
+% 4.26
+\begin{thDef}
+    Sei $X$ ein Vektorraum. Eine Funktion $\phi\colon X\to\neginfinfoc$ ist
+    \emph{konvex}, wenn $\phi$ für alle $x,y\in X$ und alle $t\in\I$ die
+    Ungleichung
+    \[ \phi\bigl( tx+(1-t)\,y \bigr) \;\leq\; t\,\phi(x) + (1-t)\,\phi(y)  \]
+    erfüllt.
+\end{thDef}
+
+% 4.27
+\begin{thLemma}
+    Sei $X$ ein Vektorraum.
+    \begin{enumerate}[i)]
+        \item
+            Es ist $\phi\colon X\to\neginfinfoc$ genau dann konvex, wenn
+            $\epi(\phi)$ eine konvexe Teilmenge von $X\times\R$ ist.
+        \item
+            Ist $\phi\colon X\to\neginfinfoc$ konvex, so ist die Menge 
+            $\{ \phi\leq\lambda \}$ für alle $\lambda\in\R$ konvex. 
+            (Die Umkehrung gilt im Allgemeinen nicht.)
+        \item
+            Sind $\phi_1,\phi_2\colon X\to\neginfinfoc$ konvex, so auch
+            $\phi_1+\phi_2$.
+        \item
+            Ist $(\phi_i)_{i\in I}$ eine Familie konvexer Abbildungen
+            $X\to\neginfinfoc$, so ist auch 
+            \[ \sup_{i\in I} \phi_i 
+                \defeq \bigl(x\mapsto \sup_{i\in I} \phi_i(x)\bigr)
+            \]
+            konvex.
+    \end{enumerate}
+\end{thLemma}
+% TODO: Skizzen
+
+Ab jetzt betrachten wir vornehmlich normierte $\R$-Vektorräume.
+
+% 4.28
+\begin{thDef}
+    Sei $X$ ein normierter $\R$-Vektorraum und sei 
+    $\phi\colon X\to\neginfinfoc$ eine Funktion mit $D(\phi)\neq\emptyset$
+    (d.\,h. $\phi$ ist nicht konstant $\infty$).
+    Dann ist die \emph{Legendre-Transformation} (oder \emph{konjugierte
+    Funktion}) von $\phi$ die Abbildung
+    \begin{align*}
+        \phi^\ast\colon X' &\to \neginfinfoc    \\
+        f &\mapsto \sup_{x\in X} \, \bigl( f(x) - \phi(x) \bigr)
+    . \end{align*}
+\end{thDef}
+
+% 4.29
+\begin{thBemerkung}\hfill
+    \begin{enumerate}[(i)]
+        \item 
+            Sei $n\in\N$ und $\phi\colon\R^n\to\neginfinfoc$ eine Abbildung.
+            %Garcke:
+            %Dann identifizieren wir $X'$ mit $\R^n$ durch
+            %\[ f(x) = x\cdot y \defeq \SP{x,y}_{\text{eukl}} \]
+            %für $y\in\R^n$ geeignet.
+            Ist $f\in(\R^n)'$, so gibt es genau einen Vektor $y_f\in\R^n$ mit
+            $f(x) = x\cdot y \defeq \SP{x,y}_{\mr{eukl}}$ für alle $x\in\R^n$.
+            Wir identifizieren dann $(\R^n)'$ mit $\R^n$ vermöge
+            \begin{align*}
+                (\R^n)' &\longleftrightarrow \R^n    \\
+                f &\longmapsto y_f              \\
+                (x\mapsto x\cdot y) &\longmapsfrom y
+            \,, \end{align*}
+            und somit gilt für alle $y\in\R^n$:
+            \[ \phi^\ast(y) = \sup_{x\in\R^n} \bigl( x\cdot y - \phi(x) \bigr)
+            . \]
+            
+        \item
+            Es ist $\phi^\ast$ stets konvex und unterhalbstetig. Dies folgt 
+            daraus, dass wir das Supremum betrachten und dass
+            $f\mapsto f(x)-\phi(x)$ konvex und stetig ist (da affin linear).
+            
+        \item \label{vl07:bemerkung4.29:iii}
+            Es gilt für alle $x\in X$ und alle $f\in X'$ die Ungleichung
+            \[ f(x) \leq \phi(x) + \phi^\ast(f)     , \]
+            was direkt aus der Definiton von $\phi^\ast$ folgt.
+            
+        \item
+            Die Youngsche Ungleichung \pcref{vl03:young}
+            ist ein Spezialfall von \ref{vl07:bemerkung4.29:iii}.
+            Seien $p,p'\in(1,\infty)$ mit $\frac{1}{p}+\frac{1}{p'}=1$ und setze
+            $\phi(x) \defeq \frac{1}{p} \, \abs{x}^p  . $
+            Dann gilt für alle $y\in\R[\geq0]$:
+            \[ \phi^\ast(y) = \frac{1}{\mkern3mu p'} \, \abs{y}^{p'}  . \]
+            (Siehe Übungen.)
+    \end{enumerate}
+\end{thBemerkung}
+
+% 4.30
+\begin{thTheorem}
+    Sei $X$ ein normierter $\R$-Vektorraum und $\phi\colon X\to\neginfinfoc$
+    konkav % TODO: check "konkav" (!?)
+    und unterhalbstetig mit $D(\phi)\neq\emptyset$. Dann gilt
+    $D(\phi^\ast)\neq\emptyset$ und $\phi$ ist durch eine affin lineare Funktion
+    beschränkt.
+\end{thTheorem}
+
+\begin{proof}
+    Sei $x_0\in D(\phi)$ und sei $\lambda_0\in\R$ mit $\lambda_0 < \phi(x_0)$.
+    Wende nun die zweite geometrische Form des Satzes von Hahn-Banach
+    \pref{vl06:hahnbanachgeom2} auf den Raum $X\times\R$, die abgeschlossene
+    Menge $A\defeq \epi(\phi)$ und die kompakte Menge $B\defeq
+    \{(x_0,\lambda_0)\}$ an. Die abgeschlossene Hyperebene $H=\{ \Phi = \alpha \}$
+    in $X\times\R$ trennt $A$ und $B$.
+    %
+    % TODO: Skizze
+    \\[1ex]
+    \phantom{\qedhere}\hfill{\footnotesize (to be continued \dots)}
+\end{proof}
