@@ -20,13 +20,11 @@ Trennungen nicht möglich ist. (Siehe Übungen.)
     \\
 \end{proof}
 
-% 4.17
-\begin{thBemerkung}
-    \cref{vl07:korollar4.16} wird genutzt, um zu zeigen, dass ein Unterraum~$U$
-    dicht in einem umgebenden Raum~$X$ liegt. Kann man zeigen, dass für alle
-    $x'\in X'$ aus $x'\vert_U = 0$ schon $x'=0$ folgt, so ergibt sich
-    $\setclosure U = X$.
-\end{thBemerkung}
+\nnBemerkung
+\cref{vl07:korollar4.16} wird genutzt, um zu zeigen, dass ein Unterraum~$U$
+dicht in einem umgebenden Raum~$X$ liegt. Kann man zeigen, dass für alle
+$x'\in X'$ aus $x'\vert_U = 0$ schon $x'=0$ folgt, so ergibt sich
+$\setclosure U = X$.
 
 % 4.17
 \begin{thDef}
@@ -78,10 +76,12 @@ werden.
 
 % 4.20
 \begin{thDef}
-    Sei $X$ ein normierter Raum und $M\subset X$ ein Unterraum.
-    Wir definieren dann
-    \[ M^\perp \defeq \bigl\{ x'\in X' \Mid x'(M) = \{0\} \bigr\} . \]
-    Sei $N\subset X'$ ein Unterraum. Dann sei
+    Sei $X$ ein normierter Raum, $M\subset X$ ein Unterraum und $N\subset X'$
+    ein Unterraum des Dualraums.
+    Wir definieren dann den \emph{Annihilator von $M$} als
+    \[ M^\perp \defeq \bigl\{ x'\in X' \Mid 
+        \forall\,x\in M\colon\; x'(x) = 0\bigr\}  \]
+    und den \emph{Annihilator von $N$} als
     \[ N^\perp \defeq \bigl\{ x\in X \Mid 
         \forall\,x'\in N\colon\; x'(x) = 0 \bigr\}
     . \]
@@ -107,6 +107,7 @@ werden.
     (Im Allgemeinen ist diese Inklusion echt.)
 \end{thSatz}
 
+\pagebreak[2]
 % 4.23
 \begin{thDef}\hfill
     \begin{enumerate}[i)]
