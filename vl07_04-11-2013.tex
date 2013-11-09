@@ -209,9 +209,8 @@ werden.
             Falls $E$ ein metrischer Raum ist, so gilt auch die Umkehrung.
             
         \item \label{vl07:lemma4.25:iv}
-            Ist $\tilde\phi\colon E\to\neginfinfoc$ eine weitere
-            unterhalbstetige Abbildung, so ist auch $\phi+\tilde\phi$
-            unterhalbstetig.
+            Sind $\phi$ und $\tilde\phi\colon E\to\neginfinfoc$ unterhalbstetig, 
+            so auch $\phi+\tilde\phi$.
             
         \item \label{vl07:lemma4.25:v}
             Ist $(\phi_i)_{i\in I}$ eine Familie unterhalbstetiger
@@ -220,8 +219,8 @@ werden.
             für alle $x\in E$, so ist auch $\phi$ unterhalbstetig.
             
         \item \label{vl07:lemma4.25:vi}
-            Ist $E$ folgenkompakt und $\phi$ unterhalbstetig, so nimmt die
-            Funktion $\phi$ ihr Minimum an, d.\,h. es existiert ein
+            Ist $E\neq\emptyset$ folgenkompakt und $\phi$ unterhalbstetig, so
+            nimmt die Funktion $\phi$ ihr Minimum an, d.\,h. es existiert ein
             $x_0\in E$ mit $\phi(x_0) = \inf_{x\in E} \phi(x)$.
     \end{enumerate}
 \end{thLemma}
@@ -231,12 +230,15 @@ werden.
     \ref{vl07:lemma4.25:vi}:
     % "direkte Methode der Variationsrechnung"  TODO: ?
     
-    Sei also $E$ folgenkompakt und $\phi$ unterhalbstetig. Sei $\nSeq x$ eine Folge in
-    $E$, für welche $\bigl(\phi(x_n)\bigr)_{n\in\N}$ gegen $\inf_{x\in E}
-    \phi(x)$ konvergiert. Weil $E$ folgenkompakt ist, existiert dann eine konvergente
-    Teilfolge $(x_{n_k})_{k\in\N}$ und wir definieren $x_0 \defeq
-    \lim_{k\to\infty} x_{n_k}$. Aus \ref{vl07:lemma4.25:iii} folgt dann:
+    Sei also $E$ folgenkompakt und nicht leer und sei $\phi$ unterhalbstetig.
+    Sei dann $\nSeq x$ eine Folge in $E$, für welche
+    $\bigl(\phi(x_n)\bigr)_{n\in\N}$ gegen $\inf_{x\in E} \phi(x)$ konvergiert.
+    Weil $E$ folgenkompakt ist, existiert dann eine konvergente Teilfolge
+    $(x_{n_k})_{k\in\N}$ und wir definieren $x_0 \defeq \lim_{k\to\infty}
+    x_{n_k}$. Aus \ref{vl07:lemma4.25:iii} folgt dann:
     \[ \phi(x_0) \leq \inf_{x\in E} \phi(x) \leq \phi(x_0)  . \]
+    (Dies zeigt auch, dass $\inf_{x\in E} \phi(x) > -\infty$ gelten muss.)
+    \\
 \end{proof}
 
 % 4.26
