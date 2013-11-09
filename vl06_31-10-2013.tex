@@ -16,14 +16,12 @@
     
     \begin{figure}
         \centering
-        \begin{tikzpicture}[%
-                mypoint/.style={shape=circle,fill=blue,inner sep=1.3pt}
-        ]
+        \begin{tikzpicture}
             \draw [thick] (0,0) -- (67:3) node [right] {$H$};
-            \fill [fill=black!50, fill opacity=0.2] (-1,1.8) circle [radius=1];
-            \draw (-1,1.8) node [mypoint,label=below:$x_0$] {} circle [radius=1]
+            \fill [Dshapefillgray] (-1,1.8) circle [radius=1];
+            \draw (-1,1.8) node [Dpoint,label=below:$x_0$] {} circle [radius=1]
                     ++(-1,0) node [below left] {$B_r(x_0)$};
-            \path (-1,1.8)++(100:0.6) node [mypoint,label=right:$x$] {};
+            \path (-1,1.8)++(100:0.6) node [Dpoint,label=right:$x$] {};
         \end{tikzpicture}
         \caption{Hyperebene $H$ und Ball $B_r(x_0)$ um $x_0$ mit $x\in B_r(x_0)$}
         \label{vl06:fig:hyperplaneball}
@@ -72,16 +70,12 @@
     %
     \begin{figure}
         \centering
-        \begin{tikzpicture}[%
-                rotate=-23,
-                mypoint/.style={shape=circle,fill=blue,inner sep=1.3pt},
-                myfill/.style={fill=black!50, fill opacity=0.2}
-        ]
+        \begin{tikzpicture}[rotate=-23]
             \draw [thick] (0,0) -- (0,3) node [right] {$H$};
             \foreach \o in {1,-1} {
                 \begin{scope}[xscale=\o]
                     \clip (0,3) rectangle (2,0);
-                    \filldraw [myfill] (0.7,1.5) circle [radius=1];
+                    \filldraw [Dshapefillgray] (0.7,1.5) circle [radius=1];
                 \end{scope}
             }
         \end{tikzpicture}
@@ -115,7 +109,7 @@
 \end{thBemerkung}
 
 \nnDef\label{vl06:minkowski} Sei $X$ ein $\K$-Vektorraum und $K\subset X$. Dann ist das
-\emph{Minkowski-Funktional zu $K$} definiert durch
+\emph{Minkowski-Funktional zu~$K$} definiert durch
 \[ p(x) \defeq \inf\left\{ \alpha\in\R[>0] \Mid \frac{1}{\alpha}\,x \in K \right\}
 . \]
 % TODO: Skizze !?
@@ -212,16 +206,12 @@ Für $K=B_1(0)$ gilt gerade $p(x) = \norm{x}$.
 %    
 \begin{figure}
     \centering
-    \begin{tikzpicture}[%
-            rotate=-23,
-            mypoint/.style={shape=circle,fill=blue,inner sep=1.3pt},
-            myfill/.style={fill=black!50, fill opacity=0.2}
-    ]
+    \begin{tikzpicture}[rotate=-23]
         \draw [thick] (0,0) -- (0,3) node [right] {$H$};
         
         \begin{scope}[shift={(-0.2,-0.2)}]
         \begin{scope}[y=0.4pt, x=0.4pt]
-            \filldraw [myfill] 
+            \filldraw [Dshapefillgray] 
                 (210.0000,145.8622) .. controls (210.0000,162.7022) and
                 (199.8512,178.9613) .. (187.4601,190.0677) .. controls (174.8589,201.3623) and
                 (159.8532,207.3622) .. (140.5000,207.3622) .. controls (122.6292,207.3622) and
@@ -232,20 +222,16 @@ Für $K=B_1(0)$ gilt gerade $p(x) = \norm{x}$.
         \end{scope}
         \end{scope}
         
-        \path (-0.6,2) node [mypoint,label=left:$x_0$] {};
+        \path (-0.6,2) node [Dpoint,label=left:$x_0$] {};
         \path (1.7,2) node {$K$};
     \end{tikzpicture}
     %
     \hspace{3cm}
     %
-    \begin{tikzpicture}[%
-            rotate=-23,
-            mypoint/.style={shape=circle,fill=blue,inner sep=1.3pt},
-            myfill/.style={fill=black!50, fill opacity=0.2}
-    ]
+    \begin{tikzpicture}[rotate=-23]
         \begin{scope}[shift={(0,-0.8)}]
         \begin{scope}[y=0.4pt, x=0.4pt]
-            \filldraw [myfill] 
+            \filldraw [Dshapefillgray] 
                 (181.7157,97.0718) .. controls (186.6559,127.6093) and
                 (141.6761,149.1361) .. (112.2157,158.5718) .. controls (92.3528,164.9336) and
                 (57.3842,171.5468) .. (49.9863,152.0460) .. controls (41.6006,129.9411) and
@@ -258,7 +244,7 @@ Für $K=B_1(0)$ gilt gerade $p(x) = \norm{x}$.
         \draw [thick, color=black!40, densely dashed] 
             (0.6,-0.6) -- (50:2.95) node [right] {$H$?};
         
-        \path (1,0.6) node [mypoint,label=left:$x_0$] {};
+        \path (1,0.6) node [Dpoint,label=left:$x_0$] {};
     \end{tikzpicture}
     \caption{Links eine konvexe Menge~$K$, getrennt von $\{x_0\}$ durch $H$;
              rechts eine nicht konvexe Menge, so dass diese und $x_0$ nicht

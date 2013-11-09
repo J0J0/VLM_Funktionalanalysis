@@ -39,7 +39,14 @@
 }
 
 % load some tikz libraries
-\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows,%
+                calc,%
+                decorations.markings,%
+                decorations.pathmorphing,%
+                decorations.text,%
+                fadings,
+                intersections%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% macro definitions and other things
@@ -186,6 +193,7 @@
 % just some shortcuts
 \newcommand{\compl}{^\mathsf{c}}
 \newcommand{\conj}{\overline}
+\newcommand{\dast}{{\ast\ast}}
 \newcommand{\defeq}{\coloneqq}
 \newcommand{\defiff}{\mathrel{\vcentcolon\Longleftrightarrow}}
 \newcommand{\ddt}{\diff{}{t}}
@@ -228,6 +236,11 @@
 \qqTXqq{und}
 \newcommand{\fuer}{\qquad\text{für }}
 
+% unfortunately unmatched ( oder [ break vim's syntax highlighting,
+% so in those cases we simply gobble a matching char
+\makeatletter
+\let\SyntaxGobble=\@gobble
+\makeatother
 
 % listing with -- is nicer than with bullets 
 \setlist[itemize,1]{label=--}
@@ -235,10 +248,31 @@
 % start at chapter 1
 \setcounter{chapter}{0}
 
-
 % set parsindent and parskip
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2ex plus 4pt minus 3pt}
+
+% define some tikz styles for consistency
+\tikzset{%
+    Daxis/.style={thin},
+    Dfunc/.style={line width=0.55pt},
+    Dpoint/.style={shape=circle,fill=#1,inner sep=1.3pt}, Dpoint/.default={blue},
+    Dshapefillgray/.style={fill=black!50, fill opacity=0.2},
+    %
+    inftyzigzag/.style={%
+        line join=round,
+        decorate, 
+        decoration={zigzag,segment length=4,amplitude=.9,%
+                    pre=moveto, pre length=1pt,
+                    post=moveto, post length=1pt}
+    }
+}
+
+% \ldots and also some colors, too
+\colorlet{Cdarkgreen}{green!45!black}
+\colorlet{Cdarkred}{red!55!black}
+\definecolor{Cdarkpurple}{RGB}{125,0,125}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% document
@@ -261,6 +295,7 @@
 \input{vl05_28-10-2013}
 \input{vl06_31-10-2013}
 \input{vl07_04-11-2013}
+\input{vl08_07-11-2013}
 
 \end{document}
 

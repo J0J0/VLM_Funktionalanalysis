@@ -1,0 +1,285 @@
+\medskip
+%
+Wir können auch die Funktion $\phi^{\ast\ast}$ betrachten.
+Dies wäre eigentlich eine Abbildung von $X''$ nach $\R$. Wir schränken diese aber
+auf $X$ ein (unter der Einbettung von $X$ nach $X''$ vermöge der
+Isometrie~$J_X$, siehe \cref{vl07:def:JX}\,ff.).
+
+% 4.31
+\begin{thDef}
+    Es sei $\phi\colon X\to\neginfinfoc$ mit $D(\phi)\neq\emptyset$.
+    Wir definieren $\phi^\dast\colon X\to\R$ für alle $x\in X$ durch
+    \[ \phi^\dast(x) \defeq \sup_{f\in X'} \, \bigl( f(x) - \phi^\ast(f)
+        \bigr)
+    . \]
+\end{thDef}
+
+% 4.32
+\begin{thTheorem}[Fenchel-Moreau] \label{vl08:fenchelmoreau}
+    Sei $\phi\colon X\to\neginfinfoc$ konvex, unterhalbstetig und
+    $D(\phi)\neq\emptyset$. Dann gilt $\phi^\dast = \phi$.
+\end{thTheorem}
+
+\begin{proof}
+    \emph{Schritt~1:} Wir setzen $\phi \geq 0$ voraus. Da für alle $x\in X$ und
+    alle $f\in X'$
+    \[ f(x) - \phi^\ast(f) \leq \phi(x) \]
+    gilt, erhalten wir zunächst $\phi^\dast \leq \phi$. Angenommen es
+    existiert ein $x_0\in X$ mit \[ \phi^\dast(x_0) < \phi(x_0) \]  (wobei
+    $\phi(x_0)=\infty$ möglich ist). Nutze wieder den Satz von Hahn-Banach in
+    der zweiten geometrischen Formulierung \pref{vl06:hahnbanachgeom2} mit
+    $A=\epi(\phi)$ abgeschlossen und $B=\{(x_0,\phi^\dast(x_0)\}$ kompakt. 
+    (Vgl. Beweis von \cref{vl07:theorem4.30}.) Wir erhalten somit ein
+    $f\in X'$ und $k,\alpha\in\R$ mit $f(x_0) + k\phi^\dast(x_0) < \alpha$
+    und
+    \[ \tag{$\diamond$} \label{vl08:plus}
+        f(x) + k\lambda > \alpha  . \]
+    für alle $(x,\lambda)\in\epi(\phi)$.  Wähle $x\in D(\phi)$ und betrachte
+    $\lambda\to\infty$ in der letzten Ungleichung. Es folgt $k\geq 0$. Jetzt
+    sei $\epsilon\in\R[>0]$. Da $\phi\geq 0$ gilt, folgt aus 
+    \eqref{vl08:plus}, dass für alle $x\in D(\phi)$ gilt:
+    \[ f(x) + (k+\epsilon)\, \phi(x) \geq \alpha  . \]
+    Somit erhalten wir für alle $x\in D(\phi)$:
+    \[ -\frac{1}{k+\epsilon}\,f(x) - \phi(x) \leq -\frac{\alpha}{k+\epsilon} 
+    . \]
+    Dies zeigt:
+    \[ \phi^\ast\left( -\frac{f}{k+\epsilon} \right) \leq
+        -\frac{\alpha}{k+\epsilon}
+    . \]
+
+    Die Definition von $\phi^\dast$ liefert für $\phi^\dast(x_0)$:
+    \[ \phi^\dast(x_0)
+        \geq -\frac{f}{k+\epsilon}(x_0) 
+        - \phi^\ast\left( -\frac{f}{k+\epsilon} \right)
+        \geq -\frac{f}{k+\epsilon}(x_0) + \frac{\alpha}{k+\epsilon}
+    . \]
+    Damit folgt
+    \[ f(x_0) + (k+\epsilon)\,\phi^\dast(x_0) \geq \alpha , \]
+    was aber für $\epsilon\to0$ einen Widerspruch zu $f(x_0) + k\phi^\dast(x_0) < \alpha$
+    liefert.
+    
+    \emph{Schritt~2~(allgemeiner Fall):} \cref{vl07:theorem4.30} sichert uns
+    $D(\phi^\ast)\neq\emptyset$. Wähle dann $f_0\in D(\phi^\ast)$ und setze
+    für alle $x\in X$
+    \[ \bar\phi(x) \defeq \phi(x) - f_0(x) + \phi^\ast(f_0)  . \]
+    Es gilt (wie einfache Rechnungen zeigen), dass $\bar\phi$ konvex und
+    unterhalbstetig ist, und wir haben $\bar\phi\geq 0$ (denn
+    $\phi^\ast(f_0)\geq f_0(x)-\phi(x)$ für $x\in X$). Dann gilt nach Schritt~1:
+    $(\bar\phi)^\dast = \bar\phi$. Wir berechnen
+    \begin{align*}
+        (\bar\phi)^\ast(f)
+        &= \sup_{x\in X} \, \bigl( f(x) - \bar\phi(x) \bigr)
+         = \sup_{x\in X} \, \bigl( f(x) - \phi(x) + f_0(x) - \phi^\ast(f_0) \bigr)
+        \\
+        &= \phi^\ast(f+f_0) - \phi^\ast(f_0)
+        \\
+        \shortintertext{und weiter}
+        %
+        (\bar\phi)^\dast 
+        &= \sup_{f\in X'} \, \bigl( f(x) - (\bar\phi)^\ast(f) \bigr)
+         = \sup_{f\in X'} \, \bigl( f(x) - \phi^\ast(f+f_0) + \phi^\ast(f_0) \bigr)
+        \\
+        &= \sup_{f\in X'} \, \bigl( (f+f_0)(x) - \phi^\ast(f+f_0) 
+            - f_0(x) + \phi^\ast(f_0) \bigr)
+        \\
+        &= \phi^\dast(x) - f_0(x) + \phi^\ast(f_0)
+    . \end{align*}
+    Da $(\bar\phi)^\dast = \bar\phi$ gilt, folgt $\phi^\dast = \phi$.
+    \\
+\end{proof}
+
+%
+\begin{figure}[b]
+    \centering
+    \begin{tikzpicture}[scale=0.5]
+        \begin{scope}
+            \coordinate (xmax) at (4,0);
+            \coordinate (ymax) at (0,4);
+        
+            \draw [->,Daxis] ($-1*(xmax)$) -- (xmax);
+            \draw [->,Daxis] (0,-0.2) -- (ymax);
+            
+            \draw [Dfunc, Cdarkgreen] 
+                ($-1*(xmax)$)++(ymax)++(-4pt,-4pt) 
+                node [right=5pt] {$\phi$}
+                -- (0,0) 
+                -- ($(xmax)+(ymax)-(4pt,4pt)$);
+                
+            \begin{scope}[every node/.style={font=\footnotesize}]
+                \draw [Dfunc, color=black!50, densely dashed]
+                    (-20:-5) node [above left,align=left] 
+                                  {$f_1\in\R'$,\\$\norm{f_1}\leq1$}
+                    -- (0,0)
+                    (55:4) node [anchor=-70,align=left]
+                                {$f_2\in\R'$,\\$\norm{f_2}>1$}
+                    -- (0,0);
+            \end{scope}
+        \end{scope}
+        
+        \begin{scope}[shift={(11,0)}]
+            \coordinate (xmax) at (3,0);
+            \coordinate (ymax) at (0,4);
+            
+            \draw [->,Daxis] ($-1*(xmax)$) -- (xmax) 
+                node [above right] {$\norm{f}$};
+            \draw [->,Daxis] (0,-0.2) -- (ymax)
+                node [above] {$\color{Cdarkpurple}\phi^\ast(f)$};
+            
+            \begin{scope}[Dfunc, Cdarkpurple]
+                \draw [inftyzigzag] 
+                    ($-1*(xmax)$)++(ymax)++(0,-5pt) 
+                    -- ($(-1,0)+(ymax)-(0,5pt)$);
+                \draw [very thick, arrows={[-]}] (-1,0) -- (1,0);
+                \draw [inftyzigzag] 
+                    (1,0)++(ymax)++(0,-5pt) 
+                    -- ($(xmax)+(ymax)-(4pt,5pt)$)
+                    node [right] {$\infty$};
+            \end{scope}
+            
+            \path (-1,0) node [above=5pt,xshift=-3pt] {$-1$}
+                  (1,0)  node [above=5pt] {$1$};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Beispiel~\ref{vl08:bsp4.33}\,\ref{vl08:bsp4.33:i} 
+        für $\color{Cdarkgreen}\phi(x) = \abs{x}$ auf $\R$ 
+        mit zugehörigem $\color{Cdarkpurple}\phi^\ast$}
+    \label{vl08:fig:bsp4.33:i}
+\end{figure}
+
+\pagebreak[2]
+% 4.33
+\begin{BspList}[\label{vl08:bsp4.33}]{(i)}
+\item \label{vl08:bsp4.33:i}
+    Sei $(X,\emptyNorm)$ ein normierter $\R$-Vektorraum und
+    $\phi(x)\defeq\norm{x}$ für alle $x\in X$. Dann gilt:
+    \[ \phi^\ast(f) = \sup_{x\in X} \bigl( f(x) - \phi(x) \bigr)
+        = \bigl( f(x) - \norm{x} \bigr)
+        = \begin{cases}
+            0,      &\text{falls } \norm{f} \leq 1   \\
+            \infty, &\text{falls } \norm{f} > 1      .
+        \end{cases}
+    \]
+    Dies erhalten wir wie folgt. Es gilt:
+    \[ \norm{f} = \sup_{x\in X\setminus\{0\}} \frac{f(x)}{\norm{x}}  . \]
+    Für $\norm{f} > 1$ existiert ein $x\in X$ mit $f(x)/\norm{x} > 1$ und damit
+    $f(x) - \norm{x} > 0$. Ersetze nun $x$ durch $\alpha x$ mit $\alpha\in\R[>0]$
+    und betrachte $\alpha\to\infty$. Es folgt:
+    \[ \sup_{x\in X} \, \bigl( f(x) - \norm{x} \bigr) = \infty . \]
+    Der andere Fall ergibt sich ähnlich. \pcref{vl08:fig:bsp4.33:i}
+    Es folgt mit \cref{vl08:fenchelmoreau}:
+    \[ \norm{x} = \phi(x) = \phi^\dast(x) 
+        = \sup_{f\in X'} \, \bigl( f(x) - \phi^\ast(f) \bigr)
+        = \sup_{\substack{f\in X',\\\norm{f}\leq1}} f(x)
+    . \]
+    
+\item \label{vl08:bsp4.33:ii}
+    Sei $X$ ein normierter Raum und $K\subset X$. Wir definieren die
+    sogenannte \emph{Indikatorfunktion von $K$} für alle $x\in X$ durch
+    \[ I_K(x) \defeq \begin{cases}
+            0,      & \text{falls } x\in K      \\
+            \infty  & \text{falls } x\notin K   .
+        \end{cases}
+    \]
+    (Achtung: dies ist \emph{nicht} die charakteristische Funktion von $K$.)
+    Einfache Überlegungen liefern: $I_K$ ist genau dann konvex, wenn $K$ konvex
+    ist und $I_K$ ist genau dann unterhalbstetig, wenn $K$ abgeschlossen ist.
+    Die \emph{Trägerfunktion zu $K$} ist dann definiert durch
+    die konjugierte Funktion $(I_K)^\ast$ von $I_K$.
+    %
+    Man kann nun folgende Aussagen zeigen:
+    \begin{itemize}
+        \item
+            Falls $K=M \subset X$ ein Unterraum ist, so gilt:
+            \[ (I_M)^\ast = I_{M^\perp}, \quad (I_M)^\dast = I_{(M^\perp)^\perp}
+            . \]
+        \item
+            Falls $M$ zusätzlich abgeschlossen ist, so gilt
+            \[ (I_M)^\dast = I_M \qtextq{und somit} 
+                \bigl( M^\perp \bigr)^\perp = M
+            . \]
+    \end{itemize}
+    
+    Für $a,b\in\R$ und $\emptyset\neq K = [a,b]\subset\R$ erhalten wir
+    $(I_K)^\ast$ als Funktion von $\R$ nach $\R$:
+    \[ (I_K)^\ast(y) 
+        = \sup_{x\in\R} \, \bigl( x\cdot y - I_K(x) \bigr)
+        = \sup_{x\in [a,b]} x\cdot y
+        = \begin{cases}
+            by,     & \text{falls } y \geq 0    \\
+            ay,     & \text{falls } y < 0       .
+        \end{cases}
+    \]
+    (Siehe \cref{vl08:fig:bsp4.33:ii}.)
+    
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=0.5]
+            \begin{scope}
+                \draw [->,Daxis] (-5,0) -- (3,0)
+                    node [above right] {$x$};
+                \draw [->,Daxis] (0,-0.2) -- (0,4)
+                    node [left] {$\color{Cdarkgreen}I_K(x)$};
+                    
+                \coordinate (a) at (-3,0);
+                \coordinate (b) at (1,0);
+                    
+                \begin{scope}[Dfunc, Cdarkgreen]
+                    \draw [inftyzigzag] 
+                        (-5,4)++(0,-5pt) -- ($(a)+(0,4)-(0,5pt)$);
+                    \draw [very thick, arrows={[-]}] (a) -- (b);
+                    \draw [inftyzigzag] 
+                        (b)++(0,4)++(0,-5pt) -- ($(3,4)-(4pt,5pt)$)
+                        node [right] {$\infty$};
+                \end{scope}
+                
+                \path (a) node [above=5pt] {$a$}
+                      (b) node [above=5pt] {$b$};
+            \end{scope}
+            
+            \begin{scope}[shift={(11,0)}]
+                \draw [->,Daxis] (-1.7,0) -- (3,0)
+                    node [above right] {$y$};
+                \draw [->,Daxis] (0,-0.2) -- (0,4)
+                    node [right] {$\color{Cdarkpurple}(I_K)^\ast(y)$};
+                    
+                \begin{scope}[Dfunc, Cdarkpurple,
+                              every node/.style={font=\footnotesize}
+                    ]
+                    \draw (0,0) -- (108.4:4)
+                        node [below=10pt, rotate=292] {\hspace*{0.9cm}Steigung $a$};
+                    \draw (0,0) -- (45:4)
+                        node [below=3pt, rotate=46] {Steigung $b$\hspace*{1cm}};
+                \end{scope}
+                
+            \end{scope}
+        \end{tikzpicture}
+        \caption{Beispiel~\ref{vl08:bsp4.33}\,\ref{vl08:bsp4.33:ii}
+            für $K=[a,b]$ mit $a=-3$ und $b=1$}
+        \label{vl08:fig:bsp4.33:ii}
+    \end{figure}
+    
+\item \label{vl08:bsp4.33:iii}
+    Sei $g\colon\R\to\R$ stetig differenzierbar mit 
+    \[ \lim_{x\to\pm\infty} \frac{g(x)}{\abs{x}} = \infty  . \]
+    Dann gilt: In 
+    \[ \sup_{x\in\R} \, \bigl( x\cdot y - g(x) \bigr) \]
+    wird das Supremum für ein endliches $x\in\R$ angenommen (da
+    $x\cdot y - g(x) \to -\infty$ für $x\to\pm\infty$). Berechne $x$ maximal als
+    Lösung von $y-g'(x)=0$. Falls $g'$ streng monoton ist, gibt es höchstens
+    eine solche Lösung. Für $y\in\R$ gilt dann
+    \[ g^\ast(y) = (g')^{-1}(y) \, y - g\bigl( (g')^{-1}(y) \bigr) . \]
+    Falls $g\in C^2$ gilt, so können wir folgende Rechnung machen:
+    \begin{align*}
+        (g^\ast)'(y) 
+        &= (g')^{-1}(y) + \bigl( (g')^{-1}(y) \bigr)' \, y
+        - g'\bigl( (g')^{-1}(y) \bigr) \, \bigl( (g')^{-1}(y) \bigr)'
+        \\
+        &= (g')^{-1}(y)
+    . \end{align*}
+    Das heißt, dass wir unter geeigneten Voraussetzungen an $g$ die Formel
+    \[ (g^\ast)'(y) = (g')^{-1}(y) \]
+    erhalten. In der Theorie erhalten wir dann $g^\ast$, indem wir $g$
+    ableiten, die Umkehrfunktion von $g'$ bestimmen und zu dieser eine Stammfunktion
+    finden.
+\end{BspList}
+

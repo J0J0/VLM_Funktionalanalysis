@@ -27,7 +27,7 @@ $x'\in X'$ aus $x'\vert_U = 0$ schon $x'=0$ folgt, so ergibt sich
 $\setclosure U = X$.
 
 % 4.17
-\begin{thDef}
+\begin{thDef} \label{vl07:def:JX}
     Sei $(X,\emptyNorm)$ ein normierter $\K$-Vektorraum und $X'$ der Dualraum zu~$X$
     \pmycref{vl04:def3.1:dual}.
     Dann ist $X'' \defeq (X')'$ der \emph{Bidualraum von $X$}.
@@ -70,7 +70,7 @@ in \eqref{vl07:ast} sogar Gleichheit gezeigt. Insgesamt folgt:
     bijektiv) ist.
 \end{thDef}
 
-\nnBemerkung
+\nnBemerkung \label{vl07:bemJX}
 Da $J_X$ injektiv ist, kann $X$ mit einem Unterraum von $X''$ identifiziert
 werden.
 
@@ -119,11 +119,27 @@ werden.
             . \]
             
         \item
-            Der \emph{Epigraph von $\phi$} ist die Menge
+            Der \emph{Epigraph von $\phi$} \pcref{vl07:fig:epigraph} ist die Menge
             \[ \epi(\phi) \defeq
                 \{ (x,\lambda) \in E\times\R \Mid \phi(x) \leq \lambda \}
             . \]
-            % TODO: Skizze
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}
+                    \draw [->,Daxis] (-0.5,0) -- (6,0);
+                    \draw [->,Daxis] (0,-0.3) -- (0,2);
+                    
+                    \filldraw [fill=black!30, path fading=north, Dfunc]
+                        (0.5,2) parabola 
+                        bend ($(1,0)!0.5!(5.5,0)+(0,0.4)$) 
+                        (5.5,2);
+                    
+                    \path ($(1,0)!0.5!(5.5,0)$)++(1.4,0.6) node {$\phi$};
+                    \path ($(1,0)!0.5!(5.5,0)$)++(0,1.1) node {$\epi(\phi)$};
+                \end{tikzpicture}
+                \caption{Epigraph einer Funktion $\phi$}
+                \label{vl07:fig:epigraph}
+            \end{figure}
     \end{enumerate}
 \end{thDef}
 
@@ -136,8 +152,34 @@ werden.
         = \phi^{-1}(\R[\leq\lambda]) \subset E
     \]
     abgeschlossen ist.
+    %
+    \begin{figure}[b]
+        \centering
+        \begin{tikzpicture}
+            \draw [->,Daxis] (-1,0) -- (7,0);
+            \draw [->,Daxis] (0,-0.5) -- (0,2.5);
+            
+                \begin{scope}
+                    \draw [Dfunc, Cdarkred, arrows={-)}] 
+                        (-1,1) .. controls +(0.3,-0.4) and (0.2,0.5) .. (1,0.5);
+                    \draw [Dfunc, Cdarkred, arrows={[-}] \SyntaxGobble]
+                        (1,1) .. controls +(1,0) .. (3,2.3)
+                        node [right] {$\tilde\phi$};
+                \end{scope}
+            
+                \begin{scope}[shift={(4,0)}]
+                    \draw [Dfunc, Cdarkgreen, arrows={-]}] 
+                        (-1,-0.4) .. controls +(0.3,1) and (0.2,0.5) .. (1,0.5);
+                    \draw [Dfunc, Cdarkgreen, arrows={(-}] \SyntaxGobble{)]}
+                        (1,1) .. controls +(1,0) and (2,1.8) .. (3,2)
+                        node [above] {$\phi$};
+                \end{scope}
+        \end{tikzpicture}
+        \caption{Die Funktion $\color{Cdarkred}\tilde\phi$ ist \emph{nicht} unterhalbstetig,
+                 $\color{Cdarkgreen}\phi$ schon}
+        \label{vl07:fig:unterhalbstetig}
+    \end{figure}
 \end{thDef}
-% TODO: Skizzen
 
 % 4.25
 \begin{thLemma} \label{vl07:lemma4.25}
@@ -196,9 +238,43 @@ werden.
     \emph{konvex}, wenn $\phi$ für alle $x,y\in X$ und alle $t\in\I$ die
     Ungleichung
     \[ \phi\bigl( tx+(1-t)\,y \bigr) \;\leq\; t\,\phi(x) + (1-t)\,\phi(y)  \]
-    erfüllt.
+    erfüllt. \pcref{vl07:fig:convexfunction}
+    %
+    \begin{figure}[b]
+        \centering
+        \begin{tikzpicture}
+            \begin{scope}
+                \draw [->,Daxis] (-3,0) -- (3,0);
+                \draw [->,Daxis] (0,-0.4) -- (0,4);
+                
+                \begin{scope}[Dfunc, Cdarkgreen]
+                    \draw (-1.5,2) parabola bend (0,0.3) (1.5,2);
+                    \draw [inftyzigzag] (-3,4) node [left] {$\infty$} -- (-1.5,4);
+                    \draw [inftyzigzag] (1.5,4) -- (3,4);
+                \end{scope}
+            \end{scope}
+            
+            \begin{scope}[shift={(5,0)}]
+                \draw [->,Daxis] (0,0) -- (6,0);
+                \draw [->,Daxis] (0,0) -- (0,4);
+                
+                \begin{scope}[Dfunc, Cdarkred, v/.style={out=0,in=180}]
+                    \draw [inftyzigzag] (0.2,4) -- (1,4);
+                    \draw (1,2) to[out=-85,in=180] (1.6,0.5) to[v] (2.1,1.1) 
+                        to[v] (2.5,0.6) to[out=0,in=265] (3,2);
+                    \draw [inftyzigzag] (3,4) -- (3.95,4);
+                    \draw (4,2) parabola bend (4.5,1.2) (5,2);
+                    \draw [inftyzigzag] (5,4) -- (5.8,4) node [right] {$\infty$};
+                \end{scope}
+            \end{scope}
+        \end{tikzpicture}
+        \caption{Konvexe Funktion links und
+            \emph{nicht} konvexe Funktion rechts}
+        \label{vl07:fig:convexfunction}
+    \end{figure}
 \end{thDef}
 
+\pagebreak[2]
 % 4.27
 \begin{thLemma}
     Sei $X$ ein Vektorraum.
@@ -222,7 +298,6 @@ werden.
             konvex.
     \end{enumerate}
 \end{thLemma}
-% TODO: Skizzen
 
 Ab jetzt betrachten wir vornehmlich normierte $\R$-Vektorräume.
 
@@ -282,23 +357,77 @@ Ab jetzt betrachten wir vornehmlich normierte $\R$-Vektorräume.
 \end{thBemerkung}
 
 % 4.30
-\begin{thTheorem}
+\begin{thTheorem} \label{vl07:theorem4.30}
     Sei $X$ ein normierter $\R$-Vektorraum und $\phi\colon X\to\neginfinfoc$
-    konkav % TODO: check "konkav" (!?)
-    und unterhalbstetig mit $D(\phi)\neq\emptyset$. Dann gilt
-    $D(\phi^\ast)\neq\emptyset$ und $\phi$ ist durch eine affin lineare Funktion
-    beschränkt.
+    konvex und unterhalbstetig mit $D(\phi)\neq\emptyset$. Dann gilt
+    $D(\phi^\ast)\neq\emptyset$ und $\phi$ ist von unten durch eine affin
+    lineare Funktion beschränkt.
 \end{thTheorem}
 
 \begin{proof}
+%
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \draw [->,Daxis] (-1,0) -- (8,0) node [right] {$X$};
+        \draw [->,Daxis] (0,-1) -- (0,4) node [left] {$\R$};
+        
+        \filldraw [fill=black!30, path fading=north, Dfunc, name path=phi]
+            (1,4) parabola bend (4,2) (7,4);
+        \draw [Cdarkgreen, Dfunc] (-0.3,-1) -- (20:8) 
+            node [below right] {$H$};
+        
+        \path (4,3) node {$A=\epi(\phi)$};
+        
+        \coordinate (lambda0) at (0,1);
+        \coordinate (x0) at (6,0);
+        \path [name path=helpline] (x0) -- +(0,4);
+        
+        \path (lambda0)++(x0) node [Dpoint] {};
+        \draw (lambda0) +(2pt,0) -- +(-4.5pt,0) node [left] {$\lambda_0$};
+        \draw (x0) +(0,2pt) -- +(0,-5.5pt) node [below] {$x_0$};
+        \path [name intersections={%
+                    of=helpline and phi, sort by=helpline, by={x0phix0}}
+                ] (0,0 |- x0phix0) coordinate (phix0);
+        \draw (phix0) +(2pt,0) -- +(-4.5pt,0) node [left] {$\phi(x_0)$};
+    \end{tikzpicture}
+    \caption{Skizze zum Beweis von \cref{vl07:theorem4.30}}
+    \label{vl07:fig:theorem4.30}
+\end{figure}
+%
     Sei $x_0\in D(\phi)$ und sei $\lambda_0\in\R$ mit $\lambda_0 < \phi(x_0)$.
     Wende nun die zweite geometrische Form des Satzes von Hahn-Banach
     \pref{vl06:hahnbanachgeom2} auf den Raum $X\times\R$, die abgeschlossene
     Menge $A\defeq \epi(\phi)$ und die kompakte Menge $B\defeq
-    \{(x_0,\lambda_0)\}$ an. Die abgeschlossene Hyperebene $H=\{ \Phi = \alpha \}$
-    in $X\times\R$ trennt $A$ und $B$.
-    %
-    % TODO: Skizze
-    \\[1ex]
-    \phantom{\qedhere}\hfill{\footnotesize (to be continued \dots)}
+    \{(x_0,\lambda_0)\}$ an. \pcref{vl07:fig:theorem4.30}
+    %%% 07-11-2013 %%%
+    Wir erhalten somit ein stetiges lineares Funktional $\Phi\colon
+    X\times\R\to\R$ und ein $\alpha\in\R$, so dass die abgeschlossene Hyperebene
+    $H=\{ \Phi = \alpha \} \subset X\times\R$ die Mengen $A$ und $B$ trennt.  Die
+    Abbildung
+    \begin{align*}
+        f\colon X &\to \R   \\
+        x &\mapsto \Phi\bigl( (x,0) \bigr)
+    \end{align*}
+    ist stetig und es gilt $f\in X'$. Mit $k \defeq \Phi\bigl( (0,1) \bigr)$
+    gilt für alle $(x,\lambda)\in X\times\R$
+    \[ \Phi\bigl( (x,\lambda) \bigr) = f(x) + k\lambda  . \]
+    Es gilt weiter $\Phi\vert_A > \alpha$ und $\Phi\vert_B < \alpha$. Dann gilt 
+    also $f(x_0) + k\lambda_0 < \alpha$ und
+    \[ f(x) + k\lambda > \alpha   \]
+    für alle $(x,\lambda)\in\epi(\phi)$.
+    Somit erhalten wir für alle $x\in D(\phi)$:
+    \[ \tag{$\star$} \label{vl07:star}
+        f(x) + k\phi(x) > \alpha
+    \]
+    und für den Punkt $(x_0,\lambda_0)$:
+    \[ f(x_0)+k\phi(x_0) > \alpha > f(x_0) + k\lambda_0  . \]
+    Dies zeigt $k>0$ (da $\phi(x_0) > \lambda_0$ nach Wahl von $\lambda_0$). Aus \eqref{vl07:star}
+    folgt, dass für alle $x\in D(\phi)$ gilt:
+    \[ -\frac{1}{k}\,f(x) - \phi(x) < - \frac{\alpha}{k}  . \]
+    Daraus folgt $\phi^\ast\bigl( -\frac{1}{k} f \bigr) < \infty$ (nach Definition
+    von $\phi^\ast$) und damit
+    \[ \phi(x) > -\frac{1}{k}\,f(x) + \frac{\alpha}{k}  , \]
+    aber gerade das wollten wir zeigen.
+    \\
 \end{proof}
