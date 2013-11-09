@@ -5,7 +5,7 @@ Trennungen nicht möglich ist. (Siehe Übungen.)
 % 4.16
 \begin{thKorollar} \label{vl07:korollar4.16}
     Sei $X$ ein normierter Vektorraum und $U\subsetneq X$ ein Unterraum.
-    Dann existiert ein $x'\in X'$ mit $x'\neq 0$ und $x'(U) = \{0\}$.
+    Dann existiert ein $x'\in X'$ mit $x'\neq 0$ und $x'\vert_U = 0$.
 \end{thKorollar}
 
 \begin{proof}
@@ -79,12 +79,18 @@ werden.
     Sei $X$ ein normierter Raum, $M\subset X$ ein Unterraum und $N\subset X'$
     ein Unterraum des Dualraums.
     Wir definieren dann den \emph{Annihilator von $M$} als
-    \[ M^\perp \defeq \bigl\{ x'\in X' \Mid 
-        \forall\,x\in M\colon\; x'(x) = 0\bigr\}  \]
-    und den \emph{Annihilator von $N$} als
-    \[ N^\perp \defeq \bigl\{ x\in X \Mid 
+    \begin{align*}
+        M^\perp &\defeq \bigl\{ x'\in X' \Mid 
+            \forall\,x\in M\colon\; x'(x) = 0\bigr\}
+        \\
+        &\mathrel{\makebox[\widthof{$\mathsurround=0pt\defeq$}][r]{$\mathsurround=0pt=$}} 
+            \bigl\{ x'\in X' \cMid\big x'\vert_M = 0 \bigr\}
+        \\
+        \intertext{und den \emph{Annihilator von $N$} als}
+        %
+        N^\perp &\defeq \bigl\{ x\in X \Mid 
         \forall\,x'\in N\colon\; x'(x) = 0 \bigr\}
-    . \]
+    . \end{align*}
 \end{thDef}
 
 % 4.21
