@@ -220,7 +220,8 @@ werden.
             für alle $x\in E$, so ist auch $\phi$ unterhalbstetig.
             
         \item \label{vl07:lemma4.25:vi}
-            Ist $E$ kompakt und $\phi$ unterhalbstetig, so existiert ein
+            Ist $E$ folgenkompakt und $\phi$ unterhalbstetig, so nimmt die
+            Funktion $\phi$ ihr Minimum an, d.\,h. es existiert ein
             $x_0\in E$ mit $\phi(x_0) = \inf_{x\in E} \phi(x)$.
     \end{enumerate}
 \end{thLemma}
@@ -230,11 +231,11 @@ werden.
     \ref{vl07:lemma4.25:vi}:
     % "direkte Methode der Variationsrechnung"  TODO: ?
     
-    Sei also $E$ kompakt und $\phi$ unterhalbstetig. Sei $\nSeq x$ eine Folge in
+    Sei also $E$ folgenkompakt und $\phi$ unterhalbstetig. Sei $\nSeq x$ eine Folge in
     $E$, für welche $\bigl(\phi(x_n)\bigr)_{n\in\N}$ gegen $\inf_{x\in E}
-    \phi(x)$ konvergiert. Weil $E$ kompakt ist, existiert dann eine konvergente
+    \phi(x)$ konvergiert. Weil $E$ folgenkompakt ist, existiert dann eine konvergente
     Teilfolge $(x_{n_k})_{k\in\N}$ und wir definieren $x_0 \defeq
-    \lim_{k\to\infty} x_{n_k}$. Aus \ref{vl07:lemma4.25:iii}\vphantom{)} folgt dann:
+    \lim_{k\to\infty} x_{n_k}$. Aus \ref{vl07:lemma4.25:iii} folgt dann:
     \[ \phi(x_0) \leq \inf_{x\in E} \phi(x) \leq \phi(x_0)  . \]
 \end{proof}
 
