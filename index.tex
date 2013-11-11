@@ -212,6 +212,7 @@
 \newcommand{\kSeq}[1]{\left(#1_k\right)_{k\in\N}}
 \newcommand{\ksum}[1][1]{\sum_{k=#1}}
 \newcommand{\laplace}{\Delta}
+\newcommand{\mc}{\mathcal}
 \newcommand{\mr}{\mathrm}
 \newcommand{\mt}{^\mathsf{t}}
 \newcommand{\neginfinfoc}{(-\infty,\infty]}
@@ -273,6 +274,11 @@
 \colorlet{Cdarkred}{red!55!black}
 \definecolor{Cdarkpurple}{RGB}{125,0,125}
 
+% make circled chars with tikz
+\newcommand{\circledchar}[2][black]{%
+\tikz\node[draw=#1,shape=circle,inner xsep=0.35pt, inner ysep=0.8pt] at (0,0) {\tiny #2};%
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% document
@@ -296,6 +302,7 @@
 \input{vl06_31-10-2013}
 \input{vl07_04-11-2013}
 \input{vl08_07-11-2013}
+\input{vl09_11-11-2013}
 
 \end{document}
 

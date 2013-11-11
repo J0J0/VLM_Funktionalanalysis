@@ -1,0 +1,352 @@
+% 5
+\chapter{Bairescher Kategoriensatz und seine Konsequenzen}
+% 5.1
+\begin{thSatz}[Bairescher Kategoriensatz] \label{vl09:baire}
+    Sei $(X,d)$ ein nicht-leerer vollständiger metrischer Raum. Sei $\kSeq A$
+    eine Folge von in $X$ abgeschlossenen Mengen und gelte
+    \[ X = \bigcup_{k\in\N} A_k  . \]
+    Dann gibt es ein $k_0\in\N$, so dass das Innere von $A_{k_0}$ nicht leer
+    ist, d.\,h. so dass $\setinterior{A_{k_0}} \neq \emptyset$ gilt.
+\end{thSatz}
+
+\begin{proof}
+    Angenommen für alle $k\in\N$ gilt $\setinterior{A_k} = \emptyset$. Dann
+    ist für alle offenen, nicht-leeren Teilmengen $U\subset X$ und alle $k\in\N$
+    die Menge $U\setminus A_k$ offen und nicht leer;
+    insbesondere existiert in dieser Situation ein $x\in X$ und ein
+    $\epsilon\in\R[>0]$, o.\,E.  $\epsilon\leq 1/k$, mit
+    \[ \setclosure{B_\epsilon(x)} \subset (U\setminus A_k)  . \]
+    Wir wählen für den ersten Schritt $U=X$ und konstruieren dann
+    auf obige Weise induktiv Folgen $\kSeq x$ in $X$ und $\kSeq\epsilon$ in
+    $\R[>0]$, so dass für alle $k\in\N$
+    \[ \epsilon_k \leq 1/k  \qundq
+        \setclosure{ B_{\epsilon_k}(x_k) } \subset 
+        \bigl( B_{\epsilon_{k-1}}(x_{k-1}) \setminus A_k \bigr)
+    \]
+    gilt.
+    Dann ist $\kSeq x$ eine Cauchy-Folge in $X$, denn: Zu jedem
+    $\epsilon\in\R[>0]$ gibt es nach Konstruktion ein $k\in\N$ mit
+    $\epsilon_k\leq\epsilon$ und für alle $\ell\in\N_{\geq k}$ gilt dann
+    \[ x_\ell \in B_{\epsilon_k}(x_k) . \]
+    Da $X$ vollständig ist, existiert ein $x\in X$ mit
+    $x = \lim_{n\to\infty} x_n$. Weil für alle $k\in\N$ fast alle Folgenglieder
+    von $\kSeq x$ im abgeschlossenen $\epsilon_k$-Ball um $x_k$ liegen, muss
+    dies auch für den Grenzwert~$x$ gelten, d\,h. für alle $k\in\N$ gilt:
+    \[ x\in \setclosure{ B_{\epsilon_k}(x_k) } \subset X \setminus A_k  . \]
+    Es folgt der Widerspruch
+    \begin{gather*}
+        x \in \bigcap_{k\in\N} (X\setminus A_k) 
+            = X \setminus \bigcup_{k\in\N} A_k = \emptyset
+        . \\[-0.5cm]
+        \qedhere
+    \end{gather*}
+\end{proof}
+
+\nnBemerkung\\
+Die Vollständigkeit von $X$ ist hier entscheidend. Als Gegenbeispiel
+betrachte man $X=\Q$.
+
+% 5.2
+\begin{thSatz}[Prinzip der gleichmäßigen Beschränktheit] \label{vl09:satz5.2}
+    Sei $(X,d)$ ein vollständiger metrischer Raum, $Y$ ein normierter Raum und 
+    $\mc F \subset C^0(X,Y)$. Es gelte für alle $x\in X$: 
+    \[ \sup_{f\in\mc F} \, \norm{f(x)}_Y < \infty  . \] 
+    Dann existieren ein $x_0\in X$, ein
+    $\epsilon_0\in\R[>0]$ und ein $C\in\R[>0]$, so dass gilt:
+    \[ \forall\,x\in\setclosure{B_\epsilon(x_0)}\;\;\forall\,f\in\mc F\colon\quad
+        \norm{f(x)}_Y \leq C
+    . \]
+\end{thSatz}
+
+\begin{proof}
+    Die Menge
+    \[ A_k \defeq \bigcap_{f\in\mc F} 
+        \bigl\{ x\in X \cMid\big \norm{f(x)}_Y \leq k \bigr\}
+    \]
+    ist für alle $k\in\N$ abgeschlossen. Außerdem gibt es nach Voraussetzung für
+    alle $x\in X$ ein $k\in\N$, so dass für alle $f\in\mc F$ gilt:
+    $\norm{f(x)}\leq k$.
+    Also gilt
+    \[ X = \bigcup_{k\in\N} A_k . \]
+    Der Bairescher Kategoriensatz \pref{vl09:baire}
+    liefert: es existieren $k_0\in\N,\;x_0\in X,\;\epsilon_0\in\R[>0]$ mit
+    \[ \setclosure{ B_{\epsilon_0}(x_0) } \subset A_{k_0}  . \]
+\end{proof}
+
+% 5.3
+\begin{thSatz}[Banach-Steinhaus] \label{vl09:banachsteinhaus}
+    Sei $X$ ein Banachraum, $Y$ ein normierter Raum und $\mc T\subset L(X,Y)$.
+    Für alle $x\in X$ gelte: $\sup_{T\in\mc T} \, \norm{Tx}_Y < \infty$.
+    Dann folgt schon
+    \[ \sup_{T\in\mc T} \, \norm{T}  < \infty  . \]
+\end{thSatz}
+
+\begin{proof}
+    Das Prinzip der gleichmäßigen Beschränktheit \pcref{vl09:satz5.2} liefert:
+    es gibt $x_0\in X$, $\epsilon_0\in\R[>0]$, $C\in\R[>0]$, so dass 
+    für alle $x\in X$ gilt:
+    \[  \norm{x-x_0} \leq \epsilon_0 
+        \implies \forall\,T\in\mc T\colon\; \norm{Tx} \leq C
+    . \]
+    Damit folgt, dass für alle $x\in\setclosure{B_{\epsilon_0}(x_0)}$ und alle
+    $T\in\mc T$ gilt:
+    \[ \norm*{T\left( \frac{x-x_0}{\epsilon_0} \right)} 
+        \leq \frac{C + \sup_{\tilde T\in\mc T}
+        \mkern1mu\norm{\tilde Tx_0}_Y}{\epsilon_0}
+        \eqdef C_0 % TODO
+    . \]
+    Es folgt $\norm{T} \leq C_0$, denn $\frac{x-x_0}{\epsilon_0}$ nimmt alle
+    Vektoren der Norm kleiner-gleich eins an.
+    \\
+\end{proof}
+
+\begin{thBemerkung}\hfill
+    \begin{enumerate}[(i)]
+        \item
+            Der Satz von Banach-Steinhaus \pref{vl09:banachsteinhaus}
+            liefert das erstaunliche Resultat, dass eine punktweise beschränkte
+            Familie von stetigen linearen Operatoren schon beschränkt in der
+            Operatornorm ist.
+            
+        \item
+            Punktweise Grenzwerte von stetigen Funktionen sind im Allgemeinen
+            nicht stetig. Aus dem Satz von Banach-Steinhaus
+            \pref{vl09:banachsteinhaus} folgt aber, dass dies für lineare
+            Abbildungen doch gilt.
+            % $T_nx\to Tx$ punktweise
+            
+        \item
+            Ist $\nSeq T$ eine Folge von linearen Operatoren mit punktweisem
+            Grenzwert $T$, so gilt im Allgemeinen nicht 
+            $\norm{T_n-T}\to0$ für $n\to\infty$. Es gilt aber eine etwas
+            schwächere Aussage, siehe \cref{vl09:korollar5.5}.
+    \end{enumerate}
+\end{thBemerkung}
+
+\begin{thKorollar} \label{vl09:korollar5.5}
+    Seien $X$ und $Y$ Banachräume. Sei $\nSeq T$ eine Folge in $L(X,Y)$, so dass
+    für alle $x\in X$ die Folge $(T_n x)_{n\in\N}$ in $Y$ konvergiert. Setzen wir
+    \[ Tx \defeq \lim_{n\to\infty} T_n x  \]
+    für alle $x\in X$, so gilt:
+    \begin{enumerate}[(a),leftmargin=1.3cm]
+        \item \label{vl09:korollar5.5:a}
+            $\sup_{n\in\N} \, \norm{T_n} < \infty$
+            
+        \item \label{vl09:korollar5.5:b}
+            $T\in L(X,Y)$
+            
+        \item \label{vl09:korollar5.5:c}
+            $\norm{T} \leq \liminf_{n\to\infty} \norm{T_n}$
+    \end{enumerate}
+\end{thKorollar}
+
+\begin{proof}
+    Zunächst ist aufgrund der Linearität des Grenzwerts klar, dass auch $T$
+    linear ist.
+    Aussage \ref{vl09:korollar5.5:a} folgt unmittelbar aus dem dem Satz von
+    Banach-Steinhaus \pref{vl09:banachsteinhaus}.
+    Es existiert somit ein $C\in\R[>0]$, welches $\norm{T_n}\leq C$ für alle
+    $n\in\N$ erfüllt. Somit gilt für alle $x\in X$ und alle $n\in\N$:
+    \begin{align*}
+        \norm{T_n x} 
+        &\leq \norm{T_n} \cdot \norm{x} 
+        \\
+        &\leq C\,\norm{x}  
+    \end{align*}
+    Aus der unteren Ungleichung erhalten wir im Grenzwert $n\to\infty$ für alle 
+    $x\in X$ die Ungleichung $\norm{Tx}\leq C\,\norm{x}$, woraus folgt, dass $T$
+    stetig ist. Damit ist also \ref{vl09:korollar5.5:b} gezeigt.
+    Aus der oberen Ungleichung erhalten wir
+    \[ \liminf_{n\to\infty} \, \norm{T_n x} 
+        \leq \liminf_{n\to\infty} \, \norm{T_n} \cdot \norm{x}
+    , \]
+    und weil $(T_n x)_{n\in\N}$ für alle $x\in X$ konvergiert, gilt für alle
+    $x\in X$ mit $\norm{x}\leq1$ (mithilfe der Stetigkeit der Norm):
+    \[ \norm{Tx} = \lim_{n\to\infty} \,\norm{T_n x}
+        = \liminf_{n\to\infty} \, \norm{T_n x} 
+        \leq \liminf_{n\to\infty} \, \norm{T_n} \cdot \norm{x}
+        \leq \liminf_{n\to\infty} \, \norm{T_n}
+    . \]
+    Daraus folgt \ref{vl09:korollar5.5:c}.
+    \\
+\end{proof}
+
+% 5.6
+\begin{thKorollar} \label{vl09:korollar5.6}
+    Sei $Z$ ein Banachraum über $\K$ und $B\subset Z$ eine Teilmenge von $Z$.
+    Für alle $f\in Z'$ sei $f(B)\subset\K$ beschränkt. Dann ist $B$ beschränkt
+    in $Z$.
+\end{thKorollar}
+
+\begin{proof}
+    Nutze Banach-Steinhaus \pcref{vl09:banachsteinhaus}
+    mit (in den dortigen Bezeichnern) $X=Z'$, $Y=\K$ und
+    \[ \mc T = \bigl\{ J_{Z'}(b) \cMid\big b\in B \bigr\} \subset Z'' \]
+    (mit $J_{Z'}$ wie nach \cref{vl07:def:JX}, d.\,h. für $b\in B$ und $f\in Z'$
+    gilt $J_{Z'}(b)(f) = f(b)$).
+    Nach Voraussetzung gilt für alle $f\in Z'$:
+    \[ \sup_{b\in B} \, \abs{J_{Z'}(b)(f)} 
+        = \sup_{b\in B} \, \abs{f(b)}  < \infty  
+    . \]
+    Nach dem Satz von Banach-Steinhaus gilt also:
+    \[ \sup_{b\in B} \, \norm{J_{Z'}(b)} 
+        = \sup_{T\in\mc T} \, \norm{T} < \infty
+    . \]
+    Nach \cref{vl07:satz4.18} ist $J_X$ aber eine Isometrie, also folgt
+    \[ \sup_{b\in B} \, \norm{b} = \sup_{b\in B} \, \norm{J_{Z'}(b)}
+        < \infty
+    , \]
+    aber dies bedeutet gerade, dass $B$ in $Z$ beschränkt ist.
+    \\
+\end{proof}
+
+\nnBemerkung Im endlich-dimensionalen besagt dieses Korollar:
+Eine Menge ist beschränkt, falls die Projektion auf alle Komponenten beschränkt
+ist. (Das Korollar ist also eine Verallgemeinerung dieser Tatsache.)
+
+% 5.7
+\begin{thKorollar} \label{vl09:korollar5.7}
+    Sei $Z$ ein Banachraum über $\K$ und sei $A\subset Z'$ eine Teilmenge des
+    Dualraums. Sei außerdem für alle $x\in Z$ die Menge
+    \[ A(x) \defeq \bigl\{ f(x) \cMid\big f\in A \bigr\} \]
+    beschränkt in $\K$. Dann ist $A$ beschränkt in $Z'$.
+\end{thKorollar}
+
+\begin{proof}
+    Folgt unmittelbar aus Banach-Steinhaus \pcref{vl09:banachsteinhaus}
+    mit (in den dortigen Bezeichnern) $X=Z$, $Y=\K$ und $\mc T = A$.
+    \\
+\end{proof}
+
+% 5.8
+\begin{thDef}
+    Seien $X,Y$ topologische Räume und $f\colon X\to Y$ eine Abbildung.
+    Dann ist $f$ \emph{offen}, wenn Bilder offener Mengen offen sind, d.\,h.
+    wenn für alle in $X$ offenen Teilmengen $U\subset X$ auch $f(U)$ offen in
+    $Y$ ist.
+\end{thDef}
+
+\nnBemerkung
+Sind $X,Y$ normierte Räume und ist ist $f$ linear, so ist $f$ genau dann offen,
+wenn es ein $\delta\in\R[>0]$ gibt mit 
+\[ B_\delta(0)\subset f\bigl( B_1(0) \bigr)  . \]
+
+\begin{thSatz}[Satz von der offenen Abbildung] \label{vl09:satzvonderoffenenabb}
+    Seien $X$ und $Y$ Banachräume und sei $T\in L(X,Y)$. 
+    Dann ist $T$ genau dann surjektiv, wenn $T$ offen ist.
+\end{thSatz}
+
+\begin{proof}
+    \enquote{$\Leftarrow$}: Es existiert also ein $\delta\in\R[>0]$ mit
+    \[ B_\delta(0)\subset T\bigl( B_1(0) \bigr)  . \]
+    Durch Skalierung erhalten wir für alle $k\in\N$:
+    \[ B_{k\delta}(0)\subset T\bigl( B_k(0) \bigr)  . \]
+    Daraus folgt, dass $T$ surjektiv ist.
+    
+    \enquote{$\Rightarrow$}: Weil $T$ surjektiv ist, gilt
+    \[ Y = \bigcup_{k\in\N} \,
+        \underbrace{\setclosure{ T\bigl( B_k(0) \bigr) } }_{
+            \hspace*{5mm}\eqdef A_k} 
+    . \]
+    Wir wenden den Bairescher Kategoriensatz \pref{vl09:baire}
+    auf die Folge $\kSeq A$ an und erhalten somit
+    $\epsilon_0\in\R[>0],\;y_0\in Y,\;k_0\in\N$ mit
+    \[ \setclosure{ B_{\epsilon_0}(y_0) }
+        \subset \setclosure{ T\bigl( B_{k_0}(0) \bigr) }
+    . \]
+    Sei $y\in \setclosure{B_{\epsilon_0}(0)}$, dann
+    gilt $y_0+y\in \setclosure{B_{\epsilon_0}(y_0)}$. 
+    Wähle dann eine Folge $\nSeq x$ in $B_{k_0}(0)$ mit
+    \[ T x_n \to y_0 + y  \fuer  n\to\infty  . \]
+    Sei außerdem $x_0\in X$ mit $Tx_0 = y_0$. Dann erhalten wir
+    \[ T(x_n - x_0) = Tx_n - y_0 \to y \fuer n\to\infty  . \]
+    Daraus folgt:
+    \[ T\left(\, \smash{\underbrace{\frac{x_n-x_0}{k_0+\norm{x_0}}}_{\in B_1(0)}}
+            \vphantom{\frac{x_i-x_0}{k_0+\norm{x_0}}}
+            \, \right) 
+            \vphantom{\underbrace{\frac{x_i-x_0}{k_0+\norm{x_0}}}_{\in B_1(0)}}
+        \, \to \;
+            \underbrace{\frac{y}{k_0 + \norm{x_0}} }_{\in B_\delta(0)}
+        \fuer n\to\infty
+    \]
+    mit $\delta \defeq \frac{\epsilon_0}{k_0+\norm{x_0}}$. Das bedeutet aber:
+    \[ B_\delta(0) \subset \setclosure{ T\bigl(B_1(0)\bigr) }  . \]
+    Um die Behauptung zu zeigen, benötigen wir diese Inklusion aber 
+    ohne den Abschluss auf der rechten Seite. Sei dazu nun $y\in B_\delta(0)$.
+    Dann gibt es ein $x\in B_1(0)$ mit $\norm{y-Tx} < \delta/2$.
+    Daraus folgt:
+    \[ 2(-Tx+y) \in B_\delta(0)  . \]
+    Indem wir $y_1\defeq y$ setzen, erhalten wir so induktiv Folgen
+    $\kSeq y$ in $B_\delta(0)$ und $\kSeq x$ in $B_1(0)$ mit folgender
+    Eigenschaft für alle $k\in\N$:
+    \[ y_{k+1} = 2(y_k-Tx_k)  . \]
+    Es folgt für alle $k\in\N$
+    \[ 2^{-k} y_{k+1} = 2^{-k+1} y_k - \underbrace{T(2^{-k+1} x_k)}_{\eqdef a_k} 
+    \]
+    oder durch umstellen
+    \[ a_k = 2^{-(k-1)} y_k - 2^{-k} y_{k+1}  . \]
+    Sei $m\in\N$. Dann ist $\ksum^m a_n$ offenbar eine Teleskopsumme, also gilt:
+    \[ \ksum^m a_k = y_1 - 2^{-m} y_{m+1}   . \]
+    Da $\kSeq y$ beschränkt ist, gilt $2^{-m} y_{m+1} \to 0$ für $m\to\infty$.
+    Also erhalten wir:
+    \[ 
+        \lim_{m\to\infty} T\Bigl(\mkern2mu \ksum^m 2^{-(k-1)}x_k \Bigr)
+        = \lim_{m\to\infty} \ksum^m a_k = y_1
+    . \]
+    Außerdem konvergiert die Reihe $\ksum^\infty 2^{-(k-1)}x_k$ in $X$, denn es
+    gilt
+    \[ \ksum^\infty \, \norm[\big]{2^{-(k-1)}x_k} 
+        \leq \ksum^\infty 2^{-(k-1)} 
+        = \ksum[0]^\infty \left( \frac{1}{2} \right)^{\mkern-3mu k} 
+        = 2
+    , \]
+    womit man leicht zeigt, dass $\bigl( \ksum^m 2^{-(k-1)}x_k \bigr)_{m\in\N}$
+    eine Cauchy-Folge in $X$ ist (und damit auch konvergent, aufgrund der
+    Vollständigkeit von $X$). Sei also $\tilde x\defeq \ksum^\infty
+    2^{-(k-1)}x_k$. Dann gilt wegen der Stetigkeit von $T$ auch $T(\tilde x) =
+    y_1 = y$ und aus der obigen Betrachtung folgt außerdem $\norm{\tilde x}\leq 2 
+    < 3$. Also gilt $B_\delta(0) \subset T\bigl(B_3(0)\bigr)$ und durch Skalierung
+    erhalten wie gewünscht:
+    \[ B_{\delta/3}(0) \subset T\bigl(B_1(0)\bigr)  . \]
+\end{proof}
+
+% 5.10
+\begin{thSatz}[Satz von der inversen Abbildung]%
+    \label{vl09:satzvonderinversenabb}%
+    %
+    Seien $X$ und $Y$ Banachräume und sei $T\in L(X,Y)$ bijektiv.
+    Dann gilt: $T^{-1}\in L(X,Y)$.
+\end{thSatz}
+
+\begin{proof}
+    Weil $T$ surjektiv ist, liefert der Satz von der offenen Abbildung
+    \pref{vl09:satzvonderoffenenabb}, dass $T$ offen ist. Daraus folgt
+    unmittelbar, dass $T^{-1}$ stetig ist.
+    \\
+\end{proof}
+
+% 5.11
+\begin{thKorollar}
+    \newcommand\CC{\circledchar[black!30]}
+    %
+    Sei $X$ ein Vektorraum mit zwei Normen $\emptyNorm_{\CC1}$ und
+    $\emptyNorm_{\CC2}$. Außerdem gebe es ein $C_1\in\R[>0]$, so dass für alle
+    $x\in X$ die Ungleichung $\norm{x}_{\CC2} \leq C_1 \norm{x}_{\CC1}$ gilt.
+    Sei weiter $(X,\emptyNorm_{\CC1})$ ein Banachraum. Dann gilt:
+    $(X,\emptyNorm_{\CC2})$ ist genau dann ein Banachraum, wenn es ein
+    $C_2\in\R[>0]$ gibt mit $\norm{x}_{\CC1} \leq C_2 \norm{x}_{\CC2}$ für alle
+    $x\in X$.
+\end{thKorollar}
+
+\begin{proof}
+    \newcommand\CC{\circledchar[black!30]}
+    %
+    \enquote{$\Leftarrow$} ist klar.\\
+    \enquote{$\Rightarrow$}: Die Identität
+    \[ \id\colon (X,\emptyNorm_{\CC1}) \to (X,\emptyNorm_{\CC2}) \]
+    ist stetig und bijektiv. Der Satz von der inversen Abbildung
+    \pref{vl09:satzvonderinversenabb} liefert:
+    \[ \id^{-1}\colon (X,\emptyNorm_{\CC2}) \to (X,\emptyNorm_{\CC1}) \]
+    ist stetig. Daraus erhalten wir eine Konstante~$C_2$ wie gefordert.
+    \\
+\end{proof}
