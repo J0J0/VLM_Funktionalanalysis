@@ -30,13 +30,6 @@
 \begin{proof}
     Für $\tilde x = \iSeq x$ und $\tilde y = \iSeq y$ in $\tilde X$ gilt 
     (mithilfe der sog. \emph{Vierecksungleichung}):
-    %\begin{align*}
-    %    \abs{d(x_j,y_j)-d(x_i,y_i)}
-    %    % TODO: v  check indices // don't understand this line
-    %    &\leq \abs{d(x_j,y_i)-d(x_i,y_j)} + d(y_j,x_i) + d(y_i,x_j)
-    %    \\
-    %    &\leq d(x_j,x_i) + d(y_j,y_i) \to 0 \fuer i,j\to\infty
-    %\end{align*}
     \[  \abs{d(x_j,y_j)-d(x_i,y_i)} \leq d(x_j,x_i) + d(y_j,y_i) \to 0 
         \fuer i,j\to\infty
     . \]
@@ -247,7 +240,7 @@
 \end{thBemerkung}
 
 % 3.6
-\begin{thDef}
+\begin{thDef} \label{vl04:def:nullundbildraum}
     Für $T\in L(X,Y)$ definieren wir den \emph{Nullraum (Kern) von $T$} als
     \[ N(T) \defeq \{ x\in X \Mid T(x) = 0 \}
         = T^{-1}(\{0\})

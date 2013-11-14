@@ -149,17 +149,21 @@
 % new math operators
 \DeclareMathOperator*{\bigdotcup}{\overset{\mkern0mu\scalebox{0.6}{$\bullet$}}{\bigcup}}
 
+% avoid "already defined"
+\let\Pr=\relax
 % new math 'operators'
 \newcommand{\sDMO}[1]{\expandafter\DeclareMathOperator\csname#1\endcsname{#1}}
 
-\sDMO{id}
-\sDMO{Id}
 \sDMO{diam}
 \sDMO{dist}
 \sDMO{epi}
+\sDMO{graph}
+\sDMO{id}
+\sDMO{Id}
+\sDMO{Pr}
+\sDMO{supp}
 \DeclareMathOperator{\powerset}{\mathcal{P}}
 \DeclareMathOperator{\spann}{span}
-\sDMO{supp}
 \DeclareMathOperator{\Topo}{\mathcal{T}}
 
 
@@ -303,6 +307,7 @@
 \input{vl07_04-11-2013}
 \input{vl08_07-11-2013}
 \input{vl09_11-11-2013}
+\input{vl10_14-11-2013}
 
 \end{document}
 

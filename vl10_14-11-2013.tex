@@ -1,0 +1,207 @@
+% 5.12
+\begin{thSatz}[Satz vom abgeschlossenen Graphen]
+    Seien $X$ und $Y$ Banachräume, $D(T)$ ein Unterraum von $X$
+    und sei $T\colon D(T)\to Y$ eine lineare Abbildung.
+    Sei
+    \[ \graph(T) \defeq \bigl\{ (x,Tx) \in X\times Y \Mid x\in D(T) \bigr\} \]
+    der \emph{Graph von $T$ in $X\times Y$}. Dabei wird $X\times Y$ zu einem Banachraum
+    bezüglich folgender Norm:
+    \[ \emptyNorm\colon X\times Y \to \R[\geq0], \quad (x,y) \mapsto 
+        \norm{x}_X + \norm{y}_Y
+    . \]
+    Dann gilt: Ist $D(T)$ abgeschlossen, so ist $\graph(T)$ genau dann
+    abgeschlossen in $X\times Y$, wenn $T\in L\bigl( D(T), Y \bigr)$ gilt.
+\end{thSatz}
+
+\begin{proof}
+    \enquote{$\Leftarrow$}: klar, denn: Sei $(x_n,Tx_n)_{n\in\N}$ eine Folge in
+    $\graph(T)$, die in $X\times Y$ konvergiert. Sei $x\in X$ der Grenzwert von
+    $\nSeq x$, so gilt wegen der Stetigkeit von $T$ auch $Tx_n \to Tx$ für
+    $n\to\infty$, aber $(x,Tx)\in\graph(T)$ gilt nach Definition von
+    $\graph(T)$.
+
+    \enquote{$\Rightarrow$}: Da $\graph(T)$ abgeschlossen ist, muss dieser Raum
+    (mit der Einschränkung der Norm von $X\times Y$) ein Banachraum sein. Seien
+    $P_X$ und $P_Y$ die Projektionen $X\times Y\to X$ bzw. $X\times Y\to Y$.
+    Dann sind $P_X,P_Y$ stetig und linear und $P_X$ ist bijektiv von $\graph(T)$
+    auf $D(T)$. 
+    Der Satz von der inversen Abbildung \pref{vl09:satzvonderinversenabb}
+    liefert: 
+    \[ P_X^{-1} \in L\bigl( D(T), \graph(T) \bigr) . \]
+    Daraus folgt: $T = P_Y P_X^{-1} \in L\bigl( D(T), Y \bigr)$.
+    \\
+\end{proof}
+
+% 5.13
+\begin{thEmpty}[Projektoren]
+    Sei $Z$ ein Vektorraum und $A\subset Z$. Sei weiter 
+    $X$ ein normierter Raum und $Y\subset X$ ein Unterraum.
+    %
+    \begin{enumerate}[(1)]
+        \item
+            Eine Abbildung $P\colon Z\to Z$ ist eine \emph{Projektion auf $A$},
+            falls folgende Bedingungen erfüllt sind:
+            \[ P(Z) \subset A \qundq P\vert_A = \Id_A   . \]
+            Äquivalent kann man fordern:
+            \[ P(Z) = A \qundq P^2 = P\circ P = P  . \]
+            Es folgt:
+            \[ P\,(\Id-P) = (\Id-P)\mkern2muP = 0  . \]
+            
+            Beispiel: orthogonale Projektionen im euklidschen
+            Raum sind Projektionen.
+            
+        \item
+            Sei $P\colon X\to Y$ eine lineare Projektion auf $Y$. Dann gilt
+            $Y=R(P)$ und $\Id=(\Id-P)+P$ und $(\Id-P)$ ist eine Projektion auf
+            $N(P)$.  (Zur Definition des Bildraums $R(\scdot)$ und des
+            Nullraums~$N(\scdot)$, siehe \cref{vl04:def:nullundbildraum}.)
+            
+            Es gilt $X=N(P)\oplus R(P) = R(\Id-P)\oplus N(\Id-P)$,
+            $N(P)=R(\Id-P)$ und $R(P)=N(\Id-P)$, denn:
+            
+            Für $x\in X$ gilt: $x = (x-Px) + Px$ mit $(x-Px)\in N(P)$ und 
+            $Px\in R(P)$. Ist $x\in N(P) \cap R(P)$, so gilt $Px=0$ und $x=Px$,
+            also $x=0$. Außerdem gelten folgende Äquivalenzen:
+            \[ x\in N(\Id-P) \iff x-Px = 0 \iff x=Px \iff x\in R(P) . \]
+            Also gilt $N(\Id-P) = R(P)$.
+            
+        \item
+            Eine Abbildung $P\colon X\to X$ ist ein \emph{Projektor auf $Y$},
+            falls $P$ eine stetige lineare Projektion auf $Y$ ist. Es sei
+            \[ \Pr(X) \defeq \{ P\colon X\to X \Mid P\text{ ist Projektor} \} 
+            . \]
+            Falls $P$ ein Projektor ist, so ist klarerweise auch
+            $\Id-P$ ein Projektor und $N(P)$ sowie $R(P)=N(\Id-P)$ sind
+            abgeschlossen.
+    \end{enumerate}
+\end{thEmpty}
+%
+% TODO: Skizzen (orthogonale Projektion, Projektion auf konvexe Menge)
+
+% 5.14
+\begin{thSatz}[Satz vom abgeschlossenen Komplement]
+    Sei $X$ ein Banachraum und seien $Y$~und $Z$ Unterräume von $X$. Außerdem
+    gelte $X = Z\oplus Y$ und $Y$ sei abgeschlossen. Dann gilt:
+    Der Unterraum $Z$ ist genau dann abgeschlossen, wenn es einen stetigen
+    Projektor~$P$ auf $Y$ mit $N(P)=Z$ gibt.
+\end{thSatz}
+
+\begin{proof}
+    \enquote{$\Leftarrow$} ist klar, da $P$ stetig ist.
+    
+    \enquote{$\Rightarrow$}: Sei $\tilde X \defeq Z\times Y$. Definiere
+    \[ T\colon\tilde X\to X, \quad (z,y)\mapsto z+y  . \]
+    Dann ist $T$ linear, bijektiv und stetig (wie man mithilfe der
+    $\scriptstyle\triangle$-Ungleichung einsieht). Weil $Y$ und $Z$
+    abgeschlossen sind, ist auch $\tilde X$ ein abgeschlossener Unterraum von
+    $X\times X$ und damit ein Banachraum.  Der Satz von der inversen Abbildung
+    \pref{vl09:satzvonderinversenabb} liefert $T^{-1}\in L(X,\tilde X)$. Sei
+    \[ P\colon X\to Y,\quad z+y \mapsto y
+        \quad\text{(mit $z\in Z$ und $y\in Y$)}
+    . \]
+    Dann ist $P$ eine lineare Projektion auf $Y$ und es gilt $N(P)=Z$. Außerdem
+    ist $P$ stetig, denn es gilt $P = P_Y T^{-1}$, wobei $P_Y$ die Projektion
+    $\tilde X\to Y$ auf die zweite Komponente ist. Damit ist $P$ der gesuchte
+    Projektor.
+    \\
+\end{proof}
+
+% 5.15
+\begin{thDef}
+    Seien $X$ und $Y$ normierte Vektorräume und $T\in L(X,Y)$.
+    Dann ist der \emph{adjungierte Operator $T'$} die Abbildung
+    \begin{align*}
+        T'\colon Y' &\to X' \\
+        y' &\mapsto \left( 
+            \begin{aligned}
+                X &\mapsto \K   \\
+                x &\mapsto y'(Tx)   
+            \end{aligned}
+        \right)
+    . \end{align*}
+\end{thDef}
+
+\nnBemerkung
+Es gilt
+\[ \abs{(T'y')(x)} = \abs{y'(Tx)} \leq \norm{y'} \cdot \norm{Tx}
+    \leq \norm{y'} \cdot \norm{T}\cdot \norm{x}
+\]
+für alle $y'\in Y'$ und alle $x\in X$. Dies zeigt, dass $T'$ wohldefiniert ist
+($T'y' \in X'$ für alle $y'\in Y'$) und dass $\norm{T'y'} \leq \norm{y'}\cdot
+\norm{T}$ gilt. Daraus folgt $T'\in L(Y',X')$.
+
+% 5.16
+\begin{thBeispiel}[Shift-Operator]
+    Wir betrachten auf $\ell^2$ über $\R$ den Shift-Operator
+    \[ T(x_1,x_2,x_3,\dots) \defeq (x_2,x_3,\dots)  . \]
+    Wir möchten nun $T'$ bestimmen.
+    Später zeigen wir: $(\ell^2)'$ kann mit $\ell^2$ identifiziert werden. Jedes
+    $x\in\ell^2$ definiert einen linearen Operator auf $\ell^2$ durch
+    $x'(y) = (x,y)_{\ell^2} \defeq \isum^\infty x_iy_i$ für alle $y\in\ell^2$. 
+    Dies liefert schon $(\ell^2)'$.
+    Wir fordern für $y'\in(\ell^2)'$, dargestellt durch $\nSeq y$:
+    \[ y'(Tx) = \nsum^\infty x_{n+1}y_n = \nsum[2]^\infty x_n\tilde y_n
+        \overset!= (T'y')(x)
+    , \]
+    wobei $\tilde y_n = y_{n-1}$ für alle $n\in\N_{\geq 2}$. Dies zeigt, dass
+    \[ T'\colon Y'\to X', \quad (y_1,y_2,\dots) \mapsto (0,y_1,y_2,\dots) \]
+    gilt. Dabei haben wir $TT' = \Id$, aber $T'T\neq\Id$.
+    % TODO
+    
+\end{thBeispiel}
+
+
+\begin{thEmpty} % TODO: Satz? Lemma? Nix?
+    Seien $X$ und $Y$ normierte Räume. 
+    \begin{enumerate}[(i)]
+        \item
+            Die Abbildung
+            \begin{align*}
+                {}'\colon L(X,Y) &\to L(Y',X')  \\
+                y &\mapsto y'
+            \end{align*}
+            ist eine lineare Isometrie.
+            
+        \item 
+            Sei $Z$ ein weiterer normierter Raum.
+            Dann gilt für alle $T\in L(X,Y)$ und $S\in L(Y,Z)$ 
+            gilt $(ST)' = T'S'$.
+    \end{enumerate}
+\end{thEmpty}
+
+\begin{proof}\hfill
+    \begin{enumerate}[(i)]
+        \item
+            Die Linearität rechnet man leicht nach. Sei $T\in L(X,Y)$. Dann gilt
+            für alle $y'\in Y'$:
+            \[ \norm{T'y'} \leq \norm{y'} \cdot \norm{T} . \]
+            Dass wir tatsächlich auch Gleichheit haben, sehen wir wie folgt ein
+            (-- um die Notation übersichtlicher zu halten, bezeichne $\bar B^X_1
+            \defeq \setclosure{B^{\scriptscriptstyle X}_1(0)}$ die
+            abgeschlossene Einheitskugel in~$X$ und $\bar B^{Y'}_1 \defeq
+            \setclosure{B^{\scriptscriptstyle Y'}_1(0)}$ diejenige in $Y'$):
+            \begin{align*}
+                \norm{T} 
+                &= \sup_{x\in \bar B^X_1} \norm{Tx}
+                 = \adjustlimits
+                   \sup_{x\in \bar B^X_1\;} 
+                    \sup_{y'\in \bar B^{Y'}_1} \abs{y'(Tx)}
+                \\[2pt]
+                &= \adjustlimits
+                   \sup_{y'\in \bar B^{Y'}_1} 
+                    \sup_{x\in \bar B^X_1\;} \abs{y'(Tx)}
+                 = \sup_{y'\in \bar B^{Y'}_1} \norm{T'y'}
+                 = \norm{T'}
+            . \end{align*}
+            (Die zweite Gleichheit gilt dabei nach \cref{vl07:satz4.18}.)
+        
+        \item
+            Seien $T\in L(X,Y), S\in L(Y,Z)$ und $z'\in Z'$ sowie $x\in X$. Dann
+            gilt:
+            \[ \bigl( (ST)' z' \bigr)(x) = z'(STx) 
+                = (S'z')(Tx) = (T'S'z')(x)  
+            . \]
+            Es folgt die Behauptung.
+    \end{enumerate}
+\end{proof}
+        
