@@ -47,7 +47,14 @@ alle $x\in X$ die Ungleichung
 $\abs{x'(x)} \leq \norm{x'}\cdot \norm{x}$ und damit für alle $x\in X$:
 \[ \tag{$\ast$} \label{vl07:ast}
     \norm{ J_X(x) } \leq \norm{x}  . \]
-Es gilt sogar $\norm{x} = \sup_{x'\in X'} \,\abs{x'(x)}$ für alle $x\in X$.
+Sei 
+\[ \bar B^{X'}_1 \defeq \setclosure{B^{X'}_1(0)} 
+    = \bigl\{ x'\in X' \cMid\big \norm{x'}\leq1 \bigr\} 
+. \]
+Dann gilt sogar 
+\[ \norm{x} = \sup_{x'\in \bar B^{X'}_1} \,\abs{x'(x)}  
+    \quad \text{für alle $x\in X$}
+. \]
 
 Sei $x_0\in X\setminus\{0\}$. Setze dann das Funktional
 \[ u'\colon \spann\{x_0\} \to \K, \qquad 
