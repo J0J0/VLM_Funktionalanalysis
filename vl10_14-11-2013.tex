@@ -151,7 +151,7 @@ für alle $y'\in Y'$ und alle $x\in X$. Dies zeigt, dass $T'$ wohldefiniert ist
 \end{thBeispiel}
 
 
-\begin{thEmpty} % TODO: Satz? Lemma? Nix?
+\begin{thSatz}
     Seien $X$ und $Y$ normierte Räume. 
     \begin{enumerate}[(i)]
         \item
@@ -167,14 +167,16 @@ für alle $y'\in Y'$ und alle $x\in X$. Dies zeigt, dass $T'$ wohldefiniert ist
             Dann gilt für alle $T\in L(X,Y)$ und $S\in L(Y,Z)$ 
             gilt $(ST)' = T'S'$.
     \end{enumerate}
-\end{thEmpty}
+\end{thSatz}
 
 \begin{proof}\hfill
     \begin{enumerate}[(i)]
         \item
             Die Linearität rechnet man leicht nach. Sei $T\in L(X,Y)$. Dann gilt
-            für alle $y'\in Y'$:
-            \[ \norm{T'y'} \leq \norm{y'} \cdot \norm{T} . \]
+            für alle $y'\in Y'$
+            \[ \norm{T'y'} \leq \norm{y'} \cdot \norm{T}, \qtextq{woraus} 
+                \norm{T'} \leq \norm{T} \quad\text{folgt}
+            . \]
             Dass wir tatsächlich auch Gleichheit haben, sehen wir wie folgt ein
             (-- um die Notation übersichtlicher zu halten, bezeichne $\bar B^X_1
             \defeq \setclosure{B^{\scriptscriptstyle X}_1(0)}$ die
