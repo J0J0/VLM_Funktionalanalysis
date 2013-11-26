@@ -1,0 +1,89 @@
+Wir betrachten noch ein weiteres Beispiel:
+\[ H = \ell^2(\R) \qtextq{mit Skalarprodukt}
+    (u,v)\mapsto\SP{u,v}\defeq\nsum^\infty u_n v_n  
+. \]
+Weiter sei
+\[ V = \Bigl\{ u\in H \cMid\Big \nsum^\infty n^2 u_n^2 < \infty \Bigr\}  , \]
+ausgestattet mit dem Skalarprodukt
+\[ \dSP{\scdot,\scdot}\colon V\times V\to\R, \quad
+    (u,v)\mapsto \dSP{u,v} \defeq \nsum^\infty n^2 u_n v_n
+. \]
+Es gilt $V\subset H$ und die Inklusion $V\hookrightarrow H$ ist stetig.
+Wir identifizieren $H'$ mit $H$ und $V'$ mit dem Raum
+% TODO: v  check 
+\[ V' = \Bigl\{ f\in\R^\N \cMid\Big
+    \nsum^\infty \frac{1}{n^2}\, f_n^2 < \infty \Bigr\}
+, \]
+indem wir für $f\in V',\,v\in V$ die Anwendung von $f$ auf $v$ durch 
+$f(v) = \nsum^\infty f_n v_n$ erklären (man rechnet leicht mit der 
+Hölderschen Ungleichung nach, dass dies wohldefiniert ist).
+Dieser Raum ist offenbar echt größer als $H$. Die Isometrie $J\colon V\to V'$
+aus dem Riesz'schen Darstellungssatz \pref{vl12:riesz} ist dann gegeben durch 
+\[ u \mapsto \bigl( n^2 u_n \bigr)_{n\in\N} . \]
+
+% 6.7
+\begin{thBemerkung}
+    Sei $H$ ein Hilbertraum über $\K$. Dann ist $H$ reflexiv
+    \pcref{vl07:def:reflexiv}.
+    Sei $J$ der konjugiert lineare
+    Isomorphismus aus dem Riesz'schen Darstellungssatz \pref{vl12:riesz}.
+    Es ist zu zeigen, dass $J_H$ (aus \cref{vl07:satz4.18}) surjektiv ist.
+    Sei also $x''\in H''$. Dann ist
+    \[ x'\colon H\to\K,\quad  y \mapsto  \ol{x''(Jy)} \]
+    ein Element in $H'$. Setze $x \defeq J^{-1}x'$. Sei $y'\in H'$ und $y\in H$
+    mit $Jy = y'$. Dann gilt:
+    \begin{align*}
+        x''(y') 
+        &= x''(Jy) = \ol{x'(y)} = \ol{(Jx)(y)} = \ol{\SP{y,x}}  \\
+        &= \SP{x,y} = (Jy)(x) = y'(x) = (J_Hx)(y')
+    \end{align*}
+    Also gilt $x'' = J_Hx$ und damit ist $J_H$ surjektiv.
+\end{thBemerkung}
+
+% 6.8
+\begin{thBemerkung}
+    Sei $H\simeq H'$ ein Hilbertraum und $M\subset H$ ein Unterraum. Dann kann
+    man den Annihilator $M^\perp$ identifizieren mit
+    \[ M^\perp = \bigl\{ u\in H \Mid \forall v\in M\colon\; \SP{v,u} = 0 \bigr\}
+    . \]
+    Außerdem gilt $M\cap M^\perp = \{0\}$. Wenn $M$ abgeschlossen ist, so gilt
+    $M + M^\perp = H$.
+\end{thBemerkung}
+
+% 6.9
+\begin{thDef} \label{vl13:def:sesquisetetigkorerziv}
+    Sei $H$ ein Hilbertraum. Wir nennen eine Sesquilinearform~$a$ auf $H$
+    stetig, wenn es ein $C\in\R[>0]$ gibt, so dass gilt: 
+    \[ \forall\,u,v\in H\colon\quad \abs{a(u,v)} \leq C \,\norm{u}\,\norm{v}  
+    . \]
+    Wir nennen $a$ \emph{koerziv}, wenn ein $\alpha\in\R[>0]$ existiert, so dass
+    gilt:
+    \[ \forall\,u\in H\colon\quad \Re a(u,u) \geq \alpha\norm{u}^2  . \]
+\end{thDef}
+
+Für den Beweis des folgenden Theorems benötigen wir den Banach'schen
+Fixpunktsatz:\\
+\nnSatz Sei $(X,d)$ ein vollständiger metrischer Raum und $S\colon X\to X$ eine
+(strikte) Kontraktion. Dann besitzt $S$ genau einen Fixpunkt.
+
+% 6.10
+\begin{thTheorem}[Stampacchia]
+    Sei $H$ ein Hilbertraum über $\K$ und $a\colon H\times H\to\K$ eine
+    stetige, koerzive Sesquilinearform. Weiter sei $K\subset H$ nicht leer,
+    abgeschlossen und konvex. Dann gibt es für alle $\phi\in H'$ genau ein
+    $u\in K$, so dass gilt:
+    \[ \tag{$\star$} \label{vl13:star}
+        \forall\,v\in K\colon\quad \Re a(v-u,u) \geq \Re\phi(v-u)  
+    . \]
+    Ist $a$ außerdem symmetrisch, so ist das Element $u\in H$ eindeutig
+    charakterisiert durch folgende Eigenschaft:
+    \[ u\in K \qundq \half\,a(u,u) - \Re\phi(u) 
+        = \min_{v\in K} \, \bigl( \thalf\mkern2mu a(v,v) - \Re\phi(v) \bigr)
+    . \]
+\end{thTheorem}
+
+\nnBemerkung\\
+Ist $a$ eine positiv semidefinite Bilinearform auf einem $\R$-Vektorraum~$H$, so
+ist die Abbildung $v\mapsto a(v,v)$ konvex. Falls $a$ sogar positiv definit ist,
+ist diese Abbildung  strikt konvex. In der Regel besitzen strikt konvexe
+Funktionen mit $f(x)\to\infty$ für $\norm{x}\to\infty$ ein eindeutiges Minimum.

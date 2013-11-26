@@ -1,0 +1,256 @@
+\begin{thBemerkung}
+    Oft ist es einfacher zu zeigen, dass $R(T')$ abgeschlossen ist, als $R(T)$
+    zu bestimmen. Dann erhält man mit dem Satz vom abgeschlossenen Bild
+    \pref{vl11:satzvomabgbild} direkt: $R(T)$ abgeschlossen, 
+    $R(T) = (N(T'))^\perp$.
+    Man bekommt also Informationen über $R(T)$, indem man $T'$ betrachtet.
+    
+    Beispiel:  Ist $T'$~injektiv, dann folgt $N(T)=\{0\}$ und daraus
+    $R(T)=(N(T'))^\perp = Y$.
+\end{thBemerkung}
+
+% 6.
+\chapter{Hilberträume}
+Siehe \mycref{vl02:sp:hilbertraum}. Eine wichtige Eigenschaft von Hilberträumen
+ist, dass stets orthogonale Projektionen auf abgeschlossene, konvexe Teilmengen
+existieren.
+
+% 6.1
+\begin{thSatz}[Projektionssatz] \label{vl12:projektionssatz}
+    Sei $H$ ein Hilbertraum, $K\subset H$ eine nicht-leere, abgeschlossene und
+    konvexe Teilmenge. Dann existiert für jedes $f\in H$ ein eindeutiges
+    $u\in K$, so dass gilt:
+    \[ \norm{f-u} = \min_{v\in K} \,\norm{f-v} = \dist(f,K)  . \]
+    Das Element $u\in H$ ist eindeutig charakterisiert durch folgende
+    Eigenschaft:
+    \[ u\in K \qtextq{und für alle $v\in K$ gilt} 
+        \Re\SP{f-u,v-u} \leq 0
+    . \]
+    Das Element $u$ nennen wir dann \emph{Projektion von $f$ auf $K$} und wir
+    schreiben dafür $u = \Proj_K(f)$.
+\end{thSatz}
+
+% Für einen $\R$-Vektorraum % TODO: Skizze
+% Der Winkel zwischen v-u und f-u ist größer gleich \pi/2 (vgl zweite Formel
+% oben)
+
+\begin{proof}
+    Wähle eine Minimalfolge $\nSeq v$ in $K$ für das Infimum $\dist(f,K)$, also
+    mit $d_n \defeq \norm{f-v_n} \to \inf_{v\in K} \,\norm{f-v} \eqdef d$. Wir
+    behaupten, dass dann $\nSeq v$ schon eine Cauchyfolge sein muss. Dazu
+    wenden wir die Parallelogramm-Identität
+    \pmycref{vl02:satz2.8:parallelogramm} auf $f-v_n$ und $f-v_m$ an.
+    Wir erhalten:
+    \[ \norm{ 2f-(v_n+v_m)}^2 + \norm{v_n-v_m}^2 = 2 \bigl(d_n^2 + d_m^2\bigr)
+    . \]
+    Da $K$ konvex ist, gilt $\frac{v_n+v_m}{2} \in K$, und es folgt:
+    \[ \norm*{f-\frac{v_n+v_m}{2}} \geq d  . \]
+    Nach Multiplizieren der vorherigen Ungleichung mit $1/4$ folgt somit:
+    \[ \norm*{\frac{v_n-v_m}{2}}^2 \leq \half \bigl(d_n^2+d_m^2\bigr) - d^2
+        \Xtoinfty{n,m} 0
+    . \]
+    Also ist $\nSeq v$ tatsächlich eine Cauchy-Folge. Weil $K$ eine
+    abgeschlossene Teilmenge eines vollständigen Raums ist, ist $K$ insbesondere
+    vollständig. Also konvergiert $\nSeq v$ in $K$ und es gibt ein $v\in K$ mit
+    $v = \lim_{n\to\infty} v_n$. Für dieses gilt dann
+    \[ \norm{f-v} = \lim_{n\to\infty} \, \norm{f-v_n} = d = \dist(f,K) . \]
+    Wir zeigen nun, dass die beiden Charakterisierungen aus der Behauptung
+    äquivalent sind. Sei hierzu für $u\in K$ die erste Bedingung erfüllt. Wähle
+    $w\in K$. Dann folgt für $t\in\I$
+    \[ v = (1-t) u + tw \in K  . \]
+
+    Damit erhalten wir für alle $t\in\I$:
+    \begin{align*}
+        &\norm{f-u} \leq \norm{f-(1-t)u+tw} = \norm{(f-u)-t(w-u)}
+        \\
+        \implies\quad&
+        \norm{f-u}^2 \leq \norm{f-u}^2 - 2\Re\SP{f-u,w-u} + t^2\norm{w-u}^2
+        \\
+        \implies\quad&
+        2\Re\SP{f-u,w-u} \leq t^2 \norm{w-u}^2
+    \end{align*}
+    Für $t\to 0$ erhalten wir die zweite Charakterisierung. Sei umgekehrt
+    letztere gegeben für $u\in K$. Dann gilt
+    \[ \norm{w-f}^2 - \norm{v-f}^2 = \norm{u-f}^2 - \norm{v-u+(u-f)}^2
+        = 2\Re\SP{f-u,v-u} - \norm{u-v}^2 \leq 0
+    , \]
+    woraus die erste Charakterisierung folgt.
+    
+    Zur Eindeutigkeit: Angenommen $v_1,v_2\in K$ erfüllen beide die zweite
+    Charakterisierung. Dann gilt für alle $v\in K$
+    \[ \Re\SP{f-v_1,v-u_1} \leq 0   \qundq 
+        \Re\SP{f-v_2,v-u_2} \leq 0
+    . \]
+    Wähle in der ersten Ungleichung $v=u_2$, in der zweiten $v=u_1$ und addiere
+    beide Gleichungen. Dann erhalten wir
+    \[ \norm{u_1-u_2}^2 = \Re\SP{u_1-u_2,v_1-v_2}  \leq 0  , \]
+    woraus $u_1=u_2$ folgt.
+    \\
+\end{proof}
+
+% 6.2
+\begin{thBemerkung}
+    Das Problem im obigen Satz ist ein Minimierungsproblem. Auch in anderen
+    bereits bekannten Problemen wird ein Minimum durch Ungleichungen
+    beschrieben. Betrachte zum Beispiel $F\in C^1(\I)$ und 
+    $F(u) = \min_{v\in\I} \, F(v)$. Dann gilt $F'(v)=0$, falls $v\in(0,1)$,
+    $F'(v)\geq 0$, falls $u=0$ und $F'(v)\leq 0$, falls $u=1$. Oder
+    zusammengefasst:
+    \[ v\in\I \qtextq{und für alle $v\in\I$ gilt} F'(u) (v-u) \geq 0 . \]
+\end{thBemerkung}
+
+% 6.3
+\begin{thSatz} \label{vl12:satz6.3}
+    Sei $H$ ein Hilbertraum, $K\subset H$ eine nicht-leere, abgeschlossene und
+    konvexe Teilmenge. Dann nimmt der Abstand durch die Anwendung von $\Proj_K$
+    nicht zu, d.\,h. $\Proj_K$ ist Lipschitz zur Konstante~$1$, d.\,h. für alle
+    $f_1,f_2\in H$ gilt
+    \[ \norm{\Proj_K f_1 - \Proj_K f_2} \leq \norm{f_1-f_2}  . \]
+\end{thSatz}
+
+\begin{proof}
+    Sei $u_1\defeq \Proj_K f_1$ und $u_2\defeq \Proj_K f_2$. Dann gilt für alle
+    $v\in K$:
+    \[ \Re\SP{f_1-u_1,v-u_1} \leq 0 \qundq \Re\SP{f_2-u_2,v-u_2}  . \]
+    Wähle einmal $v=u_2$ und einmal $v=u_1$ und erhalte durch Addition:
+    \[ \Re\SP{f_2-u_2-f_1+u_1,u_1-u_2} \leq 0  . \]
+    Daraus folgt:
+    \[ \norm{u_1-u_2}^2 \leq \Re\SP{f_1-f_2,u_1-u_2} 
+        \;\overset{\mathclap{\hyperref[vl02:CSU]{\text{CSU}}}}\leq\;
+        \norm{f_1-f_2} \, \norm{u_1-u_2}
+    . \]
+    Nach Dividieren durch $\norm{u_1-u_2}$ folgt die Behauptung.
+    \\
+\end{proof}
+
+% 6.4
+\begin{thKorollar}
+    Sei $H$ ein Hilbertraum und $M\subset H$ ein abgeschlossener Unteraum.
+    Für $f\in H$ ist $\Proj_M f \eqdef u$ charakterisiert durch: $u\in M$ und
+    $\SP{f-u,v} = 0$ für alle $v\in M$. Insbesondere ist $\Proj_M$ ein linearer
+    stetiger Operator.
+\end{thKorollar}
+
+\begin{proof}
+    Es gilt $\Re\SP{f-u,v-u} \leq 0$ für alle $v\in M$. Sei$\alpha\in\K$ und
+    $w\in M$. Dann gilt auch $v\defeq u + \alpha w \in M$ und damit
+    \[ \Re(\bar\alpha \SP{f-u,w} ) \leq 0 . \]
+    Für $\alpha = \pm \SP{f-u,w}$ erhalten wir Ungleichungen, die
+    \[ \SP{f-u,w} = 0 \]
+    implizieren.
+    Gilt andererseits $\SP{f-u,w} = 0$ für alle
+    $w\in M$, so folgt für alle $v\in M$ schon
+    \[ \Re\SP{f-v,v-u} \leq 0  , \]
+    da $v-u\in M$. Die Linearität ist nach der obigen Charakterisierung klar und
+    die Stetigkeit folgt aus \cref{vl12:satz6.3}.
+    \\
+\end{proof}
+
+\begin{thEmpty}[Dualraum eines Hilbertraums]
+    In einem Hilbertraum~$H$ können wir durch
+    \[ H\ni u \mapsto \SP{u,f} \in \K \]
+    für jedes $f\in H$ ein lineares Funktional definieren. Der folgende Satz
+    zeigt, dass wir dadurch sogar bereits alle linearen Funktionale erhalten.
+    
+    \nnSatz (Riesz'scher Darstellungssatz)\label{vl12:riesz}\\
+    Sei $H$ ein Hilbertraum über $\K$. Dann ist
+    \begin{align*}
+        J\colon H &\to H'   \\
+                x & \mapsto \left( 
+                    \begin{aligned}
+                        H &\to \K   \\
+                        y &\mapsto \SP{y,x}
+                    \end{aligned}\mkern2mu
+                \right)
+    \end{align*}
+    ein isometrischer, konjugiert linearer Isomorphismus.
+    (Dabei bedeutet konjugiert linear, dass $J(\alpha x+y) = \bar\alpha
+    J(x) + J(y)$ für alle $x,y\in H,\,\alpha\in\K$ gilt.)
+\end{thEmpty}
+
+\begin{proof}
+    Seien $x,y\in H$.
+    Aus der Cauchy-Schwarz-Ungleichung \pmycref{vl02:satz2.8:CSU} folgt
+    \[ \abs{J(x)(y)} \leq \norm{x}\,\norm{y}  . \]
+    Daraus folgt $J(x)\in X'$ mit $\norm{J(x)}\leq \norm{x}$. Wegen 
+    $\abs{J(x)(x)} = \norm{x}^2$ gilt $\norm{J(x)}\geq \norm{x}$.
+    Also ist $J$ eine Isometrie und damit insbesondere injektiv. Der wesentliche
+    Schritt ist nun, die Surjektivität von $J$ zu zeigen. Sei dazu $x_0'\in
+    X'\setminus\{0\}$. Wähle $P$ als orthogonale Projektion auf $N(x_0')$ (was
+    ein abgeschlossener Unterraum ist). Wähle $e\in X$ mit $x_0'(e)=1$ und
+    definiere $x_0 \defeq e-Pe$. Dann gilt $x_0'(x_0) = 1 \neq 0$. Aus dem
+    Projektionssatz \pref{vl12:projektionssatz} folgt:
+    \[ \tag{$\star$} \label{vl12:star}
+        \forall\,y\in N(x_0')\colon\quad \SP{y,x_0} = 0
+    . \]
+    
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[rotate=15,yscale=0.75]
+            \draw [color=black!70, dashed] (2,2) -- (2,0);
+
+            \draw [Dfunc]
+                  (0,2) -- (4,2) node [right] {$\{x_0'=0\}$}
+                  (0,0) -- (4,0) node [right] {$\{x_0'=1\}$};
+            \path (1,2) node [Dpoint,label=above:$0$] {}
+                  (2,0) node [Dpoint,label=below:$e$] {}
+                  (2,2) node [Dpoint,label=above:$Pe$] {}
+                  (1,0) node [Dpoint,label=below:$x_0$] {};
+        \end{tikzpicture}
+        \caption{Situation im Beweis des Riesz'schen Darstellungssatzes}
+        \label{vl12:fig:projektion}
+    \end{figure}
+
+    Sei wieder $x\in X$. Dann gilt
+    \[ x = \underbrace{(x-x_0'(x)\,x_0)}_{\in N(x_0')} + x_0'(x)\,x_0  \]
+    und damit wegen \eqref{vl12:star}:
+    \[ \SP{x,x_0} 
+        = \SP{x_0'(x)\,x_0,x_0} = x_0'(x)\,\norm{x_0}^2
+    . \]
+    Es folgt
+    \[ x_0'(x) = \SP{x,\frac{x_0}{\norm{x_0}^2}} 
+        = J\left( \frac{x_0}{\norm{x_0}^2} \right)(x)
+     \]
+    und daraus $x' = J\bigl(x_0/\norm{x_0}^2\bigr)$. Also ist $J$ surjektiv.
+    \\
+\end{proof}
+
+% 6.6
+\begin{thEmpty}[Soll man $H$ mit $H'$ identifizieren?]
+    Der Rieszsche Darstellungssatz erlaubt es uns, $H$ mit $H'$ zu identifizieren.
+    Wir werden dies oft tun, aber nicht immer. Wir wollen eine Situation betrachten,
+    in der man vorsichtig mit einer solchen Identifikation sein sollte:
+    
+    Sei $H$ ein Hilbertraum mit Skalarprodukt $\emptySP$ und assoziierter Norm
+    $\emptyNorm$. Sei nun $V\subset H$ ein linearer Unterraum, der dicht in $H$
+    liegt. Wir nehmen an, dass $V$ ein Banachraum ist mit Norm~$\emptyNorm_V$.
+    Weiter sei die Inklusion $V\hookrightarrow H$ stetig, d.\,h. es existiert
+    ein $c\in\R[>0]$, so dass für alle $v\in V$ gilt: $\norm{v}_V \leq
+    c\norm{v}$.
+    
+    Ein Beispiel für eine solche Situation ist gegeben durch
+    \begin{align*}
+        H 
+        &= L^2(\I) 
+        \\
+        &= \bigl\{ v\colon\I\to\R \text{ Lebesgue-messbar} \cMid\big
+        {\textstyle\int_0^1 (v(x))^2 \dif{x}} < \infty \bigr\}
+        \raisebox{-5pt}{$\displaystyle\Big/ 
+            \raisebox{-3pt}{$\displaystyle
+                \{ v \Mid v = 0 \text{ fast überall} \} 
+            $}
+        $}
+    \end{align*}
+    mit Skalarprodukt $\SP{u,v} = \int_0^1 u(x)\,v(x)\dif{x}$ für $u,v\in H$
+    und $V=C(\I)$.
+    Dann existiert eine kanonische Abbildung
+    \[ T\colon H' \to V', \quad x'\mapsto \bigl(v\mapsto x'(v)\bigr)  . \]
+    Wir sehen einfach ein, dass $T$ stetig und injektiv ist.
+    Nun identifizieren wir $H'$ mit $H$, geschrieben $H\simeq H'$, und erhalten:
+    $V\subset H \simeq H' \subset V' \;(\diamond)$, wobei dies alles stetige Injektionen
+    sind. Problematisch wird diese Situation, falls $V$ ein Hilbertraum mit
+    eigenem Skalarprodukt $\emptySP_V$ und $\emptyNorm_V$ die zugehörige
+    Norm ist. Wir könnten $V$ mit $V'$ identifizieren. Aber was bedeutet dann
+    $(\diamond)$? Wir können also nicht gleichzeitig $H$ mit $H'$ und $V$ mit $V'$
+    identifizieren. Typischerweise verwendet man dann nur $H\simeq H'$.
+\end{thEmpty}

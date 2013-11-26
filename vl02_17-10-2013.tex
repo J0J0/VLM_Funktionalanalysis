@@ -43,12 +43,12 @@
 \end{thEmpty}
 
 % 2.7
-\begin{thEmpty}[Skalarprodukt]
+\begin{thEmpty}[Skalarprodukt] \label{vl02:sp}
     Sei $X$ ein $\K$-Vektorraum.
-    \begin{enumerate}[a)]
-        \item
+    \begin{enumerate}[(a)]
+        \item \label{vl02:sp:hermitischeform}
             $\emptySP\colon X\times X \to \K$ heißt \emph{Hermitische Form}
-            ($\K=\R$ symmetrische Biliniearform, $\K=\C$ symmetrische
+            ($\K=\R$ symmetrische Bilinearform, $\K=\C$ symmetrische
             Sesquilinearform), falls für alle $x,x_1,x_2,y\in X,\alpha\in\K$ gilt:
             \begin{enumerate}[({S}1),labelsep=1em,leftmargin=2cm]
                 \item\label{vl02:S1}
@@ -60,8 +60,8 @@
             \end{enumerate}
             (Es folgt: für alle $x\in X$ gilt $\SP{x,x}\in\R$.)
 
-        \item
-            $\SP{\,\cdot\,,\,\cdot\,}$ heißt \emph{positiv-semidefinit}, falls
+        \item \label{vl02:sp:posdefinit}
+            $\SP{\,\cdot\,,\,\cdot\,}$ heißt \emph{positiv semidefinit}, falls
             \begin{enumerate}[({S}4'),labelsep=1em,leftmargin=2cm]
                 \item\label{vl02:S4p}
                     $\SP{x,x} \geq 0$
@@ -73,7 +73,7 @@
             \end{enumerate}
             gilt.
 
-        \item
+        \item \label{vl02:sp:hilbertraum}
             $\SP{\,\cdot\,,\,\cdot\,}$ heißt \emph{Skalarprodukt}, falls 
             \ref{vl02:S1}--\ref{vl02:S4} erfüllt sind.
             Dann ist $\norm{x}\defeq\sqrt{\SP{x,x}}$ eine Norm auf $X$ und wir
@@ -99,15 +99,17 @@
 \begin{thSatz}\label{vl02:satz2.8}
     Sei $\emptySP$ ein Skalarprodukt auf einem Vektorraum~$X$. Dann gelten:
     \begin{enumerate}[(1)]
-        \item \label{vl02:CSU}
+        \item \label{vl02:satz2.8:CSU}\label{vl02:CSU}
             Cauchy-Schwarz-Ungleichung (CSU): \quad
             $\forall\,x,y\in X\colon\quad
             \abs{\SP{x,y}} \leq \norm x\cdot\norm y$.\\
             Gleichheit gilt nur, falls $y$ ein Vielfaches von $x$ ist.
+
         \item
             Dreiecksungleichung: \quad
             $\forall\,x,y\in X\colon\quad \norm{x+y}\leq\norm x+\norm y$
-        \item
+            
+        \item \label{vl02:satz2.8:parallelogramm}
             Parallelogrammidentität:\quad
             $\forall\,x,y\in X\colon\quad
                 \norm{x+y}^2 + \norm{x-y}^2 = 2\left( \norm{x}^2+\norm{y}^2

@@ -1,0 +1,227 @@
+\pagebreak[3]
+Mit Hilfe der adjungierten Abbildung können wir die Lösbarkeit von linearen
+Gleichungen untersuchen. Dazu benötigen wir zunächst einige Hilfsaussagen.
+
+% 5.18
+\begin{thSatz} \label{vl11:satz5.18}
+    Seien $X,Y$ Banachräume und sei $T\in L(X,Y)$. Dann gilt
+    \[ \setclosure{R(T)} = \bigl( N(T') \bigr)^\perp  . \]
+\end{thSatz}
+
+\begin{proof}
+    \enquote{$\subset$}: Sei $x\in X$ und $y\defeq Tx\in R(T)$. Gilt $y'\in
+    N(T')$, so folgt 
+    \[ y'(y) = y'(Tx) = \underbrace{(T'y')}_{=0}(x) = 0  . \]
+    Es folgt $R(T) \subset (N(T'))^\perp$. Da $N(T')^\perp$
+    abgeschlossen ist \pmycref{vl07:bemerkung4.21:ii}, folgt
+    \[ \setclosure{R(T)} \subset \bigl( N(T') \bigr)^\perp  . \]
+    %
+    \enquote{$\supset$}: Setze $U\defeq\setclosure{R(T)}$. Es sei
+    $y\notin\setclosure{U}=U$. Zeigen wir nun $y\notin (N(T'))^\perp$, so sind 
+    wir fertig. Aus \cref{vl07:korollar4.16} erhalten wir ein $y'\in Y'$ mit
+    $Y'\vert_U = 0$ und $y'(y)\neq 0$. Insbesondere gilt $y'(Tx)=0$ für alle
+    $x\in X$. Also haben wir sicher $y'\in N(T')$ und wegen $y'(y)\neq 0$ gilt
+    auch $y'\notin (N(T'))^\perp$.
+    \\
+\end{proof}
+
+% 5.19
+\begin{thKorollar} \label{vl11:korollar5.19}
+    Seien $X,Y$ Banachräume und sei $T\in L(X,Y)$. Sei weiter $R(T)$
+    abgeschlossen und $y\in Y$. Dann ist $Tx=y$ genau dann lösbar, wenn
+    $y'(y)=0$ für alle $y'\in N(T')$.
+\end{thKorollar}
+
+\begin{proof}
+    Die Hinrichtung ist klar. Zur Rückrichtung:
+    Aus $y'(y)=0$ für alle $y'\in N(T')$ folgt sofort $y\in (N(T'))^\perp$ und
+    damit: 
+    \begin{gather*}
+        y \in \bigl( N(T') \bigr)^\perp = \setclosure{R(T)} = R(T)  .
+        \\
+        \qedhere
+    \end{gather*}
+\end{proof}
+
+\nnBemerkung
+\begin{enumerate}[(i)]
+    \item 
+        \cref{vl11:korollar5.19} liefert die Existenz einer Lösung durch
+        Bedingungen an den Nullraum von $T'$.
+    \item
+        Falls $T'$ injektiv ist, brauchen wir im Fall, dass $R(T)$ abgeschlossen
+        ist, \emph{keine} Zusatzbedingungen mehr, denn:
+        Mit $N(T')=\{0\}$ und $R(T)$ abgeschlossen sind die Voraussetzungen aus
+        \cref{vl11:korollar5.19} sicher erfüllt.
+\end{enumerate}
+
+Im Allgemeinen ist es nicht einfach, die Abgeschlossenheit von $R(T)$ zu
+überprüfen. Wir wollen nun also Kriterien finden, die dies vereinfachen.
+
+% 5.20
+\begin{thSatz}
+    Sei $X$ ein normierter Raum und $Y$ ein abgeschlossener Unterraum.
+    Dann wird durch
+    \[ X/U \to \R[\geq0], \quad \hat x \mapsto \inf_{y\in\hat x} \, \norm{y} \]
+    eine Norm auf dem Quotientenvektorraum definiert. Ist $X$ vollständig, so
+    auch $X/U$.
+\end{thSatz}
+%
+Der Beweis ist eine einfache Übungsaufgabe.
+
+\pagebreak[2]
+% 5.21
+\begin{thLemma} \label{vl11:lemma5.21}
+    Seien $X,Y$ Banachräume und sei $T\in L(X,Y)$. Sei weiter $R(T)$
+    abgeschlossen. Dann existiert ein $K\in\R[\geq0]$ mit folgender Eigenschaft:
+    \[ \forall\,y\in R(T) \; \exists\, x\in X \colon \; Tx=y \wedge \norm{x}\leq
+        K\norm{y}
+    . \]
+\end{thLemma}
+
+\begin{proof}
+    Sei $\hat T$ die lineare und stetige Bijektion, die folgendes Diagramm
+    kommutativ macht:
+    \begin{equation*}
+        \begin{xy}
+            \xymatrix{
+                X \ar[r]^T \ar[d] & R(T)    \\
+                X/N(T) \ar [ur]_{\hat T}
+            }
+        \end{xy}
+    \end{equation*}
+    (dabei sei die vertikale Abbildung die kanonische Projektion). Da $R(T)$
+    abgeschlossener Teilraum des Banachraums $Y$ ist, ist auch $R(T)$ ein
+    Banachraum. Auch $X/N(T)$ ist ein Banachraum, da $N(T)$ abgeschlossen ist.
+    Der Satz von der inversen Abbildung \pref{vl09:satzvonderinversenabb}
+    liefert, dass $\hat T^{-1}$ stetig ist. Also existiert ein $\hat
+    K\in\R[\geq0]$ mit $\norm{\hat T^{-1}y} \leq \hat K \norm{y}$.
+    Mit der Definition der Norm auf $X/N(T)$ folgt:
+    Es existiert ein $x\in \hat T^{-1}y$ mit $\norm{x} \leq (\hat K+1)
+    \norm{y}$ und da $\hat T^{-1}y$ gerade alle $x\in X$ mit $Tx=y$ enthält,
+    folgt die Behauptung.
+    \\
+\end{proof}
+
+% 5.22
+\begin{thLemma} \label{vl11:lemma5.22}
+    Seien $X,Y$ Banachräume über $\K$ und sei $T\in L(X,Y)$. Weiter sei
+    $K\in\R[>0]$, so dass für alle $y'\in Y'$ gilt:
+    \[ K \norm{y'} \leq \norm{T'y'} . \]
+    Dann ist $T$ offen und insbesondere surjektiv.
+\end{thLemma}
+
+\begin{proof}
+    Es bezeichne $U_\epsilon \defeq B^X_\epsilon(0)$ den offenen $\epsilon$-Ball
+    in $X$ und $V_\epsilon \defeq B^Y_\epsilon(0)$ denjenigen in $Y$.
+    Bei der Betrachtung offener Abbildungen hatten wir schon gesehen, dass es
+    genügt $V_K \subset T(U_1)$ zu zeigen. Wie im Beweis des Satzes von der
+    offenen Abbildung \pref{vl09:satzvonderoffenenabb} genügt es sogar,
+    $V_K \subset \setclosure{T(U_1)} \eqdef D$ zu zeigen. Sei $y_0\in V_K$,
+    d.\,h. $\norm{y_0} < K$. Angenommen es gilt $y_0\notin D$. Dann existiert
+    nach Hahn-Banach in der zweiten geometrischen Formulierung
+    \pcref{vl06:hahnbanachgeom2} ein $y'\in Y'$ und ein $\alpha\in\R$ mit
+    \[ \Re y'(y) \leq \alpha < \Re y'(y_0) \leq \abs{y'(y_0)} \]
+    für alle $y\in D$. 
+    Wegen $0\in D$ und $y'(0)=0$ gilt $0\leq\alpha$. Wegen der echten
+    Ungleichheit in $\alpha < \Re y'(y_0)$ können wir o.\,E. $\alpha > 0$ 
+    annehmen und indem wir $y'$ durch $y'/\alpha$ ersetzen, können wir
+    annehmen, dass $\alpha=1$ gilt. Weil $T$ linear ist, liegt für alle
+    $y\in D$ und $\lambda\in\K$ mit $\abs{\lambda}\leq1$ auch $\lambda y$
+    in $D$. Ist also $y\in D$ mit $y'(y)\neq0$, so gilt auch 
+    $y\, \abs{y'(y)}/y'(y) \in D$, und damit folgt: 
+    \[ \abs{y'(y)} = y'(y) \frac{\abs{y'(y)}}{y'(y)}
+        = y'\left( y \, \frac{\abs{y'(y)}}{y'(y)} \right)
+        \leq 1
+    . \]
+    Also gilt für alle $y\in D$ sogar
+    \[ \abs{y'(y)} \leq 1 < \abs{y'(y_0)}  . \]
+    Für alle $x\in U_1$ (und damit $Tx\in D$) gilt somit
+    \[ \abs{y'(Tx)} = \abs{(T'y')(x)} \leq 1   , \]
+    woraus wir $\norm{T'y'} \leq 1$ erhalten.
+    
+\pagebreak[2]
+    Es folgt
+    \[ 1 < \abs{y'(y_0)} \leq \norm{y'}\,\norm{y_0} \leq K\norm{y'} 
+        \leq \norm{T'y'} \leq 1
+    , \]
+    ein Widerspruch. Also muss doch $y_0\in D$ gelten und damit sind wir fertig.
+    \\
+\end{proof}
+
+\nnBemerkung
+Aus \cref{vl11:satz5.18} und \cref{vl11:korollar5.19} erhalten wir, dass $T'$
+genau dann injektiv ist, wenn $T$ dichtes Bild hat. Außerdem folgt aus der
+Injektivität von $T'$ und abgeschlossenem $R(T)$, dass $T$ surjektiv ist.
+Obiges \cref{vl11:lemma5.22} verschärft diese Aussage noch.
+
+% 5.23
+\begin{thSatz}[Satz vom abgeschlossenen Bild] \label{vl11:satzvomabgbild}
+    Seien $X,Y$ Banachräume über $\K$ und sei $T\in L(X,Y)$. Dann sind folgende
+    Aussagen äquivalent:
+    \begin{enumerate}[(i)]
+        \item \label{vl11:satzvomabgbild:i}
+            $R(T)$ ist abgeschlossen
+        \item \label{vl11:satzvomabgbild:ii}
+            $R(T) = \bigl( N(T') \bigr)^\perp$
+        \item \label{vl11:satzvomabgbild:iii}
+            $R(T')$ ist abgeschlossen
+        \item \label{vl11:satzvomabgbild:iv}
+            $R(T') = \bigl( N(T) \bigr)^\perp$
+    \end{enumerate}
+\end{thSatz}
+
+\begin{proof}
+    \enquote{\ref{vl11:satzvomabgbild:i}$
+    \Leftrightarrow$\ref{vl11:satzvomabgbild:ii}}
+    folgt aus \cref{vl11:satz5.18}.
+    
+    \enquote{\ref{vl11:satzvomabgbild:i}$
+    \Rightarrow$\ref{vl11:satzvomabgbild:iv}}:
+    Es gilt stets $R(T')\subset (N(T))^\perp$ (da $T'y'(x) = y'(Tx) = 0$ für
+    alle $x\in N(T)$). Sei $x'\in (N(T))^\perp$. Betrachte dann die Abbildung
+    \[ z'\colon R(T) \to \K, \qquad y\mapsto x'(x) \quad\text{falls $Tx=y$} . \]
+    Es ist $z'$ wohldefiniert, denn: für $x_1,x_2\in X$ mit $Tx_1=y=Tx_2$ gilt
+    $T(x_1-x_2) = 0$, also $x_1-x_2\in N(T)$, also $x'(x_1-x_2)=0$, also
+    $x'(x_1)=x'(x_2)$. Die Abbildung $z'$ ist auch stetig, denn: Aus
+    \cref{vl11:lemma5.21} erhalten wir ein $K\in\R[\geq0]$, so dass für alle
+    $y\in R(T)$ ein $x\in X$ existiert mit $Tx=y$ und $\norm{x}\leq K\norm{y}$.
+    Für solche $x$ gilt:
+    \[ \abs{z'(y)} = \abs{x'(x)} \leq \norm{x'} \, \norm{x} \leq K\norm{x'} \,
+        \norm{y}
+    . \]
+    Daraus folgt die Stetigkeit von $z'$. Wir setzen nun $z'$ mittels
+    \cref{vl05:satz4.6} zu $y'\in Y'$ fort. Dann gilt $x'=T'y'$, denn
+    für alle $x\in X$ gilt
+    \[ x'(x) = z'(Tx) = y'(Tx) = (T'y')(x)  . \]
+    Dies zeigt $(N(T))^\perp \subset R(T')$.
+    
+    \enquote{\ref{vl11:satzvomabgbild:iv}$
+    \Rightarrow$\ref{vl11:satzvomabgbild:iii}}: 
+    Klar, da $\bigl((N(T)\bigr)^\perp$ stets abgeschlossen ist
+    \pcref{vl07:bemerkung4.21}.
+    
+    \enquote{\ref{vl11:satzvomabgbild:iii}$
+    \Rightarrow$\ref{vl11:satzvomabgbild:i}}: 
+    Definiere $Z \defeq \setclosure{R(T)}$ und $S\in L(X,Z)$ durch 
+    $Sx\defeq Tx$ für alle $x\in X$. Für $y'\in Y'$ und $x\in X$ gilt dann
+    \[ (T'y')(x) = y'(Tx) = y'\vert_Z (Sx) = \bigl( S'(y'\vert_Z) \bigr)(x) . \]
+    D.\,h. $T'y' = S'(y'\vert_Z)$. Dies zeigt $R(T')\subset R(S')$. Ist
+    $S'(z')\in R(S')$, so gilt für jede gemäß \cref{vl05:satz4.6} gewählte
+    Fortsetzung $y'\in Y'$ von $z'\in Z'$ (nach demselben Argument wie oben) 
+    $S'z'=T'y'$. Dies zeigt $R(T') = R(S')$. Nach Voraussetzung ist somit 
+    $R(S')$ abgeschlossen. 
+    
+    Nach \cref{vl11:satz5.18} gilt $\setclosure{R(S)} = (N(S'))^\perp$ und
+    da $S$ dichtes Bild hat, folgt, dass $S'$ injektiv ist.
+    Also ist $S'$ eine stetige Bijektion zwischen den Banachräumen $Z'$ und
+    $R(S')$. Aus dem Satz von der inversen Abbildung
+    \pref{vl09:satzvonderinversenabb} folgt:
+    \[ \exists\, C\in\R[>0]\;\forall\,z'\in Z' \colon\quad
+        C \norm{z'} \leq \norm{S'z'} 
+    . \]
+    \cref{vl11:lemma5.22} liefert $R(S)=Z$. Damit gilt aber auch $R(T)=Z$ 
+    und weil $Z$ nach Definition abgeschlossen ist, hat $T$ somit
+    abgeschlossenes Bild.
+    \\
+\end{proof}
