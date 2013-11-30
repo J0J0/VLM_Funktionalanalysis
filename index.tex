@@ -149,8 +149,26 @@
 \let\Im=\Imaginaerteil
 
 
+% FIXME
+% "Hilbert sum" (like prof. Garcke uses it)
+\newcommand{\hilbertsumsymbol}{%
+\tikz[x=7.25pt,y=7.25pt,baseline={(0,-3pt)}]
+\draw[line width=0.82pt] 
+%(0,0) node[color=green,opacity=0.5] {$\displaystyle\bigoplus$}
+%(-0.8,0)--(0.8,0) (0,0)--(0,0.8) (0,0) circle (1) ;}
+(-1,0)--(1,0) (0,0)--(0,1) (0,0) circle (1) 
+;}
+\newcommand{\texthilbertsumsymbol}{%
+\tikz[x=5.1pt,y=5.1pt,baseline={(0,-3pt)}]{
+\draw[line width=0.75pt] 
+%(0,0) node[color=green,opacity=0.5] {$\bigoplus$}
+(-1,0)--(1,0) (0,0)--(0,1) (0,0) circle (1);
+}\,}
+
 % new math operators
 \DeclareMathOperator*{\bigdotcup}{\overset{\mkern0mu\scalebox{0.6}{$\bullet$}}{\bigcup}}
+\DeclareMathOperator*{\hilbertsum}{\hilbertsumsymbol}
+\DeclareMathOperator*{\texthilbertsum}{\texthilbertsumsymbol}
 
 % avoid "already defined"
 \let\Pr=\relax
@@ -183,6 +201,7 @@
 \DeclarePairedDelimiter{\dSpann}{\langle\mkern-2mu\langle}{\rangle\mkern-2mu\rangle}
 
 \newcommand{\SP}[1]{\Spann*{#1}}
+\newcommand{\SPa}[2][]{\Spann[#1]{#2}}
 \newcommand{\dSP}[1]{\dSpann*{#1}}
 \renewcommand{\opnorm}{\norm}
 
@@ -248,6 +267,17 @@
 \qTXq{und}
 \qqTXqq{und}
 \newcommand{\fuer}{\qquad\text{für }}
+
+%
+\newcommand{\refXimpliesYprefix}{}
+\newcommand{\setrefXimpliesYprefix}{\renewcommand{\refXimpliesYprefix}}
+\newcommand{\refXimpliesY}[3][\Rightarrow]{%
+\enquote{%
+\expandafter\ref\expandafter{\refXimpliesYprefix#2}%
+$\mkern2mu #1 \mkern1mu$%
+\expandafter\ref\expandafter{\refXimpliesYprefix#3}%
+}}
+\newcommand{\refXiffY}{\refXimpliesY[\Leftrightarrow]}
 
 % unfortunately unmatched ( oder [ break vim's syntax highlighting,
 % so in those cases we simply gobble a matching char
@@ -325,6 +355,7 @@
 \input{vl11_18-11-2013}
 \input{vl12_21-11-2013}
 \input{vl13_25-11-2013}
+\input{vl14_28-11-2013}
 
 \end{document}
 

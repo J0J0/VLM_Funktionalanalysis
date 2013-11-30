@@ -1,0 +1,236 @@
+\pagebreak[2]
+% 6.11
+\begin{thSatz}[Lax-Milgram] \label{vl14:laxmilgram}
+    Sei $H$ ein Hilbertraum über $\K$ und $a\colon H\times H\to\K$ eine stetige,
+    koerzive Sesquilinearform. Dann gibt es für jedes $\phi\in H'$ genau ein
+    $u\in H$, so dass gilt:
+    \[ \tag{$\star\star$} \label{vl14:starstar}
+        \forall\,v\in H\colon\quad \Re a(v,u) = \Re\phi(v)  
+    . \]
+    Ist $a$ außerdem symmetrisch, so ist das Element $u\in H$ eindeutig
+    charakterisiert durch folgende Eigenschaft:
+    \[ \half\,a(u,u) - \Re\phi(u) 
+        = \min_{v\in H} \, \bigl( \thalf\mkern2mu a(v,v) - \Re\phi(v) \bigr)
+    . \]
+\end{thSatz}
+
+\begin{proof}
+    Sei $\phi\in H'$ und $w\in H$. Wählen wir $K=H$ im Theorem von
+    Stampacchia \pref{vl13:stampacchia}, so erhalten wir ein $u\in H$ mit
+    folgender Eigenschaft:
+    \[ \forall\,v\in H\colon\quad \Re a(v-u,u) \geq \Re\phi(v-u)  . \]
+    Also erhalten wir für $\pm w+u\in H$ zwei Ungleichungen, die zusammen
+    \[ \Re a(w,u) = \Re \phi(w)  \]
+    implizieren. Es folgt die Behauptung.
+    \\
+\end{proof}
+
+% 6.12
+\begin{thBemerkung}\hfill
+    \begin{enumerate}[(i)]
+        \item 
+            Der Satz von Lax-Milgram \pref{vl14:laxmilgram} kann zur Lösung
+            elliptischer partieller Differentialgleichungen genutzt werden.
+            
+        \item
+            Sei $a$ symmetrisch und sei $F\colon H\to\R,\; v\mapsto 
+            \half\mkern1mu a(v,v) - \Re\phi(v)$. Dann bedeutet \eqref{vl14:starstar},
+            dass für das Minimum \enquote{$F'(u)=0$} gilt. Betrachte dazu
+            $\ddt  F(u+tv)\vert_{t=0}$.
+            
+            Es gilt
+            \[ F(u+tv) = \half \bigl( a(u,u)+ t a(u,v) + t a(v,u) + t^2 a(v,v)
+                \bigr) - \Re\phi(u) - t \Re\phi(v)
+            , \]
+            also erhalten wir:
+            \[ \ddt F(u+t v) = \Re a(u,v) + t a(v,v) - \Re\phi(v)  . \]
+    \end{enumerate}
+\end{thBemerkung}
+
+% 6.13
+\begin{thDef}
+    Sei $H$ ein Hilbertraum und $\nSeq E$ eine Folge von abgeschlossenen 
+    Unterräumen von $H$. Dann nennen wir $H$ die \emph{Hilbertsumme von
+    $\nSeq E$}, falls
+    \begin{enumerate}[(a)]
+        \item 
+            $\nSeq E$ paarweise orthogonal ist, d.\,h. $\SP{u,v}=0$ für alle
+            $u\in E_n,\, v\in E_m$ mit $n\neq m$, und
+        \item
+            der lineare Raum $\spann\bigl(\mkern1mu \bigcup_{n=1}^\infty E_n \bigr)$ 
+            ist dicht in $H$.
+    \end{enumerate}
+    In diesem Fall schreiben wir
+    \[ H = \hilbertsum_{n=1}^\infty E_n . \]
+\end{thDef}
+
+% TODO: Skizze (?)
+
+% 6.14
+\begin{thSatz} \label{vl14:satz6.14}
+    Sei $H$ ein Hilbertraum und gelte $H = \texthilbertsum_{n=1}^\infty E_n$ für
+    eine Folge abgeschlossener Unterräume $\nSeq E$.
+    Sei $u\in H$ und für alle $n\in\N$ sei $u_n \defeq \Proj_{E_n}(u)$ sowie
+    $S_n \defeq \ksum^n u_k$. Dann gilt \[ \lim_{n\to\infty} S_n = u \] 
+    (wofür wir auch die Notation $\ksum^\infty u_k = u$ verwenden) und
+    \[ \ksum^\infty \, \norm{u_k}^2 = \norm{u}^2  , \] 
+    die sogenannte \emph{Bessel-Parseval-Identität}.
+\end{thSatz}
+
+Für den Beweis benötigen wir zunächst eine Hilfsaussage.
+%
+% 6.15
+\begin{thLemma} \label{vl14:lemma6.15}
+    Sei $H$ ein Hilbertraum und $\nSeq v$ ein Folge paarweise orthogonaler
+    Vektoren in $H$ (d.\,h. für alle $n,m\in\N$ mit $n\neq m$ gilt
+    $\SP{v_n,v_m}=0$). 
+    Gelte außerdem $\ksum^\infty\mkern1mu \norm{v_k}^2 < \infty$.
+    Sei $S_n \defeq \ksum^n v_k$.  Dann existiert der Grenzwert $S\defeq
+    \lim_{n\to\infty} S_n$ und es gilt 
+    \[ \norm{S}^2 = \nsum^\infty \, \norm{v_k}^2  . \]
+\end{thLemma}
+
+\begin{proof}
+    Seien $m,n\in\N$ mit $m>n>1$. Dann gilt:
+    \begin{align*}
+        \norm{S_m-S_{n-1}}^2
+        &= \norm[\Big]{ \ksum[n]^m v_k  }^2
+         = \SPa[\Big]{ \ksum[n]^m v_k, \; \sum_{\ell=n}^m v_\ell }
+        \\
+        &= \sum_{k=n}^m \, \sum_{\ell=n}^m \, \SP{v_k,v_\ell} 
+         = \ksum[n]^m \, \norm{v_k}^2
+    \end{align*}
+    Dies zeigt, dass $\nSeq S$ eine Cauchy-Folge ist. Da $H$ vollständig ist,
+    existiert also auch ein Grenzwert $S \defeq \lim_{n\to\infty} S_n$.
+    Außerdem folgt aus der obigen Rechnung
+    \[ \norm{S_n}^2 = \ksum^n \, \norm{v_k}^2  , \]
+    woraus für $n\to\infty$ die zweite Behauptung folgt.
+    \\
+\end{proof}
+
+\begin{proof}[Beweis von \cref{vl14:satz6.14}]
+    Aus \cref{vl13:korollar6.4} folgt:
+    \[ \forall\,n\in\N\;\forall\, v\in E_n\colon\quad
+        \SP{u-u_n, v} = 0
+    . \]
+    Insbesondere erhalten wir daraus $\SP{u,u_n} = \norm{u_n}^2$ für alle
+    $n\in\N$. Sei $m\in\N$. Dann gilt also:
+    \[ \SP{u, S_m} = \nsum^m \, \norm{u_n}^2 = \norm{S_m}^2  . \]
+    (Für die zweite Gleichheit, vergleiche Beweis von
+    \cref{vl14:lemma6.15}.)
+    Die Cauchy-Schwarz-Ungleichung \pmycref{vl02:satz2.8:CSU} liefert
+    \[ \norm{S_m}^2  \leq \norm{u} \, \norm{S_m}  , \]
+    woraus $\norm{S_m} \leq \norm{u}$ folgt. Dies zeigt:
+    \[ \nsum^m \, \norm{u_n}^2 = \norm{S_m}^2 \leq \norm{u}^2  . \]
+    Damit konvergiert $\nsum^\infty \mkern1mu \norm{u_n}^2$ und wir können
+    \cref{vl14:lemma6.15} anwenden. Wir erhalten die Existenz des Grenzwerts
+    $S \defeq \lim_{n\to\infty} S_n$. Wir wollen nun $S$ bestimmen (zunächst
+    ohne die Dichtheit von $\spann\bigl(\mkern1mu\bigcup_{n=1}^\infty E_n\bigr)$
+    vorauszusetzen).
+    Sei $F \defeq \spann\bigl(\bigcup_{n=1}^\infty E_n\bigr)$. Wir behaupten
+    \[ \tag{$\ast\ast$} \label{vl14:astast}
+        S = \Proj_{\setclosure F} u 
+    . \]
+    Sei $m\in\N,\;v\in E_m$ und sei $n\in\N$ mit $m\leq n$. Dann gilt:
+    \begin{align*}
+        \SP{u-S_n, v} 
+        &= \SPa[\Big]{u-\ksum^n u_k, v}
+        = \SP{u,v} - \ksum^n \, \underbrace{\SP{u_k,v}}_{
+            \;\; =0 \mathrlap{\text{ für $k\neq m$}}}
+        \\
+        &= \SP{u,v} - \SP{u_m,v} = \SP{u-u_m,v} = 0
+    . \end{align*}
+    Für $n\to\infty$ folgt mit der Stetigkeit des Skalarprodukts 
+    $\SP{u-S,v} = 0$. Es folgt $\SP{u-S,\tilde v}=0$ für alle $\tilde v\in F$.
+    Dies impliziert (erneut wegen der Stetigkeit des Skalarprodukts)
+    \[ \forall\,\tilde v\in\setclosure{F}\colon\quad \SP{u-S,\tilde v} = 0  . \]
+    Wegen $S_n\in F$ für alle $n\in\N$, gilt $S\in\setclosure F$. Mithilfe von
+    \eqref{vl13:korollar6.4} folgt nun \eqref{vl14:astast}.
+    Wir benutzen nun zusätzlich, dass $F$ dicht in $H$ liegt, also
+    $\setclosure{F} = H$. Dann ergibt \eqref{vl14:astast} direkt $S=u$.
+    Gehen wir in $\nsum^m \mkern1mu \norm{u_n}^2 = \norm{S_m}^2$ zum Grenzwert
+    $m\to\infty$ über, so folgt die Bessel-Parseval-Identität.
+    \\
+\end{proof}
+
+% 6.16
+\begin{thDef}[Schauder-Basis]
+    Sei $X$ ein normierter Raum und $\kSeq e$ eine Folge in $X$. Dann nennen wir
+    $\{ e_k \Mid k\in\N \}$ eine Schauder-Basis von $X$, falls gilt: Für alle
+    $x\in X$ existiert eine eindeutige Folge $\kSeq\alpha$ in $\K$ mit
+    \[ \ksum^n \alpha_k\,e_k \to x \fuer n\to\infty  . \]
+\end{thDef}
+
+\nnDef (Orthonormalbasis)
+Sei $H$ ein Prä-Hilbertraum und $\kSeq e$ eine Folge in $H$. Dann nennen wir
+$\kSeq e$ eine \emph{Orthonormalbasis} (oder \emph{Hilbertbasis}), falls 
+$\kSeq e$ eine Schauder-Basis ist und $\SP{e_m,e_n}=\kron{mn}$ für alle
+$m,n\in\N$ gilt (mit dem Kroneckerdelta~$\kron{}$).
+
+% 6.17
+\begin{thSatz} \label{vl14:satz6.17}
+    Sei $H$ ein Prä-Hilbertraum und $\kSeq e$ ein Orthonormalsystem, d.\,h.
+    für alle $m,n\in\N$ gilt $\SP{e_m,e_n}=\kron{mn}$. Dann sind äquivalent:
+    
+\pagebreak[2]
+    \begin{enumerate}[(1),labelsep=1em,leftmargin=2cm]
+        \item \label{vl14:satz6.17:1}
+            $\spann\{  e_k \Mid k\in\N \}$ liegt dicht in $H$
+            
+        \item \label{vl14:satz6.17:2}
+            $\kSeq e$ ist eine Schauder-Basis
+            
+        \item \label{vl14:satz6.17:3}
+            $\forall\,x\in H\colon\quad x= \ksum^\infty \, \SP{x,e_k} \, e_k$
+            
+        \item \label{vl14:satz6.17:4}
+            $\forall\,x,y\in H\colon\quad \SP{x,y} = \ksum^\infty \,
+            \SP{x,e_k} \ol{\SP{y,e_k}}$
+            \hfill(Parseval-Identität)
+            
+        \item \label{vl14:satz6.17:5}
+            $\forall\,x\in H\colon\quad \norm{x}^2 
+            = \ksum^\infty \, \abs{\SP{x,e_k}}^2$
+            \hfill(Vollständigkeitsrelation)
+    \end{enumerate} 
+    Falls eine dieser Bedinungen gilt, ist $\kSeq e$ also eine Hilbertbasis.
+\end{thSatz}
+
+\begin{proof}\setrefXimpliesYprefix{vl14:satz6.17:}
+    %
+    \refXimpliesY{1}{3}: Nutze \cref{vl14:satz6.14} (in den dortigen
+    Bezeichnern) mit  $E_n=\spann\{e_n\}$. Es gilt dann $u_n = \alpha_n e_n$ mit
+    $\alpha_n = \SP{e_n,u}$. Das heißt: \[ S_n = \ksum^n \, \SP{e_k,u} \, e_k
+    \] (folgt aus der Orthogonalität der Projektion). Also folgt $S_n\to u$ für
+    $n\to\infty$. Aus \ref{vl14:satz6.14} folgt dann die Behauptung.
+    
+    \refXimpliesY{3}{2}: Wir müssen die Eindeutigkeit der Koeffizienten zeigen.
+    Wegen der Linearität reicht es, den Fall $x=0$ zu betrachten. Gilt 
+    \[ 0 = \ksum^\infty \alpha_k e_k  , \]
+    so folgt mit der Stetigkeit des Skalarprodukts:
+    \[ 0 = \SPa[\Big]{ \ksum^\infty \alpha_k e_k, e_\ell }
+         = \ksum^\infty \alpha_k \SP{e_k,e_\ell} = \alpha_\ell
+    . \]
+    
+    \refXimpliesY{2}{1} folgt aus der Definition der Schauder-Basis.
+    
+    \refXimpliesY{3}{4}: Aus der Stetigkeit des Skalarprodukts erhalten wir:
+    \[ \SP{x,y} = \lim_{n\to\infty} \SPa[\Big]{ \ksum^n \SP{x,e_k} e_k,
+        \sum_{\ell=1}^n \SP{y,e_\ell} e_\ell }
+        = \lim_{n\to\infty} \sum_{k=1}^n \sum_{\ell=1}^n 
+            \, \SP{x,e_k} \ol{\SP{y,e_\ell}}
+            \underbrace{\SP{e_k,e_\ell}}_{\kron{k\ell}}
+    . \]
+    
+    \refXimpliesY{4}{5} ist klar.
+    
+    \refXimpliesY{5}{3}:
+    \begin{align*}
+        \norm[\Big]{ x - \ksum^n \, \SP{x,e_k} \, e_k  }^2 
+        &\leq \norm{x}^2 - \ksum^n  \,\SP{x,e_k} \ol{\SP{x,e_k}}
+        - \ksum^n \, \SP{x,e_k} \SP{e_k,x} + \ksum^n \, \abs{\SP{x,e_k}}^2
+        \\
+        &= \norm{x}^2 - \ksum^n \, \abs{\SP{x,e_k}}^2 
+        \;\; \to 0 \fuer n\to\infty
+    \end{align*}
+\end{proof}
