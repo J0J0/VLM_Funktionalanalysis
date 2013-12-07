@@ -1,0 +1,205 @@
+% 7.3
+\begin{thSatz}[Fast orthogonales Element] \label{vl16:fastorthogonaleselem}
+    \begin{figure}[b] % TODO
+        \centering
+        \begin{tikzpicture}
+            \draw [thin,->] (-2,0)--(2,0);
+            \draw [thin,->] (0,-2)--(0,2);
+            \draw (0,0) circle (1);
+            \draw (0,0)++(160:2)--(-20:3) node [right] {$Y$};
+            \draw (0,0)--(70:1) node [Dpoint,label=$x$] {};
+            % 90°-Winkelzeichen
+        \end{tikzpicture}
+        \caption{Maximaler Abstand zwischen Gerade und Einheitssphäre}
+        \label{fig:<+label+>}
+    \end{figure}
+    %
+    Sei $X$ ein normierter Raum und $Y\subsetneq X$ ein abgeschlossener Unterraum.
+    Weiter sei $\theta\in(0,1)$ oder, falls $X$ ein Hilbertraum ist,
+    $\theta\in(0,1]$. Dann gibt es ein $x_\theta\in X$ mit
+    \[ \norm{x_\theta} = 1 \qundq \theta\leq\dist(x_\theta,Y)\leq 1   . \]
+\end{thSatz}
+
+\begin{proof}
+    Sei zunächst $\theta\in(0,1)$.
+    Wähle $x\in X\setminus Y$. Da $Y$ abgeschlossen ist, gilt $\dist(x,Y)>0$. Es
+    gibt daher ein $y_\theta\in Y$ mit
+    \[ \norm{x-y_\theta} \leq \frac{1}{\theta} \, \dist(x,Y)  . \]
+    Setze nun
+    \[ x_\theta \defeq \frac{x-y_\theta}{\norm{x-y_\theta}}  . \]
+    Dann gilt für alle $y\in Y$
+    \[ \norm{x_\theta-y} = \frac{1}{\norm{x-y_\theta}} \,
+        \norm[\big]{x-(y_\theta+\norm{x-y_\theta}\,y)}
+    , \]
+    woraus folgt:
+    \[ \norm{x_\theta-y} 
+        \geq \frac{\dist(x,Y)}{\frac{1}{\theta}\dist(x,Y)} =
+        \theta
+    . \]
+    Falls $X$ ein Hilbertraum und $\theta=1$ ist, so wähle $y_1=\Proj_Y(x)$.
+    \\
+\end{proof}
+
+% 7.4
+\begin{thSatz}[Heine-Borel]
+    Sei $X$ ein normierter Raum. Dann gilt:
+    \[ \setclosure{B_1(0)} \text{ kompakt} \qiffq \dim X < \infty  . \]
+\end{thSatz}
+
+\begin{proof}
+    \enquote{$\Leftarrow$}: Sei $e_1,\dots,e_n$ eine Basis von $X$. 
+    Zu $x\in X$ bezeichne $\alpha(x)$ den eindeutigen Vektor in $\K^n$,
+    für den $x = \isum^n \alpha(x)_i\,e_i$ gilt.
+    Da alle Normen äquivalent sind, genügt es, die Kompaktheit von 
+    $\setclosure{B_1(0)}$ in folgender Norm zu zeigen: für $\alpha\in\K^n$ 
+    und $x\in X$ sei
+    \[ \norm{\alpha}_\mr{max} \defeq \max_i \, \abs{\alpha_i} \qundq
+    \norm{x}_\mr{max} \defeq \norm{\alpha(x)}_\mr{max}  . \]
+    Nun gilt:
+    \[
+        \setclosure{B_1(0)} \subset
+        \bigcup_{\substack{z\in\Z^n,\\\norm{z}_\mr{max}\leq m}}
+        \mkern-3mu B_{2/m}\Bigl( \isum^n \frac{z_i}{m}\, e_i \Bigr)
+    . \]
+    Damit ist $\setclosure{B_1(0)}$ prä-kompakt und da in endlich-dimensionalen
+    Räumen abgeschlossene Teilmengen auch vollständig sind, folgt mit
+    \cref{vl15:satz7.2} die Behauptung.
+    
+    \enquote{$\Rightarrow$}: Sei $\epsilon\in(0,1)$ und
+    \[ \setclosure{B_1(0)} \subset \bigcup_{i=1}^{n_\epsilon} B_\epsilon(x_i)
+    \]
+    für geeignete $n_\epsilon\in\N,\;x_1,\ldots,x_{n_\epsilon}\in X$. Dann ist
+    \[ Y \defeq \spann\{x_1,\dots,x_{n_\epsilon}\} \]
+    ein abgeschlossener Unterraum (da endlich-dimensional). Angenommen
+    $Y\subsetneq X$. Dann liefert \cref{vl16:fastorthogonaleselem}
+    ein $x_\epsilon$ mit $\norm{x_\epsilon}=1$ und $\epsilon \leq
+    \dist(x_\epsilon, Y)$. Dann folgt aber $x\in \setclosure{B_1(0)}$
+    und damit muss es ein $i_0\in\setOneto{n_\epsilon}$ geben, so dass
+    $x\in B_\epsilon(x_{i_0})$ gilt. Somit erhalten wir folgenden Widerspruch:
+    \[ \epsilon \leq \dist(x_\epsilon, Y) 
+        \leq \norm{x_{i_0}-x_\epsilon}
+        < \epsilon
+    . \]
+    Also war die Annahme falsch und es muss doch schon $Y=X$ und damit 
+    $\dim X \leq n_\epsilon < \infty$ gelten.
+    \\
+\end{proof}
+
+% 7.5
+\begin{thDef}[Schwache Konvergenz]
+    Sei $X$ ein Banachraum.
+    \begin{enumerate}[1.]
+        \item 
+            Eine Folge $\nSeq x$ in $X$ \emph{konvergiert schwach gegen
+            $x\in X$}, falls gilt:
+            \[ \forall\,x'\in X'\colon\qquad
+                x'(x_n) \to x'(x) \!\fuer n\to\infty  
+            . \]
+            Notation: $x_n\to x$ schwach in $X$ für $n\to\infty$, oder
+            $x_n \weakto x$ in $X$ für $n\to\infty$.
+            
+        \item
+            Eine Folge $\nSeq{x'}$ in $X'$ \emph{konvergiert \schwachstern 
+            gegen $x'\in X'$}, falls gilt:
+            \[ \forall\,x\in X\colon\qquad
+                x_n'(x) \to x'(x) \!\fuer n\to\infty  
+            . \]
+            (Dies entspricht gerade punktweiser Konvergenz von $x'$.) Notation:
+            $x_n' \to x'$ \schwachstern in $X'$ für $n\to\infty$, oder
+            $x_n' \weakstarto x'$ in $X'$ für $n\to\infty$.
+            
+        \item
+            Eine Teilmenge $M\subset X$ (bzw. $M\subset X'$) heißt
+            \emph{schwach} (bzw. \emph{\schwachstern[]}) \emph{folgenkompakt}, falls
+            jede Folge in $M$ eine schwach (bzw. \schwachstern[]) konvergente
+            Teilfolge besitzt, deren Grenzwert in $M$ liegt.
+    \end{enumerate}
+\end{thDef}
+
+\nnBemerkung
+\begin{enumerate}[(i)]
+    \item
+        Falls $x_n\to x$ in $X$ für $n\to\infty$ (bezüglich Normkonvergenz), so
+        konvergiert $\nSeq x$ \emph{stark} gegen $x$.
+        
+    \item
+        Die schwache Konvergenz kann als \schwachstern Konvergenz im Bidualraum
+        aufgefasst werden.
+        \begin{align*}
+            x_n\weakto x \fuer[\quad] k\to\infty
+            \quad&\iff\quad \forall\,x'\in X'\colon\quad\;
+                x'(x_n)\to x'(x) \fuer[\quad] n\to\infty
+            \\
+            &\iff\quad \forall\,x'\in X'\colon\quad\;
+                \bigl( J_Xx_n \bigr)(x') \to
+                \bigl( J_X x \bigr)(x') \fuer[\quad] n\to\infty
+        \end{align*}
+        %
+        Frage: Welche Konvergenz in $X'$ ist stärker? Schwache Konvergenz oder
+        \schwachstern Konvergenz?
+        \begin{align*}
+            x_n' \weakto x' &\qtextq{bedeutet}
+            \forall\,x''\in X''\colon\; x''(x_n') \to x''(x')
+            \\
+            x_n' \weakstarto x' &\qtextq{bedeutet}
+            \forall\,x\in X\colon\; x_n'(x) \to x'(x)
+        \end{align*}
+        Es gilt $x'' = J_X x$ für gewisse $x''\in X''$ (und geeignetes 
+        $x\in X$), aber i.\,A. ist $J_X$ nicht surjektiv (d.\,h. es gibt
+        \enquote{mehr $x''$ als $J_Xx$}). Also verlangt $x_n'
+        \weakto x'$ mehr als $x_n'\weakstarto x'$. Damit
+        ist \schwachstern Konvergenz im Allgemeinen schwächer als schwache
+        Konvergenz (d.\,h. es gibt mehr konvergente Folgen bezüglich \schwachstern
+        Konvergenz als bezüglich schwacher Konvergenz).
+\end{enumerate}
+
+% 7.6
+\begin{thLemma}
+    Sei $X$ ein Banachraum. Dann gelten folgende Aussagen:
+    \begin{enumerate}[(1)]
+        \item
+            Der schwache Limes und der \schwachstern Limes sind eindeutig bestimmt.
+        
+        \item
+            Starke Konvergenz impliziert schwache Konvergenz.
+            
+        \item
+            Aus $x_n'\to x'$ \schwachstern in $X'$ für $n\to\infty$ folgt:
+            \[ \norm{x'} \leq \liminf_{n\to\infty} \, \norm{x_n'}  . \]
+            
+        \item
+            Aus $x_n\to x$ schwach in $X$ für $n\to\infty$ folgt:
+            \[ \norm{x} \leq \liminf_{n\to\infty} \, \norm{x_n}  . \]
+            (Dies zeigt, dass die Norm unterhalbstetig ist bezüglich schwacher
+            Konvergenz.)
+            
+        \item
+            Schwach und \schwachstern konvergente Folgen sind (bezüglich der Norm)
+            beschränkt.
+            
+        \item
+            Es gelte $x_n\to x$ stark in $X$ und $x_n'\to x'$ \schwachstern in $X'$.
+            Dann folgt $x_n'(x_n) \to x'(x)$ für $n\to\infty$. (Dies gilt auch,
+            falls $x_n\weakto x$ und $x_n'\to x'$ für $n\to\infty$.)
+    \end{enumerate}
+\end{thLemma}
+
+
+% 7.7
+\begin{thBemerkung}\hfill
+    \begin{enumerate}[(i)]
+        \item
+            In einem Hilbertraum~$H$ gilt:
+            \[ x_n\weakto x
+                \qiffq \forall\,y\in H\colon\;
+                \SP{x_n,y} \to \SP{x,y}
+            . \] 
+            Dies gilt, da wir $H'$ isometrisch ismorph mit $H$ identifizieren
+            können.
+            
+        \item
+            Schwache Konvergenz ist eine Verallgemeinerung der Konvergenz in
+            allen Koordinatenrichtgungen. Ersetze \enquote{Koordinaten von $x$}
+            durch $x'(x)$ für Funktionale $x'\in X'$.
+    \end{enumerate}
+\end{thBemerkung}

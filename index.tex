@@ -210,6 +210,8 @@
 \newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
 \newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
 \newcommand{\longmapsfrom}{\mathrel{\reflectbox{\ensuremath{\longmapsto}}}}
+\newcommand{\weakto}{\rightharpoonup}
+\newcommand{\weakstarto}{\overset*\weakto}
 
 % provide mathbb symbols \N \Z \Q \R and \C, additionally \K
 \defmathbbsymbols{N Z Q C K}
@@ -254,6 +256,7 @@
 \newcommand{\ntoinfty}{\xrightarrow[n\to\infty]{}}
 \newcommand{\pot}[1]{\powerset(#1)}
 \newcommand{\scdot}{\,\cdot\,}
+\newcommand{\schwachstern}[1][ ]{schwach-\textasteriskcentered#1}
 \newcommand{\setOneto}[1]{\{1,\ldots,#1\}}
 \newcommand{\setZeroto}[1]{\{0,\ldots,#1\}}
 \newcommand{\supnorm}[1]{\norm{#1}_\infty}
@@ -267,7 +270,7 @@
 \qTXq{oder}
 \qTXq{und}
 \qqTXqq{und}
-\newcommand{\fuer}{\qquad\text{für }}
+\newcommand{\fuer}[1][\qquad]{#1\text{für }}
 
 %
 \newcommand{\refXimpliesYprefix}{}
@@ -358,6 +361,7 @@ $\mkern2mu #1 \mkern1mu$%
 \input{vl13_25-11-2013}
 \input{vl14_28-11-2013}
 \input{vl15_02-12-2013}
+\input{vl16_05-12-2013}
 
 \end{document}
 
