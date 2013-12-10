@@ -1,0 +1,87 @@
+% 7.8
+\begin{thSatz} \label{vl17:satz7.8}
+    Sei $X$ ein separabler Banachraum über $\K$. Dann ist die abgeschlossene
+    Einheitskugel $\setclosure{B_1(0)}$ in $X'$ \schwachstern folgenkompakt.
+\end{thSatz}
+
+
+Wir hätten gerne die Aussage des vorherigen Satzes für
+$\setclosure{B_1(0)}\subset X$. Dafür brauchen wir Reflexivität und
+einige Aussagen über reflexive Räume.
+
+% 7.9
+\begin{thLemma} \label{vl17:lemma7.9}
+    Sei $X$ ein Banachraum. Dann gelten folgende Aussagen:
+    \begin{enumerate}[(1)]
+        \item \label{vl17:lemma7.9:1}
+            Ist $X$ reflexiv und $Y\subset X$ ein abgeschlossener Unterraum, so
+            ist $Y$ reflexiv.
+            
+        \item \label{vl17:lemma7.9:2}
+            Sei $Y$ ein weiterer Banachraum und gelte $X\cong Y$ mittels des
+            Operators $T\in L(X,Y)$ (mit $T^{-1}\in L(Y,X)$). Dann ist $X$ genau
+            dann reflexiv, wenn $Y$ reflexiv ist.
+            
+        \item \label{vl17:lemma7.9:3}
+            Es ist $X$ genau dann reflexiv, wenn $X'$ reflexiv ist.
+    \end{enumerate}
+\end{thLemma}
+
+
+% 7.10 (Hilfssatz)
+\begin{thLemma} \label{vl17:lemma7.10}
+    Sei $X$ ein Banachraum. Dann gilt:
+    \[ X'\text{ separabel} \qimpliesq X\text{ separabel} \]
+\end{thLemma}
+
+
+Achtung, die Umkehrung von \cref{vl17:lemma7.10} gilt im Allgemeinen nicht!
+
+% 7.11
+\begin{thSatz}
+    Sei $X$ ein reflexiver Banachraum. Dann ist $\setclosure{B_1(0)}\subset X$
+    schwach folgenkompakt.
+\end{thSatz}
+
+
+% 7.12
+\begin{thEmpty}[Anwendung auf Hilberträume]\hfill\\
+    \nnSatz
+    Sei $H$ ein Hilbertraum. Sei $\kSeq x$ eine Folge in $H$ mit
+    $\sup_{k\in\N} \, \norm{x_k} < \infty$. Dann existiert eine Teilfolge
+    $(x_{k_j})_{j\in\N}$ von $\kSeq x$ und ein $x\in X$, so dass für alle
+    $y\in X$ gilt:
+    \[ \SP{ x_{k_j}, y } \to \SP{x,y} \fuer j\to\infty  . \]
+\end{thEmpty}
+
+
+% 7.13
+\begin{thSatz}
+    Sei $H$ ein Hilbertraum und $\kSeq x$ eine Folge in $H$. Dann gilt:
+    \begin{align*}
+        &x_k\to x \quad\text{stark in $H$ für $k\to\infty$} \\
+        \iff\qquad 
+        &x_k\to x \quad\text{schwach in $H$ und
+            $\norm{x_k}\to\norm{x}$ für $k\to\infty$}
+        \end{align*}
+\end{thSatz}
+
+
+% 7.14
+\begin{thSatz}
+    Sei $X$ ein normierter Raum und $M\subset X$ ein abgeschlossener, konvexer
+    Unterraum. Dann ist $M$ \emph{schwach folgenabgeschlossen}, d.\,h.: Ist
+    $\kSeq x$ eine Folge in $M$ mit $x_k\to x$ schwach in $X$ für $k\to\infty$,
+    so ist auch $x\in M$.
+\end{thSatz}
+
+
+% 7.15
+\begin{thLemma}[Lemma von Mazur]
+    Sei $X$ ein normierter Raum. Sei $\kSeq x$ eine Folge in $X$ mit
+    $x_k\to x$ schwach in $X$ für $k\to\infty$.
+    Dann gilt: 
+    \[ x\in \setclosure{\conv\{x_k\Mid k\in\N\}}  . \]
+\end{thLemma}
+
+
