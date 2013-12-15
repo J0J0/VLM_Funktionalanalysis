@@ -156,36 +156,143 @@
 \end{enumerate}
 
 % 7.6
-\begin{thLemma}
+\begin{thLemma} \label{vl16:lemma7.6}
     Sei $X$ ein Banachraum. Dann gelten folgende Aussagen:
     \begin{enumerate}[(1)]
-        \item
+        \item \label{vl16:lemma7.6:1}
             Der schwache Limes und der \schwachstern Limes sind eindeutig bestimmt.
         
-        \item
+        \item \label{vl16:lemma7.6:2}
             Starke Konvergenz impliziert schwache Konvergenz.
             
-        \item
+        \item \label{vl16:lemma7.6:3}
             Aus $x_n'\to x'$ \schwachstern in $X'$ für $n\to\infty$ folgt:
             \[ \norm{x'} \leq \liminf_{n\to\infty} \, \norm{x_n'}  . \]
             
-        \item
+        \item \label{vl16:lemma7.6:4}
             Aus $x_n\to x$ schwach in $X$ für $n\to\infty$ folgt:
             \[ \norm{x} \leq \liminf_{n\to\infty} \, \norm{x_n}  . \]
             (Dies zeigt, dass die Norm unterhalbstetig ist bezüglich schwacher
             Konvergenz.)
             
-        \item
+        \item \label{vl16:lemma7.6:5}
             Schwach und \schwachstern konvergente Folgen sind (bezüglich der Norm)
             beschränkt.
             
-        \item
-            Es gelte $x_n\to x$ stark in $X$ und $x_n'\to x'$ \schwachstern in $X'$.
-            Dann folgt $x_n'(x_n) \to x'(x)$ für $n\to\infty$. (Dies gilt auch,
-            falls $x_n\weakto x$ und $x_n'\to x'$ für $n\to\infty$.)
+        \item \label{vl16:lemma7.6:6}
+            Seien $\nSeq x$ bzw. $\nSeq{x'}$ Folgen in $X$ bzw. $X'$ und seien
+            $x\in X$ und $x'\in X'$. Sind für $n\to\infty$ die Bedingungen
+            \[ x_n\to x \text{ \,stark} \qundq x'_n \weakstarto x' \]
+            oder die Bedingungen
+            \[ x_n\weakto x \qundq x'_n \to x' \text{ stark} \]
+            erfüllt, so folgt:
+            \[ x_n'(x_n) \to x'(x) \fuer n\to\infty  . \]
     \end{enumerate}
 \end{thLemma}
 
+\begin{proof}%\unchecked
+    \begin{enumerate}[(1)]
+        \item 
+            Punktweise Grenzwerte sind eindeutig, also auch der \schwachstern
+            Grenzwert. Angenommen $x,y$ sind schwache Grenzwerte
+            von $\nSeq x$. Dann gilt für alle $x'\in X'$:
+            \[ x'(x) = \lim_{n\to\infty} x'(x_n) = x'(y)  . \]
+            Also folgt $x'(x-y) = 0$ für alle $x'\in X'$. 
+            Daraus erhalten wir:
+            \[ 0 = \sup_{x'\in X'} \norm{x'(x-y)}
+                \geq \norm{J_X(x-y)} = \norm{x-y}
+            , \]
+            also $\norm{x-y} = 0$ und damit muss schon $x=y$ gelten.
+            
+        \item
+            Sei $\nSeq x$ eine Folge in $X$, die stark gegen $x\in X$ konvergiert.
+            Dann gilt $\norm{x_n-x}\to0$ für $n\to\infty$. Damit folgt für alle
+            $x'\in X'$:
+            \[ \abs*{x'(x_n)-x'(x)}
+                = \abs*{x'(x_n-x)} \leq \norm{x'} \, \norm{x-x_n}
+                \to 0 \fuer n\to\infty
+            . \]
+            Dies entspricht \schwachstern Konvergenz.
+            
+        \item
+            Sei $\nSeq{x'}$ eine Folge in $X'$ mit $x'_n \weakstarto x'\in X'$
+            für $n\to\infty$. Für alle $x\in X$ gilt 
+            \[ \abs*{x_n'(x)} \leq \norm{x_n'} \, \norm{x} \] und durch Bilden des
+            $\liminf$ erhalten wir somit:
+            \[  \abs{x'(x)} = \lim_{n\to\infty} \, \abs{x'_n(x)} 
+                = \liminf_{n\to\infty} \, \abs{x'_n(x)}
+                \leq  \norm{x}\, \liminf_{n\to\infty} \,
+                \norm{x'_m}
+            . \]
+            Es folgt:
+            \[ \norm{x'} \leq \liminf_{n\to\infty} \, \norm{x_n'}   . \]
+            
+        \item
+            Sei $\nSeq x$ eine Folge in $X$ mit $x_n \weakto x\in X$ für
+            $n\to\infty$. Für $x=0$ gilt die Behauptung offenbar, also sei nun
+            o.\,E. $x\neq 0$. Dann gilt für alle $x'\in X'$ (mit analogen
+            Argumenten wie zuvor):
+            \[ \abs*{x'(x)} \leq \norm{x'} \, \liminf_{n\to\infty} \, \norm{x_n}
+            . \]
+            Wir wählen ein $x'\in X'$ mit $\norm{x'}=1$ und $x'(x)=\norm{x}$
+            (vgl. Konstruktion direkt vor \cref{vl07:satz4.18}) und erhalten so
+            die Behauptung.
+            
+        \item
+            Sei $\nSeq{x'}$ eine Folge in $X'$ mit $x'_n \weakstarto x'$ in $X'$
+            für $n\to\infty$. Für alle $x\in X$ ist dann
+            $\bigl( x'_n(x) \bigr)_{n\in\N}$ eine konvergente, also beschränkte
+            Folge, d.\,h. es gilt:
+            \[ \sup_{n\in\N} \, \abs*{x_n'(x)} < \infty  . \]
+            Banach-Steinhaus \pcref{vl09:banachsteinhaus} liefert:
+            \[ \sup_{n\in\N} \, \norm{x_n'} < \infty  . \]
+            Sei $\nSeq x$ eine Folge in $X$ mit $x_n \weakto x$ in $X$ für
+            $n\to\infty$, so gilt
+            \[ J_X x_n \weakstarto J_X x \quad\text{in $X''$ für $n\to\infty$}. \]
+            Nach dem vorherigen Absatz ist also $(J_X x_n)_{n\in\N}$ in $X''$
+            beschränkt und da $J_X$ eine Isometrie ist, folgt: $\nSeq x$ ist
+            beschränkt in $X$.
+            
+        \item
+            Seien die ersten beiden Bedinungen aus der Behauptung erfüllt. Dann
+            gilt:
+            \begin{align*}
+                \abs*{x'(x)-x_n'(x_n)}
+                &= \abs*{x'(x)-x_n'(x)+x_n'(x)-x_n'(x_n)}
+                \\
+                &\leq 
+                    \underbrace{\abs*{x'(x)-x_n'(x)}}_{
+                        \to\, 0,\text{ da } x_n' \weakstarto x'
+                    }
+                    + \underbrace{\norm{x-x_n} \, \norm{x_n'}}_{
+                    \mathclap{\substack{\hspace{1.3cm}
+                        \to\, 0, \text{ da $x_n\to x$ stark und}\\
+                        \hspace{1.9cm}
+                        \text{$\nSeq{x'}$ beschränkt nach \ref{vl16:lemma7.6:5}}
+                    }}}
+                \\
+                &\to 0 \fuer n\to\infty
+            . \end{align*}
+            \smallskip
+            Sind die zweiten Bedingungen erfüllt, so gilt mit einem analogen
+            Argument:
+            \begin{align*}
+                \abs*{x'(x)-x_n'(x_n)}
+                &\leq 
+                    \underbrace{\abs*{x'(x)-x'(x_n)}}_{
+                        \to\, 0,\text{ da } x_n \weakto x
+                    }
+                    + \underbrace{\norm{x'-x'_n} \, \norm{x_n}}_{
+                    \mathclap{\substack{\hspace{1.3cm}
+                        \to\, 0, \text{ da $x'_n\to x'$ stark und}\\
+                        \hspace{1.9cm}
+                        \text{$\nSeq x$ beschränkt nach \ref{vl16:lemma7.6:5}}
+                    }}}
+                \\
+                &\to 0 \fuer n\to\infty
+                . \end{align*}
+    \end{enumerate}
+\end{proof}
 
 % 7.7
 \begin{thBemerkung}\hfill
