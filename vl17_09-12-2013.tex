@@ -38,7 +38,7 @@ einige Aussagen über reflexive Räume.
 Achtung, die Umkehrung von \cref{vl17:lemma7.10} gilt im Allgemeinen nicht!
 
 % 7.11
-\begin{thSatz}
+\begin{thSatz} \label{vl17:satz7.11}
     Sei $X$ ein reflexiver Banachraum. Dann ist $\setclosure{B_1(0)}\subset X$
     schwach folgenkompakt.
 \end{thSatz}
@@ -68,20 +68,49 @@ Achtung, die Umkehrung von \cref{vl17:lemma7.10} gilt im Allgemeinen nicht!
 
 
 % 7.14
-\begin{thSatz}
-    Sei $X$ ein normierter Raum und $M\subset X$ ein abgeschlossener, konvexer
-    Unterraum. Dann ist $M$ \emph{schwach folgenabgeschlossen}, d.\,h.: Ist
+\begin{thSatz} \label{vl17:satz7.14}
+    Sei $X$ ein normierter Raum und $M\subset X$ abgeschlossen und konvex.
+    Dann ist $M$ \emph{schwach folgenabgeschlossen}, das heißt: Ist
     $\kSeq x$ eine Folge in $M$ mit $x_k\to x$ schwach in $X$ für $k\to\infty$,
     so ist auch $x\in M$.
 \end{thSatz}
 
+\begin{proof}
+    Sei o.\,E. $M$ nicht leer und sei $\kSeq x$ eine Folge in $M$ mit
+    $x_k\weakto x\in X$ für $k\to\infty$.
+    Angenommen $x\notin M$. Dann liefert der Satz von Hahn-Banach in der zweiten
+    geometrischen Formulierung \pref{vl06:hahnbanachgeom2}
+    die Existenz eines $x'\in X'$ und eines $\alpha\in\R$ mit
+    \[ \alpha < \Re x'(x) \qqtextqq{und} \forall\,y\in M\colon\;
+        \Re x'(y) \leq \alpha
+    . \]
+    Nach Voraussetzung gilt $x_k\weakto x$ für $k\to\infty$, also folgt
+    \[ \Re x'(x_k)\to \Re x'(x) \fuer k\to\infty  . \]
+    Wegen $x_k\in M$ für alle $k\in\N$ gilt dann aber
+    \[ \Re x'(x) = \lim_{k\to\infty} \Re x'(x_k) \leq \alpha , \]
+    im Widerspruch zu $\Re x'(x) > \alpha$.
+    \\
+\end{proof}
 
 % 7.15
 \begin{thLemma}[Lemma von Mazur]
-    Sei $X$ ein normierter Raum. Sei $\kSeq x$ eine Folge in $X$ mit
+    Sei $X$ ein normierter Raum und sei $\kSeq x$ eine Folge in $X$ mit
     $x_k\to x$ schwach in $X$ für $k\to\infty$.
     Dann gilt: 
     \[ x\in \setclosure{\conv\{x_k\Mid k\in\N\}}  . \]
+    (Dabei sei $\conv(A)$ für eine Teilmenge $A\subset X$ die \emph{konvexe Hülle
+    von $A$ in $X$}, d.\,h. die kleinste konvexe Teilmenge von $X$,
+    die $A$ enthält.)
 \end{thLemma}
 
+\begin{proof}
+    Setze
+    \[ M \defeq \conv\{ x_k \Mid k\in\N \}  .\]
+    Dann ist $M$ konvex und damit auch $\setclosure M$.
+    Aus \cref{vl17:satz7.14} folgt, dass $\setclosure M$ 
+    schwach folgenabgeschlossen ist und da $x_k\in M \subset
+    \setclosure{M}$ für alle $k\in\N$ erfüllt ist, erhalten
+    wir die Behauptung.
+    \\
+\end{proof}
 
