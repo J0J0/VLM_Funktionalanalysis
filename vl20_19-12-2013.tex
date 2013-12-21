@@ -1,0 +1,75 @@
+% 8.11
+\begin{thSatz}
+    Seien $X,Y$ Banachräume über $\K$ und sei $T\in L(X)$. Dann gilt:
+    \begin{enumerate}[(a)]
+        \item
+            $\forall\,\lambda\in\sigma(T)\colon\;\;
+            \abs\lambda \leq r(T)$
+        
+        \item
+            Für $\K=\C$ existiert ein $\lambda\in\sigma(T)$ mit
+            $\abs\lambda = r(T)$, d.\,h. es gilt: 
+            \[ \sup_{\lambda\in\sigma(T)}\abs\lambda
+            = \lim_{n\to\infty}\,\norm{T^n}^{1/n} . \]
+        
+        \item
+            $\sigma(T)$ ist kompakt.
+            
+        \item
+            $\sigma(T) \neq \emptyset$ für $\K=\C$.
+    \end{enumerate}
+\end{thSatz}
+
+
+\pagebreak[2]
+% 8.12
+\begin{thBemerkungen}\hfill
+    \begin{enumerate}[(i)]
+        \item
+            Ist $\dim X < \infty$, so gilt $\sigma(T) = \sigmap(T)$.
+            
+        \item
+            Ist $\dim X = \infty$ und $T\in K(X)$, so gilt $0\in\sigma(T)$.
+            Im Allgemeinen ist~$0$ aber \emph{kein} Eigenwert.
+    \end{enumerate}
+\end{thBemerkungen}
+
+
+% 8.13
+\begin{thDef}[Fredholm-Operator]
+    Seien $X,Y$ Banachräume und sei $A\in L(X,Y)$. Dann heißt $A$
+    \emph{Fredholm-Operator}, falls gilt:
+    \begin{enumerate}[(1)]
+        \item
+            $\dim N(A) < \infty$
+        \item
+            $R(A)$ ist abgeschlossen
+        \item
+            $\codim R(A) < \infty$
+    \end{enumerate}
+    Der \emph{Index von $A$} ist dann definiert als
+    \[ \ind A \defeq \dim N(A) - \codim R(A)  . \]
+\end{thDef}
+
+\begin{thDef}[Kodimension] \label{vl20:def:codim}
+    Seien $X,Y$ Banachräume.
+    \begin{enumerate}[(i)]
+        \item
+            Sei $Z\subset Y$ ein abgeschlossener Unterraum. Wir sagen
+            \emph{$Z$ besitzt endliche Kodimension}, falls ein
+            Unterraum~$Y_0\subset Y$ existiert mit $\dim Y_0 < \infty$ 
+            und $Y = Z \oplus Y_0$.
+            
+        \item
+            Die \emph{Kodimension von $Z$} ist dann definiert durch
+            $\codim Z \defeq \dim Y_0$.
+    \end{enumerate}
+\end{thDef}
+
+\begin{thLemma}
+    Die Kodimension eines Unterraums mit endlicher Kodimension ist eindeutig bestimmt.
+\end{thLemma}
+
+
+\nnBemerkung Eine große Klasse von Fredholm-Operatoren ergibt sich aus
+kompakten Störungen der Identität, d.\,h. $A = \Id-T$ für $T\in K(X)$.

@@ -109,6 +109,7 @@
 \newtheorem{thKorollar}[globalnum]{Korollar}
 
 \newtheorem{thBemerkung}[globalnum]{Bemerkung}
+\newtheorem{thBemerkungen}[globalnum]{Bemerkungen}
 %\newtheorem{thWarnung}[globalnum]{Warnung}
 \newtheorem{thBeispiel}[globalnum]{Beispiel}
 \newtheorem{thBeispiele}[globalnum]{Beispiele}
@@ -177,6 +178,7 @@
 % new math 'operators'
 \newcommand{\sDMO}[1]{\expandafter\DeclareMathOperator\csname#1\endcsname{#1}}
 
+\sDMO{codim}
 \sDMO{conv}
 \sDMO{diam}
 \sDMO{dist}
@@ -184,6 +186,7 @@
 \sDMO{graph}
 \sDMO{id}
 \sDMO{Id}
+\sDMO{ind}
 \sDMO{Pr}
 \sDMO{supp}
 \DeclareMathOperator{\powerset}{\mathcal{P}}
@@ -261,6 +264,9 @@
 \newcommand{\schwachstern}[1][ ]{schwach-\textasteriskcentered#1}
 \newcommand{\setOneto}[1]{\{1,\ldots,#1\}}
 \newcommand{\setZeroto}[1]{\{0,\ldots,#1\}}
+\newcommand{\sigmac}{\sigma_{\mr c}}
+\newcommand{\sigmar}{\sigma_{\mr r}}
+\newcommand{\sigmap}{\sigma_{\mr p}}
 \newcommand{\supnorm}[1]{\norm{#1}_\infty}
 \newcommand{\thalf}{\tfrac{1}{2}}
 \newcommand{\Topoweak}{\Topo_{\mkern-5mu\mr{w}}}
@@ -367,6 +373,8 @@ $\mkern2mu #1 \mkern1mu$%
 \input{vl16_05-12-2013}
 \input{vl17_09-12-2013}
 \input{vl18_12-12-2013}
+\input{vl19_16-12-2013}
+\input{vl20_19-12-2013}
 
 \end{document}
 

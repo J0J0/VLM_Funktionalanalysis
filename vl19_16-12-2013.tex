@@ -1,0 +1,243 @@
+% 8
+\chapter{Spektrum für kompakte Operatoren}
+Ziel: Verallgemeinerung der Jordan'schen Normalform auf den
+unendlich-dimensionalen Fall.
+
+% 8.1
+\begin{thDef}[Kompakter Operator] \label{vl19:satzdef8.1}
+    Seien $X,Y$ Banachräume über $\K$. Dann heißt $T\in L(X,Y)$
+    \emph{kompakter (linearer) Operator}, falls eine der folgenden Bedingungen
+    erfüllt ist:
+    \begin{enumerate}[(1)]
+        \item \label{vl19:satzdef8.1:1}
+            $\setclosure{T\bigl(B_1(0)\bigr)}$ ist kompakt in $Y$
+        \item \label{vl19:satzdef8.1:2}
+            $\forall\,M\subset X\colon \;\; 
+                M \text{ beschränkt} \implies T(M)\text{ präkompakt in $Y$}$
+        \item \label{vl19:satzdef8.1:3}
+            Für jede beschränkte Folge $\nSeq x$ in $X$ besitzt
+            $(Tx_n)_{n\in\N}$ eine konvergente Teilfolge.
+    \end{enumerate}
+\end{thDef}
+
+\nnSatz Die Bedingungen aus \cref{vl19:satzdef8.1} sind äquivalent.
+%
+\begin{proof}
+    \setrefXimpliesYprefix{vl19:satzdef8.1:}\hfill\\%
+    %
+    \refXimpliesY{1}{2}: Sei $R\in\R[>0]$ und $M\subset B_R(0)$. Dann ist
+    $\setclosure{T(B_R(0))}$ nach Voraussetzung kompakt in $Y$. Dann ist auch
+    die darin enthaltene abgeschlossene Menge $\setclosure{T(M)}$ kompakt und
+    somit ist $T(M)$ relativ kompakt und damit präkompakt.
+    
+    \refXimpliesY{2}{3}: Sei $R\in\R[>0]$ und sei $\nSeq x$ eine Folge in $X$
+    mit $\norm{x_n}\leq R$ für alle $n\in\N$. Dann ist
+    $(Tx_n)_{n\in\N}$ eine Folge in $\setclosure{T(B_R(0))}$. Aber $T(B_R(0))$
+    ist nach Voraussetzung präkompakt, also auch relativ kompakt, womit
+    $\setclosure{T(B_R(0))}$ kompakt und damit auch folgenkompakt sein muss.
+    
+    \refXimpliesY{3}{1}: Sei $\nSeq y$ eine Folge in $\setclosure{T(B_1(0))}$.
+    Für alle $n\in\N$ sei dann $x_n\in B_1(0)\subset X$ mit $\norm{y_n-Tx_n}
+    \leq 1/n$. Nach Voraussetzung exisitiert dann eine Teilfolge
+    $(x_{n_k})_{k\in\N}$, so dass $(Tx_{n_k})_{k\in\N}$ konvergiert; bezeichne
+    $y\in Y$ den zugehörigen Grenzwert. Aus der Konstruktion der Folge $\nSeq x$
+    folgt nun $y_{n_k}\to y$ für $k\to\infty$. Damit ist
+    $\setclosure{T(B_1(0))}$ folgenkompakt, also auch kompakt.
+    \\
+\end{proof}
+
+% 8.2
+\begin{thDef}
+    Für Banachräume $X,Y$ seien
+    \[ K(X,Y) \defeq \{ T\in T(X,Y) \Mid T \text{ ist kompakt} \}
+        \qundq
+        K(X) \defeq K(X,X)
+    . \]
+\end{thDef}
+
+In reflexiven Räumen gibt es folgende Charakterisierung kompakter Operatoren:
+%
+% 8.3
+\begin{thLemma}
+    Seien $X,Y$ Banachräume und sei $X$ reflexiv. Sei $T\colon X\to Y$ linear.
+    Dann gilt:
+    \[ T\in K(X,Y) \qiffq T \text{ vollstetig}, \]
+    wobei $T$ \emph{vollstetig} ist, falls gilt: Ist $\nSeq x$ eine Folge in $X$
+    mit $x_n\weakto x$ in $X$ für $n\to\infty$, so gilt $Tx_n\to Tx$ stark in
+    $Y$ für $n\to\infty$.
+\end{thLemma}
+
+\begin{proof}
+    \enquote{$\Rightarrow$}: Sei $\nSeq x$ eine Folge in $X$ mit $x_n\weakto x$
+    für $n\to\infty$. Da schwach konvergente Folgen nach \mycref{vl16:lemma7.6:5}
+    beschränkt sind, ist $\nSeq x$ beschränkt. 
+    Da $\setclosure{T(B_1(0))}$ nach Voraussetzung kompakt
+    ist, existiert ein $y\in Y$ und eine Teilfolge $(x_{n_k})_{k\in\N}$, so dass
+    $(Tx_{n_k})_{k\in\N}$ stark gegen $y$ konvergiert. Für $y'\in Y'$ ist
+    $z\mapsto y'(Tz)$ eine Abbildung in $X'$, also gilt:
+    \[ y'(Tx_n) \to y'(Tx) \fuer n\to\infty  . \]
+    Daraus folgt $Tx_n \weakto Tx$ für $n\to\infty$. Da starke Konvergenz auch
+    schwache Konvergenz (gegen denselben Grenzwert) impliziert, gilt $y=Tx$.
+    Also gilt $Tx_{n_k}\to Tx$ stark für $k\to\infty$. Das gleiche Argument gilt
+    für jede Teilfolge. Daraus folgt, dass die gesamte Folge konvergiert.
+    
+    \enquote{$\Leftarrow$}: Aus Vollstetigkeit folgt Stetigkeit. Also gilt $T\in
+    L(X,Y)$. Sei $\nSeq x$ eine beschränkte Folge in $X$. 
+    Nach \cref{vl17:satz7.11} existiert dann eine
+    Teilfolge~$(x_{n_k})_{k\in\N}$ mit $x_{n_k}\weakto x\in X$ für
+    $k\to\infty$. Da $T$ nach Voraussetzung vollstetig ist, gilt dann aber
+    \[ Tx_{n_k} \to Tx \fuer k\to\infty  , \]
+    also folgt mit der dritten Charakterisierung in \cref{vl19:satzdef8.1} die
+    Behauptung.
+    \\
+\end{proof}
+
+% 8.4
+\begin{thLemma} \label{vl19:lemma8.4}
+    Seien $X,Y$ Banachräume.
+    \begin{enumerate}[(i)]
+        \item \label{vl19:lemma8.4:i}
+            Sei $T\in L(X,Y)$ mit $\dim R(T) < \infty$.
+            Dann folgt $T\in K(X,Y)$.
+        \item \label{vl19:lemma8.4:ii}
+            Sei $P\in P(X)$ ein Projektor. Dann gilt:
+            \[ P\in K(X) \qiffq \dim R(P) < \infty  . \]
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}
+    \begin{enumerate}[(i)]
+        \item
+            Mit $R\defeq \norm{T}$ gilt:
+            \[ \setclosure{T\bigl( B_1(0) \bigr)}
+                \subset \setclosure{B_R(0)}
+            . \]
+            Die Teilmenge $\setclosure{B_R(0)}\cap R(T)$ ist ein abgeschlossener
+            Ball im endlich dimensionalen Raum $R(T)$, also folgt mit
+            Heine-Borel \pcref{vl16:heineborel}, dass sie auch kompakt ist.
+            Daraus folgt die Kompaktheit von $\setclosure{T\bigl( B_1(0)
+            \bigr)}$.
+            
+        \item
+            \enquote{$\Leftarrow$} folgt aus \ref{vl19:lemma8.4:i}.
+            \\
+            \enquote{$\Rightarrow$}: Es gilt
+            \[ \setclosure{B_1(0)}\cap R(P) \subset
+                \setclosure{P\bigl(B_1(0)\bigr)}
+            . \]
+            Damit ist $\setclosure{B_1(0)}\cap R(P)$ kompakt und aus Heine-Borel
+            \pcref{vl16:heineborel} folgt, dass $R(P)$ endlich dimensional ist.
+    \end{enumerate}
+\end{proof}
+
+% 8.5
+\begin{thLemma} \label{vl19:lemma8.5}
+    Seien $X,Y,Z$ Banachräume und $T_1\in L(X,Y)$ sowie $T_2\in L(Y,Z)$.
+    Ist dann $T_1$ oder $T_2$ kompakt, so ist $T_2T_1$ kompakt.
+\end{thLemma}
+
+
+\begin{thDef}[Spektrum]
+    Sei $X$ ein Banchraum über $\K$ und $T\in L(X)$.
+    \begin{enumerate}[(i)]
+        \item
+            Die \emph{Resolventenmenge von $T$} sei
+            \[ \rho(T) \defeq \{ \lambda\in\K \Mid
+                N(\lambda\Id-T)=\{0\} \land
+                R(\lambda\Id-T)=X \}
+            . \]
+            (Im endlich-dimensionalen Fall folgt eine der Bedingungen aus dieser
+            Definition aus der jeweils anderen. Im unendlich-dimensionalen muss
+            dies \emph{nicht} gelten!)
+            
+            Das \emph{Spektrum von $T$} ist
+            \[ \sigma(T) \defeq \K \setminus \rho(T)  . \]
+            Das Spektrum kann zerlegt werden in das \emph{Punktspektrum}
+            \[ \sigmap(T) \defeq \{ \lambda\in\sigma(T) \Mid
+                    N(\lambda\Id-T) \neq \{0\}  \}
+            , \]
+            das \emph{kontinuierliche Spektrum}
+            \[ \sigmac(T) \defeq \{ \lambda\in\sigma(T) \Mid
+                    N(\lambda\Id-T) = \{0\}  \land
+                    R(\lambda\Id-T) \neq X   \land
+                    \setclosure{R(\lambda\Id-T)} = X
+                \}
+            \]
+            und das \emph{Residualspektrum}
+            \[ \sigmar(T) \defeq \{ \lambda\in\sigma(T) \Mid
+                    N(\lambda\Id-T) = \{0\}  \land
+                    \setclosure{R(\lambda\Id-T)} \neq X
+                \}
+            . \]
+    \end{enumerate}
+\end{thDef}
+
+% 8.7
+\begin{thBemerkung}
+    \begin{enumerate}[(i)]
+        \item
+            Es gilt $\lambda\in\rho(T)$ genau dann, wenn $(\lambda\Id-T)\colon X\to X$
+            bijektiv ist. Nach dem Satz von der inversen Abbildung
+            \pref{vl09:satzvonderinversenabb} ist dies äquivalent
+            zur Existenz von
+            \[ R(\lambda,T) \defeq (\lambda\Id-T)^{-1} \in L(X)  . \]
+            Wir nennen $R(\lambda,T)$ \emph{Resolvente von $T$} und die Abbildung
+            $\lambda\mapsto R(\lambda,T)$ die \emph{Resolventenfunktion von $T$}.
+            
+        \item
+            Zu $\lambda\in\sigmap(T)$ ist äquivalent: Es gibt ein $x\in
+            X\setminus\{0\}$ mit $Tx=\lambda x$. Dann heißt $\lambda$
+            \emph{Eigenwert} und $x$ \emph{Eigenvektor zum Eigenwert
+            $\lambda$}.
+            
+        \item
+            Wir nennen $N(\lambda\Id-T)$ den \emph{Eigenraum von $T$ zum
+            Eigenwert~$\lambda$}.
+            
+        \item
+            Wir sagen $Y\subset X$ ist $T$-invariant, falls $T(Y)\subset Y$
+            gilt. Der Eigenraum zu einem Eigenwert ist stets $T$-invariant.
+    \end{enumerate}
+\end{thBemerkung}
+
+% 8.8
+\begin{thSatz}
+    Sei $X$ ein Banachraum und $T\in L(X)$. Dann ist $\rho(T)$ offen und die
+    Resolventenfunktion $R(\scdot,T)$ ist eine analytische Abbildung von
+    $\rho(T)$ nach $L(X)$. Weiterhin gilt für alle $\lambda\in\rho(T)$:
+    \[ \norm{R(\lambda,T)}^{-1} \leq \dist\bigl(\lambda, \sigma(T)\bigr) . \]
+    Dass $R(\scdot,T)$ analytisch ist, bedeutet dabei: Für alle
+    $\lambda_0\in\rho(T)$ existiert ein $r_0\in\R[>0]$ und eine Folge $\nSeq a$
+    in $L(X)$, so dass gilt:
+    \[ \forall\,\lambda\in B_{r_0}(\lambda_0)\colon\quad 
+        R(\lambda,T) = \nsum[0]^\infty a_n \, (\lambda-\lambda_0)^n 
+    . \]
+\end{thSatz}
+
+
+\nnBemerkung
+Weil $\rho(T)$ offen ist, ist $\sigma(T)$ abgeschlossen.
+
+% 8.9
+\begin{thDef}
+    Sei $X$ ein Banachraum und $T\in L(X)$. Sei
+    \[ r(T) \defeq  \inf_{n\in\N} \, \norm{T^n}^{1/n}
+        = \lim_{n\to\infty} \, \norm{T^n}^{1/n}
+    . \]
+    Wir nennen $r(T)$ den \emph{Spektralradius von $T$}.
+\end{thDef}
+
+Die Gleichheit in dieser Definition folgt dabei aus dem folgenden Lemma:
+
+% 8.10
+\begin{thLemma}
+    Sei $\nSeq a$ eine Folge in $\R$ mit
+    \[ 0 \leq a_{n+m} \leq a_n\,a_m \]
+    für alle $n,m\in\N$. Dann konvergiert
+    $(\sqrt[n]{a_n})_{n\in\N}$ gegen $\inf_{n\in\N} \sqrt[n]{a_n}$.
+\end{thLemma}
+
+%
+%Wähle $a_n \defeq \norm{T^n}$.
+%$a_{n+m} = \norm{T^{n+m}} \leq \norm{T^n}\,\norm{T^m} = a_n\, a_m$
+%Aus dem Lemma folgt die Identität in der Def. von $r(T)$.
