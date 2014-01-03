@@ -1,27 +1,143 @@
 % 8.11
-\begin{thSatz}
-    Seien $X,Y$ Banachräume über $\K$ und sei $T\in L(X)$. Dann gilt:
+\begin{thSatz} \label{vl20:satz8.11}
+    Sei $X$ ein Banachraum über $\K$ und sei $T\in L(X)$. Dann gilt:
     \begin{enumerate}[(a)]
-        \item
+        \item \label{vl20:satz8.11:a}
             $\forall\,\lambda\in\sigma(T)\colon\;\;
             \abs\lambda \leq r(T)$
         
-        \item
+        \item \label{vl20:satz8.11:b}
             Für $\K=\C$ existiert ein $\lambda\in\sigma(T)$ mit
             $\abs\lambda = r(T)$, d.\,h. es gilt: 
             \[ \sup_{\lambda\in\sigma(T)}\abs\lambda
             = \lim_{n\to\infty}\,\norm{T^n}^{1/n} . \]
         
-        \item
+        \item \label{vl20:satz8.11:c}
             $\sigma(T)$ ist kompakt.
             
-        \item
+        \item \label{vl20:satz8.11:d}
             $\sigma(T) \neq \emptyset$ für $\K=\C$.
     \end{enumerate}
 \end{thSatz}
 
+\begin{proof}
+    \begin{enumerate}[(a)]
+        \item[(c)]
+            Sei $\lambda\in\K\setminus\{0\}$. Mithilfe der Neumann'schen Reihe
+            \pcref{vl04:neumannreihe} folgt, dass
+            $\Id-T/\lambda$ invertierbar ist, falls $\norm{T/\lambda} < 1$
+            bzw. $\abs\lambda > \norm{T}$ gilt. Außerdem gilt dann
+            \[ \tag{$\ast$} \label{vl20:ast}
+                R(\lambda,T) = \lambda^{-1} (\Id - T/\lambda )^{-1}
+                = \lambda^{-1} \nsum[0]^\infty \lambda^{-n} T^n
+            , \]
+            was wir später benötigen werden. Wir erhalten also
+            \[ s \defeq \sup_{\lambda\in\sigma(T)} \abs\lambda \leq \norm{T}
+            . \]
+            Nach Definition gilt $\sigma(T) = \K\setminus\rho(T)$ und $\rho(T)$
+            ist nach \cref{vl19:satz8.8} offen, also ist $\sigma(T)$ abgeschlossen.
+            Aus Abgeschlossenheit und Beschränktheit
+            folgt nun mit dem Satz von Heine-Borel für endlich-dimensionale
+            euklidsche Räume, dass $\sigma(T)$ kompakt ist.
+            
+        \item[(a)]
+            Seien $\lambda\in\sigma(T)$ und $m\in\N$ und sei $s$ wie im Beweis
+            von \ref{vl20:satz8.11:c}. Es gilt
+            \[ \lambda^m\Id - T^m = (\lambda\Id-T) \, S_m(T)
+                = S_m(T) \, (\lambda\Id-T)
+            \]
+            mit
+            \[ S_m(T) = \isum[0]^{m-1} \lambda^{m-1-i} \mkern2mu T^i  . \]
+            Wäre nun $\lambda^m\Id-T^m$ bijektiv, so müsste $\lambda\Id-T$ nach
+            jeweils einer der obigen Gleichheiten surjektiv und injektiv, d.\,h.
+            auch bijektiv sein. Da dies nach Voraussetzung nicht der Fall ist,
+            kann also auch $\lambda^m\Id-T^m$ nicht bijektiv sein.
+            Daraus erhalten wir (mit dem Beweis von \ref{vl20:satz8.11:c}):
+            \[ \lambda^m \in \sigma(T^m)
+                \implies \abs{\lambda^m} \leq \norm{T^m}
+                \implies \abs\lambda \leq \norm{T^m}^{1/m}
+            . \]
+            Dies zeigt:
+            \[ s \leq \lim_{n\to\infty} \, \norm{T^n}^{1/n} = r(T) . \]
+            
+        \item[(d)]
+            Gelte $\K=\C$.
+            Wir nehmen an, das $\sigma(T)=\emptyset$ gilt. Dann ist die
+            Resolventenfunktion
+            \[ \lambda\mapsto R_\lambda \defeq R(\lambda,T) 
+                = (\lambda\Id-T)^{-1}
+            \]
+            auf ganz $\C$ definiert und lokal in eine Potenzreihe entwickelbar
+            (mittels der Neumann'schen Reihe). Sei $\ell\in (L(X))'$. Die Funktion
+            $\lambda \mapsto \ell(R_\lambda)$
+            hat lokal um $\lambda\in\K$ die Gestalt
+            \[ \tag{$\ast\ast$} \label{vl20:astast}
+                \mu\mapsto \ell(R_\mu) = \nsum[0]^\infty \,
+                (-1)^n \mkern1mu \ell\bigl(R_\lambda^{n+1}\bigr) \, (\mu-\lambda)^n
+            \]
+            (vgl. \hyperref[vl19:satz8.8:beweis]{Beweis} von \cref{vl19:satz8.8}).
+            Die Funktion $\lambda \mapsto \ell(R_\lambda)$ ist somit analytisch.
+            Sie ist außerdem beschränkt, denn: Für $\abs\lambda > 2\norm{T}$
+            gilt nach \eqref{vl20:ast}
+            \[ \abs{\ell(R_\lambda)}
+                \leq \norm\ell \, \abs[\big]{\lambda^{-1}} \, \nsum[0]^\infty
+                \frac{\norm{T}^{\mathrlap{n}}}{\abs{\lambda}^n} 
+                \mkern3mu 
+                \leq \norm\ell \, \frac{1}{\norm{T}}
+            \]
+            und auf $\setclosure{B_{2\norm{T}}(0)}\subset\C$ ist sie beschränkt,
+            da sie stetig ist. Aus dem Satz von Liouville folgt: Die Funktion
+            $\lambda\mapsto\ell(R_\lambda)$ ist konstant. Dies kann aber für
+            $\lambda=0$ in \eqref{vl20:astast} nur gelten, falls alle
+            Koeffizienten bis auf den nullten verschwinden. Inbesondere gilt
+            somit:
+            \[ 0 = \ell(R_0^2) = \ell\bigl( (T^2)^{-1} \bigr) .\]
+            Da $\ell\in L(X)'$ beliebig war, folgt nun mithilfe des Satzes von
+            Hahn-Banach (zum Beispiel wie im Beweis von \mycref{vl16:lemma7.6:1})
+            \[ \bigl( T^2 \bigr)^{-1} = 0 . \]
+            Dies ist aber ein Widerspruch, d.\,h. die Annahme muss falsch
+            gewesen sein, d.\,h. es gilt doch $\sigma(T)\neq\emptyset$.
+            
+        \item[(b)]
+            Gelte $\K=\C$. Wir zeigen zunächst:
+            \[ %\tag{$\ast{\ast}\ast$} \label{vl20:astastast}
+                s \defeq \sup_{\lambda\in\sigma(T)}\,\abs\lambda = r(T)
+            . \]
+            Aus \ref{vl20:satz8.11:a} folgt: $s \leq r(T)$. 
+            Sei $\mu\in\C$ mit $\abs\mu > s$ und sei $\ell\in (L(X))'$.
+            Daraus, dass $R(\scdot,T)$ analytisch ist, folgt, dass auch
+            $\ell\circ R(\scdot,T)\colon \rho(T)\to\C$ analytisch ist. Für
+            $\tilde\mu\in\rho(T)$ mit $\abs{\tilde\mu} > \norm{T}$ wissen wir nach
+            \eqref{vl20:ast}:
+            \[ \ell\bigl(R(\tilde\mu,T)\bigr)
+                = \nsum[0]^\infty \ell\bigl(T^n \cdot (\tilde\mu)^{-(n+1)}\bigr)
+            . \]
+            Wählen wir nun $\tilde\mu$ geeignet (so dass $\mu\in B_r(\tilde\mu)
+            \subset\rho(T)$ für ein $r\in\R[>0]$ gilt), so folgt mit dem
+            Potenzreihenentwicklungssatz (bzw. aus der Cauchyformel), dass diese
+            Reihe auch für $\mu$ (statt $\tilde\mu$) konvergiert. Dann muss aber
+            $(\ell(T^n / \mu^{n+1}))_{n\in\N}$ eine Nullfolge in $\C$ sein,
+            d.\,h. es gilt:
+            \[ \lim_{n\to\infty} \ell\bigl(T^n / \mu^{n+1}\bigr) = 0  . \]
+            Weil $\ell\in L(X)'$ beliebig war, folgt:
+            \[ T^n / \mu^{n+1} \weakto 0 \fuer n\to\infty  . \]
+            Also ist $(T^n/\mu^{n+1})_{n\in\N}$ beschränkt
+            \pmycref{vl16:lemma7.6:5}, etwa durch $K\in\R[>0]$.
+            Für alle $n\in\N$ gilt dann
+            \begin{align*}
+                \norm{T^n}^{1/n} &\leq K^{1/n} \, \abs{\mu}^{(n+1)/n}  , 
+                \\ \shortintertext{woraus}
+                r(T) = \lim_{n\to\infty} \norm{T^n}^{1/n} 
+                &\leq \lim_{n\to\infty} K^{1/n} \, \abs{\mu}^{(n+1)/n} =\abs{\mu}
+            \end{align*}
+            und damit auch $r(T) \leq s$ folgt.
+            Weil $\sigma(T)$ nach \ref{vl20:satz8.11:c} kompakt und
+            $\abs{\scdot}$ stetig ist, wird das Supremum in 
+            $r(T) = s = \sup_{\sigma(T)} \abs\scdot$ angenommmen und damit ist alles
+            gezeigt.
+    \end{enumerate}
+\end{proof}
 
-\pagebreak[2]
 % 8.12
 \begin{thBemerkungen}\hfill
     \begin{enumerate}[(i)]
@@ -34,6 +150,22 @@
     \end{enumerate}
 \end{thBemerkungen}
 
+\begin{proof}
+    \begin{enumerate}[(i)]
+        \item
+            Sei $\lambda\in\sigma(T)$. Dann ist $\lambda\Id-T$ nicht bijektiv.
+            Da $X$ endlich-dimensional ist, folgt, dass $\lambda\Id-T$ auch
+            nicht injektiv ist. Damit folgt $\lambda\in\sigmap(T)$.
+            
+        \item
+            Sei $T\in K(X)$ und $0\in\rho(T)$. Dann gilt $T^{-1}\in L(X)$ und
+            nach \cref{vl19:lemma8.5} gilt:
+            \[ \Id = T^{-1} T \in K(X) . \]
+            Heine-Borel \pcref{vl16:heineborel} liefert: $\dim X < \infty$. Dies
+            impliziert, dass $0\in\rho(T)$ nur für $\dim X < \infty$ möglich
+            ist.
+    \end{enumerate}
+\end{proof}
 
 % 8.13
 \begin{thDef}[Fredholm-Operator]
@@ -52,7 +184,7 @@
 \end{thDef}
 
 \begin{thDef}[Kodimension] \label{vl20:def:codim}
-    Seien $X,Y$ Banachräume.
+    Sei $Y$ ein Banachraum.
     \begin{enumerate}[(i)]
         \item
             Sei $Z\subset Y$ ein abgeschlossener Unterraum. Wir sagen
@@ -67,9 +199,25 @@
 \end{thDef}
 
 \begin{thLemma}
-    Die Kodimension eines Unterraums mit endlicher Kodimension ist eindeutig bestimmt.
+    Sei $Y$ ein Banachraum und $Z\subset Y$ ein abgeschlosser Unterraum.
+    Besitzt $Z$ endliche Kodimension, so ist $\codim Z$ eindeutig bestimmt.
 \end{thLemma}
 
+\begin{proofsketch}
+    Sei $Y_0\subset Y$ ein Unterraum mit $Y = Z\oplus Y_0$ und $\dim Y_0 <
+    \infty$.  Nach Voraussetzung ist $Z$ abgeschlossen und $Y_0$ ist
+    endlich-dimensional, also auch abgeschlossen. Nach \cref{vl10:abgkomplement}
+    existiert also ein Projektor $P\in P(Y)$ auf $Y_0$ mit $Z=N(P)$.
+    
+    Sei nun $Y_1\subset Y$ ein Unterraum mit $Z\cap Y_1 = \{0\}$. Dann ist
+    $S\defeq P\vert_{Y_1}\colon Y_1\to Y_0$ linear und injektiv. Daraus folgt:
+    $Y_1$ ist endlich-dimensional mit $\dim Y_1 \leq \dim Y_0$ und es gilt
+    Gleichheit genau dann, wenn $Y = Z\oplus Y_1$.  (Siehe Übungen.)
+    
+    Ist $Y=Z\oplus Y_1$, so tausche die Rollen von $Y_1$ und $Y_0$. Es folgt:
+    $\dim Y_1 = \dim Y_0$. (Außerdem ist dann $S$ bijektiv.)
+    \\
+\end{proofsketch}
 
 \nnBemerkung Eine große Klasse von Fredholm-Operatoren ergibt sich aus
 kompakten Störungen der Identität, d.\,h. $A = \Id-T$ für $T\in K(X)$.

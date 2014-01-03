@@ -136,6 +136,14 @@ In reflexiven Räumen gibt es folgende Charakterisierung kompakter Operatoren:
     Ist dann $T_1$ oder $T_2$ kompakt, so ist $T_2T_1$ kompakt.
 \end{thLemma}
 
+\begin{proof}
+    Sei $\nSeq x$ eine beschränkte Folge in $X$. Da $T_1$ stetig ist, ist
+    $(T_1x_n)_{n\in\N}$ beschränkt in $Y$. Falls $T_2$ kompakt ist, existiert
+    eine konvergente Teilfolge $(T_2T_1 x_{n_k})_{k\in\N}$. Ist $T_1$ kompakt,
+    so existiert eine konvergente Teilfolge $(T_1x_{n_k})_{k\in\N}$. Weil $T_2$
+    stetig ist, konvergiert dann auch $(T_2T_1 x_{n_k})_{k\in\N}$.
+    \\
+\end{proof}
 
 \begin{thDef}[Spektrum]
     Sei $X$ ein Banchraum über $\K$ und $T\in L(X)$.
@@ -201,19 +209,45 @@ In reflexiven Räumen gibt es folgende Charakterisierung kompakter Operatoren:
 \end{thBemerkung}
 
 % 8.8
-\begin{thSatz}
-    Sei $X$ ein Banachraum und $T\in L(X)$. Dann ist $\rho(T)$ offen und die
-    Resolventenfunktion $R(\scdot,T)$ ist eine analytische Abbildung von
+\begin{thSatz} \label{vl19:satz8.8}
+    Sei $X$ ein Banachraum über $\K$ und $T\in L(X)$. Dann ist $\rho(T)$ offen
+    und die Resolventenfunktion $R(\scdot,T)$ ist eine analytische Abbildung von
     $\rho(T)$ nach $L(X)$. Weiterhin gilt für alle $\lambda\in\rho(T)$:
     \[ \norm{R(\lambda,T)}^{-1} \leq \dist\bigl(\lambda, \sigma(T)\bigr) . \]
     Dass $R(\scdot,T)$ analytisch ist, bedeutet dabei: Für alle
-    $\lambda_0\in\rho(T)$ existiert ein $r_0\in\R[>0]$ und eine Folge $\nSeq a$
+    $\lambda\in\rho(T)$ existiert ein $r\in\R[>0]$ mit
+    $B_r(\lambda)\subset\rho(T)$ und eine Folge $\nSeq a$
     in $L(X)$, so dass gilt:
-    \[ \forall\,\lambda\in B_{r_0}(\lambda_0)\colon\quad 
-        R(\lambda,T) = \nsum[0]^\infty a_n \, (\lambda-\lambda_0)^n 
+    \[ \forall\,\mu\in B_r(\lambda)\colon\quad 
+        R(\mu,T) = \nsum[0]^\infty a_n \, (\mu-\lambda)^n 
     . \]
 \end{thSatz}
 
+\begin{proof} \phantomsection\label{vl19:satz8.8:beweis}
+    Sei $\lambda\in \rho(T)$. Dann gilt für alle $\mu\in\K$:
+    \[ \mu\Id-T
+        = (\lambda\Id-T) 
+            \underbrace{\bigl(\Id-(\lambda-\mu) R(\lambda,T)\bigr)}_{
+            \eqdef \mkern1.5mu S(\mu)
+        }
+    . \]
+    Indem wir die Neumann'sche Reihe \pcref{vl04:neumannreihe}
+    benutzen, folgt, dass $S(\mu)$ invertierbar ist, falls
+    \[ \norm{(\lambda-\mu)R(\lambda,T)} < 1 
+        \qtextq{bzw.}
+        \abs{\lambda-\mu} < \norm{R(\lambda,T)}^{-1}
+    \]
+    gilt. Sei $r\defeq \norm{R(\lambda,T)}^{-1}$ und $\mu\in B_r(\lambda)$.
+    Nach den obigen Argumenten ist dann $\mu\Id-T$ invertierbar und
+    damit gilt $\mu\in\rho(T)$. Wir erhalten mit der Reihendarstellung von
+    $S(\mu)$ aus \cref{vl04:neumannreihe}:
+    \[ R(\mu,T) = \bigl( S(\mu) \bigr)^{-1} \, R(\lambda,T)
+        = \nsum[0]^\infty (\mu-\lambda)^n \, (-1)^n \mkern1mu R(\lambda,T)^{n+1}
+    . \]
+    Außerdem gilt $B_r(\lambda) \subset \rho(T)$, woraus
+    $\dist(\lambda,\sigma(T)) \geq r = \norm{R(\lambda,T)}^{-1}$ folgt.
+    \\
+\end{proof}
 
 \nnBemerkung
 Weil $\rho(T)$ offen ist, ist $\sigma(T)$ abgeschlossen.
@@ -234,9 +268,32 @@ Die Gleichheit in dieser Definition folgt dabei aus dem folgenden Lemma:
     Sei $\nSeq a$ eine Folge in $\R$ mit
     \[ 0 \leq a_{n+m} \leq a_n\,a_m \]
     für alle $n,m\in\N$. Dann konvergiert
-    $(\sqrt[n]{a_n})_{n\in\N}$ gegen $\inf_{n\in\N} \sqrt[n]{a_n}$.
+    $\bigl(\!\sqrt[n]{a_n}\mkern2mu\bigr)_{n\in\N}$ gegen $\inf_{n\in\N} \sqrt[n]{a_n}$.
 \end{thLemma}
 
+\begin{proof}
+    Sei $a\defeq \inf_{n\in\N} \sqrt[n]{a_n}$ und sei $\epsilon\in\R[>0]$. Wähle
+    $N\in\N$ mit $\sqrt[N]{a_N} < a+\epsilon$ und setze
+    \[ b_\epsilon \defeq \max\{a_1,\dots,a_N\}  . \]
+    Sei $n\in\N$ und seien $k\in\N$ und $r\in\setOneto N$ mit $n=kN+r$.
+    Dann gilt
+    {%\thickmuskip=8mu
+    \begin{align*}
+            \sqrt[n]{a_n} 
+            &= (a_{kN+r})^{1/n} 
+            \leq \bigl( a_N^k \, a_r \bigr)^{1/n}
+            \\
+            &\leq (a+\epsilon)^{kN/n} \mkern4mu b_\epsilon^{1/n}
+            = (a+\epsilon)^{1+r/n} \mkern4mu a_r^{1/n}
+            \\
+            &\leq (a+\epsilon)^{1+N/n} \mkern4mu b_\epsilon^{1/n}
+            \\
+            &\to a+\epsilon \fuer n\to\infty
+    . \end{align*}}
+    Für $\epsilon\to0$ erhalten wir $\lim_{n\to\infty} \sqrt[n]{a_n}
+    \leq a = \inf_{n\in\N} \sqrt[n]{a_n}$ und daraus folgt die Behauptung.
+    \\
+\end{proof}
 %
 %Wähle $a_n \defeq \norm{T^n}$.
 %$a_{n+m} = \norm{T^{n+m}} \leq \norm{T^n}\,\norm{T^m} = a_n\, a_m$
