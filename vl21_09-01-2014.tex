@@ -1,0 +1,43 @@
+% 8.16
+\begin{thSatz}
+    Sei $X$ ein Banachraum über $\K$ und sei $T\in K(X)$.
+    Dann ist $\Id-T$ ein Fredholm-Operator mit Index~$0$.
+    Genauer ergibt sich dies aus den folgenden Einzelaussagen:
+    \begin{enumerate}[(1),leftmargin=1.8cm,labelsep=1.5em]
+        \item
+            $\dim N(A) < \infty$
+        \item
+            $R(A)$ ist abgeschlossen
+        \item
+            $N(A)=\{0\} \implies R(A) = X$
+        \item
+            $R(A) = X \implies N(A) = \{0\}$
+        \item
+            $\codim R(A) = \dim N(A)$
+    \end{enumerate}
+\end{thSatz}
+
+
+\begin{thSatz}[Spektralsatz für kompakte Operatoren]
+    Sei $X$ ein $\infty$-dimensionaler Banachraum über $\K$ und sei $T\in K(X)$.
+    Dann gilt:
+    \begin{enumerate}[(a)]
+        \item
+            $0\in \sigma(T)$
+        \item
+            $\sigma(T)\setminus\{0\}$ besteht nur aus Eigenwerten
+        \item
+            Es tritt einer der folgenden Fälle ein:
+            \begin{enumerate}[(1),leftmargin=*,labelsep=1em]
+                \item
+                    $\sigma(T) = \{0\}$
+                \item
+                    $\sigma(T) \setminus \{0\}$ ist endlich
+                \item
+                    $\sigma(T) \setminus \{0\}$ besteht aus einer Folge,
+                    die gegen~$0$ konvergiert
+            \end{enumerate}
+        \item
+            Jeder Eigenwert verschieden von~$0$ hat einen endlich-dimensionalen Eigenraum.
+    \end{enumerate}
+\end{thSatz}

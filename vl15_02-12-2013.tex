@@ -130,7 +130,7 @@ abgeschlossen ist. Beides ist in unendlich-dimensionalen Banachräumen i.\,A.
 nicht mehr gegeben. Wir versuchen, Ersatz dafür zu finden.
 
 % 7.1
-\begin{thDef}
+\begin{thDef} \label{vl15:def:7.1}
     \begin{enumerate}[(i)]
         \item
             Sei $(X,\Topo)$ ein topologischer Raum und $A\subset X$.
@@ -141,13 +141,18 @@ nicht mehr gegeben. Wir versuchen, Ersatz dafür zu finden.
             in $X$ mit $A\subset \bigcup_{i\in I} U_i$, so gibt es eine eine
             endliche Teilmenge $J\subset I$ mit $A\subset \bigcup_{j\in J} U_j$.
             
-        \item
+        \item \label{vl15:def:7.1:ii}
             Sei $(X,d)$ ein metrischer Raum und $A\subset X$. Dann heißt $A$
             \emph{präkompakt}, falls für alle $\epsilon\in\R[>0]$ endlich viele
-            $x_1,\dots,x_n\in A$ existieren mit $A\subset\bigcup_{i=1}^n
+            $x_1,\dots,x_n\in X$ existieren mit $A\subset\bigcup_{i=1}^n
             B_\epsilon(x_i)$.
     \end{enumerate}
 \end{thDef}
+
+\nnBemerkung
+Man kann \mycref{vl15:def:7.1:ii} dahingehend verschärfen, dass die Mittelpunkte
+$x_1,\dots,x_n$ der $\epsilon$-Kugeln in $A$ liegen müssen. Dies ist äquivalent
+zur obigen Definition.
 
 % 7.2
 \begin{thSatz} \label{vl15:satz7.2}
