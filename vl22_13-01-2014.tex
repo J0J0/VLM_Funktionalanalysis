@@ -1,0 +1,260 @@
+\begin{proof}
+    \begin{enumerate}[(a)]
+        \item 
+            Siehe Bemerkung~\ref{vl19:bem8.12}\,\ref{vl19:bem8.12:ii}.
+            
+        \item
+            Sei $\lambda\in\sigma(T)\setminus\{0\}$. Angenommen $\lambda$ ist
+            kein Eigenwert von $T$, dann gilt 
+            $N(\Id-T/\lambda) = N(\lambda\Id-T) = \{0\}$. \cref{vl21:satz8.16}
+            liefert: $R(\Id-T/\lambda) = X$. Dies impliziert
+            $\lambda\in\rho(T)$, im Widerspruch zu $\lambda\in\sigma(T)$.
+            
+        \item
+            Zu $\lambda\in\K$ definiere $A_\lambda \defeq \lambda\Id - T$.
+            Entweder es gilt einer der ersten beiden Fälle, oder aber es gilt
+            weder $\sigma(T)=\{0\}$ noch $\abs{\sigma(T)\setminus\{0\}}<\infty$.
+            In diesem Fall finden wir aber eine Folge von Eigenwerten
+            $\nSeq\lambda$ in $\sigma(T)\setminus\{0\}$.
+            Zu $n\in\N$ wähle $e_n\in X\setminus\{0\}$ als Eigenvektor zu
+            $\lambda_n$; dann gilt
+            \[ A_{\lambda_n} e_n = 0  . \]
+            Weiter sei $X_n \defeq \spann\{e_1,\dots,e_n\}$ für alle $n\in\N$.
+            Wir behaupten, dass für alle $n\in\N$ gilt:
+            \[ \dim X_n = n, \quad\text{d.\,h. $e_1,\dots,e_n$ sind linear
+                unabhängig.}
+            \]
+            Falls $e_1,\dots,e_{n-1}$ linear unabhängig und $e_1,\dots,e_n$
+            nicht, so folgt:
+            \[ e_n = \sum_{k<n} \alpha_k e_k \]
+            für geeignete $\alpha_k\in\K$. Dann folgt:
+            \[ 0 = (\lambda_n\Id-T)\,e_n 
+                 = \sum_{k<n} \alpha_k \, (\lambda_n-\lambda_k)\, e_k
+            \]
+            und somit $\alpha_k=0$ für alle $k\in\setOneto{n-1}$. Daraus ergibt
+            sich $e_n=0$, was nicht sein kann.
+            
+            Jetzt wählen wir mit Hilfe des Satzes vom fast orthogonalen Element
+            \pref{vl16:fastorthogonaleselem} für alle $n\in\N$ ein $x_n\in X_n$
+            mit 
+            \[ \norm{x_n}=1  \qundq  \dist(x_n, X_{n-1}) \geq \half  . \]
+            Nach Konstruktion gilt
+            \[ x_n = \alpha_n\, e_n + \tilde x_n  \]
+            für $\alpha_n\in\K$ und $\tilde x_n\in X_{n-1}$ und damit
+            \[ T(x_n/\lambda_n) = x_n - \frac{1}{\lambda_n} A_{\lambda_n} x_n
+                = x_n - \frac{1}{\lambda_n} A_{\lambda_n} \tilde x_n
+            . \]
+            Weil $X_{n-1}$ aber $T$-invariant ist, gilt 
+            $A_{\lambda_n}\tilde x_n\in X_{n-1}$ und für $m<n$ somit
+            $T(x_m/\lambda_m)\in X_{n-1}$. Also erhalten wir für alle~$m<n$:
+            \[ \norm{ T(x_n/\lambda_n) - T(x_m/\lambda_m) }
+                = \norm{ x_n - \underbrace{(\ldots)}_{\in X_{n-1}} }
+                \geq \half
+            . \]
+            Also kann die Folge $\bigl( T(x_n/\lambda_n) \bigr)_{n\in\N}$ keinen
+            Häufungspunkt besitzen. Weil aber $T$ kompakt ist, kann damit
+            $(x_n/\lambda_n)_{n\in\N}$ keine beschränkte Teilfolge enthalten,
+            d.\,h. es gilt
+            \[ \norm{ x_n/\lambda_n } \to\infty \fuer n\to\infty  . \]
+            Für alle $n\in\N$ gilt $\norm{x_n}=1$, also muss
+            $(\lambda_n)_{n\in\N}$ eine Nullfolge sein. Damit ist $0$ der einzig
+            mögliche Häufungspunkt von $\sigma(T)\setminus\{0\}$.
+            Insbesondere ist $\sigma(T)\setminus B_r(0)$ endlich für alle
+            $r\in\R[>0]$. Damit ist $\sigma(T)\setminus\{0\}$ (als abzählbare
+            Vereinigung endlicher Mengen) abzählbar.
+            
+        \item
+            Dies folgt aus \cref{vl21:satz8.16}, denn:
+            Für $\lambda\in\sigma(T)\setminus\{0\}$ ist $\Id-T/\lambda$ ein
+            Fredholm-Operator mit $N(\Id-T/\lambda) = N(\lambda\Id-T)$.
+        \\
+        \qedhere
+    \end{enumerate}
+\end{proof}
+
+% 8.18
+\begin{thEmpty}[Fredholm-Alternative]
+    Sei $\lambda\in\K\setminus\{0\}$ und $T\in K(X)$. Dann gilt die
+    \emph{Fredholm-Alternative}: Entweder ist $\lambda x - Tx = y$ eindeutig
+    lösbar für alle $y\in X$, oder aber $\lambda x - Tx = 0$ hat nicht-triviale
+    Lösungen (also von $0$ verschiedene Lösungen).
+\end{thEmpty}
+
+\begin{proof}
+    Es gilt:
+    \begin{align*}
+        \lambda x - Tx = 0 \text{ eindeutig lösbar}
+        &\iff N(\lambda\Id-T) = \{0\}   \\
+        &\iff R(\lambda\Id-T) = X       \\
+        &\iff \lambda x - Tx = y \text{ ist lösbar}
+        \\[-1.5\baselineskip]
+    \end{align*}
+\end{proof}
+
+
+% 9
+\chapter{Spektralsatz für kompakte normale Operatoren}
+Wir erinnern an den Begriff der adjungierten Abbildung:
+Seien $X$ und $Y$ Banachräume und sei $T\in L(X,Y)$,
+so ist $T'\colon Y'\to X'$ gegeben durch $(T'y')(x) = y'(Tx)$
+für alle $x\in X, y'\in Y'$. (Siehe auch \cref{vl10:def:adjoperator}.)
+
+Im Folgenden bezeichnet $J_H$ für einen Hilbertraum~$H$ die Isometrie
+$H\to H'$ aus dem Rieszschen Darstellungssatz \pref{vl12:riesz}.
+(\emph{Achtung:} dies ist nicht zu verwechseln mit der Isometrie aus
+\cref{vl07:satz4.18}.)
+
+\begin{thDef}[Hilbertraum-Adjungierte]
+    Seien $X,Y$ Hilberträume. Dann heißt der Operator
+    \[ T* \defeq J_X^{-1} T' J_Y^{\phantom{-1}} \quad\in\; L(Y,X) \]
+    \emph{Hilbertaum-Adjungierte (von $T$)}. Sei nun $X=Y$. Gilt $T=T*$,
+    so nennen wir $T$ \emph{selbstadjungiert}. Gilt $TT* = T*T$, so
+    nennen wir $T$ \emph{normal}.
+    %
+    \[
+        \xymatrix{
+            X \ar@<3pt>[r]^T \ar[d]_{J_X} & 
+              \ar@<2pt>@{-->}[l]^{T^{\mathrlap{\ast}}} Y \ar[d]^{J_Y}  \\
+            X' & \ar[l]_{T^{\mathrlap{\prime}}} Y'
+        }
+    \]
+\end{thDef}
+
+% 9.2
+\begin{thLemma}
+    Seien $X,Y$ Banachräume und $T\in L(X,Y)$. Dann ist $T*$
+    charakterisiert durch folgende Eigenschaft: für alle $x\in X,\,y\in Y$
+    gilt
+    \[ \SP{x,T*y}_X \;=\; \SP{Tx,y}_Y  . \]
+\end{thLemma}
+
+\begin{proof}
+    Seien $x\in X,\,y\in Y$. Dann gilt:
+    \[ \SP{x,T*y}_X = \SP{x, J_X^{-1}T'J_Yy}_X
+        = (T'J_Yy)(x) = (J_Yy)(Tx) = \SP{Tx,y}
+    . \]
+\end{proof}
+
+% 9.3
+\begin{thLemma}
+    Sei $H$ ein Hilbertraum über $\K$ und $T\in L(H)$ normal. Ist $x\in H$ ein
+    Eigenvektor von $T$ zum Eigenwert $\lambda\in\K$, so ist $x$ auch ein
+    Eigenvektor von $T*$ zum Eigenwert~$\ol\lambda$.
+\end{thLemma}
+
+\begin{proof}
+    Weil $T$ normal ist, ist auch $(\lambda\Id-T)$ normal, denn
+    $(\lambda\Id-T)* = \ol\lambda\Id-T*$, also
+    \begin{align*}
+        (\lambda\Id-T)* (\lambda\Id-T)
+        &= \abs{\lambda}^2\Id-\ol\lambda T - \lambda T* + T*T 
+        \\
+        &= \abs{\lambda}^2\Id-\ol\lambda T - \lambda T* + TT*
+         = (\lambda\Id-T) (\lambda\Id-T)* 
+    . \end{align*}
+    Es gilt weiter $\norm{T*x} = \norm{Tx}$ für alle $x\in H$, denn:
+    \[ \SP{T*x,T*x} = \SP{TT*x,x} = \SP{T*Tx,x} 
+        = \ol{\SP{x,T*Tx}} = \ol{\SP{Tx,Tx}}
+        = \SP{Tx,Tx}
+    . \]
+    Wegen $(\lambda\Id-T)* = \ol\lambda\Id-T*$, folgt für $x\in H$ mit
+    $Tx=\lambda x$:
+    \[ 0 = \norm{Tx-\lambda x} = \norm{(\lambda\Id-T)*x} 
+         = \norm{(\ol\lambda\Id-T*)x}
+    . \]
+    Dies zeigt die Behauptung.
+    \\
+\end{proof}
+
+\nnBemerkung Im vorangehenden Beweis haben wir gesehen:
+Ist $H$ ein Hilbertraum und $T\in L(H)$ normal, so gilt:
+\[ \forall\,x\in H\colon\quad \norm{T*x} = \norm{Tx}  . \]
+
+% 9.4
+\begin{thLemma}
+    % TODO v check assumptions (H\neq\{0\} !?)
+    Sei $H$ ein Hilbertraum über~$\C$ und $T\in L(H)$ normal. Dann gilt:
+    \[ \sup_{\lambda\in\sigma(T)} \abs{\lambda}  =  \norm{T}  . \]
+\end{thLemma}
+
+\begin{proof}
+    Wir wissen schon, dass
+    \[ \sup_{\lambda\in\sigma(T)} \abs{\lambda} 
+        = \lim_{m\to\infty} \norm{T^m}^{1/m} \leq \norm{T}
+    \]
+    gilt \pcref{vl20:satz8.11}.
+    Wir zeigen nun für alle $m\in\N$:
+    \[ \norm{T^m} \geq \norm{T}^m  , \]
+    woraus dann durch Wurzelziehen und Grenzwertbildung die Behauptung folgt.
+    Für $m=1$ ist die Ungleichung klar. Sei $m\in\N_{\geq2}$. Dann
+    gilt:
+    \begin{align*}
+        \norm{T^mx}^2 
+        &= \SP{T^mx,T^mx} = \SP{T^{m-1}x, T*T^m x}
+        \\
+        &\overset{\mathclap{\hyperref[vl02:CSU]{\text{\tiny CSU}}}}\leq
+        \norm{T^{m-1}x} \, \norm{T*T^m x}
+        = \norm{T^{m-1}x}\, \norm{T^{m+1}x}
+        \\
+        &\leq \norm{T^{m-1}} \, \norm{T^{m+1}} \, \norm{x}^2
+    \end{align*}
+    Damit gilt also
+    \[ \norm{T^m}^2 \leq \norm{T^{m-1}} \, \norm{T^{m+1}}
+        \leq \norm{T}^{m-1} \, \norm{T^{m+1}}
+    . \]
+    Mit $\norm{T^1} \geq \norm{T}^1$ erhalten wir so induktiv:
+    \[ \norm{T^{m+1}} \geq \frac{\norm{T^m}^2}{\norm{T}^{m-1}}
+        \geq \norm{T}^{2m-(m-1)} = \norm{T}^{m+1}
+    . \]
+\end{proof}
+
+\pagebreak[2]
+% 9.5
+\begin{thSatz} \label{vl22:satz9.5}
+    Sei $H$ ein Hilbertraum und $T\in L(H)$. Dann gilt:
+    \begin{enumerate}[(a)]
+        \item \label{vl22:satz9.5:a}
+            Ist $T$ selbstadjungiert und kompakt, so gilt $\sigma(T)\subset\R$.
+            
+        \item \label{vl22:satz9.5:b}
+            Ist $T$ normal, so haben verschiedene Eigenwerte zueinander
+            orthogonale Eigenvektoren.
+    \end{enumerate}
+\end{thSatz}
+
+\begin{proof}
+    \begin{enumerate}[(a)]
+        \item
+            Sei $\lambda\in\sigma(T)\setminus\{0\}$. Dann liefert der
+            Spektralsatz~\pref{vl21:spektralsatz}, dass $\lambda$ ein Eigenwert
+            sein muss. Also existiert ein $x\in H\setminus\{0\}$ mit $Tx=\lambda
+            x$. Somit folgt:
+            \[ \lambda \, \SP{x,x}
+                = \SP{Tx,x} = \SP{x,Tx} = \ol{\SP{Tx,x}} 
+                = \ol\lambda \, \SP{x,x}
+            . \]
+            Wegen $x\neq0$ gilt $\SP{x,x}>0$ und damit erhalten wir
+            $\lambda=\ol\lambda$, also muss $\lambda\in\R$ gelten.
+            
+        \item
+            Seien $\lambda,\mu\in\sigma(T)$ verschiedene Eigenwerte von $T$ mit
+            Eigenvektoren $x$ bzw. $y$ aus $H$. Dann gilt:
+            \begin{align*}
+                \lambda\, \SP{x,y} &= \SP{\lambda x, y} = \SP{Tx,y} \\
+                &= \SP{x,T*y} = \SP{x,\ol\mu y} = \mu \, \SP{x,y}
+            . \end{align*}
+            Wegen $\lambda\neq\mu$ muss also $\SP{x,y}=0$ gelten.
+    \end{enumerate}
+\end{proof}
+
+\nnBemerkung
+\mycref{vl22:satz9.5:a} gilt auch ohne die Voraussetzung, dass $T$ kompakt ist,
+ist dann allerdings schwieriger zu beweisen.
+
+% 9.6
+\begin{thSatz}
+    Sei $H$ ein Hilbertraum und $T\in L(H)$ selbstadjungiert. Dann gilt:
+    \[ \norm{T} = \sup_{\substack{x\in H,\\\norm{x}\leq1}}
+        \abs{\SP{Tx,x}}  
+    . \]
+\end{thSatz}
