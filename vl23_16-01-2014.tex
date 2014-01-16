@@ -1,0 +1,214 @@
+\begin{proof}
+    \enquote{$\geq$} folgt aus\quad $\forall\,x\in H\colon\;
+    \abs{\SP{Tx,x}} \leq \norm{Tx}\, \norm{x}
+    \leq \norm{T} \, \norm{x} \, \norm{x}$.
+    
+    \enquote{$\leq$}: Setze $M \defeq \sup_{x\in H,\,\norm{x}\leq1}
+        \abs{\SP{Tx,x}}$. Seien $x,y\in H$. Aus $T=T*$ folgt:
+        \[ \SP{T(x+y), x+y} - \SP{T(x-y), x-y} = 2 \SP{Tx,y} + 2 \SP{Ty,x}
+            = 4 \Re\SP{Tx,y}
+        . \]
+        Die Parallelogrammidentität \pmycref{vl02:satz2.8:parallelogramm} liefert:
+        \[ 4\Re\SP{Tx,y}
+            \leq M \, \bigl( \norm{x+y}^2 + \norm{x-y}^2 \bigr)
+            = 2M \, \bigl( \norm{x}^2 + \norm{y}^2 \bigr)
+        . \]
+        Daraus folgt für $x,y\in H$ mit $\norm{x},\norm{y}\leq 1$:
+        \[ \Re\SP{Tx,y} \leq M  . \]
+        Indem wir $y$ mit einem skalaren Faktor (aus $\K$) multiplizieren,
+        können wir annehmen, dass $\Re\SP{Tx,y} = \abs{\SP{Tx,y}}$ gilt.
+        Für $Tx\neq0$ ergibt dies mit $y = Tx/\norm{Tx}$ also
+        \[ M \geq \abs{\SP{Tx,y}} = \frac{\abs{\SP{Tx,Tx}}}{\norm{Tx}}
+            = \norm{Tx}
+        . \]
+        Daraus folgt $\norm{T}\leq M$.
+        \\
+\end{proof}
+
+% 9.7
+\begin{thKorollar}
+    Sei $H$ ein Hilbertraum und $T\in L(H)$ selbstadjungiert. Falls $T$ außerdem
+    positiv semidefinit ist, d.\,h. es gilt $\SP{Tx,x} \geq 0$ für alle $x\in H$, so gilt:
+    \[ \sup_{\lambda\in\sigma(T)} \lambda
+        = \sup_{\substack{x\in H,\\\norm{x}\leq1}} \abs{\SP{Tx,x}}  
+    . \]
+\end{thKorollar}
+
+\begin{proof}
+    Folgt direkt aus \cref{vl22:lemma9.4} und \cref{vl22:satz9.6}.
+    \\
+\end{proof}
+
+% 9.8
+\begin{thLemma} \label{vl23:lemma9.8}
+    Sei $H$ ein Hilbertraum und $T\in L(H)$.
+    \begin{enumerate}[(a)]
+        \item
+            Gilt $\K=\C$ und ist $T$ normal, so existiert ein
+            $\lambda\in\sigma(T)$ mit $\abs{\lambda} = \norm{T}$.
+            
+        \item
+            Gilt $\K=\R$ und ist $T$ selbstadjungiert und kompakt, so ist
+            $\norm{T}$ oder $-\norm{T}$ ein Eigenwert von $T$.
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}
+    \begin{enumerate}[(a)]
+        \item
+            Nach \cref{vl20:satz8.11} existiert ein $\lambda\in\sigma(T)$ mit
+            \[ \abs\lambda = \lim_{n\to\infty} \, \norm{T^n}^{1/n}  . \]
+            Die Behauptung folgt nun aus \cref{vl22:lemma9.4}.
+            
+        \item
+            Nach \cref{vl22:satz9.6} existiert eine Folge $\nSeq x$ in
+            $\setclosure{B_1(0)}\subset H$ mit 
+            \[ \abs{\SP{Tx_n,x_n}} \to \norm{T} \fuer n\to\infty  . \]
+            Gehe im Folgenden ggf. (vermöge der Kompaktheit von $T$) zu
+            Teilfolgen über, um die Existenz der Grenzwerte zu erhalten. Setze
+            \[ \lambda \defeq \lim_{n\to\infty} \SP{Tx_n,x_n}
+                \qundq
+                y \defeq \lim_{n\to\infty} Tx_n
+            . \]
+            Es gilt:
+            \begin{align*}
+                \norm{Tx_n - \lambda x_n}^2
+                &= \SP{Tx_n-\lambda x_n,\, Tx_n - \lambda x_n}
+                \\
+                &= \norm{Tx_n}^2 - 2\lambda\,\SP{Tx_n,x_n}+\lambda^2\norm{x_n}^2
+                \\
+                &\leq 2\lambda^2 - 2\lambda\,\SP{Tx_n,x_n}
+                \\
+                &\to 0 \fuer n\to\infty
+            \end{align*}
+            Daher gilt $\lambda x_n\to y$ für $n\to\infty$ und damit
+            \[ Ty = \lambda\lim_{n\to\infty} Tx_n = \lambda y  . \]
+            Wegen $\abs\lambda = \norm{T}$ folgt die Behauptung,
+            falls $y\neq 0$ gilt. Falls $y=0$ gilt, so ist
+            $(Tx_n)_{n\in\N}$ eine Nullfolge und somit erhalten wir
+            \[ \norm{T} = \lim_{n\to\infty} \abs{\SP{Tx_n,x_n}} = 0  , \]
+            d.\,h. $T=0$ und dafür ist die Behauptung trivialerweise erfüllt.
+    \end{enumerate}
+\end{proof}
+
+% 9.9
+\begin{thTheorem}%
+    [Spektralsatz für kompakte, normale bzw. selbstadjungierte Operatoren]
+    %
+    Sei $H$ ein Hilbertraum über $\K$ und $T\in K(H)$. Für $\K=\C$ sei $T$
+    außerdem normal und für $\K=\R$ sei $T$ selbstadjungiert. Dann existiert ein
+    (eventuell endliches) Orthonormalsystem $e_1,e_2,\dots$ sowie eine
+    (eventuell endliche) Nullfolge $\lambda_1,\lambda_2,\dots$ in
+    $\K\setminus\{0\}$, so dass
+    \[ H = N(T) \;\texthilbertsumsymbol\; \setclosure{\spann\{e_1,e_2,\dots\}} 
+    \]
+    sowie
+    \[ Tx = \sum_k \lambda_k \, \SP{x,e_k} \, e_k \]
+    für alle $x\in H$ gilt. Dabei sind die $\lambda_k$ die von $0$ verschiedenen
+    (aber nicht notwendigerweise unterschiedlichen) Eigenwerte von $T$ und für
+    alle~$k$ ist $e_k$ ist ein Eigenvektor zu $\lambda_k$. Weiter gilt:
+    \[ \norm{T} = \max_k \, \abs{\lambda_k}  . \]
+\end{thTheorem}
+
+\nnBemerkung Vergleiche LinAlg: symmetrische Matrizen sind diagonalisierbar
+bezüglich einer Orthonormalbasis aus Eigenvektoren.
+
+\begin{proof}
+    Sei $\mu_1,\mu_2,\dots$ die Folge der paarweise verschiedenen Eigenwerte
+    von $T$, die nicht verschwinden (dies sind höchstens abzählbar viele nach dem
+    Spektralsatz für kompakte Operatoren \ref{vl21:spektralsatz}). Sei
+    $d_i$ die (endliche) Dimension des Eigenraums zum Eigenwert $\mu_i$.
+    Definiere nun
+    \[ (\lambda_1,\lambda_2,\lambda_3,\dots)
+        \defeq (\underbrace{\mu_1,\dots,\mu_1}_{d_1\text{-mal}},\,
+                \underbrace{\mu_2,\dots,\mu_2}_{d_2\text{-mal}},\,
+                \dots)
+    . \]
+    Weil die $\mu_k$ eine Nullfolge bilden, gilt dies auch für die $\lambda_k$.
+    Zu jedem Eigenraum $N(\mu_i\Id-T)$ wähle eine Orthonormalbasis
+    $\{e_1^i,\dots,e_{d_i}^i\}$ und definiere
+    \[ (e_1,e_2,e_3,\dots)
+        \defeq (e_1^1,\dots,e_{d_1}^1,\, e_1^2,\dots,e_{d_2}^2,\, \dots)
+    . \]
+    Nach \cref{vl22:satz9.5} bilden die $e_k$ nun ein Orthonormalsystem und es
+    gilt: $Te_k = \lambda_k e_k$ für alle $k$. Mit dem gleichen Argument folgt
+    \[ N(T) \perp e_k \]
+    für alle $k$ (da ein Element aus $N(T)\setminus\{0\}$ Eigenvektor zum
+    Eigenwert $0$ ist). Der Raum
+    \[ H_1 \defeq
+        N(T) \;\texthilbertsumsymbol\; \setclosure{\spann\{e_1,e_2,\dots\}} 
+    \]
+    ist ein abgeschlossener Unterraum von $H$. Es bleibt $H_1 = H$ zu zeigen.
+    Wir setzen $H_2 \defeq H_1^\perp$ und behaupten, dass $H_2$ ein
+    $T$-invarianter Unterraum ist. Sei dazu $y\in H$ mit
+    $\SP{y,e_k} = 0$ für alle $k$. Dann gilt
+    \[ \SP{Ty,e_k} = \SP{y,T*e_k} = \SP{y,\ol{\lambda}_k e_k}
+        = \lambda_k \, \SP{y,e_k} = 0
+    , \]
+    also $Ty \perp H_1$. Analog zeigt man $Ty \perp N(T)$ für $y\in N(T)^\perp$.
+    Damit können wir $T_2\defeq T\vert_{H_2}$ als Operator aus $K(H_2)$
+    auffassen. Angenommen $T_2$ ist nicht der Nulloperator. Dann gilt
+    $\norm{T_2}\neq0$ und somit sichert \cref{vl23:lemma9.8} die Existenz eines
+    Spektralwerts $\lambda\in\K\setminus\{0\}$, welcher nach dem Spektralsatz für
+    kompakte Operatoren \pcref{vl21:spektralsatz} ein Eigenwert sein muss,
+    d.\,h. es gibt außerdem ein $x\in H_2\setminus\{0\}$ mit $T_2x=\lambda x$.
+    Daraus folgt aber auch $\lambda\in\sigma(T)$ und somit
+    $x\in\spann\{e_1,e_2,\dots\} \subset H_2^\perp$. Also ergibt sich
+    \[ x\in H_2 \cap H_2^\perp = \{0\}  , \]
+    ein Widerspruch. Die Annahme war also falsch und es gilt doch $T_2=0$, und
+    daher auch $H_2\subset N(T) \subset H_2^\perp$, also $H_2 = \{0\}$. Dies
+    zeigt den ersten Teil der Behauptung. Sei nun $x\in H$. Dann gibt es also
+    ein $y\in N(T)$, so dass
+    \[ x = y + \sum_k \, \SP{x,e_k} \, e_k \]
+    gilt (für den rechten Summanden, siehe \cref{vl14:satz6.17}).
+    Aus der Stetigkeit von $T$ folgt:
+    \[ Tx = Ty + \sum_k \, \SP{x,e_k} \, Te_k
+          = \sum_k \, \lambda_k \, \SP{x,e_k} \, e_k
+    . \]
+    Im Beweis von \cref{vl20:satz8.11} haben wir gesehen, dass stets
+    $\sup_{\lambda\in\sigma(T)}\,\abs\lambda \leq \norm{T}$ gilt. Aus
+    \cref{vl23:lemma9.8} folgt, dass dieses Supremum unter den gegebenen
+    Voraussetzungen sowohl im Fall $\K=\C$ als auch im Fall $\K=\R$
+    angenommen wird. Daraus erhalten wir die letzte Behauptung.
+    \\
+\end{proof}
+
+
+% 10
+\chapter{\texorpdfstring{${L\protect\rule{0pt}{16pt}}^p$}{Lp}-Räume}
+\begin{thEmpty}[Einige Begriffe und Resultate über Maß- und Integrationstheorie,
+    die jeder Büger wissen sollte]
+    %
+    Maßraum, $\sigma$-Algebra, Maß, messbare Menge/Funktion.
+    
+    Sei $(\Omega, S, \mu)$ ein Maßraum (also $\Omega$ eine Menge,
+    $S\subset\pot{\Omega}$ eine $\sigma$-Algebra und $\mu$ ein Maß).
+    
+    \nnDef $\Omega$ heißt $\sigma$-finit, falls eine Folge $\nSeq\Omega$ in $S$
+    existiert, so dass $\Omega = \bigcup_{n=1}^\infty \Omega_n$ gilt und für
+    alle $n\in\N$ das Maß von $\Omega_n$ endlich ist, d\,h.
+    $\mu(\Omega_n)<\infty$.
+    
+    \nnDef
+    \begin{enumerate}[(i)]
+        \item
+            Die Menge $\Lp{1}(\Omega,\mu)$ (kurz auch $\Lp1(\Omega)$ oder nur
+            $\Lp1$) bezeichnet den Raum aller integrierbaren Funktionen
+            $\Omega\to\R$.
+            
+        \item
+            $\norm{f}_{\Lp1} = \norm{f}_1 = \int_\Omega\mkern2mu \abs{f}
+            \dif[\,]\mu = \int \abs{f}$
+    \end{enumerate}
+\end{thEmpty}
+
+\nnBemerkung
+\begin{enumerate}[(i)]
+    \item
+        Identifiziere Funktionen, die sich nur auf einer Nullmenge
+        unterscheiden.
+    \item
+        Wir sagen eine Eigenschaft gilt fast überall, falls eine Nullmenge~$N$
+        existiert, so dass die betrachtete Eigenschaft für alle
+        $x\in\Omega\setminus N$ gilt.
+\end{enumerate}

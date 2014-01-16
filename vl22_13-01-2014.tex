@@ -171,10 +171,12 @@ Ist $H$ ein Hilbertraum und $T\in L(H)$ normal, so gilt:
 \[ \forall\,x\in H\colon\quad \norm{T*x} = \norm{Tx}  . \]
 
 % 9.4
-\begin{thLemma}
+\begin{thLemma} \label{vl22:lemma9.4}
     % TODO v check assumptions (H\neq\{0\} !?)
     Sei $H$ ein Hilbertraum über~$\C$ und $T\in L(H)$ normal. Dann gilt:
-    \[ \sup_{\lambda\in\sigma(T)} \abs{\lambda}  =  \norm{T}  . \]
+    \[ \sup_{\lambda\in\sigma(T)} \abs{\lambda} 
+        = \lim_{m\to\infty} \norm{T^m}^{1/m} = \norm{T}
+    . \]
 \end{thLemma}
 
 \begin{proof}
@@ -252,8 +254,9 @@ Ist $H$ ein Hilbertraum und $T\in L(H)$ normal, so gilt:
 ist dann allerdings schwieriger zu beweisen.
 
 % 9.6
-\begin{thSatz}
-    Sei $H$ ein Hilbertraum und $T\in L(H)$ selbstadjungiert. Dann gilt:
+\begin{thSatz} \label{vl22:satz9.6}
+    Sei $H$ ein Hilbertraum über $\K$ und $T\in L(H)$ selbstadjungiert. Dann
+    gilt:
     \[ \norm{T} = \sup_{\substack{x\in H,\\\norm{x}\leq1}}
         \abs{\SP{Tx,x}}  
     . \]
