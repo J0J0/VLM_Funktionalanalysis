@@ -1,0 +1,232 @@
+\begin{thSatz}[Satz von Beppo-Levi/über monotone Konvergenz]
+    Sei $\nSeq f$ eine Folge in $\Lp1(\Omega,\mu)$ mit
+    \begin{enumerate}[(a)]
+        \item $f_1(x) \leq f_2(x) \leq f_3(x) \leq \cdots \mfu$
+        \item $\sup_{n\in\N} \int_\Omega f_n < \infty$.
+    \end{enumerate}
+    Dann konvergiert $f_n(x)$ für $n\to\infty$ fast überall in $\Omega$ gegen
+    einen endlichen Grenzwert, den wir mit $f(x)$ bezeichnen. Es gilt
+    \[ \norm{f_n-f}_1 \to 0 \fuer n\to\infty  . \]
+\end{thSatz}
+
+\begin{thSatz}[Satz von Lebesgue/über dominierte Konvergenz]
+    Sei $g\in\Lp1(\Omega,\mu)$ und sei $f\colon\Omega\to\R$ messbar sowie 
+    $\nSeq f$ eine Folge messbarer Funktionen. Es gelte $\abs{f_n}\leq g$ fast
+    überall für alle $n\in\N$ und $f_n\to f$ punktweise fast überall für
+    $n\to\infty$. Dann gilt auch  $f,f_n\in\Lp1(\Omega,\mu)$ (für alle $n\in\N$)
+    und es gilt $f_n\to f$ in $\Lp1(\Omega,\mu)$ für $n\to\infty$.
+\end{thSatz}
+
+% 10.2
+\begin{thDef}
+    Sei $p\in[1,\infty)$. Wir definieren
+    \[ \Lpp(\Omega) \defeq \bigl\{
+        f\colon\Omega\to\R \Mid
+        \text{$f$ ist messbar und $\abs{f}^p\in\Lp1(\Omega)$}
+        \bigr\}
+    \]
+    und
+    \[ \norm{f}_{\Lpp} \defeq \norm{f}_p \defeq \left( \mkern1.5mu
+        \int_\Omega \abs{f}^p \dif\mu
+        \right)^{\!\mathrlap{1/p}}
+    \,. \]
+\end{thDef}
+
+\nnBemerkung Wir sehen später, dass $\norm{f}_{\Lpp}$ tatsächlich eine Norm ist.
+
+\begin{thDef}
+    Wir definieren
+    \[ \Lp\infty(\Omega) \defeq \bigl\{
+        f\colon\Omega\to\R \Mid
+        \text{$f$ ist messbar und es existiert ein $c\in\R[>0]$ mit }
+        \abs{f(x)} \leq c \;\,\fu
+        \bigr\}
+    \]
+    und
+    \[ \norm{f}_{\Lp\infty} \defeq \norm{f}_\infty
+        \defeq \inf\bigl\{ c\in\R[>0] \Mid \abs{f(x)} \leq c \;\,\fu \bigr\}
+    . \]
+\end{thDef}
+
+\begin{thBemerkungen}\hfill
+    \begin{enumerate}[(i)]
+        \item
+            Für $\Omega=\N$ und das Zählmaß~$\mu$ auf $\N$ gilt $\ell^p = \Lpp(\N,\mu)$.
+        \item \label{vl24:bemi}
+            Für $f\in\Lp\infty(\Omega)$ gilt
+            $\abs{f(x)} \leq \norm{f}_\infty$ \fu
+    \end{enumerate}
+\end{thBemerkungen}
+
+\begin{proof}[Beweis von \ref{vl24:bemi}]
+    Sei $f\in\Lp\infty(\Omega)$. Dann existiert eine Folge $\nSeq c$ in $\R[>0]$
+    mit 
+    \[ c_n\to\norm{f}_\infty \qundq 
+        \forall\,n\in\N\colon\quad \abs{f(x)}\leq c_n \mfu
+    . \]
+    Für $n\in\N$ sei $E_n$ eine Nullmenge mit $\abs{f(x)}\leq c_n$ für alle
+    $x\in\Omega\setminus E_n$. Setze $E \defeq \bigcup_{n\in\N} E_n$. Dann ist
+    (bekannterweise) auch $E$ eine Nullmenge und es gilt:
+    \[ \forall\,n\in\N\;\forall\,x\in\Omega\setminus E\colon\quad
+        \abs{f(x)}\leq c_n
+    . \]
+    Es folgt $\abs{f(x)}\leq \norm{f}_\infty$ für alle $x\in\Omega\setminus E$.
+    \\
+\end{proof}
+
+\nnNotation Zu $p\in[1,\infty]$ bezeichne $p'\in[1,\infty]$ den
+\emph{konjugierten Exponenten} mit
+\[ \frac{1}{p} + \frac{1}{p'} = 1  . \]
+D.\,h. es gilt $p'=p/(p-1)$ für $p\in(1,\infty)$,
+$p'=\infty$ für $p=1$ und $p'=1$ für $p=\infty$.
+
+\begin{thTheorem}[Hölder'sche Ungleichung]
+    Sei $p\in[1,\infty]$. Für $f\in\Lpp(\Omega)$ und
+    $g\in\Lpp[p^{\mathrlap\prime}](\Omega)$
+    gilt: 
+    \[ fg\in\Lp1(\Omega) \qundq
+       \norm{fg}_1 \leq \norm{f}_p \, \norm{g}_{p'}  . \]
+\end{thTheorem}
+
+\begin{proofsketch}
+    Geht analog zum Beweis bei $\ell^p$: vgl. \cref{vl03:ellphoelder}.
+    Ersetze dabei jeweils $x_k,y_k$ durch $f(x),g(x)$ und Summen durch
+    Integrale.
+    \\
+\end{proofsketch}
+
+\nnBemerkungen
+\begin{enumerate}[(i)]
+    \item
+        Es gibt eine Erweiterung der Höler'schen Ungleichung:
+        Sei $k\in\N$, seien $p_1,\dots,p_k\in[1,\infty]$k
+        und für $i\in\setOneto k$ sei $f_i\in\Lpp[p_i](\Omega)$. Weiter sei
+        $p\in[1,\infty]$ mit
+        \[ \frac{1}{p} 
+            = \frac{1}{p_1} + \frac{1}{p_2} + \dots + \frac{1}{p_k}
+        . \]
+        Dann gilt für $f\defeq f_1\cdots f_k$:
+        \[ f\in\Lpp(\Omega) \qundq \norm{f}_p \leq
+            \norm{f}_{p_1} \cdots\, \norm{f}_{p_k}
+        . \]
+        
+    \item
+        Insbesondere gilt für $f\in\Lpp\cap\Lpp[q]$ mit $1\leq p\leq q\leq
+        \infty$ auch $f\in\Lpp[r]$ für alle $r\in[p,q]$. Weiter gilt
+        \[ \norm{f}_r \leq \norm{f}_p^\alpha \, \norm{f}_q^{1-\alpha} \]
+        für
+        \[ \frac{1}{r} = \frac{\alpha}{p} + \frac{1-\alpha}{q}
+        . \]
+        Diese Ungleichung nennt man \emph{Interpolationsungleichung}, welche
+        wichtig ist, um Funktionen in $\Lpp$-Räumen zu kontrollieren.
+\end{enumerate}
+
+% 10.6 
+\begin{thSatz}
+    Sei $p\in[1,\infty]$. Dann ist $\Lpp(\Omega)$ ein Vektorraum und
+    $\emptyNorm_{\Lpp}$ ist eine Norm.
+\end{thSatz}
+
+\begin{proofsketch}
+    Die Fälle $p\in\{1,\infty\}$ sind klar. Sei also $p\in(1,\infty)$. Wir gehen
+    vor wie im Fall für $\ell^p$ \pcref{vl03:ellpbanachraum}.
+    (Im Wesentlichen ist die $\triangle$-Ungleichung zu zeigen, alles andere ist
+    klar.)
+    \\
+\end{proofsketch}
+
+% 10.7
+\begin{thSatz}[Fischer-Riesz]
+    Sei $p\in[1,\infty]$. Dann ist $\Lpp(\Omega)$ ein Banachraum.
+\end{thSatz}
+
+\begin{proof}
+    Fall~$p=\infty$. Sei $\nSeq f$ eine Cauchy-Folge in $\Lp\infty$. Für jedes
+    $k\in\N$ existiert ein $N_k\in\N$ mit
+    \[ \forall\,m,n\in\N_{\geq N_k}\colon\quad
+        \norm{f_m-f_n}_\infty \leq \frac{1}{k}
+    . \]
+    Also existiert für jedes $k\in\N$ eine Nullmenge $E_k$ mit
+    \[ \forall\,m,n\in\N_{\geq N_k}\;\forall\,x\in\Omega\setminus E_k\colon\quad
+        \abs{f_m(x)-f_n(x)} \leq \frac{1}{k} 
+    . \]
+    Setze dann $E \defeq \bigcup_{k\in\N} E_k$, dann ist auch $E\subset\Omega$
+    eine Nullmenge. Da $(f_n(x))_{n\in\N}$ für
+    $x\in\Omega\setminus E$ eine Cauchy-Folge in $\R$ ist, existiert ein
+    $f(x)\in\R$ mit $f_n(x)\to f(x)$ für $n\to\infty$. Aus der obigen
+    Ungleichung folgt für $m\to\infty$:
+    \[ \forall\,n\in\N_{\geq N_k}\;\forall\,x\in\Omega\setminus E\colon\quad
+        \abs{f(x)-f_n(x)} \leq \frac{1}{k}
+    . \]
+    Daraus ergibt sich $f\in\Lp\infty(\Omega)$ und $\norm{f-f_n}_\infty \leq
+    1/k$ für alle $n\in\N_{\geq N_k}$. Daraus folgt
+    \[ f_n\to f \quad\text{in } \Lp\infty(\Omega) \text{ für } n\to\infty . \]
+    
+    Fall $p\in[1,\infty)$. Sei $\nSeq f$ eine Cauchy-Folge in
+    $\Lpp(\Omega)$. Es genügt zu zeigen, dass eine Teilfolge dieser Folge
+    konvergiert. Sei $(f_{n_k})_{k\in\N}$ eine Teilfolge, so dass für alle
+    $k\in\N$ gilt:
+    \[ \norm{f_{n_{k+1}}-f_{n_k}}_p \leq \frac{1}{2^k}  . \]
+    Im Folgenden schreiben wir wieder einfach $f_k$ für $f_{n_k}$. Wir behaupten
+    nun, dass $\kSeq f$ in $\Lpp(\Omega)$ konvergiert. Für alle $n\in\N$ sei
+    \[ g_n(x) \defeq \ksum^n \, \abs{f_{k+1}(x)-f_k(x)}  . \]
+    Dann gilt $\norm{g_n}_p \leq 1$ für alle $n\in\N$, was aus der obigen
+    Ungleichung und dem Konvergenzverhalten der geometrischen Reihe folgt.
+    Der Satz von der monotonen Konvergenz liefert ein $g\in\Lpp(\Omega)$ mit
+    \[ g_n(x) \to g(x) \mfu \fuer n\to\infty \]
+    und für alle $m,n\in\N$ mit $m\geq n\geq 2$ gilt:
+    \begin{align*}
+        \abs{f_m(x)-f_n(x)}
+            &\leq \abs{f_m(x)-f_{m-1}(x)} + \dots + \abs{f_{n+1}(x)-f_n(x)}
+            \\
+            &\leq g(x) - g_{n-1}(x) \to 0 \mfu \fuer n\to\infty
+    . \end{align*}
+    Dies zeigt aber, dass $(f_n(x))_{n\in\N}$ \fu\ konvergiert mit
+    Grenzwert $f(x)$. Es gilt
+    \[ \abs{f(x)-f_n(x)} \leq g(x) \mfu  , \]
+    insbesondere folgt also:
+    \[ f = \underbrace{f - f_n}_{\in\mkern2mu\Lpp} 
+         + \underbrace{f_n}_{\in\mkern2mu\Lpp}
+        \in \Lpp(\Omega)
+    . \]
+    Der Satz von Lebesgue liefert nun:
+    \[ \norm{f-f_n}_p \to 0 \fuer n\to\infty  , \]
+    denn:
+    \begin{gather*}
+        \abs{f(x)-f_n(x)}^p \to 0 \mfu \fuer n\to\infty
+        \\
+        \text{und}\quad
+        \abs{f-f_n}^p \leq g^p \in \Lp1(\Omega)
+    \end{gather*}
+\end{proof}
+
+% 10.8
+\begin{thSatz}
+    Sei $p\in[1,\infty]$ und $\nSeq f$ eine Folge in $\Lpp(\Omega)$. Sei weiter
+    $f\in\Lpp(\Omega)$ mit $\norm{f_n-f}_p\to 0$ für $n\to\infty$. Dann
+    existiert eine Teilfolge $(f_{n_k})_{k\in\N}$ und eine Funktion
+    $h\in\Lpp(\Omega)$, so dass gilt:
+    \begin{enumerate}[(a)]
+        \item
+            $f_{n_k}(x)\to f(x) \mfu \fuer k\to\infty$
+        \item
+            $\forall\,k\in\N\colon\quad \abs{f_{n_k}} \leq h(x) \mfu$
+    \end{enumerate}
+\end{thSatz}
+
+\begin{proofsketch}
+    Wähle die Teilfolge wie im vorangehenden Beweis und zeige die gewünschten
+    Aussagen mit ähnlichen Argumenten wie dort \ldots
+    \\
+\end{proofsketch}
+
+Das Ziel ist es nun, den Dualraum von $\Lpp(\Omega)$ zu beschreiben. Wir
+brauchen dazu etwas Maßtheorie.
+
+% 10.9
+\begin{thDef}
+    Sei $\Omega$ eine Menge und $S$ eine $\sigma$-Algebra auf $\Omega$. Eine
+    $\sigma$-additive Abbildung $\mu\colon S\to\R$ heißt \emph{signiertes Maß}
+    und eine $\sigma$-additive Abbildung $\mu\colon S\to\C$ heißt
+    \emph{komplexes Maß}.
+\end{thDef}

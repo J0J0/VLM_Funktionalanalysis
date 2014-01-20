@@ -142,6 +142,7 @@
 \newcommand{\nnDef}{\textbf{Definition:} }
 \newcommand{\nnBemerkung}{\textbf{Bemerkung:} }
 \newcommand{\nnBemerkungen}{\textbf{Bemerkungen:} }
+\newcommand{\nnNotation}{\textbf{Notation:} }
 
 
 % make * work like ' in math mode
@@ -263,6 +264,7 @@
 \newcommand{\emptySP}{\SP{\scdot,\scdot}}
 \newcommand{\eqdef}{\eqqcolon}
 \newcommand{\eqiff}{\vcentcolon\Longleftrightarrow}
+\newcommand{\fu}{\text{f.\,ü.}}
 \newcommand{\hadj}[1]{#1^\ast}
 \newcommand{\half}{\frac{1}{2}}
 \newcommand{\hbreak}{\hfill\\}
@@ -273,9 +275,10 @@
 \newcommand{\kSeq}[1]{\left(#1_k\right)_{k\in\N}}
 \newcommand{\ksum}[1][1]{\sum_{k=#1}}
 \newcommand{\laplace}{\Delta}
-\newcommand{\Lpp}[1][p]{{L\rule{0pt}{8.5pt}}^#1}
-\newcommand{\Lp}[1]{L^#1}
+\newcommand{\Lpp}[1][p]{{L\mathchoice{\rule{0pt}{9pt}}{\rule{0pt}{9pt}}{\rule{0pt}{6.5pt}}{\rule{0pt}{5pt}}}^{#1}}
+\newcommand{\Lp}[1]{L^{#1}}
 \newcommand{\mc}{\mathcal}
+\newcommand{\mfu}{\quad\text{f.\,ü.}}
 \newcommand{\mr}{\mathrm}
 \newcommand{\mt}{^\mathsf{t}}
 \newcommand{\neginfinfoc}{(-\infty,\infty]}
@@ -404,6 +407,7 @@ $\mkern2mu #1 \mkern1mu$%
 \input{vl21_09-01-2014}
 \input{vl22_13-01-2014}
 \input{vl23_16-01-2014}
+\input{vl24_20-01-2014}
 
 \end{document}
 
