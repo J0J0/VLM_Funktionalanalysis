@@ -1,0 +1,82 @@
+\nnBemerkungen
+\begin{enumerate}[(i)]
+    \item
+        Ist $\mu$ ein signiertes oder komplexes Maß, so gilt $\mu(\emptyset)=0$
+        wegen
+        \[ \mu(\emptyset) = \mu(\emptyset \cup \emptyset) 
+            = \mu(\emptyset) + \mu(\emptyset)
+        . \]
+        
+    \item
+        Wir betrachten $\Omega\subset\R^d$ und das Lebesgue-Maß $\leb^d$. Sei
+        $f\in \Lp1(\Omega)$. Dann definiert
+        \[ \mu\colon S\to\R, \quad E\mapsto \int_E f\dif{\leb^d} \]
+        ein signiertes Maß. Im Gegensatz zu Dichtefunktionen aus der
+        Wahrscheinlichkeitstheorie kann $f$ hier auch negative Werte annehmen.
+\end{enumerate}
+
+% 10.10
+\begin{thDef}
+    Sei $\mu$ ein signiertes oder komplexes Maß auf $S$. Für alle $E\in S$ setze
+    \[ \abs\mu(E) \defeq \sup\biggl\{ \, \ksum^n \, \abs{\mu(E_k)} \Mid 
+        \begin{gathered}
+            n\in\N, \; 
+            E_1,\dots,E_n \text{ aus $S$ und} \\ 
+            \text{paarweise disjunkt mit
+                $\textstyle E=\bigcup_{k=1}^n E_k$}
+        \end{gathered}
+        \biggr\}
+    . \]
+    Dann heißt $\abs\mu$ \emph{Variationsmaß zu $\mu$}. Weiter sei $\normvar\mu
+    \defeq \abs\mu(\Omega)$ die \emph{Totalvariation von $\mu$}. Wir nennen
+    $\mu$ \emph{beschränkt}, falls $\normvar\mu < \infty$ gilt.
+\end{thDef}
+%
+\nnBemerkung Aus der Definition ergibt sich leicht, dass das Variationsmaß
+additiv ist.
+
+% 10.11
+\begin{thSatz}[Satz von Radon-Nikodym] \label{vl25:radonnikodym}
+    Sei $(\Omega, S, \mu)$ ein $\sigma$-finiter Maßraum und sei $\nu\colon
+    S\to\K$ ein signiertes oder komplexes Maß mit $\normvar\nu < \infty$. Weiter
+    sei $\nu$ \emph{absolut stetig bezüglich $\mu$}, d.\,h. es gilt 
+    \[ \forall\, E\in S\colon \quad \mu(E) = 0 \implies \nu(E) = 0 . \]
+    Dann gibt es genau eine Funktion $f\in\Lp1(\Omega,\mu)$ mit
+    \[ \forall\,E\in S\colon\quad \nu(E) = \int_E f\dif\mu . \]
+\end{thSatz}
+
+Einen Beweis findet man beispielsweise im Buch von Alt oder 
+in vielen Büchern zur Maßtheorie; beispielsweise bei
+Halmos, \emph{Measure Theory}.
+
+\nnBemerkung 
+In der Situation von \cref{vl25:radonnikodym} nennt man die Funktion $f$ die
+\emph{Radon-Nikodym-Ableitung von $\nu$ bezüglich $\mu$}, welche auch oft mit
+$\frac{\mr d\nu}{\mr d\mu}$ bezeichnet wird.
+
+\nnBeispiel Wir betrachten $\leb^d$, das Lebensgue-Maß, und $\delta_0$, das
+Dirac-Maß bei $0$, d.\,h.  \[ \delta_0(E) = \begin{cases}
+1, & 0\in E \\ 0, & 0\notin E . \end{cases} \]
+Dann ist $\delta_0$ \emph{nicht} absolut stetig bezüglich
+$\leb^d$.
+
+\nnBemerkung Fast alle Aussagen der Integrationstheorie gelten entsprechend für
+Funktionen $f\colon\Omega\to\C$. Für $f = f_1 + if_2$ gilt beispielsweise
+\[ \int_\Omega f = \int_\Omega f_1 + i \int_\Omega f_2 \]
+und (mit Hilfe der Hölder'schen Ungleichung)
+\[ \abs*{\int_\Omega f} \leq \int_\Omega \abs{f}  . \]
+
+% 10.12
+\begin{thSatz}[Dualraum von \texorpdfstring{$\Lpp(\Omega)$}{Lp}]
+    Sei $(\Omega,S,\mu)$ ein $\sigma$-finiter Maßraum und sei $p\in[1,\infty)$
+    mit konjugiertem Exponenten $p'\in(1,\infty]$. Dann ist
+    \begin{align*}
+        J\colon \Lpp[p'](\Omega) &\to \bigl( \Lpp(\Omega) \bigr)'
+        \\
+        f &\mapsto \Bigl( 
+                g \mapsto \int_\Omega g\mkern2mu\ol{f} \dif\mu
+            \Bigr)
+    \end{align*}
+    ein konjugiert linearer, isometrischer Isomorphismus.
+\end{thSatz}
+
