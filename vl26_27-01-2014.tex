@@ -1,0 +1,247 @@
+\pagebreak[2]
+\nnBemerkungen
+\begin{enumerate}[(i)]
+    \item
+        Für $p\in[1,\infty)$ hat $\Lpp(\R^n)$ den Dualraum $\Lpp[p'](\R^n)$, da
+        $\R^n$ vermöge $\R^n = \bigcup_{n\in\N} B_n(0)$ ein $\sigma$-finiter
+        Raum ist.
+    \item
+        Für $p\in(1,\infty)$ ist die Voraussetzung, dass der Raum $\sigma$-finit
+        ist, nicht notwendig. (Siehe beispielsweise Alt.)
+    \item
+        $\Lp1(\Omega)$ und $(\Lp\infty(\Omega))'$ sind i.\,A. nicht isomorph.
+\end{enumerate}
+
+% 10.13
+\begin{thSatz}
+    Für $p\in(1,\infty)$ ist $\Lpp(\Omega)$ reflexiv. Es gilt weiter: Ist
+    $\kSeq f$ eine beschränkte Folge in $\Lpp(\Omega)$, so gibt es eine
+    Teilfolge $(f_{k_i})_{i\in\N}$ und ein $f\in\Lpp(\Omega)$ mit
+    \[ \forall\,g\in\Lpp[p'](\Omega)\colon\quad
+        \int_\Omega g f_{k_i} \dif\mu \to \int_\Omega g f \dif\mu
+        \fuer i\to\infty
+    . \]
+\end{thSatz}
+
+\begin{proof}
+    Die Isometrien
+    \[ J_p\colon \Lpp \to \bigl(\Lpp[p']\bigr)' \qundq
+        J_{p'}\colon \Lpp[p'] \to \bigl(\Lpp\bigr)'
+    \]
+    aus \cref{vl25:dualraumLp} haben die Eiegenschaft
+    \[ \forall\,f\in\Lpp,\,g\in\Lpp[p']\colon\quad
+        \ol{(J_{p'}g)(f)} =
+        \int_\Omega \ol{f} g \dif\mu = (J_pf)(g)
+    . \]
+    Sei $f''\in(\Lpp)''$. Dann ist durch
+    \[ g\mapsto f'(g) \defeq \ol{ f''(J_{p'}g) } \]
+    ein Funktional $f'\in (\Lpp[p'])'$ gegeben. Setze jetzt
+    \[ f \defeq J_p^{-1} f' \quad \in \Lpp  . \]
+    Für $g\in\Lpp[p']$ gilt nun:
+    \[ f'(g) = (J_pf)(g) = \ol{ (J_{p'}g)(f) }
+        = \ol{ (J_{\Lpp}f)(J_{p'}g) }
+    , \]
+    wobei $J_{\Lpp}\colon\Lpp\to(\Lpp)''$ die Isometrie aus \cref{vl07:satz4.18}
+    ist. Somit gilt:
+    \[ f''(J_{p'}g) = (J_{\Lpp}f)(J_{p'}g) \]
+    für alle $g\in\Lpp[p']$. Da $J_{p'}$ surjektiv ist, folgt $f''=J_{\Lpp}f$,
+    womit die Reflexivität von $\Lpp$ gezeigt ist.
+    Die zweite Behauptung folgt \cref{vl17:satz7.11} und \cref{vl25:dualraumLp}.
+    \\
+\end{proof}
+
+\nnBemerkung Im reellen Fall (also $\K=\R$) gilt insbesondere
+\[ J_{\Lpp}^{-1} = J_p^{-1} (J_{p'})'  , \]
+wobei $(J_{p'})'\colon (\Lpp)''\to\bigl(\Lpp[p']\bigr)'$ der adjungierte
+Operator zu $J_{p'}$ ist \pcref{vl10:def:adjoperator}.
+
+\nnBemerkung
+Im Allgemeinen ist $(\Lp\infty)'$ \enquote{größer} als $\Lp1$.
+Man kann $(\Lp\infty)'$ als Raum von Maßen interpretieren.
+Im Allgemeinen ist weder $\Lp1$ noch $\Lp\infty$ reflexiv.
+
+% 10.14
+\begin{thSatz}
+    \begin{enumerate}[(i)]
+        \item
+            Sei $S\subset\R^n$ kompakt. Dann ist $C^0(S)$ separabel.
+        \item
+            Für $p\in[1,\infty)$ ist $\Lpp(\R^n)$ separabel und
+            $\Coo(\R^n)$ liegt dicht in $\Lpp(\R^n)$.
+        \item
+            Sei $S\subset\R^n$ Lebesgue-messbar und $\leb^n(S)>0$. Dann ist
+            $\Lp\infty(S)$ nicht separabel.
+    \end{enumerate}
+\end{thSatz}
+
+\begin{proof}
+    \begin{enumerate}[(i)]
+        \item
+            Idee: Überdecke $S$ mit einem $\epsilon$-Gitter.
+            % TODO: Skizze
+            Sei $\epsilon\in\R[>0]$. Für $z\in\epsilon\Z^n$ sei
+            \begin{align*}
+                Q_{\epsilon,z} &\defeq
+                \{ x\in\R^n \Mid z_i\leq x_i \leq z_i+\epsilon \}
+                \\\shortintertext{und}
+                M_\epsilon &\defeq
+                \{ z\in\epsilon\Z^n \Mid Q_{\epsilon,z} \cap S \neq \emptyset \}
+            . \end{align*}
+            Da $S$ kompakt ist, besteht $M_\epsilon$ stets aus endlich vielen
+            Punkten. Zu $y\in M_\epsilon$ wähle $x_{\epsilon,y}\in S$ mit
+            \[ \norm{x-x_{\epsilon,y}}_\infty \leq \epsilon  . \]
+            Zu $f\in C^0(S)$ definiere
+            \[ g_\epsilon(y) \defeq f(x_{\epsilon,y}) \]
+            und setze $g_\epsilon$ durch multilineare Interpolation fort, d.\,h.
+            für $x = z + \epsilon\,\isum^n t_i e_i \in Q_{\epsilon,z}$ mit
+            $z\in M_\epsilon$ und $t_i\in\I$ setze
+            \[ g_\epsilon(x) \defeq \sum_{\gamma\in\{0,1\}^n}
+                \Bigl( \prod_{j,\, \gamma_j=0} (1-t_j) \prod_{j,\, \gamma_j=1} t_j
+                \Bigr) \, g_\epsilon(z+\epsilon\gamma)
+            . \]
+            (In jedem Quader des $\epsilon$-Gitters ist $g_\epsilon$ ein Polynom
+            $n$-ten Grades in den $t_j$. Quader $Q_{\epsilon,z_1},
+            Q_{\epsilon,z_2}$, deren Schnittmenge nicht leer ist, liefern auf
+            $Q_{\epsilon,z_1}\cap Q_{\epsilon,z_2}$ dieselbe Funktion; Bew.
+            z.\,B. per Induktion.) Nun gilt $g_\epsilon\in C^0(S)$ und für
+            $\epsilon\to0$:
+            \[ \norm{g_\epsilon-f}_{C^0(S)}
+                \leq \sup\bigl\{  \abs{f(x_1)-f(x_2)} \Mid x_1,x_2\in S,
+                \norm{x_1-x_2}_\infty \leq 3\epsilon \bigr\}
+                \to 0
+            , \]
+            da $f$ gleichmäßig stetig auf $S$ ist. Damit folgt: Die abzählbare
+            Menge
+            \[ \bigl\{ g_{1/k} \Mid k\in\N, \; \forall\,y\in M_\epsilon\colon\;
+                   g_{1/k}(y)\in \Q \bigr\}
+            \]
+            liegt dicht in $C^0(S)$.
+            
+        \item
+            Nach Analysis~III liegt $\Coo(\R^n)$ dicht in $\Lpp(\R^n)$. % TODO: ref !?
+            (Idee: Approximation zunächst durch Treppenfunktionen bezüglich Quadern.
+            Dann approximiere charakteristische Funktionen auf Quadern durch
+            stetige Funktionen.)
+            % TODO: Skizze eindimensionale charak. Fkt.
+            %       approximiert durch stet. Fkt.
+            % TODO: ?  Erklärung $\Coo(\R^n)$ und $C^\infty_0(\Omega)$
+            Es gilt
+            \[ \Coo(\R^n) = \bigcup_{n\in\N} \Coo\bigl(B_n(0)\bigr)
+                \subset \bigcup_{n\in\N} C^0\bigl( \setclosure{B_n(0)} \bigr)
+            \]
+            und für alle $n\in\N$ ist $C^0(\setclosure{B_n(0)})$ separabel bezüglich
+            der $C^0$-Norm nach dem ersten Teil. Wegen
+            \[ \norm{g}_{\Lpp(\setclosure{B_n(0)})} \;\leq\;
+                \bigl( \leb^n(B_n(0)) \bigr)^{1/p} \,
+                \sup_{\;\setclosure{B_n(0)}}\,\abs{g} 
+            \]
+            ist $C^0(\setclosure{B_n(0)})$ auch separabel bezüglich der
+            $\Lpp$-Norm.
+            
+        \item
+            selbst!
+    \end{enumerate}
+\end{proof}
+
+\pagebreak[2]
+Häufig müssen wir Funktionen durch glatte Funktionen approximieren. Dafür
+brauchen wir die Faltung:
+%
+% 10.15
+\begin{thDef}[Faltung]
+    Sei $p\in[1,\infty]$, sei $\phi\in\Lp1(\R^n)$ und sei $f\in\Lpp(\R^n)$.
+    Dann heißt die Abbildung
+    \[ \R^n\to\K, \quad x\mapsto \int_{\R^n} \phi(x-y) \, f(y) \dif{y}
+    \]
+    die \emph{Faltung von $f$ und $\phi$} und wird mit $\phi\ast f$ oder
+    $f\ast\phi$ bezeichnet.
+\end{thDef}
+
+% 10.16
+\begin{thLemma} \label{vl26:lemma10.16}
+    Sei $\phi\in\Lp1(\R^n)$, sei $K\colon\R^n\times\R^n\to\K$ Lebesgue-messbar
+    und sei $p\in[1,\infty]$. Dann gilt für
+    \[ F(x) \defeq \int_{\R^n} \phi(x-y) \, K(x,y) \dif{y} 
+        = \int_{\R^n} \phi(y) \, K(x,x-y) \dif{y}
+    \]
+    die Ungleichung
+    \[ \norm{F}_p \;\leq\; \norm{\phi}_1 \, \sup_{h\mkern2mu\in\mkern2mu\supp(\phi)}
+        \norm{K(\scdot,\cdot-h)}_p
+    , \]
+    d.\,h. falls die rechte Seite endlich ist, so ist
+    \[ y\mapsto \phi(x-y) \, K(x,y) \]
+    in $\Lp1(\R^n)$ für fast alle $x\in\R^n$ und es gilt $F\in\Lpp(\R^n)$.
+\end{thLemma}
+
+\begin{proof}
+    Die Fälle $p\in\{1,\infty\}$ sind einfach. Wir zeigen daher den Fall für
+    $p\in(1,\infty)$, wobei $p'$ den konjugierten Exponenten bezeichne. Dann
+    gelten folgende Abschätzungen:
+    \begin{align*}
+        \int_{\R^n} \abs{F(x)}^p \dif{x} 
+        &\leq \int_{\R^n} \Bigl(
+            \int_{\R^n} \underbrace{\abs{\phi(y)} \, \abs{K(x,x-y)}}_{
+                =\, \abs{\phi(y)}^{1/p'} \bigl( \abs{\phi(y)}^{1/p}\,
+                \abs{K(x,x-y)} \bigr)
+            }
+            \dif{y} \Bigr)^p
+            \dif{x}
+        \\[1ex]
+        &\overset{\mr H}\leq
+        \int_{\R^n} \left( \int_{\R^n} \abs{\phi(y)}^{p'/p'} \dif{y}
+        \right)^{p/p'}
+        \left( \int_{\R^n} \abs{\phi(y)} \, \abs{K(x,x-y)}^p
+        \dif{y} \right) \dif{x}
+        \\[1ex]
+        &\overset{\mr F}=
+        \norm{\phi}_1^{p/p'} \, \int_{\R^n} \abs{\phi(y)} \,
+        \int_{\R^n} \abs{K(x,x-y)}^p \dif{x} \dif{y}
+        \\[1ex]
+        &\leq \norm{\phi}_1^{p/p'+1} \, \sup_{y\mkern2mu\in\mkern2mu\supp(\phi)}
+        \norm{K(\scdot,\cdot-y)}_p^p
+    \end{align*}
+    Bei $\mr H$ geht dabei die Hölderungleichung ein und bei $\mr F$ der Satz
+    von Fubini. Die Existenz der Integrale rechtfertigt man dabei
+    \enquote{von unten nach oben}.
+    \\
+\end{proof}
+
+% 10.17
+\begin{thKorollar}
+    Für $f\in\Lpp(\R^n)$ und $\phi\in\L^1(\R^n)$ folgt $f\ast\phi \in\Lpp(\R^n)$
+    mit
+    \[ \norm{f\ast\phi}_p \leq \norm{\phi}_1 \, \norm{f}_p  . \]
+\end{thKorollar}
+
+\begin{proof}
+    Dies folgt direkt aus \cref{vl26:lemma10.16}.
+    \\
+\end{proof}
+
+\pagebreak[2]
+%
+% 10.18
+\begin{thLemma}
+    Für $f\in\Lpp(\R^n)$ und $\phi\in\Cinfo(\R^n)$ gilt:
+    \[ \phi\ast f\in \Cinfo(\R^n) \qqundqq 
+        \partial^s(\phi\ast f) = (\partial^s\phi)\ast f
+    . \]
+\end{thLemma}
+
+\begin{proof}
+    Sei $R\in\R[>0]$ mit $\supp\phi \subset B_R(0)$. Dann gilt:
+    \[ \frac{(\phi\ast f)(x+he_i)-(\phi\ast f)(x)}{h}
+        = \int\limits_{B_{2R}(0)} 
+        \underbrace{\frac{\phi(x+he_i-y)-\phi(x-y)}{h}}_{
+            \to \, \partial_i\phi(x-y) \text{ glm. in $y$ für $h\to0$}
+        }\, f(y)
+        \dif{y}
+    . \]
+    Mit dem Satz von Lebesgue folgt:
+    \[ \bigl(\partial_i(\phi\ast f)\bigr)(x)
+        = \partial_i F(x) = \int_{\R^n} (\partial_i \phi)(x-y) \, f(y) \dif{y}
+        = \bigl( (\partial_i\phi)\ast f \bigr)(x)
+    . \]
+    Die Aussage über höhere Ableitungen erhält man mit Induktion über $\abs{s}$.
+    \\
+\end{proof}
