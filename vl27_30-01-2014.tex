@@ -1,0 +1,152 @@
+Das Ziel ist es nun, eine Funktion $f$ mit anderen Funktionen
+$\phi_\epsilon$ zu falten, so dass $\phi_\epsilon\ast f$ für
+$\epsilon\to0$ gegen $f$ konvergiert. Wenn die $\phi_\epsilon$ gutartig genug
+sind, hat $\phi_\epsilon\ast f$ \enquote{gute Eigenschaften}. Die Grundidee
+ist dabei, die $\phi_\epsilon$ so zu bauen, dass sie für $\epsilon\to0$
+wie das Dirac-Maß im Punkt~$0$ wirken.
+
+% TODO: Skizze: Dirac-peak \phi_\epsilon, B_\rho(0)
+
+% 10.19
+\begin{thDef}[Dirac-Folge] \label{vl27:def:diracfolge}
+    \begin{enumerate}[(1)]
+        \item
+            Eine Folge $\kSeq\phi$ in $\Lp1(\R^n)$ heißt \emph{(allgemeine)
+            Dirac-Folge}, falls folgende Bedingungen gelten:
+            \begin{itemize}
+                \item Für alle $k\in\N$ gilt $\phi_k\geq0$ und
+                    $\int_{\R^n} \phi_k \dif{\lambda^n} = 1$.
+                \item
+                    Für alle $\rho\in\R[>0]$ gilt
+                    $\int_{\R^n\setminus B_\rho(0)} \phi_k \dif{\lambda^n}
+                    \to 0$ für $k\to\infty$.
+            \end{itemize}
+            
+        \item
+            Sei $\phi\in\Lp1(\R^n)$ mit $\phi\geq 0$ und $\int_{\R^n}\phi=1$.
+            Für $\epsilon\in\R[>0]$ definiere $\phi_\epsilon\colon\R^n\to\R$
+            durch 
+            \[ \phi_\epsilon(x) \defeq \frac{1}{\epsilon^n}\, \phi\left(
+                \frac{x}{\epsilon} \right)
+            . \]
+    \end{enumerate}
+\end{thDef}
+
+\nnBemerkung 
+Man rechnet leicht nach: Ist $\kSeq\epsilon$ eine Nullfolge, so ist die Folge
+$(\phi_{\epsilon_k})_{k\in\N}$ eine Dirac-Folge. Im Folgenden nennen wir auch
+eine Familie $(\phi_\epsilon)_{\epsilon\in\R[>0]}$ eine Dirac-Folge (auch wenn
+es sich dabei nicht um eine Folge im üblichen Sinne handelt).
+
+\nnBemerkung
+Für $x\in\R^n$ bezeichne im Folgenden $\abs{x} \defeq \norm{x}_2$ die euklidsche
+Norm von~$x$.
+
+% 10.20
+\begin{thEmpty}[Standardbeispiel für eine Dirac-Folge]
+    Sei $\psi\in\C^\infty(\R,\R)$ mit $\supp\psi\subset\R[\leq1]$.
+    % TODO: Skizze
+    Zum Beispiel: 
+    \[ \psi(x) \defeq \begin{cases}
+            1, &                                            x\leq 0     \\
+            \exp\left(\frac{1}{\abs{x}^2-1}+1\right), & 0\leq x\leq 1   \\
+            0, &                                            x\geq 1     .
+        \end{cases}
+    \]
+    
+    Setze dann $\phi(x) \defeq \alpha\,\psi(\abs{x})$ für alle $x\in\R^n$ mit
+    $\alpha = \bigl( \int_{B_1(0)} \psi\circ\abs{\scdot}
+    \mkern2mu\bigr)^{\mathrlap{-1}}$\kern2pt,\kern.75em so dass also
+    $\int_{\R^n} \phi = 1$ gilt. Es gilt dann
+    \[ \phi\in C^\infty(\R^n) \qundq \supp\phi\subset \setclosure{B_1(0)} . \]
+    Weiter bildet $\epsFam\phi$ (gemäß \cref{vl27:def:diracfolge}) eine Dirac-Folge.
+    Diese nennen wir \emph{Standard-Dirac-Folge}.
+\end{thEmpty}
+
+% 10.21
+\begin{thLemma}\hfill
+    \begin{enumerate}[(1)]
+        \item
+            Sei $\epsFam\phi$ eine Standard-Dirac-Folge und sei $f\in
+            C^0(\R^n)$. Dann gilt
+            \[ f\ast\phi_\epsilon \to f \fuer \epsilon\to0 \quad\text{lokal
+                gleichmäßig}
+            , \]
+            d.\,h. für alle $x\in\R^n$ existiert eine Umgebung $U\subset\R^n$
+            von $x$ auf welcher $(\phi_\epsilon\vert_U)_{\epsilon\in\R[>0]}$
+            gleichmäßig gegen $f\vert_U$ konvergiert.
+
+        \item
+            Sei $\kSeq\phi$ eine Dirac-Folge und $f\in\Lpp(\R^n)$ für
+            $p\in[1,\infty)$. Dann gilt:
+            \[ f\ast\phi_k \to f \quad\text{in $\Lpp(\R^n)$} \fuer k\to\infty 
+            . \]
+    \end{enumerate}
+\end{thLemma}
+
+
+% 10.22 (Hilfssatz)
+\begin{thLemma}[Stetigkeit im \texorpdfstring{$\Lpp$}{Lp}-Mittel]
+    Sei $f\in\Lpp(\R^n)$ für $p\in[1,\infty)$. Dann gilt:
+    \[ f(\scdot-h)\to f(\scdot) 
+        \quad\text{in $\Lpp(\R^n)$} \fuer\abs{h}\to0
+    \]
+\end{thLemma}
+
+
+\begin{thSatz}
+    Sei $\Omega\subset\R^n$ offen und sei $p\in[1,\infty)$. Dann gilt:
+    \[ \Cinfo(\Omega) \text{ liegt dicht in } \Lpp(\Omega) . \]
+\end{thSatz}
+
+
+Das nächste Ziel ist, eine Charakterisierung von kompakten Mengen in $C^0(K)$
+mit einem Kompaktum $K\subset\R^n$ und für $\Lpp(\Omega)$ mit einer offenen
+Menge $\Omega\subset\R^n$ zu finden.
+
+% 10.24
+\begin{thSatz}[Arzela-Ascoli] \label{vl27:arzelaascoli}
+    Sei $K\subset\R^n$ kompakt und $A\subset C^0(K,\R^m)$. Dann ist $A$ genau
+    dann präkompakt, wenn folgende Eigenschaften erfüllt sind:
+    \begin{enumerate}[(i)]
+        \item
+            $A$ ist beschränkt, also
+            $\sup_{f\in A} \, \norm{f}_{C^0(K)} < \infty$.
+            
+        \item
+            $A$ ist \emph{gleichgradig stetig}, d.\,h.
+            \[ \sup_{f\in A} \, \abs{f(x)-f(y)} \;\to\; 0 \fuer \abs{x-y}\to 0
+            . \]
+    \end{enumerate}
+\end{thSatz}
+
+
+\nnBemerkung
+Für einen metrischen Ruam $(X,d)$ und eine Teilmenge $A\subset X$ gilt:
+\[ \forall\,\epsilon\in\R[>0]\; 
+    \exists\,A_\epsilon\subset X \text{ präkompakt}\colon\;
+    A \subset B_\epsilon(A_\epsilon)
+    \qimpliesq A \text{ präkompakt}
+, \]
+wobei
+\[ B_\epsilon(A_\epsilon) 
+    \defeq \{ x\in X \Mid \dist(x,A_\epsilon) < \epsilon \}
+. \]
+
+% 10.25
+\begin{thSatz}[Kompakte Mengen in $\Lpp(\R^n)$, Riesz-Fr\'echet-Kolmogorov]
+    Sei $p\in[1,\infty)$ und sei $A\subset\Lpp(\R^n)$. Dann ist $A$ präkompakt
+    genau dann, wenn folgende Bedingungen erfüllt sind:
+    \begin{enumerate}[(i)]
+        \item
+            $\sup_{f\in A} \, \norm{f}_p < \infty$
+        \item
+            $\sup_{f\in A} \, \norm{f(\scdot-h)-f(\scdot)}_p \to 0$ für
+            $\abs{h}\to0$\hfill
+            (Gleichgradige Stetigkeit im $\Lpp$-Mittel)
+        \item
+            $\sup_{f\in A} \, \norm{f}_{\Lpp(\R^n\setminus B_R(0))} \to 0$
+            für $R\to\infty$.
+    \end{enumerate}
+\end{thSatz}
+
