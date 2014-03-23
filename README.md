@@ -2,15 +2,11 @@ Here you can find my personal notes of the lecture *Funktionalanalysis*
 given by *Prof. Dr. Harald Garcke* at the *University of Regensburg* in the
 winter term 2013/14. (German text)
 
-**Note:**
-These lecture notes are neither official nor errorless.
-If you find mistakes, please notify me or make a pull request.
+**This branch contains the chapter about Sobolev spaces in addition to the master branch.
+Note that it won't be moved to the actual master branch anytime soon.**
 
-**Unfortunately i'm kinda busy right now, so there are some sections
-in the notes that i didn't have the time to review yet. As i'd like
-to keep the master branch as clean as possible, it'll only include 
-those parts i (at least briefly) reread. However, i will upload my
-raw notes to temporary branches (listed below) for those who don't
-mind reading my potentially incorrect and incomplete script.**
 
-See branch [unstable](https://github.com/J0J0/VLM_Funktionalanalysis/tree/unstable) for everything i have.
+See branch [master](https://github.com/J0J0/VLM_Funktionalanalysis/tree/master) for the master branch (with reviewd content only).
+See branch [master+sobolev](https://github.com/J0J0/VLM_Funktionalanalysis/tree/master+sobolev) for the master branch plus chapter 11.
+See branch [unstable](https://github.com/J0J0/VLM_Funktionalanalysis/tree/unstable) for everything i have up to (and including) chapter 10.
+See branch [unstable+sobolev](https://github.com/J0J0/VLM_Funktionalanalysis/tree/unstable+sobolev) for everything i have (including ch. 11).
