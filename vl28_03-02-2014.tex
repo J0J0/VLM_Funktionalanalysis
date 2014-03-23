@@ -1,0 +1,241 @@
+% 11
+\chapter{Sobolev-Räume und schwache Form
+    von Randwertproblemen in einer Dimension}
+% 11.1
+\begin{thEmpty}[Motivation] \label{vl28:motivation}
+    Betrachte folgendes Problem: Gegeben sei $f\in C([a,b])$. Aufgabe:
+    Finde ein $u\in C^2([a,b])$ mit
+    \[ \left. \begin{gathered}
+            -u''+u=f  \quad \text{auf $[a,b]$} \\
+            u(a) = u(b) = 0
+        \end{gathered} \quad \right\} \; \text{(Randwertproblem)}
+    . \]
+    Eine solche Funktion $u$ heißt \emph{starke Lösung}. Moderne Theorie von
+    (partiellen) Differentialgleichungen studiert (zunächst) \emph{schwache
+    Lösungen}.
+    
+    Betrachten wir dies an einem Beispiel. Multipliziere die
+    Differentialgleichung mit einer Funktion $\phi\in C^1([a,b])$ mit
+    $\phi(a)=0=\phi(b)$ und integriere partiell:
+    \[ \tag{SF} \label{vl28:SF}
+        \int_a^b u'\phi' + \int_a^b u\phi = \int_a^b f\phi
+    . \]
+    Die Gleichung \eqref{vl28:SF} ergibt Sinn für $u\in C^1([a,b])$ oder sogar
+    für $u$ mit $u,u'\in L^1([a,b])$ (wobei wir geeignet definieren müssen, wie
+    wir $u'\in\Lp1$ für $u\in\Lp1$ auffassen wollen). Wir sagen $u$ ist eine
+    \emph{schwache Lösung}, falls \eqref{vl28:SF} erfüllt ist für alle
+    $\phi\in C^1$ mit $\phi(a)=0=\phi(b)$.
+    Dieser Zugang heißt \emph{variat. Zugang}. Allgemein geht man in folgenden
+    Schritten vor:
+    \begin{enumerate}[{{Schritt~}}A, leftmargin=*] \label{vl28:Schritte}
+        \item\label{vl28:Schritte:A}
+            Mache präzise, was \enquote{schwache Lösung} meint. Dazu brauchen
+            wir den Begriff des \emph{Sobolevraums}.
+        \item\label{vl28:Schritte:B}
+            Zeige die Existenz einer schwachen Lösung (nutze Lax-Milgram).
+        \item\label{vl28:Schritte:C}
+            Zeige, dass sogar eine (genügend) glatte Lösung (z.\,B. aus $C^2$)
+            existiert. Dies ist ein Regularitätsresultat.
+        \item\label{vl28:Schritte:D}
+            Zeige, dass eine schwache Lösung, die in $C^2$ liegt, auch eine
+            starke Lösung ist.
+    \end{enumerate}
+    
+    \ref{vl28:Schritte:D} ist einfach: Angenommen $u\in C^2([a,b])$,
+    $u(a)=0=u(b)$ und \eqref{vl28:SF} ist erfüllt. Nach partieller Integration
+    in \eqref{vl28:SF} erhalten wir:
+    \[ \int_a^b (-u''+u-f) \phi \dif{x} = 0 \]
+    für alle $\phi\in C^1([a,b])$ mit $\phi(a)=0=\phi(b)$. Das Fundamentallemma
+    der Variationsrechnung liefert:
+    \[ -u'' + u - f = 0  . \]
+\end{thEmpty}
+
+Im Folgenden sei $I\defeq (a,b)$ ein offenes Intervall, wobei $a=-\infty$ und
+$b=\infty$ zugelassen sind. Sei weiter $p\in[1,\infty]$.
+
+% 11.2
+\begin{thDef}
+    \begin{enumerate}[(i)]
+        \item
+            Der \emph{Sobolevraum $\SobHI$} ist definiert
+            durch:
+            \[ \SobHI \defeq \left\{ 
+                    u\in\Lpp(I) \Mid \exists\,g\in\Lpp(I)\;
+                    \forall\,\phi\in\Cinfo(I)\colon\;
+                    \int_I u\phi' \dif{x} = -\int_I g\phi \dif{x}
+                \right\}
+            . \]
+        \item
+            Wir definieren: $H^1(I) \defeq H^{1,2}(I)$.
+        \item
+            Für $u\in\SobHI$ und ein $g$ wie in der Definition von $\SobHI$
+            schreiben wir $u'=g$ und nennen $u'$ die \emph{schwache
+            Ableitung von $u$}.
+    \end{enumerate}
+\end{thDef}
+
+\nnBemerkung Einige Autoren schreiben auch $W^{1,p}(I)$ statt $\SobHI$.
+
+\nnBemerkung
+Falls $u\in C^1(I) \cap L^p(I)$ und falls $u'\in\Lpp(I)$ (wobei $u'$ die
+klassische Ableitung bezeichnet), so gilt $u\in\SobHI$ und $u'$ ist auch
+die schwache Ableitung.
+
+\nnBemerkungen
+\begin{enumerate}[(i)]
+    \item
+        Die schwache Ableitung ist (bis auf Nullmengen) eindeutig. Angenommen
+        $u_1',u_2'\in\Lp1$ sind schwache Ableitungen. Dann gilt
+        \[ \int_I (u_1'-u_2') \phi \dif{x} = 0 \]
+        für alle $\phi\in\Cinfo$.
+        Das Fundamentallemmma liefert $u_1'-u_2'=0$ fast überall.
+        
+    \item
+        Es ist $\SobHI$ mit der Norm
+        \[ \norm{u}_{\SobH} \defeq \norm{u}_{\Lpp} + \norm{u'}_{\Lpp}
+        \]
+        ein normierter Raum. Der Raum $H^1(I)$ besitzt das Skalarprodukt
+        \[ \SP{u,v}_{H^1}
+            = \SP{u,v}_{\Lp2} + \SP{u',v'}_{\Lp2}
+            = \int_I (uv + u'v') \dif{x}
+        . \]
+\end{enumerate}
+
+% 11.3
+\begin{thBeispiel}
+    Sei $I \defeq (-1,1)$. Dann rechnet man leicht nach:
+    \begin{enumerate}[(i)]
+        \item
+            Die Funktion $u(x) \defeq \abs{x}$ gehört zu $\SobHI$ für alle
+            $p\in[1,\infty]$ und es gilt $u'=g$ mit
+            \[ g(x) = \begin{cases}
+                    \phantom{+}1 ,& x\in (0,1)  \\
+                             - 1 ,& x\in (-1,0) .
+                \end{cases}
+            \]
+            Allgemein gilt: Eine Funktion, die auf $\setclosure I$ stetig
+            und stückweise in $C^1$ ist, liegt auch in $\SobHI$ für
+            $p\in[1,\infty]$.
+        \item
+            Die obige Funktion $g$ liegt \emph{nicht} in $\SobHI$ für alle
+            $p\in[1,\infty]$.
+    \end{enumerate}
+\end{thBeispiel}
+
+% 11.4
+\begin{thSatz}
+    Der Raum $\SobHI$ ist ein Banachraum für alle $p\in[1,\infty]$.
+\end{thSatz}
+
+\begin{proof}
+    Sei $\nSeq u$ eine Cauchy-Folge in $\SobHI$. Dann sind $\nSeq u$ und
+    $\nSeq{u'}$ Cauchy-Folgen in $\Lpp$. Daraus folgt: $\nSeq u$ konvergiert
+    gegen ein $u$ in $\Lpp$ und $\nSeq{u'}$ konvergiert gegen ein $g$ in $\Lpp$.
+    Es gilt
+    \[ \int_I u_n \phi' = - \int_I u_n \phi \]
+    für alle $\phi\in\Cinfo(I)$. Gehe zum Grenzwert über (möglich wegen Hölder),
+    dann ergibt sich:
+    \[ \forall\,\phi\in\Cinfo(I)\colon\quad
+        \int_I u \phi' = -\int_I g \phi
+    . \]
+    Also gilt $u\in\SobHI$ mit $u'=g$ und $\norm{u_n-u}_{\SobH} \to 0$ für
+    $n\to\infty$.
+    \\
+\end{proof}
+
+\nnDef
+\[ \Lploc1(\Omega) \defeq
+    \bigl\{ u\colon\Omega\to\R \text{ messbar} \Mid
+    u\vert_K \in\Lp1(K) \text{ für eine kompakte Menge } K\subset\Omega
+    \bigr\}
+\]
+
+% 11.5
+\begin{thLemma}
+    Sei $f\in\Lploc1$ mit
+    \[ \tag{EA} \label{vl28:EA}
+        \forall\,\phi\in\Cinfo(I)\colon\quad \int_I f\phi' = 0
+    . \]
+    Dann existiert ein $C\in\R$, so dass $f\equiv C$ fast überall auf $I$ gilt.
+\end{thLemma}
+
+\begin{proof}
+    Sei $\psi\in\Coo(I)$ fest mit $\int_I \psi = 1$. Beh.: Für $w\in\Coo(I)$
+    existiert ein $\phi\in C_0^1(I)$ mit
+    \[ \phi' = w - \left( \int_I w \right) \psi \eqdef h . \]
+    Es ist $h$ stetig mit kompaktem Träger in $I$. Außerdem gilt $\int_I h = 0$.
+    Damit hat $h$ eine eindeutige Stammfunktion mit kompaktem Träger. In
+    \eqref{vl28:EA} können wir $\Cinfo$ durch $C_0^1$ ersetzen (falte
+    $C_0^1$-Funktionen mit Standard-Dirac-Folge, setze gefaltete Funktionen
+    in \eqref{vl28:EA} ein und gehe zum Grenzwert über). Aus \eqref{vl28:EA}
+    folgt:
+    \[ \forall\,w\in\Coo(I)\colon\quad
+        \int_I f \, \Bigl( w - \bigl( \smallint_I w \bigr) \psi \Bigr) = 0
+    . \]
+    Das heißt wir erhalten:
+    \[ \forall\,w\in\Coo(I)\colon\quad
+        \int_I \Bigl( f - \bigl( \smallint_I f \psi \bigr) \Bigr) w = 0
+    . \]
+    Das Fundamentallemma liefert:
+    \[ f = \int_I f \psi \mfu  \]
+    Also erfüllt $C = \int_I f \psi$ die Behauptung.
+    \\
+\end{proof}
+
+% 11.6
+\begin{thLemma}
+    Sei $g\in\Lploc1(I)$. Für $y_0\in I$ fest, setze für $x\in I$:
+    \[ v(x) \defeq \int_{y_0}^x g(t) \dif{t}  . \]
+    Dann gilt $v\in C^0(I)$ und
+    \[ \forall\,\phi\in\Cinfo(I)\colon\quad
+        \int_I v\phi' = -\int_I g\phi
+    . \]
+\end{thLemma}
+
+\begin{proof}
+    Es gilt
+    \begin{align*}
+        \int_I v\phi'
+        &= \int_I \Bigl( \int_{y_0}^x g(t) \dif{t} \Bigr) \phi'(x) \dif{x}
+        \\
+        &= -\int_a^{y_0} \int_x^{y_0} g(t) \phi'(x) \dif{t} \dif{x}
+         + \int_{y_0}^b \int_{y_0}^x g(t) \phi'(x) \dif{t} \dif{x}
+        \\
+        &= % TODO: via Fubini
+        -\int_a^{y_0} g(t) \int_a^t \phi'(x) \dif{x} \dif{t}
+        + \int_{y_0}^b g(t) \int_t^b \phi'(x) \dif{x} \dif{t}
+        \\
+        &= % TODO: via Hauptsatz
+        - \int_a^b g(t) \phi(t) \dif{t}
+    \end{align*}
+    % TODO: Skizze, x-t-Diagramm, Integration über oberes Halbdreieck von
+    %                               (a,y)\times(a,y_0)
+\end{proof}
+
+% 11.7
+\begin{thTheorem}
+    Sei $u\in\SobHI$ mit $p\in[1,\infty]$. Dann existiert eine Funktion
+    $\tilde u\in C^0(\setclosure{I})$ mit
+    \[ u = \tilde u \mfu \text{\quad auf $I$} \]
+    und
+    \[ \forall\,x,y\in\setclosure{I}\colon\quad
+        \tilde u(x) = \tilde u(y) + \int_y^x u'(t) \dif{t}
+    . \]
+\end{thTheorem}
+
+\begin{proof}
+    Wähle $y_0\in I$ und setze $\bar u(x) \defeq \int_{y_0}^x u'(t)\dif{t}$.
+    Das vorherige Lemma % TODO: ref
+    folgt:
+    \[ \forall\,\phi\in C_0^1(I)\colon\quad
+        \int_I \bar u \phi' = -\int_I u'\phi
+    . \]
+    Damit folgt:
+    \[ \forall\,\phi\in C_0^1(I)\colon\quad
+        \int_I (u-\bar u) \phi' = 0
+    . \]
+    Lemma~11.5:
+    \[ u-\bar u = C \mfu \text{\quad auf $I$} \]
+    Also hat $\tilde u(x) \defeq \bar u(x) + C$ die gewünschten Eigenschaften.
+    \\
+\end{proof}

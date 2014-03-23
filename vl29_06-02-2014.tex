@@ -1,0 +1,248 @@
+\pagebreak[2]
+% 11.8
+\begin{thSatz}
+    Sei $I=(a,b)$ ein Intervall mit $a,b\in(-\infty,\infty)$ und sei
+    $p\in[1,\infty]$.
+    \begin{enumerate}[(i)]
+        \item
+            Dann existiert eine Konstante $C\in\R[>0]$, so dass für alle $f\in
+            C^1(I)$ und $x_0\in I$ gilt:
+            \[ \norm{f}_{C^0} \leq \abs{f(x_0)} + C\,\norm{f'}_{C^p(I)}  . \]
+        \item
+            Für alle $x_1,x_2\in I$ gilt außerdem
+            \[ \abs{f(x_2)-f(x_1)} \leq \abs{x_2-x_1}^{1/p'} \,
+                \norm{f'}_{\Lpp(I)}
+            , \]
+            und somit sind die Mengen
+            \[ M_C \defeq \bigl\{ f\in C^1(I) \Mid
+                \norm{f}_{\SobHI} \leq C \bigr\}
+            \]
+            für $C\in\R[>0]$ kompakt in $C^0(I)$.
+    \end{enumerate}
+\end{thSatz}
+
+\begin{proof}
+    Seien $x_1,x_2\in I$ mit $x_1 < x_2$. Dann gilt:
+    \begin{align*}
+        \abs{f(x_2)-f(x_1)}
+        &= \abs[\Big]{\int_{x_1}^{x_2} f'(x) \dif{x}}
+         \leq \int_{x_1}^{x_2} 1\cdot \abs{f'(x)} \dif{x}
+        \\
+        &\overset{\mr H}\leq
+            \Bigl( \int_{x_1}^{x_2} 1^{p'} \Bigr)^{1/p'}
+            \Bigl( \int_{x_1}^{x_2} \abs{f'(x)}^p \Bigr)^{1/p}
+        \leq (x_2-x_1)^{1/p'} \, \norm{f'}_{\Lpp(I)}
+    . \end{align*}
+    (Bei $\mr H$ geht dabei die Hölder-Ungleichung ein.)
+    Daraus folgt:
+    \[ \abs{f(x_2)} \leq \abs{f(x_1)} + (b-a)^{1/p'}\,\norm{f'}_{\Lpp(I)}  . \]
+    Dies zeigt den ersten Teil, und dass $M_C$ gleichgradig stetig ist; mit
+    dem Satz von Arzela-Ascoli \pref{vl27:arzelaascoli} folgt dann die zweite
+    Behauptung.
+    \\
+\end{proof}
+
+% 11.9
+\begin{thDef}
+    \begin{enumerate}[(i)]
+        \item
+            Sei $p\in[1,\infty]$. Dann definieren wir $\SobHIo$ als den
+            Abschluss von $C_0^1(I)$ in $\SobHI$ bezüglich der $H^{1,p}$-Norm.
+            
+        \item
+            Weiter sei $\smash{\overset{\circ}{H}}\vphantom{H}^1(I) \defeq
+            \smash{\overset{\circ}{H}}\vphantom{H}^{1,2}(I)$.
+            
+        \item
+            Zusammen mit der Einschränkung der $H^{1,p}$-Norm ist $\SobHIo$ ein
+            Banachraum.
+            
+        \item
+            Auf $\SobHIo$ definieren wir das Skalarprodukt
+            \[ \SP{u,v} \defeq \int_I (uv + u'v')  . \]
+    \end{enumerate}
+\end{thDef}
+
+% 11.10
+\begin{thSatz}
+    Sei $u\in\SobHIo$. Dann gilt $u\vert_{\setboundary{I}} = 0$.
+    % TODO: Was soll \partial I  für u, definiert (nur) auf I, bedeuten!??
+\end{thSatz}
+
+%\begin{proof}
+%    Da $u\in\SobHIo$, existiert eine Folge $\nSeq u$ in $C_0^1(I)$, die in der
+%    $\SobHI$-Norm gegen $u$ konvergiert.
+%    % TODO: ?? Bew ??
+%\end{proof}
+
+% 11.12
+\begin{thSatz}[Poincar\'e-Ungleichung]
+    Sei $I$ ein beschränktes Intervall. Dann existiert eine Konstante
+    $C\in\R[>0]$ mit
+    \[ \forall\,u\in\SobHIo\colon\quad
+        \norm{u}_{\SobHIo} \leq C\, \norm{u}_{\Lpp(I)}
+    . \]
+    Das heißt auf $\SobHIo$ ist $u\mapsto \norm{u'}_{\Lpp(I)}$ eine Norm,
+    die zur $H^{1,p}$-Norm äquivalent ist.
+\end{thSatz}
+
+\begin{proof}
+    Sei $u\in\SobHIo$ mit $I=(a,b)$. Da $u(a) = 0$ gilt, folgt
+    \[ \abs{u(x)} = \abs{u(x)-u(a)}
+        = \abs[\Big]{\int_a^x u'(x) \dif{x}}
+        \leq \norm{u'}_{\Lp1}
+    . \]
+    Also gilt $\norm{u}_{\Lp\infty} \leq \norm{u'}_{\Lp1}$. Der Rest folgt aus
+    der Höler-Ungleichung.
+    \\
+\end{proof}
+
+% 11.12
+\begin{thEmpty}[Randwertproblem]
+    Wir betrachten das Problem
+    \[ \left. \begin{gathered}
+            -u''+u=f  \quad \text{auf $I=(0,1)$} \\
+            u(0) = u(1) = 0
+        \end{gathered} \quad \right\} \; \text{(RWP)}
+    , \]
+    wobei $f\in\Lp2(I)$ bzw. $f\in C^0(\setclosure I)$.
+    
+    \nnDef
+    \begin{enumerate}[(i)]
+        \item
+            Eine \emph{klassische Lösung} ist eine Funktion
+            $u\in C^2(\setclosure I)$, die (RWP) erfüllt.
+            
+        \item
+            Eine \emph{schwache Lösung} von (RWP) ist eine Funktion
+            $u\in\SobHIo[2]$, für die gilt:
+            \[ \forall\,v\in\SobHIo[2]\colon\quad
+                \int_I u'v' + \int_I uv = \int_I fv
+            . \]
+    \end{enumerate}
+\end{thEmpty}
+
+Nun führe Schritt~A--D aus \ref{vl28:motivation} durch.
+
+Schritt A: Jede klassische Lösung ist eine schwache Lösung.\\
+Lösung: Dies folgt mittels partieller Integration:
+\[ 0 = \int_I (-u'' + u - f) v - \int_I (u' + u - fv)  . \]
+
+Schritt B: Existenz und Eindeutigkeit einer schwachen Lösung.
+%
+% 11.13
+\begin{thSatz}
+    Sei $f\in\Lp2(I)$. Dann existiert eine schwache Lösung $u\in\SobHIo[2]$ von
+    (RWP). Zusätzlich ist $u$ gegeben durch:
+    \[ \min_{\vphantom{\overset{\circ}{H}}v\in\SobHIo[2]} 
+        \Bigl( \half\int_I \bigl( (v')^2+v^2 \bigr) - \int_I fv \Bigr)
+    . \]
+\end{thSatz}
+
+Das Vorgehen, $u$ als Minimum zu erhalten, heißt \emph{Dirichletsches Prinzip}.
+
+\begin{proof}
+    Wir wenden den Satz von Lax-Milgram \pref{vl14:laxmilgram} auf den
+    Hilbertraum $\SobHIo[2]$, die Bilinearform
+    \[ a(u,v) = \int_I u'v' + \int_I uv = \SP{u,v}_{H^1} \]
+    und das lineare Funktional $\phi(v) = \int_I fv$ an.
+    \\
+\end{proof}
+
+Schritte C und D: Regularität von schwachen Lösungen und Rückgewinnung von
+starken Lösungen.
+
+Sei $f\in\Lp2(I)$ und $u\in\SobHIo[2]$ eine schwache Lösung. Daraus folgt:
+$u''$ existiert als schwache Ableitung und $-u'' = f-u \in\Lp2(I)$. D.\,h.
+$u'\in C^0(\setclosure I)$ bis auf Nullmengen.
+
+Falls $f\in C^0(\setclosure I)$ gilt, folgt: $u''\in C^0(\setclosure I)$.
+Dass eine schwache Lösung $u\in C^2(\setclosure I)$ auch eine klassische Lösung
+ist, haben wir uns schon bei \ref{vl28:motivation} überlegt.
+
+\begin{thSatz}
+    Sei $I=(0,1)$. Dann existiert eine Folge $\nSeq\lambda$ in $\R$ und eine
+    Hilbertbasis $\nSeq e$ von $\Lp2(I)$, so dass für alle $n\in\N$ schon
+    $e_n\in C^\infty(\setclosure I)$ und
+    \begin{align*}
+        & -e_n'' + e_n = \lambda_n e_n \quad \text{auf $I$}\\
+        & e_n(0) = e_n(1) = 0
+    \end{align*}
+    gilt. Außerdem gilt: $\lambda_n\to\infty$ für $n\to\infty$.
+\end{thSatz}
+
+Wir nennen die $\nSeq\lambda$ die Eigenwerte des Differentialoperats
+$Au = -u''+u$ mit Dirichlet-Randbedingungen und die $\nSeq e$ sind die
+zugehörigen Eigenfunktionen.
+
+\begin{proof}
+    Zu $f\in\Lp2(I)$ existiert eine eindeutige Lösung $u\in H^{2,2}(I) \cap
+    \SobHIo[2]$ mit
+    \begin{align*}
+        & -u'' + u = f \quad \text{auf $I$}\\
+        & u(0) = u(1) = 0
+    . \end{align*}
+    Es sei $Tf \defeq u$ als Operator $\Lp2(I)\to\Lp2(I)$. D.\,h. $Tf$ ist die
+    eindeutige Lösung des obigen Randwertproblems. Wir behaupten, dass $T$
+    selbstadjungiert und kompakt ist.
+    
+    Zunächst zur Kompaktheit: Sei $f\in\Lp2$. Es gilt
+    \[ \int (u')^2 + \int u^2 = \int (-u''+u) u = \int f u  . \]
+    Somit folgt
+    \[ \norm{u}_{H^1}^2 \leq \norm{f}_{\Lp2} \, \norm{u}_{\Lp2}
+        \leq \half \norm{f}_{\Lp2}^2 + \half \norm{u}_{\Lp2}^2
+    \]
+    und daraus
+    \[ \norm{u}_{H^1} \leq \norm{f}_{\Lp2} \qtextq{bzw.}
+        \norm{Tf}_{H^1} \leq \norm{f}_{\Lp2}
+    . \]
+    Da die Einbettung $H^{1,2}(I) \to C^0(\setclosure I)$ kompakt ist, ist auch
+    die Einbettung $H^{1,2}(I) \to \Lp2(I)$ kompakt. Somit ist die Abbildung
+    \begin{alignat*}{2}
+        f &\mapsto \quad Tf &&\mapsto Tf
+        \\
+        \Lp2(\Omega) &\to \smash{\overset{\circ}{H}}
+            \vphantom{H}^{1,2}(\Omega) &&\to C^2(\Omega)
+    \end{alignat*}
+    kompakt.
+    
+    Jetzt zur Selbstadjungiertheit. Für alle $f,g\in\Lp2$ gilt:
+    \[ \int_I (Tf) g = \int_I f \, Tg  . \]
+    Mit $u = Tf$ und $v = Tg$ erhalten wir aus
+    \begin{align*}
+        -u'' + u = f    \\
+        -v'' + v = g
+    \end{align*}
+    durch Multiplikation mit $v$ bzw. $u$, Integration und Anwendung partieller
+    Integration:
+    \[ \int_I fv = \int_I (u'v' + uv) = \int_I gu  . \]
+    Dies zeigt, dass $T$ selbstadjungiert ist.
+    
+    Weiter gilt für alle $f\in\Lp2(I)$:
+    \[ \tag{$\ast$} \label{vl29:ast}
+        \int_I (Tf) f = \int_I uf = \int_I (u')^2 + \int_I u^2 \geq 0
+    . \]
+    Also ist $T$ positiv semidefinit. Außerdem gilt $N(T) = \{0\}$, da:
+    \[ Tf = 0 \qimpliesq u=0 \qimpliesq f=0  . \]
+    Wir nutzen nun den Spektalsatz für kompakte, normale Operaoten und erhalten
+    eine Hilbertbasis $\nSeq e$ von Eigenvektoren von $T$ mit Eigenwerten
+    $\nSeq\mu$. Aus \eqref{vl29:ast} folgt $\mu_n\geq 0$ und da $T$ injektiv
+    ist, folgt $\mu_n\neq 0$. Außerdem gilt $\mu_n\to0$ für $n\to\infty$.
+    
+    Schreiben wir $Te_n = \mu_n e_n$, so folgt:
+    \begin{align*}
+        & -e_n'' + e_n = \lambda_n e_n \quad \text{mit $\lambda_n = \mu_n^{-1}$}
+        \\
+        & e_n(0) = e_n(1) = 0
+    . \end{align*}
+    Außerdem folgt $e_n\in C^2(\setclosure I)$, da $f = \lambda_n e_n \in
+    C(\setclosure I)$. Durch Iterieren dieses Vorgehens erhalten wir
+    $u_n\in C^k$, also $u_n\in C^\infty$.
+    \\
+\end{proof}
+
+Verallgemeinerung:
+\[ -\bigl(p u'\mkern1mu\bigr)' + qu = f, \qquad u(0)=u(1)=0  , \]
+das sogenannte \emph{Sturm-Liouville-Problem}. Der Fall
+\[ p \geq \alpha > 0 \quad\text{für ein $\alpha\in\R[>0]$}  \]
+geht wie oben (inklusive Eigenwert-Theorie).
