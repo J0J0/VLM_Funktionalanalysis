@@ -6,11 +6,12 @@ winter term 2013/14. (German text)
 These lecture notes are neither official nor errorless.
 If you find mistakes, please notify me or make a pull request.
 
-**Unfortunately i'm kinda busy right now, so there are some sections
-in the notes that i didn't have the time to review yet. As i'd like
-to keep the master branch as clean as possible, it'll only include 
-those parts i (at least briefly) reread. However, i will upload my
-raw notes to temporary branches (listed below) for those who don't
-mind reading my potentially incorrect and incomplete script.**
+**Note that the master branch lacks the two final lectures about Sobolev spaces.
+I didn't have time to review that chapter and to be honest, i don't understand
+much of it (yet), so it won't make its way to the master branch anytime soon.
+Those who don't mind reading that chapter in its present state may find it "as is"
+in two additional branches (see below).**
 
-See branch [unstable](https://github.com/J0J0/VLM_Funktionalanalysis/tree/unstable) for everything i have.
+See branch [master+sobolev](https://github.com/J0J0/VLM_Funktionalanalysis/tree/master+sobolev) for the master branch plus chapter 11.
+See branch [unstable](https://github.com/J0J0/VLM_Funktionalanalysis/tree/unstable) for everything i have up to (and including) chapter 10.
+See branch [unstable+sobolev](https://github.com/J0J0/VLM_Funktionalanalysis/tree/unstable+sobolev) for everything i have (including ch. 11).
