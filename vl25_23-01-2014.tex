@@ -84,3 +84,177 @@ im Folgenden stets $\K$-wertig mit $\K\in\{\R,\C\}$.
     ein konjugiert linearer, isometrischer Isomorphismus.
 \end{thSatz}
 
+\begin{proof}
+    Aus der Hölder'schen Ungleichung \pcref{vl24:hoelderLp} folgt:
+    \[ \norm{Jf}_{p'} \leq \norm{f}_{p'} . \]
+    Jetzt wählen wir $g$ so, dass $g\ol{f} = \abs{f}^{p'}$ gilt,
+    d.\,h. für $x\in\Omega$ sei $g(x) \defeq \abs{f}^{p'-2} f$, falls
+    $f(x)\neq0$, und $g(x)\defeq 0$ sonst. Dann erhalten wir:
+    \[ (Jf)(g) = \int_\Omega \abs{f}^{p'} = \norm{f}_{p'}^{p'}  . \]
+    Außerdem gilt
+    \[ \norm{g}_p = \Bigl( \int_\Omega \abs{g}^p \Bigr)^{1/p}
+        = \norm{f}_{p'}^{p'/p}
+    . \]
+    Damit hat $g/\norm{f}_{p'}^{p'/p}\in\Lpp(\Omega)$ Norm~$1$ und es folgt
+    $\norm{Jf} \geq \norm{f}_{p'}$. Ingesamt erhalten wir also:
+    $J$ eine ist eine Isometrie und somit insbesondere injektiv.
+    
+\pagebreak[2]
+    Wir zeigen nun, dass $J$ auch surjektiv ist. Sei dazu $F\in
+    (\Lpp(\Omega))'$. Weil der Ausgangsraum $\sigma$-finit ist, finden wir eine
+    Folge $\nSeq\Omega$ in $S$ mit $\Omega_n\subset\Omega_{n+1}$ für alle
+    $n\in\N$, $\Omega = \bigcup_{n\in\N} \Omega_n$ und
+    $\mu(\Omega_n)<\infty$ für alle $n\in\N$.
+    Die Strategie ist nun, aus $F$ ein Maß zu bauen, indem wir $F$ bei
+    charakteristischen Funktionen auswerten. Definiere für alle $k\in\N$:
+    \[ \nu_k\colon S\to\C, \quad E \mapsto F(\chi_{E\cap\Omega_k})  . \]
+    Wir zeigen für alle $k\in\N$:
+    \begin{enumerate}[(i)]
+        \item
+            $\nu_k$ ist $\sigma$-additiv,
+        \item
+            $\normvar{\nu_k} < \infty$,
+        \item
+            $\nu_k$ ist absolut stetig bezüglich $\mu$.
+    \end{enumerate}
+    Zu (i): Dass $\nu_k$ endlich additiv ist, folgt sofort aus den Eigenschaften
+    charakteristischer Funktionen und der Linearität von~$F$.
+    Sei nun $\iSeq E$ eine Folge paarweise disjunkter Mengen aus $S$
+    und sei $E\defeq \bigcup_{i\in\N} E_i$. Sei außerdem $E_j' \defeq
+    \bigcup_{i=1}^j E_i$ für alle $j\in\N$. Dann folgt aus der
+    $\sigma$-Stetigkeit des Maßes~$\mu$:
+    \[ \chi_{E_j'\cap\Omega_k} \to \chi_{E\cap\Omega_k}
+        \quad\text{in $\Lpp(\Omega)$} \fuer j\to\infty
+    . \]
+    Weil $F$ stetig ist, folgt:
+    \[ \isum^\infty \nu_k(E_i) 
+        = \lim_{j\to\infty} \isum^j \nu_k(E_i)
+        = \lim_{j\to\infty} \nu_k(E_j')
+        = \lim_{j\to\infty} F( \chi_{E_j'\cap\Omega_k} )
+        = F( \chi_{E\cap\Omega_k} ) = \nu_k(E)
+    . \]
+    
+    Zu (ii): Seien $E_1,\dots,E_\ell \in S$ paarweise disjunkt mit
+    $\Omega = E_1\cup\dots\cup E_\ell$. Ohne Einschränkung sei keine
+    der Menge $E_1,\dots,E_\ell$ eine Nullmenge bezüglich $\nu_k$.
+    Für alle $i\in\setOneto\ell$ sei 
+    $\sigma_i \defeq \ol{\nu_k(E_i)}/\abs{\nu_k(E_i)}$. Dann gilt:
+    \[ \isum^\ell \, \abs{\nu_k(E_i)} 
+        = \isum^\ell \sigma_i \, \nu_k(E_i)
+        = F\Bigl( \; 
+            \underbrace{\isum^\ell \sigma_i \chi_{E_i\cap\Omega_k}}_{
+                \smash{\eqdef g}
+            }
+        \; \Bigr)
+        \leq \norm{F} \, \norm{g}_p < \infty
+    , \]
+    denn
+    \[ \norm{g}_p^p
+        = \int_\Omega \abs{g}^p
+        = \int_\Omega {\textstyle\isum^\ell} \,
+            \abs{\sigma_i}^p \chi_{E_i\cap\Omega_k}
+        = \int_\Omega \chi_{\Omega\cap\Omega_k}
+        = \mu(\Omega_k) < \infty
+    . \]
+    
+    Zu (iii): Sei $N\in S$ eine Nullmenge bezüglich~$\mu$.
+    Dann verschwindet $\chi_{N\cap\Omega_k}$ \fu\ auf $\Omega$,
+    d.\,h. $\chi_{N\cap\Omega_k} = 0 \in\Lpp(\Omega)$. Es folgt:
+    \[ \nu_k(N) = F(0) = 0  . \]
+    
+    Der Satz von Radon-Nikodym \pref{vl25:radonnikodym} liefert nun für alle
+    $k\in\N$ ein $f_k\in\Lp1(\Omega)$, so dass gilt:
+    \[ \forall\,k\in\N\;\forall\,E\in S\colon\quad
+        \nu_k(E) = \int_E f_k \dif\mu
+    . \]
+    Es gilt dann für alle $k\in\N$:
+    \begin{gather*}
+        f_k = 0 \quad\text{$\mu$-\fu\quad auf $\Omega\setminus\Omega_k$} 
+        \rlap{\qquad \text{und}}
+        \\
+        f_{k+1}=f_k \quad\text{$\mu$-\fu\quad auf $\Omega_k$} 
+    . \end{gather*}
+    Sei $f\colon\Omega\to\C$ definiert durch
+    \[ f(x) \defeq \overline{f_k(x)}, \quad
+        \text{falls } k=\min\{ k'\in\N \Mid x\in\Omega_{k'} \}
+    . \]
+    Aus den obigen Eigenschaften der Folge $\kSeq f$ folgt dann:
+    \[ \forall\,E\in S\colon\quad
+        F(\chi_E) = \int_E \ol{f}\dif\mu 
+        = \int_\Omega \chi_E\mkern2mu \ol{f} \dif\mu
+    . \]
+    Außerdem gilt 
+    \[ F(g) = \int_\Omega g \mkern2mu \ol{f} \dif\mu \]
+    für alle $g\in\Lp\infty(\Omega)$ mit $g\vert_{\Omega\setminus\Omega_k}=0$
+    für ein $k\in\N$, denn solche Funktionen lassen sich gleichmäßig durch
+    Treppenfunktionen approximieren (siehe Maßtheorie).
+    %
+    Der Raum
+    \[ \bigl\{ 
+        g\in \Lp\infty(\Omega) \Mid 
+        \exists\,k\in\N\colon\; g\vert_{\Omega\setminus\Omega_k} = 0 
+        \bigr\}
+    \]
+    liegt dicht in $\Lpp(\Omega)$, denn für ein $g\in\Lpp(\Omega)$ gilt
+    \[ \chi_{\Omega_k} \chi_{\{\abs{g}\leq m\}} g
+        \;\to\; g \quad\text{in $\Lpp(\Omega)$} \fuer k,m\to\infty
+    , \]
+    wie man sich mithilfe des Satzes über monotone Konvergenz überlegen
+    kann.
+    
+    Es bleibt zu zeigen: $f\in\Lpp[p'](\Omega)$. Denn dann stimmen die stetigen
+    Funktionen $F$ und $J(f)$ auf einem dichten Teilraum von $\Lpp(\Omega)$
+    überein, müssen also schon gleich sein.
+    
+    Für $k,m\in\N$ und $q\in[1,\infty)$ seien
+    \[ \Omega_{km} \defeq \Omega_k \cap \{ \abs{f} \leq m \} 
+        \qqundqq
+        g_{km} \defeq \chi_{\Omega_{km}} \abs{f}^{q-2} f
+    . \]
+    Dann gilt:
+    \[ \tag{$\star$} \label{vl25:star}
+        \int_{\Omega_{km}} \abs{f}^q \dif\mu = F(g)
+        \leq \norm{F} \, \norm{g}_p
+        = \norm{F} \, \Bigl( \int_{\Omega_{km}} \abs{f}^{p(q-1)} 
+        \Bigr)^{1/p}
+    . \]
+    1. Fall: $p>1$. Wir setzen $q = p'$ und erhalten mit
+    $p(q-1) = p(p'-1) = p'$ aus \eqref{vl25:star}:
+    \[ \Bigl( \int_\Omega \abs{f}^{p'} \dif\mu \Bigr)
+        \leq \norm{F} \Bigl( \int_{\Omega_{km}} \abs{f}^{p'} \dif\mu
+        \Bigr)^{1/p}
+        \qtextq{bzw.}
+        \Bigl( \int_{\Omega_{km}} \abs{f}^{p'} \dif\mu
+        \Bigr)^{1/p'} \leq \norm{F}
+    \]
+    Im Grenzwert $k,m\to\infty$ folgt dann aus dem Satz über monotone
+    Konvergenz:
+    \[ \norm{f}_{p'} \leq \norm{F}
+        \qtextq{und insbesondere}
+        f \in \Lpp[p'](\Omega)
+    \]
+    
+    2. Fall: $p=1$. Für alle $q\in\N$ erhalten wir induktiv aus
+    \eqref{vl25:star}:
+    \[ \thickmuskip=10mu
+        \int_{\Omega_{km}} \abs{f}^q \dif\mu
+        \leq \norm{F} \, \int_{\Omega_{km}} \abs{f}^{q-1} \dif\mu
+        \leq \norm{F}^q \int_{\Omega_{km}} \mkern-13mu 1 \dif\mu
+        = \norm{F}^q \, \mu(\Omega_{km})
+    . \]
+    Nun kann man zeigen, dass $\norm{f}_{\Lpp[q](\Omega_{km})} 
+    \to \norm{f}_{\Lp\infty(\Omega_{km})}$ für $q\to\infty$ gilt.
+    % xxx Anhang ^
+    Zusammen mit der obigen Ungleichung folgt daraus
+    \[ \norm{f}_{\Lp\infty(\Omega_{km})}
+        = \lim_{q\to\infty} \norm{f}_{\Lpp[q](\Omega_{km})}
+        \leq \lim_{q\to\infty} \norm{F} \, 
+            \bigl( \mu(\Omega_{km}) \bigr)^{1/q}
+        = \norm{F}
+    \]
+    (falls $\mu(\Omega_{km}) > 0$).
+    Indem wir geeignete Nullmengen bezüglich~$\mu$ betrachten, erhalten wir dann
+    aus $\norm{f}_{\Lp\infty(\Omega_{km})}\leq\norm{F}$ für alle $k,m\in\N$ auch
+    $\norm{f}_{\Lp\infty(\Omega)}\leq\norm{F}$ und damit $f\in\Lpp[p'](\Omega)$.
+    \\
+\end{proof}

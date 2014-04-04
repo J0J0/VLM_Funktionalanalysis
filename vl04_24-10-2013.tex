@@ -191,7 +191,7 @@
 \begin{proof}
     Zu \ref{vl04:lemma3.4-1}: Wir zeigen nur die $\triangle$-Ungleichung (der
     Rest ist klar). Es gilt
-    \[ \norm{T_1+T_2)(x)} \leq \norm{T_1x} + \norm{T_2x}
+    \[ \norm{(T_1+T_2)(x)} \leq \norm{T_1x} + \norm{T_2x}
         \leq (\norm{T_1}+\norm{T_2}) \, \norm{x}
     , \]
     woraus folgt:
@@ -199,9 +199,9 @@
     
     Zu \ref{vl04:lemma3.4-2}: Es sei $\nSeq T$ eine Cauchy-Folge in $L(X,Y)$.
     Für alle $x\in X$ ist dann $(T_n x)_{n\in\N}$ eine Cauchy-Folge in $Y$.
-    Setzte
+    Setze
     \[ Tx \defeq \lim_{n\to\infty} T_n x  . \]
-    Da Grenzwertbilden linear ist, ist auch $L$ linear. Wir behaupten, dass
+    Da Grenzwertbilden linear ist, ist auch $T$ linear. Wir behaupten, dass
     $T\in L(X,Y)$ und $\norm{T_n-T}\to0$ für $n\to0$ gelten.
     
     Zu $\epsilon\in\R[>0]$ wähle $n_0\in\N$, so dass für alle 

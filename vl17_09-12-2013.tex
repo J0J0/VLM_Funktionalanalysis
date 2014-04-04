@@ -4,10 +4,42 @@
     Einheitskugel $\setclosure{B_1(0)}$ in $X'$ \schwachstern folgenkompakt.
 \end{thSatz}
 
+\begin{proof}
+    Sei $\{ x_n \Mid n\in\N \}$ dicht in $X$ und sei $\kSeq{x'}$ eine Folge in
+    $X'$ mit $\norm{x_k}\leq1$ für alle $k\in\N$. Dann ist $\bigl( x_k'(x_n)
+    \bigr)_{k\in\N}$ für alle $n\in\N$ eine beschränkte Folge in $\K$.
+    %, denn: ist $n\in\N$, so gilt für für alle $k\in\N$: $\abs{x_k'(x_n)} \leq
+    %\norm{x_k'}\,\norm{x_n} \leq \norm{x_n}$.
+    Nach dem Diagonalverfahren gibt es eine Teilfolge $(x_{k_i}')_{i\in\N}$, so
+    dass $\bigl( x_{k_i}'(x_n) \bigr)_{i\in\N}$ für alle $n\in\N$ konvergiert.
+    % xxx Anhang: Diagonalverfahren
+    Setze dann für alle $n\in\N$:
+    \[ x'(x_n) \defeq \lim_{i\to\infty} x_{k_i}'(x_n)  . \]
+    Wir setzen $x'$ linear fort auf $Y \defeq \spann\{ x_n \Mid x\in\N \}$.
+    Für alle $y\in Y$ gilt dann
+    \[ \abs{x'(y)} = \lim_{i\to\infty} \,\abs{x_{k_i}'(y)} \leq \norm{y}  , \]
+    woraus folgt, dass $x'$ auf $Y$ gleichmäßig stetig ist und sich somit
+    eindeutig auf $\setclosure{Y} = X$ fortsetzen lässt.
+    % xxx ^ Warum nicht einfach Hahn-Banach-Fortsetzung nach 4.6?
+    Folglich ist $x'\in X'$ mit $\norm{x'}\leq 1$. Sei $x\in X$ und
+    $(y_j)_{j\in\N}$ eine Folge in $Y$, die gegen $x$ konvergiert. Dann gilt:
+    \begin{align*}
+        \abs{ (x'-x_{k_i}')(x) }
+        &\leq \abs{(x'-x_{k_i}')(y_j)} + \norm{x'-x_{k_i}'} \, \norm{x-y_j}
+        \\
+        &\leq \abs{(x'-x_{k_i}')(y_j)} + 2 \norm{x-y_j}
+        \\
+        &\quad\xrightarrow[i\to\infty]{\text{\tiny nach Konstr.}}\;
+            0 + 2 \norm{x-y_j}
+            \;\xrightarrow[j\to\infty]{}\; 0
+    \end{align*}
+    Da $x$ beliebig war, folgt wie gewünscht:
+    \[ \forall\,x\in X\colon\quad x_{k_i}'(x) \to x'(x) \fuer i\to\infty  . \]
+\end{proof}
 
-Wir hätten gerne die Aussage des vorherigen Satzes für
-$\setclosure{B_1(0)}\subset X$. Dafür brauchen wir Reflexivität und
-einige Aussagen über reflexive Räume.
+Wir hätten gerne die analoge Aussage von \cref{vl17:satz7.8} für
+$\setclosure{B_1(0)}\subset X$ und schwache Konvergenz. Dafür brauchen wir
+Reflexivität und einige Aussagen über reflexive Räume.
 
 % 7.9
 \begin{thLemma} \label{vl17:lemma7.9}
@@ -27,15 +59,77 @@ einige Aussagen über reflexive Räume.
     \end{enumerate}
 \end{thLemma}
 
+\begin{proof}
+    \begin{enumerate}[(1)]
+        \item 
+            Sei o.\,E. $Y\neq X$ und sei $y''\in Y''$. Dann definieren wir
+            $x''\in X''$ durch
+            \[ x''(x') \defeq y''( x'\vert_Y )  . \]
+            Sei $x\defeq J_X^{-1} x'' \in X$. Für alle $x'\in X'$ mit
+            $x'\vert_Y = 0$ gilt
+            \[ 0 = x''(x') = (J_X x)(x') = x'(x) \]
+            und somit folgt $x\in Y$ aus (dem Beweis von)
+            \cref{vl07:korollar4.16}. Sei $y'\in Y'$ und sei $x'\in X'$ eine
+            Hahn-Banach-Fortsetzung von $y'$ \pcref{vl05:satz4.6}. Dann gilt
+            \[ y''(y') = y''(x'\vert_Y)
+                = x''(x') = x'(x) = y'(x) = (J_Yx)(y')
+            . \]
+            Es folgt $J_Y x = y''$ und somit ist $J_Y$ surjektiv, also $Y$
+            reflexiv.
+            
+        \item
+            Aus Symmetriegründen genügt es, eine Richtung zu zeigen.
+            Sei $X$ reflexiv und $y''\in Y''$. Definiere $x''\in X''$ durch
+            \[ x''(x') \defeq y''(x'\circ T^{-1})  . \]
+            Für $y'\in Y'$ gilt dann
+            \[ y''(y') = x''(y'\circ T) = (y'\circ T)(J_X^{-1} x'')
+                = y'(T J_X^{-1} x'') = J_Y(T J_X^{-1} x'')(y')
+            , \]
+            also folgt $y'' = J_Y(T J_X^{-1} x'')$ und damit ist $J_Y$ surjektiv,
+            d.\,h. $Y$ reflexiv.
+            
+        \item
+            \enquote{$\Rightarrow$}: Sei $X$ reflexiv. Ist $x'''\in X'''$, so gilt
+            $x''' \circ J_X \in X'$. Für alle $x''\in X''$ gilt:
+            \[ x'''(x'') = (x''' \circ J_X)(J_X^{-1} x'')
+                = x''(x'''\circ J_X) = J_{X'}(x'''\circ J_X)(x'')
+            . \]
+            Also folgt $x''' = J_{X'}(x'''\circ J_X)$ und damit ist $J_{X'}$
+            surjektiv.
+            
+            \enquote{$\Leftarrow$}: Sei $X'$ reflexiv. Nach dem gerade Gezeigten
+            ist $X''$ reflexiv. Weil $J_X$ eine Isometrie ist, muss $J_X(X)
+            \subset X''$ ein abgeschlossener Unterraum sein. Mit
+            \ref{vl17:lemma7.9:1} folgt, dass $J_X(X)$ reflexiv ist, und mit
+            \ref{vl17:lemma7.9:2} die Reflexivität von $X$.
+    \end{enumerate}
+\end{proof}
 
+\pagebreak[2]
 % 7.10 (Hilfssatz)
 \begin{thLemma} \label{vl17:lemma7.10}
     Sei $X$ ein Banachraum. Dann gilt:
     \[ X'\text{ separabel} \qimpliesq X\text{ separabel} \]
 \end{thLemma}
 
+\begin{proof}
+    Sei $\{ x_k' \Mid k\in\N \}$ dicht in $X'$. Wähle nun für alle $k\in\N$
+    ein $x_k\in X$ mit $\norm{x_k} = 1$ und $x_k'(x_k) \geq
+    \thalf\,\norm{x_k'}$. Definiere dann
+    \[ Y \defeq \setclosure{\spann\{ x_k \Mid k\in\N \}}  . \]
+    Sei $x'\in X'$ mit $x'\vert_Y = 0$. Dann gilt für alle $k\in\N$:
+    \[ \norm{x'-x_k'} \geq \abs{ (x'-x_k')(x_k) } = \abs{x_k'(x_k)}
+        \geq \half\,\norm{x_k'} \geq \half\,(\norm{x'} - \norm{x_k'-x'})
+    . \]
+    Daraus folgt
+    \[ \norm{x'} \leq 3\mkern1mu\inf_{k\in\N} \, \norm{x'-x_k'} = 0, \]
+    da $\{ x_k' \Mid k\in\N \}$ dicht liegt in $X'$. 
+    Mittels \cref{vl07:korollar4.16} folgt $X=Y$.
+    \\
+\end{proof}
 
 Achtung, die Umkehrung von \cref{vl17:lemma7.10} gilt im Allgemeinen nicht!
+% xxx Anhang: Beispiel für ^
 
 % 7.11
 \begin{thSatz} \label{vl17:satz7.11}
@@ -43,29 +137,77 @@ Achtung, die Umkehrung von \cref{vl17:lemma7.10} gilt im Allgemeinen nicht!
     schwach folgenkompakt.
 \end{thSatz}
 
+\begin{proof}
+    Sei $\kSeq x$ eine Folge in $\setclosure{B_1(0)}$ und
+    \[ Y \defeq \setclosure{\spann\{ x_k \Mid k\in\N \}}  . \]
+    Dann ist $Y$ offenbar separabel. Da $Y$ ein abgeschlossener Unterraum
+    des reflexiven Banachraums~$X$ ist, erhalten wir mit
+    \mycref{vl17:lemma7.9:1}, dass auch $Y$ reflexiv ist. Also ist
+    $Y'' = J_Y(Y)$ separabel. Nach \cref{vl17:lemma7.10}
+    ist damit auch $Y'$ separabel. Da $\setclosure{B_1(0)} \subset (Y')'$
+    \schwachstern folgenkompakt ist \pcref{vl17:satz7.8}, existiert eine
+    Teilfolge $(x_{k_i})_{i\in\N}$ und ein $y''\in Y''$ mit
+    \[ J_Y x_{k_i} \to y''  \quad \text{\schwachstern in $Y''$} \fuer i\to\infty
+    . \]
+    Für $x \defeq J_Y^{-1} y''$ gilt also $J_Y x_{k_i} \weakstarto J_Y x$ für
+    $i\to\infty$. Somit gilt für alle $y'\in Y'$:
+    \[ y'(x_{k_i}) = (J_Y x_{k_i})(y') \to (J_Y x)(y') = y'(x) \fuer i\to\infty
+    . \]
+    Es folgt $x_{k_i} \to x$ schwach in $Y$ für $i\to\infty$ und damit auch
+    \[ x_{k_i} \to x \quad\text{schwach in $X$} \fuer i\to\infty  . \]
+\end{proof}
 
 % 7.12
-\begin{thEmpty}[Anwendung auf Hilberträume]\hfill\\
-    \nnSatz
-    Sei $H$ ein Hilbertraum. Sei $\kSeq x$ eine Folge in $H$ mit
-    $\sup_{k\in\N} \, \norm{x_k} < \infty$. Dann existiert eine Teilfolge
-    $(x_{k_j})_{j\in\N}$ von $\kSeq x$ und ein $x\in X$, so dass für alle
-    $y\in X$ gilt:
-    \[ \SP{ x_{k_j}, y } \to \SP{x,y} \fuer j\to\infty  . \]
-\end{thEmpty}
+\begin{thSatz}[Anwendung auf Hilberträume]
+    Sei $H$ ein Hilbertraum und $\kSeq x$ eine beschränke Folge in $H$.
+    Dann existiert eine Teilfolge $(x_{k_i})_{i\in\N}$ und ein
+    $x\in H$, so dass für alle $y\in H$ gilt:
+    \[ \SP{ x_{k_i}, y } \to \SP{x,y} \fuer i\to\infty  . \]
+\end{thSatz}
 
+\begin{proof}
+    Nach \cref{vl13:hilbertraumreflexiv} ist $H$ reflexiv. Nach
+    \cref{vl17:satz7.11} sind abgeschlossene Kugeln also schwach folgenkompakt.
+    Das heißt, es existieren eine Teilfolge $(x_{k_i})_{i\in\N}$ und ein
+    $x\in H$ mit:
+    \[ \forall\,x'\in X'\colon\quad 
+        x'(x_{k_i}) \to x'(x) \fuer i\to\infty
+    . \]
+    Mit dem Rieszschen Darstellungssatz \pref{vl12:riesz} erhalten wir:
+    \[ \forall\,y\in H \; \exists\,x'_y\in H'\colon\quad
+        \SP{\scdot,y} = x'_y
+    \]
+    Dies impliziert:
+    \[ \forall\,y\in H\colon\quad
+        \SP{x_{k_i},y} = x'_y(x_{k_i}) \to x'_y(x) = \SP{x,y} \fuer i\to\infty
+    . \]
+\end{proof}
 
 % 7.13
 \begin{thSatz}
     Sei $H$ ein Hilbertraum und $\kSeq x$ eine Folge in $H$. Dann gilt:
     \begin{align*}
-        &x_k\to x \quad\text{stark in $H$ für $k\to\infty$} \\
+        &x_k\to x \quad\text{stark in $H$} \fuer k\to\infty \\
         \iff\qquad 
-        &x_k\to x \quad\text{schwach in $H$ und
-            $\norm{x_k}\to\norm{x}$ für $k\to\infty$}
-        \end{align*}
+        &x_k\to x \quad\text{schwach in $H$} \qundq
+            \norm{x_k}\to\norm{x} \fuer k\to\infty
+        . \end{align*}
 \end{thSatz}
 
+\begin{proof}
+    \enquote{$\Rightarrow$} ist klar.\\
+    \enquote{$\Leftarrow$}: Für alle $k\in\N$ gilt:
+    \begin{align*}
+        \norm{x_k}^2
+        &= \norm{x-x+x_k}^2 
+        = \SP{x-x+x_k,x-x+x_k}
+        \\
+        &= \norm{x}^2 + 2\Re\SP{x_k-x,x} + \norm{x_k-x}^2
+    . \end{align*}
+    Wegen $x_k \weakto x$ für $k\to\infty$ gilt $\SP{x_k-x,x}
+    \to 0$ für $k\to\infty$. Es folgt 
+    \[ \norm{x-x_k}\to 0 \fuer k\to\infty  . \]
+\end{proof}
 
 % 7.14
 \begin{thSatz} \label{vl17:satz7.14}

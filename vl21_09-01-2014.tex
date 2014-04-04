@@ -1,22 +1,179 @@
 % 8.16
 \begin{thSatz} \label{vl21:satz8.16}
     Sei $X$ ein Banachraum über $\K$ und sei $T\in K(X)$.
-    Dann ist $\Id-T$ ein Fredholm-Operator mit Index~$0$.
+    Dann ist $A\defeq\Id-T$ ein Fredholm-Operator mit Index~$0$.
     Genauer ergibt sich dies aus den folgenden Einzelaussagen:
     \begin{enumerate}[(1),leftmargin=1.8cm,labelsep=1.5em]
-        \item
+        \item \label{vl21:satz8.16:1}
             $\dim N(A) < \infty$
-        \item
+            
+        \item \label{vl21:satz8.16:2}
             $R(A)$ ist abgeschlossen
-        \item
+            
+        \item \label{vl21:satz8.16:3}
             $N(A)=\{0\} \implies R(A) = X$
-        \item
+            
+        \item \label{vl21:satz8.16:4}
             $R(A) = X \implies N(A) = \{0\}$
-        \item
+            
+        \item \label{vl21:satz8.16:5}
             $\codim R(A) = \dim N(A)$
     \end{enumerate}
 \end{thSatz}
 
+\begin{proof}
+    \begin{enumerate}[(1)]
+        \item
+            Für $x\in X$ gilt:
+            \[ x\in N(A) \iff Ax = 0 \iff x = Tx  . \]
+            Daher gilt
+            \[ B_1(0) \cap N(A) \subset T\bigl( B_1(0) \bigr) . \]
+            Weil $T$ kompakt ist, ist die Einheitskugel in $N(A)$ also
+            präkompakt. Nach Heine-Borel \pcref{vl16:heineborel} ist
+            damit $N(A)$ endlich-dimensional.
+            
+        \item
+            Sei $x\in\setclosure{R(A)}$ und sei $\nSeq x$ eine Folge in $X$ mit
+            $Ax_n \to x$ für $n\to\infty$. Ohne Einschränkung können wir
+            annehmen, dass für alle $n\in\N$ schon
+            \[ \norm{x_n} \leq 2d_n \qtextq{mit} 
+                d_n \defeq \dist\bigl(x_n,N(A)\bigr)
+            \]
+            gilt, denn: Zu $n\in\N$ können wir $a_n\in N(A)$ mit
+            $\norm{x_n-a_n}\leq 2d_n$ wählen und dann $(x_n-a_n)_{n\in\N}$
+            betrachten.
+            % TODO v
+            % Skizze: zwei Unterräume (Geraden), eine davon N(A) mit 0 und a_n,
+            % x_n, x_n-a_n auf der anderen und Abstand d_n dazwischen
+            Wir zeigen unten, das $\nSeq d$ beschränkt ist, also ist auch
+            $\nSeq x$ beschränkt.
+            Wegen $T\in K(X)$ existieren dann eine Teilfolge
+            $(x_{n_k})_{k\in\N}$ und ein $y\in X$ mit
+            \[ Tx_{n_k} \to y \fuer k\to\infty  . \]
+            Nach Definition von $A$ und Wahl von $\nSeq x$ gilt dann:
+            \[ x_{n_k} = Ax_{n_k} + Tx_{n_k} \to x + y \fuer k\to \infty  . \]
+            Stetigkeit von $A$ und Eindeutigkeit des Grenzwerts implizieren
+            $A(x+y) = x$, d.\,h. $x$ liegt im Bild von $A$. Es folgt
+            $\setclosure{R(A)} = R(A)$.
+            
+            Es bleibt die Beschränktheit von $\nSeq d$ zu zeigen.
+            Angenommen es gibt eine Teilfolge von $\nSeq d$, welche gegen
+            $\infty$ konvergiert. (Um die Notation übersichtlich zu halten,
+            bezeichnen wir diese weiterhin mit $\nSeq d$.) Ohne Einschränkung
+            gilt dann $d_n>0$ für alle $n\in\N$ und wir können somit
+            \[ \nSeq y \defeq (x_n / d_n)_{n\in\N} \]
+            setzen. Dann ist $\nSeq y$ beschränkt und somit existiert (wegen
+            $T\in K(X)$) eine Teilfolge $(y_{n_k})_{k\in\N}$ und ein $y\in X$
+            mit $Ty_{n_k} \to y\in X$ für $k\to\infty$. Dann gilt
+            \[ y_{n_k} - Ty_{n_k} = Ay_{n_k}
+                = \frac{Ax_{n_k}}{d_{n_k}} \to 0 \fuer k\to\infty
+            , \]
+            denn $(Ax_n)_{n\in\N}$ konvergiert und $(d_{n_k})_{k\in\N}$ geht
+            gegen unendlich. Aus der Stetigkeit von $A$ folgt $Ay = 0$ und damit
+            gilt $\dist(y,N(A)) = 0$. Weil $\dist(\scdot, N(A))$ stetig ist,
+            folgt:
+            \[ 1 = \dist\bigl( x_{n_k}, N(A) \bigr)/d_{n_k}
+                 = \dist\bigl( y_{n_k}, N(A) \bigr)
+                 \to \dist\bigl( y, N(A) \bigr)
+                = 0
+            , \]
+            ein Widerspruch.
+            
+        \item
+            Sei $A$ injektiv.
+            Angenommen es existiert ein $x\in X\setminus R(A)$. Für alle
+            $n\in\N$ gilt zunächst
+            \[ A^nx \in R(A^n) \setminus R(A^{n+1})  , \]
+            denn: Falls $A^nx=A^{n+1}y$ für ein $y\in X$ gilt, so folgt
+            $A^n(x-Ay) = 0$ und aus der Injektivität von $A$ folgt dann
+            $x=Ay\in R(A)$, was der Wahl von $x$ widerspricht. 
+            Weiter gilt
+            \[ A^n = (\Id-T)^n = \Id - T \, (\dots)  \]
+            und weil $T$ kompakt ist, ist nach \cref{vl19:lemma8.5}
+            auch $T \, (\dots)$ kompakt. Aus \ref{vl21:satz8.16:2} folgt dann, 
+            dass $R(A^n)$ abgeschlossen ist.
+            Aus den bisherigen Überlegungen folgt $\dist\bigl( A^nx, R(A^{n+1})
+            \bigr) > 0$, weswegen wir für alle $n\in\N$ ein
+            $a_{n+1}\in R(A^{n+1})$ mit
+            \[ 0 < \norm{A^nx-a_{n+1}}
+                \leq 2 \dist\bigl( A^nx, R(A^{n+1}) \bigr)
+            \]
+            wählen und 
+            \[ y_n \defeq \frac{A^nx - a_{n+1}}{\norm{A^nx - a_{n+1}}}  \]
+            setzen können. Für alle $n\in\N$ gilt dann
+            \[ \dist\bigl( y_n, R(A^{n+1}) \bigr) \geq \half  , \]
+            denn für alle $y\in R(A^{n+1})$ gilt
+            \[ \norm{y_n-y} 
+                = \frac{\norm[\big]{A^nx-(a_{n+1}+\norm{A^nx-a_{n+1}}\,y)}}{
+                    \norm{A^nx-a_{n+1}} }
+                    \geq \frac{\dist\bigl( A^nx,
+                        R(A^{n+1})\bigr)}{\norm{A^nx-a_{n+1}}}
+                \geq \half
+            . \]
+            Für $m,n\in\N$ mit $m>n$ gilt dann:
+            \[ \norm{Ty_n-Ty_m} 
+                = \norm{y_n-\underbrace{(Ay_n+y_m-Ay_m)}_{\in\,R(A^{n+1})} }
+                \geq \half
+            . \]
+            Das heißt aber, dass $(Ty_n)_{n\in\N}$ keinen Häufungspunkt besitzen
+            kann, im Widerspruch zur Kompaktheit von $T$. Also war die Annahme
+            falsch und es gilt doch $X=R(A)$.
+            
+        \item
+            Sei $A$ surjektiv. Angenommen $A$ ist nicht injektiv.
+            Dann finden wir eine Folge $\nSeq x$ in $X$ mit
+            $x_1\in N(A)\setminus\{0\}$ und $Ax_{n+1} = x_n$ für alle
+            $n\in\N$. Für diese gilt
+            \[ x_{n+1}\in N(A^{n+1})\setminus N(A^n)  , \]
+            denn $A^{n+1}x_{n+1} = A^nx_n = Ax_1 = 0$ und 
+            $A^nx_{n+1} = A^{n-1}x_n = A x_2 = x_1 \neq 0$. Es gilt
+            offensichtlich $N(A^n) \subset N(A^{n+1})$ und mit dem Satz vom fast
+            orthogonalen Element \pref{vl16:fastorthogonaleselem} erhalten wir:
+            Für alle $n\in\N$ exisitiert ein $y_{n+1}\in N(A^{n+1})$ mit
+            $\norm{y_{n+1}} = 1$ und $\dist\bigl( y_{n+1}, N(A^n) \bigr)
+            \geq\thalf$. Für $n,m\in\N$ mit $n>m$ gilt dann:
+            \[ \norm{Ty_n-Ty_m}
+                = \norm{y_n - \underbrace{(Ay_n+y_m-Ay_m)}_{\in\,N(A^{n-1})} }
+                \geq \half
+            , \]
+            im Widerspruch zur Kompaktheit von $T$. Also muss doch $N(A)=\{0\}$
+            gelten.
+            
+        \item
+            Sei $n\defeq \dim N(A)$. Wir zeigen nun per Induktion über $n$, dass
+            $n = \codim R(A)$ gilt. Für $n=0$, siehe oben. Im Fall $n\geq 1$,
+            wähle $x_0\in N(A)\setminus\{0\}$ und einen Unterraum
+            $N_0\subset N(A)$ mit $\dim N_0 = n-1$ und
+            \[ N(A) = \spann\{x_0\} \oplus N_0  . \]
+            Nach \ref{vl21:satz8.16:2} und \ref{vl21:satz8.16:4} gilt:
+            $R(A)$ ist abgeschlossen und $R(A) \neq X$.
+            Sei $y_0\in X\setminus R(A)$ und
+            \[ Y_0 \defeq \spann\{y_0\}\oplus R(A) \subset X  .\]
+            Nach (dem Beweis von) \cref{vl07:korollar4.16} gibt es ein
+            $x'\in X'$ mit $x'(x_0)=1$ und $x'\vert_{N_0} = 0$. Definiere $T_0x
+            \defeq Tx + x'(x)\,y_0$ und $A_0 \defeq \Id-T_0$, also $A_0 x = 
+            Ax - x'(x)\, y_0$.
+            Wir schließen:
+            \begin{align*}
+                x\in N(A_0)
+                &\iff Ax = x'(x)\,y_0
+                 \iff x\in N(A) \wedge x'(x) = 0
+                \\
+                &\iff x\in N_0
+            . \end{align*}
+            Außerdem gilt $R(A_0) = Y_0$, denn: $A_0x_0=-y_0$
+            und für $y\in R(A)$ mit $Ax=y$ für ein $x\in X$ gilt:
+            \[ A_0\bigl(x-x'(x)x_0\bigr) 
+                = Ax + 0 = y
+            . \]
+            Weiter ist $T_0$ kompakt, also gilt nach Induktionsvoraussetzung:
+            \[ n-1 = \dim N(A_0) = \codim R(A_0)  . \]
+            Es folgt:
+            \[ \codim R(A) = \codim R(A_0) + 1 = n = \dim N(A)  . \]
+            %
+            \qedhere
+    \end{enumerate}
+\end{proof}
 
 \begin{thSatz}[Spektralsatz für kompakte Operatoren] \label{vl21:spektralsatz}
     Sei $X$ ein $\infty$-dimensionaler Banachraum über $\K$ und sei $T\in K(X)$.

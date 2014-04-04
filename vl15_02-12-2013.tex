@@ -4,16 +4,17 @@
     dichte Teilmenge enthält.
 \end{thDef}
 
-\begin{BspList}{(a)}
-\item
-    $\R$ ist separabel, da $\Q\subset\R$ dicht liegt.
-\item
-    $C^0([a,b])$ mit der Supremumsnorm ist separabel, da die Polynome mit
-    rationalen Koeffizienten dicht liegen.  (Weierstraßscher Approximationssatz)
-\item
-    $\ell^2(\R)$ ist separabel, da die abbrechenden Folgen aus $\ell^2(\Q)$
-    dicht liegt (vgl. Beweis von \cref{vl15:lemma6.19}).
-\end{BspList}
+\nnBeispiele
+\begin{enumerate}[(a)]
+    \item
+        $\R$ ist separabel, da $\Q\subset\R$ dicht liegt.
+    \item
+        $C^0([a,b])$ mit der Supremumsnorm ist separabel, da die Polynome mit
+        rationalen Koeffizienten dicht liegen.  (Weierstraßscher Approximationssatz)
+    \item
+        $\ell^2(\R)$ ist separabel, da die abbrechenden Folgen aus $\ell^2(\Q)$
+        dicht liegt (vgl. Beweis von \cref{vl15:lemma6.19}).
+\end{enumerate}
 
 % 6.19
 \begin{thLemma} \label{vl15:lemma6.19}
@@ -69,6 +70,7 @@
     \[ \{ e_{i,j} \Mid i\in\N, \; 1\leq j\leq\dim E_i \} \]
     die gesuchte linear unabhängige Menge.
     
+\pagebreak[2]
     \refXimpliesY{4}{1}: Für $n\in\N$ ist
     \[ A_n \defeq \Bigl\{
         \ksum^n  \alpha_k\,e_k \Mid \forall\,k\in\setOneto{n}\colon\;
@@ -97,6 +99,34 @@
     isomorph zu $\ell^2(\K)$.
 \end{thSatz}
 
+\begin{proof}\setrefXimpliesYprefix{vl15:satz6.20:}
+    \refXimpliesY{1}{2}: Sei $(e_k)_{k\in\N}$ wie in \mycref{vl15:lemma6.19:4} 
+    und für alle $n\in\N$ sei $H_n \defeq \spann\{e_1,\dots,e_n\}$.
+    Definiere induktiv für alle $n\in\N$ Elemente $\hat e_n$ durch
+    \begin{align*}
+        \tilde e_n &\defeq 
+        e_n - \ksum^{n-1} \, \SP{e_n,\tilde e_k}\, \hat e_k
+        \in H_n\setminus H_{n-1}
+        \\
+        \hat e_n &\defeq \frac{\tilde e_n}{\norm{\tilde e_n}}
+    . \end{align*}
+    Dann gilt $\hat e_n\in H_n\cap H_{n-1}^\perp$ für alle $n\in\N$. Also ist
+    $(\hat e_n)_{n\in\N}$ ein Orthonormalsystem. Wegen $\spann\{ \hat e_k \Mid
+    1\leq k\leq n \} = H_n$ folgt:
+    \[ \spann\{ \hat e_k \Mid k\in\N \} \text{ liegt dich in $H$}  . \]
+    Nach \cref{vl14:satz6.17} ist damit $\{ \hat e_k \Mid k\in\N \}$ eine
+    Hilbertbasis und es gilt
+    $x = \ksum^\infty\,\SP{x,\hat e_k}\, \hat e_k$ für alle $x\in H$. Die Abbildung
+    \[ J\colon H\to\ell^2(\K), \quad x\mapsto \bigl( \SP{x,\hat e_k} \bigr)_{k\in\N}
+    \]
+    erfüllt dann $\SP{Jx,Jy} = \SP{x,y}$ für alle $x,y\in H$ wieder nach
+    \cref{vl14:satz6.17}. Außerdem ist $J$ linear und bijektiv.
+    
+    \refXimpliesY{2}{1} folgt aus \cref{vl15:lemma6.19}, da 
+    $\{e_k \Mid k\in\N\}$ existiert mit $\spann\{ e_k \Mid k\in\N \}$
+    dicht in $H$.
+    \\
+\end{proof}
 
 \nnBemerkung
 Auf $\ell^2(\K)$ ist 
@@ -153,6 +183,7 @@ nicht mehr gegeben. Wir versuchen, Ersatz dafür zu finden.
 Man kann \mycref{vl15:def:7.1:ii} dahingehend verschärfen, dass die Mittelpunkte
 $x_1,\dots,x_n$ der $\epsilon$-Kugeln in $A$ liegen müssen. Dies ist äquivalent
 zur obigen Definition.
+% xxx Anhang: Äquivalenz
 
 % 7.2
 \begin{thSatz} \label{vl15:satz7.2}
@@ -171,3 +202,63 @@ zur obigen Definition.
     \end{enumerate}
 \end{thSatz}
 
+\begin{proof}\setrefXimpliesYprefix{vl15:satz7.2:}
+    \refXimpliesY{1}{2}: Sei $\kSeq x$ eine Folge in $A$. Besitzt $A$ keinen
+    Häufungspunkt so gibt es für alle $y\in A$ ein $r_y\in\R[>0]$, so dass
+    \[ N_y \defeq \{ k\in\N \Mid x_k\in B_{r_y}(y) \cap A \} \]
+    endlich ist. Weil $\bigl( B_{r_y}(y) \bigr)_{y\in A}$ eine offene Überdeckung von
+    $A$ bildet und $A$ kompakt ist, gibt es $y_1,\dots,y_n\in A$ mit
+    $A \subset \bigcup_{i=1}^n B_{r_{y_i}}(y_i)$. Damit wäre
+    $\N\subset\bigcup_{i=1}^n N_{y_i}$ endlich. Widerspruch.
+    
+    \refXimpliesY{2}{3}: Jede Cauchy-Folge in $A$ besitzt wegen der
+    Folgenkompaktheit von $A$ eine konvergente Teilfolge. Da aber eine
+    Cauchyfolge mit konvergenter Teilfolge schon selbst konvergiert
+    (gegen den Grenzwert der Teilfolge), ist $A$ also vollständig.
+    Zur Präkompaktheit: Falls es für ein $\epsilon\in\R[>0]$
+    keine endliche $\epsilon$-Überdeckung von $A$ gibt, wähle induktiv
+    \[ x_{k+1} \in A \setminus \bigcup_{i=1}^k B_\epsilon(x_i)  . \]
+    Damit hätte $\kSeq x$ keinen Häufungspunkt, im Widerspruch zur
+    Folgenkompaktheit von $A$.
+    
+    \refXimpliesY{3}{1}: Sei $(U_i)_{i\in I}$ eine offene Überdeckung von $A$.
+    Angenommen $(U_i)_{i\in I}$ besitzt keine endliche Teilüberdeckung von $A$.
+    Wähle zunächst endlich
+    viele $y_1,\dots,y_\ell\in X$, so dass $A\subset \bigcup_{j=1}^\ell B_{1/2}(y_j)$ gilt
+    (was wegen der Präkompaktheit von $A$ möglich ist). Dann gibt es ein
+    $B_{1/2}(y_j)$, so dass $B_{1/2}(y_j) \cap A$ nicht von endlich vielen $U_i$
+    überdeckt wird. Wähle dann $x_1\defeq y_j$. Falls nun $x_n$ schon definiert
+    ist, so gehen wir analog vor:
+    Seien $y_1^n,\ldots,y_{\ell_n}^n\in X$, so dass 
+    \[ \thickmuskip=10mu
+        B_{1/2^n}(x_n)\cap A
+        \subset A 
+        \subset \bigcup_{j=1}^{\ell_n} B_{1/2^{n+1}}(y_j^n)
+    \]
+    gilt. Weil nach Konstruktion $B_{1/2^n}(x_n)\cap A$ nicht von endlich vielen
+    $U_i$ überdeckt wird, muss es ein $B_{1/2^{n+1}}(y_j^n)$ geben,
+    das $B_{1/2^n}(x_n)\cap A$ nicht-trivial schneidet und das nicht
+    von endlich vielen $U_i$ überdeckt wird. Setze dann $x_{n+1} \defeq y_j^n$.
+    Somit erhalten wir induktiv eine Folge $\nSeq x$ in $X$ mit
+    $A_n \defeq B_{1/2^{n+1}}(x_{n+1}) \cap B_{1/2^n}(x_n) \cap A \neq \emptyset$
+    für alle $n\in\N$. Wähle dann $z_n\in A_n$ für alle $n\in\N$; dies liefert
+    eine Cauchy-Folge in $A$, was aus
+    \[ d(z_n,z_{n+1})
+        \leq d(z_n, x_{n+1}) + d(x_{n+1}, z_{n+1})
+        \leq \frac{1}{2^{n+1}} + \frac{1}{2^{n+1}}
+        = \frac{1}{2^n} 
+    \]
+    für alle $n\in\N$ folgt.
+    Da $A$ vollständig ist, folgt: Es gibt ein $z\in A$ mit $z_n\to z$ für
+    $n\to\infty$. Weil $(U_i)_{i\in I}$ eine Überdeckung von $A$ ist, gibt es
+    also ein $i_0\in I$ mit $z\in U_{i_0}$. 
+    Da $U_{i_0}$ offen ist, gibt es ein $R\in\R[>0]$, so dass $B_R(z)$ komplett
+    in $U_{i_0}$ enthalten ist. Weil $\nSeq z$ gegen~$z$ konvergiert und nach
+    Wahl von $z_n$ für alle $n\in\N$ auch  $d(x_n,z_n) < 1/2^n$ gilt, finden wir
+    ein $N\in\N$ mit
+    \[ B_{1/2^N}(x_N) \subset B_R(z) \subset U_{i_0}  . \]
+    Damit wird aber $B_{1/2^N}(x_N)\cap A$ von $U_{i_0}$ überdeckt, was nach
+    Konstruktion ausgeschlossen war. Also muss es doch eine endliche
+    Teilüberdeckung von $(U_i)_{i\in I}$ geben.
+    \\
+\end{proof}

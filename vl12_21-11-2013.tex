@@ -71,12 +71,12 @@ existieren.
     \end{align*}
     Für $t\to 0$ erhalten wir die zweite Charakterisierung. Sei umgekehrt
     letztere gegeben für $u\in K$. Dann gilt
-    \[ \norm{w-f}^2 - \norm{v-f}^2 = \norm{u-f}^2 - \norm{v-u+(u-f)}^2
+    \[ \norm{u-f}^2 - \norm{v-f}^2 = \norm{u-f}^2 - \norm{v-u+(u-f)}^2
         = 2\Re\SP{f-u,v-u} - \norm{u-v}^2 \leq 0
     , \]
     woraus die erste Charakterisierung folgt.
     
-    Zur Eindeutigkeit: Angenommen $v_1,v_2\in K$ erfüllen beide die zweite
+    Zur Eindeutigkeit: Angenommen $u_1,u_2\in K$ erfüllen beide die zweite
     Charakterisierung. Dann gilt für alle $v\in K$
     \[ \Re\SP{f-v_1,v-u_1} \leq 0   \qundq 
         \Re\SP{f-v_2,v-u_2} \leq 0
@@ -93,10 +93,10 @@ existieren.
     Das Problem im obigen Satz ist ein Minimierungsproblem. Auch in anderen
     bereits bekannten Problemen wird ein Minimum durch Ungleichungen
     beschrieben. Betrachte zum Beispiel $F\in C^1(\I)$ und 
-    $F(u) = \min_{v\in\I} \, F(v)$. Dann gilt $F'(v)=0$, falls $v\in(0,1)$,
-    $F'(v)\geq 0$, falls $u=0$ und $F'(v)\leq 0$, falls $u=1$. Oder
+    $F(u) = \min_{v\in\I} \, F(v)$. Dann gilt $F'(u)=0$, falls $u\in(0,1)$,
+    $F'(u)\geq 0$, falls $u=0$ und $F'(u)\leq 0$, falls $u=1$. Oder
     zusammengefasst:
-    \[ v\in\I \qtextq{und für alle $v\in\I$ gilt} F'(u) (v-u) \geq 0 . \]
+    \[ u\in\I \qtextq{und für alle $v\in\I$ gilt} F'(u) (v-u) \geq 0 . \]
 \end{thBemerkung}
 
 % 6.3
@@ -111,7 +111,7 @@ existieren.
 \begin{proof}
     Sei $u_1\defeq \Proj_K f_1$ und $u_2\defeq \Proj_K f_2$. Dann gilt für alle
     $v\in K$:
-    \[ \Re\SP{f_1-u_1,v-u_1} \leq 0 \qundq \Re\SP{f_2-u_2,v-u_2}  . \]
+    \[ \Re\SP{f_1-u_1,v-u_1} \leq 0 \qundq \Re\SP{f_2-u_2,v-u_2} \leq 0 . \]
     Wähle einmal $v=u_2$ und einmal $v=u_1$ und erhalte durch Addition:
     \[ \Re\SP{f_2-u_2-f_1+u_1,u_1-u_2} \leq 0  . \]
     Daraus folgt:
@@ -132,13 +132,14 @@ existieren.
 \end{thKorollar}
 
 \begin{proof}
-    Es gilt $\Re\SP{f-u,v-u} \leq 0$ für alle $v\in M$. Sei$\alpha\in\K$ und
-    $w\in M$. Dann gilt auch $v\defeq u + \alpha w \in M$ und damit
-    \[ \Re(\bar\alpha \SP{f-u,w} ) \leq 0 . \]
-    Für $\alpha = \pm \SP{f-u,w}$ erhalten wir Ungleichungen, die
+    Es gilt $\Re\SP{f-u,v-u} \leq 0$ für alle $v\in M$. Sei $w\in M$.
+    Dann gilt auch $v = u + \SP{f-u,w}\,w \in M$ und damit
+    \[ \abs{\SP{f-u,w}}^2 = \Re\bigl(\ol{\SP{f-u,w}} \SP{f-u,w}\bigr) 
+        \leq 0
+    , \]
+    woraus wie gewünscht
     \[ \SP{f-u,w} = 0 \]
-    implizieren.
-    Gilt andererseits $\SP{f-u,w} = 0$ für alle
+    folgt. Gilt andererseits $\SP{f-u,w} = 0$ für alle
     $w\in M$, so folgt für alle $v\in M$ schon
     \[ \Re\SP{f-v,v-u} \leq 0  , \]
     da $v-u\in M$. Die Linearität ist nach der obigen Charakterisierung klar und
