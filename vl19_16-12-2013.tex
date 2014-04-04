@@ -4,7 +4,10 @@ Ziel: Verallgemeinerung der Jordan'schen Normalform auf den
 unendlich-dimensionalen Fall.
 
 % 8.1
+\thmmanualindex%
 \begin{thDef}[Kompakter Operator] \label{vl19:satzdef8.1}
+    \index{kompakter Operrator}%
+    %
     Seien $X,Y$ Banachräume über $\K$. Dann heißt $T\in L(X,Y)$
     \emph{kompakter (linearer) Operator}, falls eine der folgenden Bedingungen
     erfüllt ist:
@@ -48,6 +51,8 @@ unendlich-dimensionalen Fall.
 
 % 8.2
 \begin{thDef}
+    \index{kompakter Operrator}%
+    %
     Für Banachräume $X,Y$ seien
     \[ K(X,Y) \defeq \{ T\in T(X,Y) \Mid T \text{ ist kompakt} \}
         \qundq
@@ -62,9 +67,9 @@ In reflexiven Räumen gibt es folgende Charakterisierung kompakter Operatoren:
     Seien $X,Y$ Banachräume und sei $X$ reflexiv. Sei $T\colon X\to Y$ linear.
     Dann gilt:
     \[ T\in K(X,Y) \qiffq T \text{ vollstetig}, \]
-    wobei $T$ \emph{vollstetig} ist, falls gilt: Ist $\nSeq x$ eine Folge in $X$
-    mit $x_n\weakto x$ in $X$ für $n\to\infty$, so gilt $Tx_n\to Tx$ stark in
-    $Y$ für $n\to\infty$.
+    wobei $T$ \emph{vollstetig}\index{vollstetig} ist, falls gilt: Ist $\nSeq x$
+    eine Folge in $X$ mit $x_n\weakto x$ in $X$ für $n\to\infty$, so gilt
+    $Tx_n\to Tx$ stark in $Y$ für $n\to\infty$.
 \end{thLemma}
 
 \begin{proof}
@@ -149,7 +154,7 @@ In reflexiven Räumen gibt es folgende Charakterisierung kompakter Operatoren:
     Sei $X$ ein Banchraum über $\K$ und $T\in L(X)$.
     \begin{enumerate}[(i)]
         \item
-            Die \emph{Resolventenmenge von $T$} sei
+            Die \emph{Resolventenmenge von $T$}\index{Resolventenmenge} sei
             \[ \rho(T) \defeq \bigl\{ \lambda\in\K \Mid
                 N(\lambda\Id-T)=\{0\} \land
                 R(\lambda\Id-T)=X \bigr\}
@@ -191,16 +196,17 @@ In reflexiven Räumen gibt es folgende Charakterisierung kompakter Operatoren:
             \[ R(\lambda,T) \defeq (\lambda\Id-T)^{-1} \in L(X)  . \]
             Wir nennen $R(\lambda,T)$ \emph{Resolvente von $T$} und die Abbildung
             $\lambda\mapsto R(\lambda,T)$ die \emph{Resolventenfunktion von $T$}.
+            \index{Resolventenfunktion}
             
         \item
             Zu $\lambda\in\sigmap(T)$ ist äquivalent: Es gibt ein $x\in
             X\setminus\{0\}$ mit $Tx=\lambda x$. Dann heißt $\lambda$
             \emph{Eigenwert} und $x$ \emph{Eigenvektor zum Eigenwert
-            $\lambda$}.
+            $\lambda$}.\index{Eigenvektor, -wert, -raum}
             
         \item
             Wir nennen $N(\lambda\Id-T)$ den \emph{Eigenraum von $T$ zum
-            Eigenwert~$\lambda$}.
+            Eigenwert~$\lambda$}.\index{Eigenvektor, -wert, -raum}
             
         \item
             Wir sagen $Y\subset X$ ist $T$-invariant, falls $T(Y)\subset Y$
@@ -253,7 +259,7 @@ In reflexiven Räumen gibt es folgende Charakterisierung kompakter Operatoren:
 Weil $\rho(T)$ offen ist, ist $\sigma(T)$ abgeschlossen.
 
 % 8.9
-\begin{thDef}
+\begin{thDef}[Spektralradius]
     Sei $X$ ein Banachraum und $T\in L(X)$. Sei
     \[ r(T) \defeq  \inf_{n\in\N} \, \norm{T^n}^{1/n}
         = \lim_{n\to\infty} \, \norm{T^n}^{1/n}

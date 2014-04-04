@@ -18,7 +18,8 @@
 \end{thSatzNN}
 
 % 10.2
-\begin{thDef}
+\thmnoindex%
+\begin{thDef}[\texorpdfstring{$\Lpp$}{Lp}-Räume]
     Sei $p\in[1,\infty)$. Wir definieren
     \[ \Lpp(\Omega) \defeq \bigl\{
         f\colon\Omega\to\R \Mid
@@ -46,6 +47,7 @@
     \[ \norm{f}_{\Lp\infty} \defeq \norm{f}_\infty
         \defeq \inf\bigl\{ c\in\R[>0] \Mid \abs{f(x)} \leq c \;\,\fu \bigr\}
     . \]
+    %\index{wesentliches Supremum}
 \end{thDef}
 
 \begin{thBemerkungen}\hfill
@@ -75,7 +77,7 @@
 \end{proof}
 
 \nnNotation Zu $p\in[1,\infty]$ bezeichne $p'\in[1,\infty]$ den
-\emph{konjugierten Exponenten} mit
+\emph{konjugierten Exponenten}\index{konjugierter Exponent} mit
 \[ \frac{1}{p} + \frac{1}{p'} = 1  . \]
 D.\,h. es gilt $p'=p/(p-1)$ für $p\in(1,\infty)$,
 $p'=\infty$ für $p=1$ und $p'=1$ für $p=\infty$.
@@ -136,7 +138,7 @@ $p'=\infty$ für $p=1$ und $p'=1$ für $p=\infty$.
 \end{proofsketch}
 
 % 10.7
-\begin{thSatz}[Fischer-Riesz]
+\begin{thSatz}[Satz von Fischer-Riesz]
     Sei $p\in[1,\infty]$. Dann ist $\Lpp(\Omega)$ ein Banachraum.
 \end{thSatz}
 
@@ -224,8 +226,12 @@ Das Ziel ist es nun, den Dualraum von $\Lpp(\Omega)$ zu beschreiben. Wir
 brauchen dazu etwas Maßtheorie.
 
 % 10.9
-\begin{thDef}
-    Sei $\Omega$ eine Menge und $S$ eine $\sigma$-Algebra auf $\Omega$. Eine
+\thmmanualindex%
+\begin{thDef}[Signiertes/Komplexes Maß]
+    \index{signiertes Maß}%
+    \index{koplexes Maß}%
+    %
+    Sei $\Omega$ eine Menge und sei $S$ eine $\sigma$-Algebra auf~$\Omega$. Eine
     $\sigma$-additive Abbildung $\mu\colon S\to\R$ heißt \emph{signiertes Maß}
     und eine $\sigma$-additive Abbildung $\mu\colon S\to\C$ heißt
     \emph{komplexes Maß}.

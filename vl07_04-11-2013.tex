@@ -28,7 +28,7 @@ $x'\in X'$ aus $x'\vert_U = 0$ schon $x'=0$ folgt, so ergibt sich
 $\setclosure U = X$.
 
 % 4.17
-\begin{thDef} \label{vl07:def:JX}
+\begin{thDef}[Bidualraum] \label{vl07:def:JX}
     Sei $(X,\emptyNorm)$ ein normierter $\K$-Vektorraum und $X'$ der Dualraum zu~$X$
     \pmycref{vl04:def3.1:dual}.
     Dann ist $X'' \defeq (X')'$ der \emph{Bidualraum von $X$}.
@@ -73,7 +73,10 @@ in \eqref{vl07:ast} sogar Gleichheit gezeigt. Insgesamt folgt:
 \end{thSatz}
 
 % 4.19
-\begin{thDef} \label{vl07:def:reflexiv}
+\thmmanualindex%
+\begin{thDef}[Reflexiver Banachraum] \label{vl07:def:reflexiv}
+    \index{reflexiv}%
+    %
     Ein Banachraum~$X$ ist \emph{reflexiv}, wenn $J_X$ surjektiv (also
     bijektiv) ist.
 \end{thDef}
@@ -83,7 +86,7 @@ Da $J_X$ injektiv ist, kann $X$ mit einem Unterraum von $X''$ identifiziert
 werden.
 
 % 4.20
-\begin{thDef}
+\begin{thDef}[Annihilator]
     Sei $X$ ein normierter Raum, $M\subset X$ ein Unterraum und $N\subset X'$
     ein Unterraum des Dualraums.
     Wir definieren dann den \emph{Annihilator von $M$} als
@@ -123,11 +126,12 @@ werden.
 
 \pagebreak[2]
 % 4.23
-\begin{thDef}\hfill
+\begin{thDef}[Epigraph]
+    Es sei $E$ eine Menge und $\phi\colon E\to \neginfinfoc
+    = \R \cup \{\infty\}$ eine Abbildung. 
     \begin{enumerate}[i)]
         \item
-            Es sei $E$ eine Menge und $\phi\colon E\to \neginfinfoc
-            = \R \cup \{\infty\}$ eine Abbildung. Wir definieren dann
+            Es sei
             \[ D(\phi) \defeq \{ x\in E \Mid \phi(x) < \infty \} 
                 = \phi^{-1}(\R)
             . \]
@@ -158,7 +162,10 @@ werden.
 \end{thDef}
 
 % 4.24
-\begin{thDef}
+\thmmanualindex%
+\begin{thDef}[Unterhalbstetige Abbildung]
+    \index{unterhalbstetig}%
+    %
     Sei $(E,\Topo)$ ein topologischer Raum. Eine Abbildung $\phi\colon E\to
     \neginfinfoc$ ist \emph{unterhalbstetig}, wenn für alle $\lambda\in\R$
     die Menge
@@ -250,10 +257,13 @@ werden.
 \end{proof}
 
 % 4.26
-\begin{thDef}
-    Sei $X$ ein Vektorraum. Eine Funktion $\phi\colon X\to\neginfinfoc$ ist
-    \emph{konvex}, wenn $\phi$ für alle $x,y\in X$ und alle $t\in\I$ die
-    Ungleichung
+\thmmanualindex%
+\begin{thDef}[Konvexe Abbildung]
+    \index{konvexe Abbildung}%
+    %
+    Sei $X$ ein Vektorraum. Wir sagen, eine Funktion
+    $\phi\colon X\to\neginfinfoc$ ist \emph{konvex}, wenn $\phi$ für alle
+    $x,y\in X$ und alle $t\in\I$ die Ungleichung
     \[ \phi\bigl( tx+(1-t)\,y \bigr) \;\leq\; t\,\phi(x) + (1-t)\,\phi(y)  \]
     erfüllt. \pcref{vl07:fig:convexfunction}
     %
@@ -322,7 +332,9 @@ werden.
 Ab jetzt betrachten wir vornehmlich normierte $\R$-Vektorräume.
 
 % 4.28
-\begin{thDef}
+\begin{thDef}[Legendre-Transformation]
+    \index{konjugierte Funktion|see{Legendre-Trans\-formation}}%
+    %
     Sei $X$ ein normierter $\R$-Vektorraum und sei 
     $\phi\colon X\to\neginfinfoc$ eine Funktion mit $D(\phi)\neq\emptyset$
     (d.\,h. $\phi$ ist nicht konstant $\infty$).
@@ -366,7 +378,7 @@ Ab jetzt betrachten wir vornehmlich normierte $\R$-Vektorräume.
             was direkt aus der Definiton von $\phi^\ast$ folgt.
             
         \item
-            Die Youngsche Ungleichung \pcref{vl03:young}
+            Die Young'sche Ungleichung\index{Young'sche Ungleichung} \pcref{vl03:young}
             ist ein Spezialfall von \ref{vl07:bemerkung4.29:iii}.
             Seien $p,p'\in(1,\infty)$ mit $\frac{1}{p}+\frac{1}{p'}=1$ und setze
             $\phi(x) \defeq \frac{1}{p} \, \abs{x}^p  . $

@@ -2,6 +2,7 @@
 \chapter{Sobolev-Räume und schwache Form
     von Randwertproblemen in einer Dimension}
 % 11.1
+\thmnoindex%
 \begin{thEmpty}[Motivation] \label{vl28:motivation}
     Betrachte folgendes Problem: Gegeben sei $f\in C([a,b])$. Aufgabe:
     Finde ein $u\in C^2([a,b])$ mit
@@ -54,7 +55,7 @@ Im Folgenden sei $I\defeq (a,b)$ ein offenes Intervall, wobei $a=-\infty$ und
 $b=\infty$ zugelassen sind. Sei weiter $p\in[1,\infty]$.
 
 % 11.2
-\begin{thDef}
+\begin{thDef}[Sobolevräume]
     \begin{enumerate}[(i)]
         \item
             Der \emph{Sobolevraum $\SobHI$} ist definiert
@@ -70,7 +71,7 @@ $b=\infty$ zugelassen sind. Sei weiter $p\in[1,\infty]$.
         \item
             Für $u\in\SobHI$ und ein $g$ wie in der Definition von $\SobHI$
             schreiben wir $u'=g$ und nennen $u'$ die \emph{schwache
-            Ableitung von $u$}.
+            Ableitung von $u$}.\index{schwache Ableitung}
     \end{enumerate}
 \end{thDef}
 
@@ -183,7 +184,7 @@ die schwache Ableitung.
 \end{proof}
 
 % 11.6
-\begin{thLemma}
+\begin{thLemma} \label{vl28:lemma11.6}
     Sei $g\in\Lploc1(I)$. Für $y_0\in I$ fest, setze für $x\in I$:
     \[ v(x) \defeq \int_{y_0}^x g(t) \dif{t}  . \]
     Dann gilt $v\in C^0(I)$ und
@@ -225,8 +226,7 @@ die schwache Ableitung.
 
 \begin{proof}
     Wähle $y_0\in I$ und setze $\bar u(x) \defeq \int_{y_0}^x u'(t)\dif{t}$.
-    Das vorherige Lemma % TODO: ref
-    folgt:
+    Das vorherige Lemma \pref{vl28:lemma11.6} liefert:
     \[ \forall\,\phi\in C_0^1(I)\colon\quad
         \int_I \bar u \phi' = -\int_I u'\phi
     . \]

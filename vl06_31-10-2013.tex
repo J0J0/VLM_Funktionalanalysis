@@ -9,10 +9,11 @@
 \begin{proof}
     Es ist klar, dass $H$ abgeschlossen ist, wenn $f$ stetig ist, denn es gilt
     $f^{-1}(\{\alpha\}) = H$ und $\{\alpha\}$ ist abgeschlossen in $\R$.
+    
     Für die Rückrichtung sei $H$ abgeschlossen in $X$. Dann ist $H\compl$ offen
     und nicht leer. Jetzt sei $x_0\in H\compl$ mit $f(x_0)\neq\alpha$, o.\,E.
-    $f(x_0)<\alpha$. Sei $r\in\R[>0]$, so dass $B_r(x_0) = \{ x\in X \Mid
-    \norm{x-x_0} < r \} \subset H\compl$. \pcref{vl06:fig:hyperplaneball}
+    $f(x_0)<\alpha$. Sei $r\in\R[>0]$ mit $B_r(x_0) \subset H\compl$.
+    \pcref{vl06:fig:hyperplaneball}
     
     \begin{figure}
         \centering
@@ -109,11 +110,12 @@
 \end{thBemerkung}
 
 \nnDef\label{vl06:minkowski} Sei $X$ ein $\K$-Vektorraum und $K\subset X$. Dann ist das
-\emph{Minkowski-Funktional zu~$K$} definiert durch
+\emph{Minkowski-Funktional zu~$K$}\index{Minkowski-Funktional} definiert durch
 \[ p(x) \defeq \inf\left\{ \alpha\in\R[>0] \Mid \frac{1}{\alpha}\,x \in K \right\}
 . \]
 % TODO: Skizze !?
-Für $K=B_1(0)$ gilt gerade $p(x) = \norm{x}$.
+
+Für $K=B_1(0)$ gilt gerade $p(x) = \norm{x}$, falls $X$ normiert ist.
 
 \pagebreak[2]
 % 4.12

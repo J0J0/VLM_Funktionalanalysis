@@ -157,14 +157,17 @@ Achtung, die Umkehrung von \cref{vl17:lemma7.10} gilt im Allgemeinen nicht!
     \[ x_{k_i} \to x \quad\text{schwach in $X$} \fuer i\to\infty  . \]
 \end{proof}
 
+Als Anwendung dieser Resultate auf Hilberträume erhalten wir:
+%
 % 7.12
-\begin{thSatz}[Anwendung auf Hilberträume]
+\begin{thSatz}
     Sei $H$ ein Hilbertraum und $\kSeq x$ eine beschränke Folge in $H$.
     Dann existiert eine Teilfolge $(x_{k_i})_{i\in\N}$ und ein
     $x\in H$, so dass für alle $y\in H$ gilt:
     \[ \SP{ x_{k_i}, y } \to \SP{x,y} \fuer i\to\infty  . \]
 \end{thSatz}
 
+\pagebreak[2]
 \begin{proof}
     Nach \cref{vl13:hilbertraumreflexiv} ist $H$ reflexiv. Nach
     \cref{vl17:satz7.11} sind abgeschlossene Kugeln also schwach folgenkompakt.
@@ -212,9 +215,9 @@ Achtung, die Umkehrung von \cref{vl17:lemma7.10} gilt im Allgemeinen nicht!
 % 7.14
 \begin{thSatz} \label{vl17:satz7.14}
     Sei $X$ ein normierter Raum und $M\subset X$ abgeschlossen und konvex.
-    Dann ist $M$ \emph{schwach folgenabgeschlossen}, das heißt: Ist
-    $\kSeq x$ eine Folge in $M$ mit $x_k\to x$ schwach in $X$ für $k\to\infty$,
-    so ist auch $x\in M$.
+    Dann ist $M$ \emph{schwach folgenabgeschlossen},\index{schwach
+    folgenabgeschlossen} das heißt: Ist $\kSeq x$ eine Folge in $M$ mit $x_k\to
+    x$ schwach in $X$ für $k\to\infty$, so ist auch $x\in M$.
 \end{thSatz}
 
 \begin{proof}

@@ -18,6 +18,7 @@
 \usepackage[babel]{csquotes}
 \usepackage[shortlabels]{enumitem}
 %\usepackage[numbers,sort&compress]{natbib}
+\usepackage{makeidx}
 \usepackage{ifmtarg}
 \usepackage{xstring}
 \usepackage{remreset}
@@ -61,6 +62,9 @@
 % xy tip selection (ComputerModern)
 \SelectTips{cm}{}
 \UseTips
+
+% create the index
+\makeindex
 
 % make parenthesized versions of \ref and cleveref's \cref
 \newcommand*{\pref}[1]{(\ref{#1})}
@@ -130,13 +134,52 @@
 }
 
 % inject pdfbookmarks at thm like environments
+% and also make an index entry for named thms
 \makeatletter
 \let\origthmhead=\thmhead
 \renewcommand{\thmhead}[3]{%
 \origthmhead{#1}{#2}{#3}%
 \belowpdfbookmark{#1\@ifnotempty{#1}{ }#2\thmnote{ (#3)}}{#1#2}%
+\thmtoindex{\@ifempty{#3}{}{\index{#3}}}%
 }
+\newcommand{\thmtoindex}{\origthmtoindex}
+\let\origthmtoindex=\@iden
 \makeatother
+% this disables the index entry for the next thm
+\newcommand{\thmnoindex}{\renewcommand{\thmtoindex}[1]{\global\let\thmtoindex=\origthmtoindex}}
+\newcommand{\thmmanualindex}{\thmnoindex}
+
+%
+\newcommand{\nnSatz}{\textbf{Satz:} }
+\newcommand{\nnDef}{\textbf{Definition:} }
+\newcommand{\nnBeispiel}{\textbf{Beispiel:} }
+\newcommand{\nnBeispiele}{\textbf{Beispiele:} }
+\newcommand{\nnBemerkung}{\textbf{Bemerkung:} }
+\newcommand{\nnBemerkungen}{\textbf{Bemerkungen:} }
+\newcommand{\nnNotation}{\textbf{Notation:} }
+
+
+% make * work like ' in math mode
+% (code stolen from latex.ltx)
+\makeatletter
+\newcommand{\active@math@ast}{^\bgroup\ast@s}
+{\catcode`\*=\active \global\let*\active@math@ast}
+\newcommand{\ast@s}{%
+  \ast\futurelet\my@let@token\active@ast@s}
+\newcommand{\active@ast@s}{%
+  \ifx*\my@let@token
+    \expandafter\active@ast@@@s
+  \else
+    \ifx^\my@let@token
+      \expandafter\expandafter\expandafter\active@ast@@@t
+    \else
+      \egroup
+    \fi
+  \fi}
+\def\active@ast@@@s#1{\ast@s}
+\def\active@ast@@@t#1#2{#2\egroup}
+\makeatother
+\mathcode`\*="8000
 
 %
 \newcommand{\nnSatz}{\textbf{Satz:} }
@@ -426,6 +469,11 @@ $\mkern2mu #1 \mkern1mu$%
 \input{vl27_30-01-2014}
 \input{vl28_03-02-2014}
 \input{vl29_06-02-2014}
+
+\clearpage
+\mbox{}\newpage\phantomsection
+\addcontentsline{toc}{chapter}{Index}
+\printindex
 
 \end{document}
 

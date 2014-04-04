@@ -16,7 +16,11 @@
 \end{enumerate}
 
 % 10.10
-\begin{thDef}
+\thmmanualindex%
+\begin{thDef}[Variationsmaß, Totalvariation]
+    \index{Variationsmaß}%
+    \index{Totalvariation}%
+    %
     Sei $\mu$ ein signiertes oder komplexes Maß auf $S$. Für alle $E\in S$ setze
     \[ \abs\mu(E) \defeq \sup\biggl\{ \, \ksum^n \, \abs{\mu(E_k)} \Mid 
         \begin{gathered}
@@ -39,7 +43,8 @@ additiv ist.
 \begin{thSatz}[Satz von Radon-Nikodym] \label{vl25:radonnikodym}
     Sei $(\Omega, S, \mu)$ ein $\sigma$-finiter Maßraum und sei $\nu\colon
     S\to\K$ ein signiertes oder komplexes Maß mit $\normvar\nu < \infty$. Weiter
-    sei $\nu$ \emph{absolut stetig bezüglich $\mu$}, d.\,h. es gilt 
+    sei $\nu$ \emph{absolut stetig bezüglich $\mu$},\index{absolut stetig} 
+    d.\,h. es gilt 
     \[ \forall\, E\in S\colon \quad \mu(E) = 0 \implies \nu(E) = 0 . \]
     Dann gibt es genau eine Funktion $f\in\Lp1(\Omega,\mu)$ mit
     \[ \forall\,E\in S\colon\quad \nu(E) = \int_E f\dif\mu . \]

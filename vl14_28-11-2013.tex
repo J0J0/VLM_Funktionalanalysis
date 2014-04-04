@@ -48,7 +48,7 @@
 \end{thBemerkung}
 
 % 6.13
-\begin{thDef}
+\begin{thDef}[Hilbertsumme]
     Sei $H$ ein Hilbertraum und $\nSeq E$ eine Folge von abgeschlossenen 
     Unterräumen von $H$. Dann nennen wir $H$ die \emph{Hilbertsumme von
     $\nSeq E$}, falls
@@ -66,6 +66,7 @@
 
 % TODO: Skizze (?)
 
+\pagebreak[2]
 % 6.14
 \begin{thSatz} \label{vl14:satz6.14}
     Sei $H$ ein Hilbertraum und gelte $H = \texthilbertsum_{n=1}^\infty E_n$ für
@@ -74,7 +75,8 @@
     $S_n \defeq \ksum^n u_k$. Dann gilt \[ \lim_{n\to\infty} S_n = u \] 
     (wofür wir auch die Notation $\ksum^\infty u_k = u$ verwenden) und
     \[ \ksum^\infty \, \norm{u_k}^2 = \norm{u}^2  , \] 
-    die sogenannte \emph{Bessel-Parseval-Identität}.
+    die sogenannte \emph{Bessel-Parseval-Identität}.%
+    \index{Bessel-Parseval-Identität}
 \end{thSatz}
 
 Für den Beweis benötigen wir zunächst eine Hilfsaussage.
@@ -154,22 +156,27 @@ Für den Beweis benötigen wir zunächst eine Hilfsaussage.
 \end{proof}
 
 % 6.16
-\begin{thDef}[Schauder-Basis]
+\thmmanualindex%
+\begin{thDef}[Schauder-Basis, Hilbertbasis]
+    \index{Schauder-Basis}%
+    \index{Hilbertbasis}%
+    \index{Orthonormalbasis eines Hilbertraums|see{Hilbertbasis}}%
+    %
     Sei $X$ ein normierter Raum und $\kSeq e$ eine Folge in $X$. Dann nennen wir
     $\{ e_k \Mid k\in\N \}$ eine Schauder-Basis von $X$, falls gilt: Für alle
     $x\in X$ existiert eine eindeutige Folge $\kSeq\alpha$ in $\K$ mit
     \[ \ksum^n \alpha_k\,e_k \to x \fuer n\to\infty  . \]
+    %
+    Sei $H$ ein Prä-Hilbertraum und $\kSeq e$ eine Folge in $H$. Dann nennen wir
+    $\kSeq e$ eine \emph{Orthonormalbasis} oder \emph{Hilbertbasis}, falls 
+    $\kSeq e$ eine Schauder-Basis ist und $\SP{e_m,e_n}=\kron{mn}$ für alle
+    $m,n\in\N$ gilt (mit dem Kroneckerdelta~$\kron{}$).
 \end{thDef}
-
-\nnDef (Orthonormalbasis)
-Sei $H$ ein Prä-Hilbertraum und $\kSeq e$ eine Folge in $H$. Dann nennen wir
-$\kSeq e$ eine \emph{Orthonormalbasis} (oder \emph{Hilbertbasis}), falls 
-$\kSeq e$ eine Schauder-Basis ist und $\SP{e_m,e_n}=\kron{mn}$ für alle
-$m,n\in\N$ gilt (mit dem Kroneckerdelta~$\kron{}$).
 
 % 6.17
 \begin{thSatz} \label{vl14:satz6.17}
-    Sei $H$ ein Prä-Hilbertraum und $\kSeq e$ ein Orthonormalsystem, d.\,h.
+    Sei $H$ ein Prä-Hilbertraum und $\kSeq e$ ein
+    Orthonormalsystem,\index{Orthonormalsystem} d.\,h.
     für alle $m,n\in\N$ gilt $\SP{e_m,e_n}=\kron{mn}$. Dann sind äquivalent:
     
 \pagebreak[2]
@@ -186,12 +193,12 @@ $m,n\in\N$ gilt (mit dem Kroneckerdelta~$\kron{}$).
         \item \label{vl14:satz6.17:4}
             $\forall\,x,y\in H\colon\quad \SP{x,y} = \ksum^\infty \,
             \SP{x,e_k} \ol{\SP{y,e_k}}$
-            \hfill(Parseval-Identität)
+            \hfill(Parseval-Identität)\index{Parseval-Identität}
             
         \item \label{vl14:satz6.17:5}
             $\forall\,x\in H\colon\quad \norm{x}^2 
             = \ksum^\infty \, \abs{\SP{x,e_k}}^2$
-            \hfill(Vollständigkeitsrelation)
+            \hfill(Vollständigkeitsrelation)\index{Vollständigkeitsrelation}
     \end{enumerate} 
     Falls eine dieser Bedinungen gilt, ist $\kSeq e$ also eine Hilbertbasis.
 \end{thSatz}
