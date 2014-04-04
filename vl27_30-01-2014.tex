@@ -15,10 +15,10 @@ wie das Dirac-Maß im Punkt~$0$ wirken.
             Dirac-Folge}, falls folgende Bedingungen gelten:
             \begin{itemize}
                 \item Für alle $k\in\N$ gilt $\phi_k\geq0$ und
-                    $\int_{\R^n} \phi_k \dif{\lambda^n} = 1$.
+                    $\int_{\R^n} \phi_k \dif{\leb^n} = \norm{\phi_k}_1 = 1$.
                 \item
                     Für alle $\rho\in\R[>0]$ gilt
-                    $\int_{\R^n\setminus B_\rho(0)} \phi_k \dif{\lambda^n}
+                    $\int_{\R^n\setminus B_\rho(0)} \phi_k \dif{\leb^n}
                     \to 0$ für $k\to\infty$.
             \end{itemize}
             
@@ -44,7 +44,7 @@ Norm von~$x$.
 
 % 10.20
 \begin{thEmpty}[Standardbeispiel für eine Dirac-Folge]
-    Sei $\psi\in\C^\infty(\R,\R)$ mit $\supp\psi\subset\R[\leq1]$.
+    Sei $\psi\in C^\infty(\R,\R)$ mit $\supp\psi\subset\R[\leq1]$.
     % TODO: Skizze
     Zum Beispiel: 
     \[ \psi(x) \defeq \begin{cases}
@@ -59,24 +59,26 @@ Norm von~$x$.
     \mkern2mu\bigr)^{\mathrlap{-1}}$\kern2pt,\kern.75em so dass also
     $\int_{\R^n} \phi = 1$ gilt. Es gilt dann
     \[ \phi\in C^\infty(\R^n) \qundq \supp\phi\subset \setclosure{B_1(0)} . \]
-    Weiter bildet $\epsFam\phi$ (gemäß \cref{vl27:def:diracfolge}) eine Dirac-Folge.
-    Diese nennen wir \emph{Standard-Dirac-Folge}.
+    Weiter bildet $\epsFam\phi$ (gemäß \cref{vl27:def:diracfolge}) eine
+    Dirac-Folge, für die offenbar 
+    \[ \supp(\phi_\epsilon) \subset B_\epsilon(0) \]
+    gilt. Diese nennen wir \emph{Standard-Dirac-Folge}.
 \end{thEmpty}
 
 % 10.21
-\begin{thLemma}\hfill
+\begin{thLemma} \label{vl27:lemma10.21}\hfill
     \begin{enumerate}[(1)]
-        \item
+        \item \label{vl27:lemma10.21:1}
             Sei $\epsFam\phi$ eine Standard-Dirac-Folge und sei $f\in
             C^0(\R^n)$. Dann gilt
             \[ f\ast\phi_\epsilon \to f \fuer \epsilon\to0 \quad\text{lokal
                 gleichmäßig}
             , \]
             d.\,h. für alle $x\in\R^n$ existiert eine Umgebung $U\subset\R^n$
-            von $x$ auf welcher $(\phi_\epsilon\vert_U)_{\epsilon\in\R[>0]}$
+            von $x$ auf welcher $((f\ast\phi_\epsilon)\vert_U)_{\epsilon\in\R[>0]}$
             gleichmäßig gegen $f\vert_U$ konvergiert.
 
-        \item
+        \item \label{vl27:lemma10.21:2}
             Sei $\kSeq\phi$ eine Dirac-Folge und $f\in\Lpp(\R^n)$ für
             $p\in[1,\infty)$. Dann gilt:
             \[ f\ast\phi_k \to f \quad\text{in $\Lpp(\R^n)$} \fuer k\to\infty 
@@ -84,48 +86,248 @@ Norm von~$x$.
     \end{enumerate}
 \end{thLemma}
 
+\begin{proof}
+    \begin{enumerate}[(1)]
+        \item
+            Sei $\tilde x\in\R^n$ und $B\defeq B_1(\tilde x)$. Dann gilt für
+            alle $x\in B$:
+            \begin{align*}
+                \abs*{\bigl( (f\ast\phi_\epsilon)-f\bigr)(x)}
+                &= \abs*{ \int_{\R^n} \phi_\epsilon(x-y) \bigl( f(y)-f(x) \bigr)
+                \dif{y}}
+                \\
+                &= \abs*{ \int_{\R^n} \phi_\epsilon(y) \bigl( f(x-y) - f(x) \bigr)
+                \dif{y}}
+                \\
+                &\leq \int_{B_\epsilon(0)} \abs{\phi_\epsilon(y)} \,
+                    \abs[\big]{f(x-y) - f(x)} \dif{y}
+                \\
+                &\leq \sup_{y\in B_\epsilon(0)} \abs{f(x-y)-f(x)}
+            . \end{align*}
+            Als stetige Funktion ist $f$ auf der kompakten Menge~$\setclosure{B}$
+            sogar gleichmäßig stetig, d.\,h. für alle $\alpha\in\R[>0]$
+            existiert ein $\delta_\alpha\in\R[>0]$, so dass gilt:
+            \[ \forall\,x\in B,\,y\in B_{\delta_\alpha}(0)\colon\quad
+                \abs[\big]{f(x-y)-f(x)} < \alpha
+            . \]
+            Daraus folgt nun wie gewünscht die gleichmäßige Konvergenz auf~$B$:
+            \[ \sup_{x\in B}\, \abs*{\bigl( (f\ast\phi_\epsilon)-f\bigr)(x)}
+                \leq \adjustlimits\sup_{x\in B}
+                    \sup_{y\in B_\epsilon(0)} \abs{f(x-y)-f(x)}
+                \mkern5mu\to\mkern5mu 0 \fuer \epsilon\to 0
+            . \]
+            
+        \item Für alle $k\in\N$, $x\in\R^n$ und $\delta\in\R[>0]$ gilt:
+            \begin{align*}
+                (f\ast\phi_k-f)(x)
+                &= \int_{\R^n} \phi_k(y) \bigl( f(x-y) - f(x) \bigr) \dif{y}
+                \\
+                &= 
+                \int_{\R^n} (\chi_{B_\delta(0)}\phi_k)(y) \bigl( f(x-y) -
+                f(x) \bigr) \dif{y}
+                \\
+                &\quad+
+                \int_{\R^n} (\chi_{\R^n\setminus B_\delta(0)}
+                \phi_k)(y) \bigl( f(x-y) - f(x) \bigr) \dif{y}
+            \end{align*}
+            \cref{vl26:lemma10.16} liefert dann:
+            \begin{align*}
+                \norm{f\ast\phi_k-f}_p
+                &\leq \norm{\chi_{B_\delta(0)}\phi_k}_1
+                    \, \sup_{h\in B_\delta(0)} \norm{f(\scdot-h)-f}_p
+                \\
+                &\quad+
+                    \norm{\chi_{\R^n\setminus B_\delta(0)}\phi_k}_1
+                    \, \sup_{h\in\R^n} \norm{f(\scdot-h)-f}_p
+                \\
+                &\leq
+                        \sup_{h\in B_\delta(0)} \norm{f(\scdot-h)-f}_p
+                    \,+
+                        2\norm{f}_p \int_{\R^n\setminus B_\delta(0)} \phi_k
+                \\[0.5ex]
+                &\quad
+                    \xrightarrow[k\to\infty]{} 
+                        \sup_{h\in B_\delta(0)} \norm{f(\scdot-h)-f}_p
+                    \,
+                    \xrightarrow[\delta\to 0]{} 0
+            \end{align*}
+            Die Konvergenzaussage bezüglich~$\delta$ folgt dabei aus dem
+            nächsten Lemma \pref{vl27:stetlpmittel}.
+    \end{enumerate}
+\end{proof}
 
 % 10.22 (Hilfssatz)
-\begin{thLemma}[Stetigkeit im \texorpdfstring{$\Lpp$}{Lp}-Mittel]
+\begin{thLemma}[Stetigkeit im \texorpdfstring{$\Lpp$}{Lp}-Mittel]%
+    \label{vl27:stetlpmittel}
+    %
     Sei $f\in\Lpp(\R^n)$ für $p\in[1,\infty)$. Dann gilt:
-    \[ f(\scdot-h)\to f(\scdot) 
+    \[ f(\scdot-h)\to f 
         \quad\text{in $\Lpp(\R^n)$} \fuer\abs{h}\to0
-    \]
+    . \]
 \end{thLemma}
 
+\begin{proof}
+    Da $\Coo(\R^n)$ dicht in $\Lpp(\R^n)$ liegt \pmycref{vl26:satz10.14:ii},
+    gibt es eine Folge $\kSeq f$ in $\Coo(\R^n)$ mit $f_k\to f$
+    in $\Lpp(\R^n)$ für $k\to\infty$. Für alle $k\in\N$ ist $f_k$ gleichmäßig
+    stetig und es gilt $f_k(\scdot-h) - f_k \in \Coo(\R^n)$ für alle $h\in\R^n$,
+    wobei wir den jeweils zugehörigen Träger dieser Funktionen mit~$K_{k,h}$
+    bezeichnen. Man überlegt sich außerdem leicht, dass für festes $k\in\N$ und
+    eine beschränke Menge $A\subset\R^n$ auch 
+    $\{ \leb^n(K_{k,h}) \Mid h\in A \}$ in $\R$ beschränkt ist. Mit diesen
+    Vorüberlegungen erhalten wir nun:
+    \begin{align*}
+        \norm{f(\scdot-h)-f}_p
+        &\leq \norm{f_k(\scdot-h)-f_k}_p + \norm{f-f_k}_p
+            + \norm{f(\scdot-h)-f_k(\scdot-h)}_p
+        \\[0.5ex]
+        &\leq \leb^n(K_{k,h})^{1/p} \sup_{x\in\R^n}\abs{f_k(x-h)-f_k(x)}
+            + 2\mkern1mu \norm{f-f_k}_p
+        \\[0.5ex]
+        &\quad
+            \xrightarrow[\abs{h}\to 0]{}\; 2\mkern1mu \norm{f-f_k}_p
+            \;\xrightarrow[k\to\infty]{}\; 0
+    . \end{align*}
+\end{proof}
 
 \begin{thSatz}
     Sei $\Omega\subset\R^n$ offen und sei $p\in[1,\infty)$. Dann gilt:
     \[ \Cinfo(\Omega) \text{ liegt dicht in } \Lpp(\Omega) . \]
 \end{thSatz}
 
+\begin{proof}
+    Sei $f\in\Lpp(\Omega)$. Für $\delta\in\R[>0]$ setze
+    \[ \Omega_\delta \defeq \bigl\{ x\in\Omega \Mid
+        \dist(x,\partial\Omega) > \delta \bigr\} \cap B_{1/\delta}(0)
+    . \]
+    Dann gilt
+    \[ \tag{$\ast$} \label{vl27:ast}
+        \chi_{\Omega_\delta}f \to f
+        \quad\text{in $\Lpp(\Omega)$} \fuer \delta\to 0
+    . \]
+    Dies ergibt sich aus
+    $\Omega = \bigcup\{\mkern1mu\Omega_\delta \Mid[\,]
+        \delta\mkern2mu{\in}\mkern2mu\R[>0]\}$ und
+    dem Satz über monotone Konvergenz. Sei nun $\epsFam\phi$ eine
+    Standard-Dirac-Folge.  Wegen \cref{vl26:lemma10.18},
+    $\supp(\phi_\epsilon)\subset B_\epsilon(0)$ und der speziellen Wahl der
+    $\Omega_\delta$ gilt
+    \[ (\chi_{\Omega_\delta} f)\ast\phi_\epsilon \in \Cinfo(\Omega)  \]
+    für alle $\epsilon<\delta$.
+    Wegen
+    \[ (\chi_{\Omega_\delta} f)\ast\phi_\epsilon \to \chi_{\Omega_\delta} f
+        \quad\text{in $\Lpp(\Omega)$} \fuer \epsilon\to0
+    \]
+    nach \mycref{vl27:lemma10.21:2} folgt zusammen mit \eqref{vl27:ast}
+    die Behauptung.
+    \\
+\end{proof}
 
 Das nächste Ziel ist, eine Charakterisierung von kompakten Mengen in $C^0(K)$
-mit einem Kompaktum $K\subset\R^n$ und für $\Lpp(\Omega)$ mit einer offenen
-Menge $\Omega\subset\R^n$ zu finden.
+(für ein Kompaktum $K\subset\R^n$) und in $\Lpp(\R^n)$ zu finden.
 
 % 10.24
-\begin{thSatz}[Arzela-Ascoli] \label{vl27:arzelaascoli}
+\begin{thSatz}[Arzel\`a-Ascoli] \label{vl27:arzelaascoli}
     Sei $K\subset\R^n$ kompakt und $A\subset C^0(K,\R^m)$. Dann ist $A$ genau
     dann präkompakt, wenn folgende Eigenschaften erfüllt sind:
     \begin{enumerate}[(i)]
-        \item
+        \item \label{vl27:arzelaascoli:i}
             $A$ ist beschränkt, also
-            $\sup_{f\in A} \, \norm{f}_{C^0(K)} < \infty$.
+            $\sup_{f\in A} \, \norm{f}_{C^0(K,\R^n)} < \infty$.
             
-        \item
+        \item \label{vl27:arzelaascoli:ii}
             $A$ ist \emph{gleichgradig stetig}, d.\,h.
             \[ \sup_{f\in A} \, \abs{f(x)-f(y)} \;\to\; 0 \fuer \abs{x-y}\to 0
             . \]
     \end{enumerate}
 \end{thSatz}
 
+\begin{proof}
+    \enquote{$\Rightarrow$}: Sei $\epsilon\in\R[>0]$ und (nach Präkompaktheit)
+    $A\subset\bigcup_{i=1}^{m_\epsilon} B_\epsilon(f_{\epsilon,i})$.
+    Dann gilt für jedes $f\in A$: Es existiert ein $i$ mit $f\in
+    B_\epsilon(f_{\epsilon,i})$. Daraus folgt
+    \[ \thickmuskip=10mu
+        \sup_{f\in A}\, \norm{f}_{C^0} \leq \epsilon
+        + \max_{j\in\{1,\dots,m_\epsilon\}} \norm{f_{\epsilon,j}}_{C^0} <
+        \infty
+    , \]
+    also \ref{vl27:arzelaascoli:i}. Mithilfe der $\triangle$-Ungleichung
+    erhalten wir für alle
+    $f\in A,\,x,y\in K$:
+    \[ \thickmuskip=10mu
+        \abs{f(x)-f(y)} \leq 2\mkern1mu\norm{f-f_{\epsilon,i}}_{C^0}
+        + \abs{f_{\epsilon,i}(x)-f_{\epsilon,i}(y)}
+    . \]
+    Daraus folgt:
+    \[ \thickmuskip=10mu
+        \sup_{f\in A}\, \abs{f(x)-f(y)} \leq 2\epsilon
+        + \underbrace{ \max_{j\in\{1,\dots,m_\epsilon\}}
+        \abs{f_{\epsilon,j}(x)-f_{\epsilon,j}(y)} }_{
+            \to\,0\text{ für } \abs{x-y}\,\to\,0}
+    , \]
+    wobei wir die Konvergenz im hinteren Summanden erhalten, da alle
+    $f_{\epsilon,i}$ sogar gleichmäßig stetig sind. Da $\epsilon\in\R[>0]$
+    beliebig war, folgt \ref{vl27:arzelaascoli:ii}.
+    
+    \enquote{$\Leftarrow$}:
+    % TODO: Skizze, Ürbildmenge K überdeckt durch Gitter, Bildmenge im \R^m
+    %               überdeckt durch Gitter über einem "Ball mit Radius
+    %               $R \defeq \sup_{f\in A} \norm{f}_{C^0}$"
+    Seien $\epsilon\in\R[>0]$, $R\defeq\sup_{f\in A} \norm{f}_{C^0}$ und (nach
+    Kompaktheit von $K$ und $\setclosure{B_R(0)}\subset\R^m$)
+    \[
+        K \subset \bigcup_{i=1}^{n_\epsilon} B_\epsilon(x_i) \subset\R^n,
+        \qquad
+        \setclosure{B_R(0)} \subset \bigcup_{j=1}^{m_\epsilon} B_\epsilon(\xi_j)
+        \subset\R^m
+    . \]
+    Sei $M_\epsilon$ die Menge aller Abbildungen
+    $\setOneto{n_\epsilon} \to \setOneto{m_\epsilon}$
+    und für $\tau\in M_\epsilon$ sei
+    \[ A_\tau \defeq \bigl\{ f\in A \Mid
+        \forall\,i\in\setOneto{n_\epsilon}\colon\;
+        \abs{f(x_i) - \xi_{\tau(i)}} \leq \epsilon \bigr\}
+    . \]
+    Aus der bisherigen Konstruktion ergibt sich, dass für alle $f\in A$ ein
+    $\tau(f)\in M_\epsilon$ existiert mit $f\in A_{\tau(f)}$. Es gilt also
+    $A = \bigcup_{\tau\in M_\epsilon} A_\tau$. Wir fixieren außerdem für alle
+    $\tau\in M$ mit $A_\tau\neq\emptyset$ ein $f_\tau \in A_\tau$.
+    Seien nun $f\in A$, $\tau\defeq\tau(f)$, $x\in K$ und
+    $i\in\setOneto{n_\epsilon}$ mit $x\in B_\epsilon(x_i)$.
+    Dann gilt:
+    \begin{align*}
+        \abs{(f-f_\tau)(x)} 
+        & \leq \abs{f(x)-f(x_i)} + \abs{f(x_i)-f_\tau(x_i)} 
+            + \abs{f_\tau(x)-f_\tau(x_i)}
+        \\[0.5ex]
+        &\leq 2 \underbrace{ \sup_{\abs{y_1-y_2}<\epsilon}
+            \; \sup_{f\in A}\,
+            \abs{f(y_1)-f(y_2)} }_{\eqdef\, \delta_\epsilon}
+        + \underbrace{
+            \vphantom{\sup_{\abs{y_1-y_2}<\epsilon}}
+            \abs{f(x_i)-\xi_{\tau(i)}} + \abs{f_\tau(x_i)-\xi_{\tau(i)}}
+        }_{\leq\, 2\epsilon}
+    . \end{align*}
+    Somit erhalten wir
+    \[ \norm{f-f_\tau}_{C^0} \leq 2\delta_\epsilon + 2\epsilon 
+        < 2\delta_\epsilon + 3\epsilon
+    . \]
+    Es folgt:
+    \[ A\subset \bigcup_{\tau\in M} B_{2\delta_\epsilon+3\epsilon}(f_\tau) . \]
+    Weil $A$ gleichgradig stetig ist, gilt $\delta_\epsilon\to 0$ für
+    $\epsilon\to 0$. Also wird $2\delta_\epsilon+3\epsilon$ beliebig klein,
+    woraus die Präkompaktheit von $A$ folgt.
+    \\
+\end{proof}
 
 \nnBemerkung
-Für einen metrischen Ruam $(X,d)$ und eine Teilmenge $A\subset X$ gilt:
-\[ \forall\,\epsilon\in\R[>0]\; 
+Für einen metrischen Raum $(X,d)$ und eine Teilmenge $A\subset X$ gilt:
+\[ \bigl(
+    \forall\,\epsilon\in\R[>0]\; 
     \exists\,A_\epsilon\subset X \text{ präkompakt}\colon\;
     A \subset B_\epsilon(A_\epsilon)
+    \bigr)
     \qimpliesq A \text{ präkompakt}
 , \]
 wobei
@@ -135,18 +337,111 @@ wobei
 
 % 10.25
 \begin{thSatz}[Kompakte Mengen in $\Lpp(\R^n)$, Riesz-Fr\'echet-Kolmogorov]
+    \label{vl27:kompaktLp}
+    %
     Sei $p\in[1,\infty)$ und sei $A\subset\Lpp(\R^n)$. Dann ist $A$ präkompakt
     genau dann, wenn folgende Bedingungen erfüllt sind:
     \begin{enumerate}[(i)]
-        \item
-            $\sup_{f\in A} \, \norm{f}_p < \infty$
-        \item
-            $\sup_{f\in A} \, \norm{f(\scdot-h)-f(\scdot)}_p \to 0$ für
+        \item \label{vl27:kompaktLp:i}
+            $\sup_{f\in A} \, \norm{f}_p < \infty$\hfill
+            (Beschränktheit von $A$)
+        %
+        \item \label{vl27:kompaktLp:ii}
+            $\sup_{f\in A} \, \norm{f(\scdot-h)-f}_p \to 0$ für
             $\abs{h}\to0$\hfill
             (Gleichgradige Stetigkeit im $\Lpp$-Mittel)
-        \item
+        %
+        \item \label{vl27:kompaktLp:iii}
             $\sup_{f\in A} \, \norm{f}_{\Lpp(\R^n\setminus B_R(0))} \to 0$
             für $R\to\infty$.
     \end{enumerate}
 \end{thSatz}
 
+\begin{proof}
+    \enquote{$\Rightarrow$}: Diese Richtung ist einfach. Nutze, dass die
+    entsprechenden Aussagen für endlich viele $f$ erfüllt sind, und die
+    Präkompaktheit. (Vgl. Beweis von \cref{vl27:arzelaascoli}.)
+    % xxx ^ ausführen
+    
+<<<<<<< HEAD
+    \enquote{$\Leftarrow$}: Grundidee: Nutze Faltung und Arzela-Ascoli
+    \pcref{vl27:arzelaascoli}.
+    Sei $\epsFam\phi$ eine Standard-Dirac-Folge. Wähle $R_\epsilon$ mit
+    $R_\epsilon\to\infty$ für $\epsilon\to0$. Definiere
+=======
+    \enquote{$\Leftarrow$}:
+    Sei $\epsFam\phi$ eine Standard-Dirac-Folge. Wähle $\epsFam R$ in $\R[>0]$
+    mit $R_\epsilon\to\infty$ für $\epsilon\to0$. Für $\epsilon\in\R[>0]$ und
+    $f\in A$ definiere 
+>>>>>>> work
+    \begin{gather*}
+        B_\epsilon \defeq B_{R_\epsilon}(0), \qquad
+        B^+_\epsilon \defeq B_{R_\epsilon+\epsilon}(0),
+        \\[0.3ex]
+        T_\epsilon f \defeq (\chi_{B_\epsilon} f)\ast\phi_\epsilon
+        \;\in \Cinfo(B^+_\epsilon),
+        \\[0.4ex]
+        \llap{und\hspace*{2.0cm}}
+        A_\epsilon \defeq \{ T_\epsilon f \Mid f\in A \}
+    . \end{gather*}
+    Mit $\chi_{B_\epsilon} = \chi_{\R^n} - \chi_{\R^n\setminus B_\epsilon}$
+    erhalten wir für alle $f\in A$:
+    \begin{align*}
+        \norm{T_\epsilon f - f}_p 
+        &= \norm{f\ast\phi_\epsilon-f 
+            - (\chi_{\R^n\setminus B_\epsilon}f)\ast\phi_\epsilon}_p
+        \\
+        &\leq \sup_{f\in A} \, \bigl( \norm{f\ast\phi_\epsilon - f}_p +
+                \norm{(\chi_{\R^n\setminus B_\epsilon}f)\ast\phi_\epsilon}_p
+            \bigr)
+        \\
+        &\leq
+        \sup_{f\in A} \, \bigl( \, \sup_{h\in B_\epsilon(0)}
+            \norm{f(\scdot-h)-f}_p
+            %+ \norm{f}_{\Lpp(\R^n\setminus B_{R_\epsilon-\epsilon}(0))} 
+            % TODO: ^ why!??
+            + \norm{f}_{\Lpp(\R^n\setminus B_\epsilon)} 
+            \, \bigr)
+        \\
+        &\quad
+            \to \, 0 \fuer \epsilon\to0 
+            \quad\text{wg. \ref{vl27:kompaktLp:ii} und \ref{vl27:kompaktLp:iii}}
+    , \end{align*}
+    wobei bei der letzten Unlgeichung \cref{vl26:lemma10.16} und
+    \cref{vl26:korollar10.17} eingehen. Nach der Bemerkung vor dem Beweis
+    genügt es nun also zu zeigen, dass $A_\epsilon$ für alle $\epsilon\in\R[>0]$
+    präkompakt in $\Lpp(B^+_\epsilon)$ ist.
+    Sei $D_\epsilon \defeq \setclosure{B^+_\epsilon}$.
+    Für alle $g\in A_\epsilon$ gilt
+    \[ \norm{g}_{\Lpp(B^+_\epsilon)}
+        \leq \leb^n(B^+_\epsilon)^{1/p} \,
+        \norm{g}_{C^0(D_\epsilon)}
+    , \]
+    also genügt es zu zeigen:
+    $A_\epsilon$ ist präkompakt in $C^0(D_\epsilon)$.
+    %
+    %%% 03-02-2014 %%%
+    Nach dem Satz von Arzel\`a-Ascoli \pref{vl27:arzelaascoli}
+    können wir äquivalent zeigen: $A_\epsilon$ ist beschränkt und
+    gleichgradig stetig. Für alle $f\in A$ und $x\in D_\epsilon$
+    gilt nach der Hölder'schen Ungleichung und \ref{vl27:kompaktLp:i}:
+    \[ \abs{T_\epsilon f(x)}
+        \leq \norm{\phi_\epsilon}_{p'} \, \norm{f}_p
+        \leq \norm{\phi_\epsilon}_{p'} \, \smash{\sup_{g\in A}}\, \norm{g}_p
+        < \infty
+    \]
+    sowie
+    \[ \abs*{\nabla(T_\epsilon f)(x)}
+        =\abs*{(\chi_{B_\epsilon}f)\ast(\nabla\phi_\epsilon)}
+        \leq \norm{\nabla\phi_\epsilon}_{p'} \,
+            \sup_{g\in A}\, \norm{g}_p \eqdef C < \infty
+    . \]
+    Aus der ersten Ungleichung folgt die Beschränktheit von $A_\epsilon$
+    und aus der zweiten, dass für alle $f\in A,\; x,y\in D_\epsilon$ gilt:
+    \[ \abs[\big]{ (T_\epsilon f)(x) - (T_\epsilon f)(y) }
+        \leq \norm{\nabla(T_\epsilon f)}_{C^0(D_\epsilon)} \, \abs{x-y}
+        \leq C \, \abs{x-y}
+    . \]
+    Daraus folgt, dass $A_\epsilon$ gleichgradig stetig ist.
+    \\
+\end{proof}

@@ -28,7 +28,7 @@
     \[ J_p\colon \Lpp \to \bigl(\Lpp[p']\bigr)' \qundq
         J_{p'}\colon \Lpp[p'] \to \bigl(\Lpp\bigr)'
     \]
-    aus \cref{vl25:dualraumLp} haben die Eiegenschaft
+    aus \cref{vl25:dualraumLp} haben die Eigenschaft
     \[ \forall\,f\in\Lpp,\,g\in\Lpp[p']\colon\quad
         \ol{(J_{p'}g)(f)} =
         \int_\Omega \ol{f} g \dif\mu = (J_pf)(g)
@@ -61,14 +61,16 @@ Man kann $(\Lp\infty)'$ als Raum von Maßen interpretieren.
 Im Allgemeinen ist weder $\Lp1$ noch $\Lp\infty$ reflexiv.
 
 % 10.14
-\begin{thSatz}
+\begin{thSatz} \label{vl26:satz10.14}
     \begin{enumerate}[(i)]
-        \item
+        \item \label{vl26:satz10.14:i}
             Sei $S\subset\R^n$ kompakt. Dann ist $C^0(S)$ separabel.
-        \item
+            
+        \item \label{vl26:satz10.14:ii}
             Für $p\in[1,\infty)$ ist $\Lpp(\R^n)$ separabel und
             $\Coo(\R^n)$ liegt dicht in $\Lpp(\R^n)$.
-        \item
+            
+        \item \label{vl26:satz10.14:iii}
             Sei $S\subset\R^n$ Lebesgue-messbar und $\leb^n(S)>0$. Dann ist
             $\Lp\infty(S)$ nicht separabel.
     \end{enumerate}
@@ -158,7 +160,7 @@ brauchen wir die Faltung:
 \end{thDef}
 
 % 10.16
-\begin{thLemma} \label{vl26:lemma10.16}
+\begin{thLemma}[Allgemeine Faltungsabschätzung] \label{vl26:lemma10.16}
     Sei $\phi\in\Lp1(\R^n)$, sei $K\colon\R^n\times\R^n\to\K$ Lebesgue-messbar
     und sei $p\in[1,\infty]$. Dann gilt für
     \[ F(x) \defeq \int_{\R^n} \phi(x-y) \, K(x,y) \dif{y} 
@@ -173,6 +175,7 @@ brauchen wir die Faltung:
     in $\Lp1(\R^n)$ für fast alle $x\in\R^n$ und es gilt $F\in\Lpp(\R^n)$.
 \end{thLemma}
 
+\pagebreak[1]
 \begin{proof}
     Die Fälle $p\in\{1,\infty\}$ sind einfach. Wir zeigen daher den Fall für
     $p\in(1,\infty)$, wobei $p'$ den konjugierten Exponenten bezeichne. Dann
@@ -207,10 +210,11 @@ brauchen wir die Faltung:
 \end{proof}
 
 % 10.17
-\begin{thKorollar}[Faltungsabschätzung]
-    Seien $f\in\Lpp(\R^n)$ und $\phi\in\Lp1(\R^n)$. Dann gilt
-    $f\ast\phi \in\Lpp(\R^n)$ und
-    \[ \norm{f\ast\phi}_p \leq \norm{\phi}_1 \, \norm{f}_p  . \]
+\begin{thKorollar}[Faltungsabschätzung] \label{vl26:korollar10.17}
+    Für $f\in\Lpp(\R^n)$ und $\phi\in\Lp1(\R^n)$ folgt
+    \[ f\ast\phi \in\Lpp(\R^n) \qtextq{mit}
+        \norm{f\ast\phi}_p \leq \norm{\phi}_1 \, \norm{f}_p
+    . \]
 \end{thKorollar}
 
 \begin{proof}
@@ -221,14 +225,14 @@ brauchen wir die Faltung:
 \pagebreak[2]
 %
 % 10.18
-\begin{thLemma}
+\begin{thLemma} \label{vl26:lemma10.18}
     Für $f\in\Lpp(\R^n)$ und $\phi\in\Cinfo(\R^n)$ gilt:
-    \[ \phi\ast f\in \Cinfo(\R^n) \qqundqq 
+    \[ \phi\ast f\in C^\infty(\R^n) \qqundqq 
         \partial^s(\phi\ast f) = (\partial^s\phi)\ast f
     . \]
 \end{thLemma}
 
-\begin{proof}
+\begin{proofsketch}
     Sei $R\in\R[>0]$ mit $\supp\phi \subset B_R(0)$. Dann gilt:
     \[ \frac{(\phi\ast f)(x+he_i)-(\phi\ast f)(x)}{h}
         = \int\limits_{B_{2R}(0)} 
@@ -244,4 +248,4 @@ brauchen wir die Faltung:
     . \]
     Die Aussage über höhere Ableitungen erhält man mit Induktion über $\abs{s}$.
     \\
-\end{proof}
+\end{proofsketch}

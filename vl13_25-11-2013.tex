@@ -10,7 +10,6 @@ ausgestattet mit dem Skalarprodukt
 . \]
 Es gilt $V\subset H$ und die Inklusion $V\hookrightarrow H$ ist stetig.
 Wir identifizieren $H'$ mit $H$ und $V'$ mit dem Raum
-% TODO: v  check 
 \[ V' = \Bigl\{ f\in\R^\N \Mid
     \nsum^\infty \frac{1}{n^2}\, f_n^2 < \infty \Bigr\}
 , \]
@@ -82,6 +81,78 @@ Fixpunktsatz:\\
     . \]
 \end{thTheorem}
 
+\begin{proof}
+    Sei $\phi\in H'$ gegeben. Riez \pcref{vl12:riesz} liefert:
+    es gibt genau ein $f\in H$, so dass für alle $v\in H$ schon
+    $\phi(v)=\SP{v,f}$ gilt. Andererseits ist für $u\in H$ die Abbildung
+    \[ v \mapsto a(v,u) \]
+    ein Element in $H'$. Also erhalten wir erneut mit Riesz: Es existiert genau
+    ein $Au\in H$, so dass für alle $v\in H$ gilt:
+    \[ a(v,u) = \SP{v, Au}  . \]
+    Seien $C,\alpha\in\R[>0]$ entsprechende Konstanten für $a$ wie in 
+    \cref{vl13:def:sesquisetetigkorerziv}. Dann gilt:
+    \[ \norm{Au} \leq \norm{a(\scdot,u)} \leq C\,\norm{u} . \]
+    Da $a$ und $\emptySP$ im zweiten Argument konjugiert linear sind, folgt,
+    dass $A$ linear ist. Somit ergibt sich:
+    \[ A\in L(H) \qundq \norm{A} \leq C   . \]
+    Außerdem gilt für alle $u\in H$:
+    \[ \Re\SP{u,Au} = \Re a(u,u) \geq \alpha\norm{u}^2  . \]
+    Die Eigenschaft \eqref{vl13:star} aus der Behauptung ist äquivalent zu:
+    \[ \forall\,v\in K\colon\quad
+        \Re\SP{v-u,Au} \geq \Re\SP{v-u,f}
+    . \]
+    Für $\rho\in\R[>0]$ ist dies wiederum äquivalent zu:
+    \[ \forall\,v\in K\colon\quad
+        \Re\SP{v-u, \rho f - \rho Au + u - u} \leq 0
+    . \]
+    Aus dem Projektionssatz \pref{vl12:projektionssatz} folgt, dass dies
+    äquivalent dazu ist, ein $u\in K$ zu finden mit
+    \[ u = \Proj_K(\rho f - \rho Au + u)  . \]
+    Definiere für $v\in K$:
+    \[ S(v) \defeq \Proj_K(\rho f - \rho Av + v) . \]
+    \cref{vl12:satz6.3} liefert: für alle $v_1,v_2\in K$ gilt:
+    \[ \norm{Sv_1 - Sv_2} \leq \norm{(v_1-v_2) - \rho (Av_1-Av_2)}  . \]
+    Es folgt:
+    \begin{align*}
+        \norm{Sv_1-Sv_2}^2
+        &\leq \norm{v_1-v_2}^2 - 2\rho 
+        \underbrace{\Re\SP{Av_1-Av_2, v_1-v_2}}_{\geq \alpha\norm{v_1-v_2}^2} 
+            + \rho^2 \norm{Av_1-Av_2}^2
+        \\
+        &\leq
+        \norm{v_1-v_2}^2 \, 
+        \underbrace{\bigl( 1-2\rho\alpha + \rho^2 C^2 \bigr)}_{<1 \text{ für }
+        \rho\in (0,\, 2\alpha/C^2)}
+    \end{align*}
+    Für $\rho$ klein genug ist $S$ also eine Kontraktion und damit liefert der
+    Banach'sche Fixpunktsatz die Existenz eines eindeutigen Fixpunkts. Nach den
+    vorherigen Überlegungen ist dieser dann die eindeutige Lösung von
+    \eqref{vl13:star}.
+    
+    Sei nun $a$ symmetrisch. Dann definiert $(u,v)\mapsto a(u,v)$ ein
+    Skalarprodukt auf $H$. Die zugehörige Norm $u\mapsto \sqrt{a(u,u)}$ ist
+    äquivalent zur Norm $u\mapsto \norm{u} = \sqrt{\SP{u,u}}$ (was man leicht
+    aus den Voraussetzungen an $a$ folgern kann).
+    Also ist $H$ auch ein Hilbertraum bezüglich des von $a$ gegebenen
+    Skalarprodukts. Der Riesz'sche Darstellungssatz \pref{vl12:riesz} liefert:
+    Für alle $\phi\in H'$ gibt es ein eindeutiges $g\in H$ mit 
+    $\phi = a(\scdot,g)$. Damit ist \eqref{vl13:star} aber äquivalent dazu, ein
+    $u\in K$ zu finden, welches folgende Eigenschaft erfüllt:
+    \[ \forall\,v\in K\colon\quad
+        \Re a(v-u,g-u) \leq 0
+    . \]
+    Das heißt aber, dass $u$ die Projektion von $g$ auf $K$ bezüglich des durch
+    $a$ gegebenen Skalarprodukts ist. Der Projektionssatz
+    \pref{vl12:projektionssatz} liefert dann, dass dies äquivalent ist zu
+    \[ u\in K \qundq \sqrt{a(g-u,g-u)} = \min_{v\in K} \sqrt{ a(g-v,g-v) }
+    , \]
+    was offenbar genau dann der Fall ist, wenn $u$ die Funktion
+    \[ v \mapsto a(g-v,g-v) = a(v,v) - 2\Re a(v,g) + a(g,g) 
+            = a(v,v) - 2\Re\phi(v) + a(g,g)
+    \]
+    auf $K$ minimiert, oder äquivalent die Funktion
+    \[ v \mapsto \half\, a(v,v) - \Re\phi(v) . \]
+\end{proof}
 
 \nnBemerkung\\
 Ist $a$ eine positiv semidefinite Bilinearform auf einem $\R$-Vektorraum~$H$, so
