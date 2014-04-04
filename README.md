@@ -6,7 +6,5 @@ winter term 2013/14. (German text)
 Note that it won't be moved to the actual master branch anytime soon.**
 
 
-See branch [master](https://github.com/J0J0/VLM_Funktionalanalysis/tree/master) for the master branch (with reviewd content only).
+See branch [master](https://github.com/J0J0/VLM_Funktionalanalysis/tree/master) for the master branch (without ch. 11).
 See branch [master+sobolev](https://github.com/J0J0/VLM_Funktionalanalysis/tree/master+sobolev) for the master branch plus chapter 11.
-See branch [unstable](https://github.com/J0J0/VLM_Funktionalanalysis/tree/unstable) for everything i have up to (and including) chapter 10.
-See branch [unstable+sobolev](https://github.com/J0J0/VLM_Funktionalanalysis/tree/unstable+sobolev) for everything i have (including ch. 11).
