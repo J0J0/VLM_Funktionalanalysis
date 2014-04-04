@@ -86,7 +86,10 @@
 % 3
 \chapter{Lineare Operatoren}
 % 3.1
-\begin{thDef} \label{vl04:def3.1}\hfill
+\thmmanualindex%
+\begin{thDef}[Linearer Operator, Dualraum] \label{vl04:def3.1}\hfill
+    \index{linearer Operator}%
+    \index{Dualraum}%
     \begin{enumerate}[(a)]
         \item \label{vl04:def3.1:linops}
             Seien $X,Y$ zwei $\K$-Vektorräume mit Topologien $\Topo_X,\Topo_Y$.
@@ -231,7 +234,7 @@
     
     Beispiel: $X=c_0$ 
     (Raum der Nullfolgen, 
-    siehe \mycrefA{vl03:2.12:Folgenraeume:Unterraeume}{}{\,(}{})
+    siehe \mycrefA{vl03:2.12:Folgenraeume:Unterraeume}{}{\,(}{})\SyntaxGobble)
     mit der Supremumsnorm, $Y=\R$, $T_kx\defeq x_k$.
     Dann gilt: $\lim_{k\to\infty} T_kx = \lim_{k\to\infty} x_k = 0 \eqdef Tx$.
     Offensichtlich gilt $\norm{T_kx}=1$ für $x=e_k$.
@@ -240,7 +243,11 @@
 \end{thBemerkung}
 
 % 3.6
-\begin{thDef} \label{vl04:def:nullundbildraum}
+\thmmanualindex
+\begin{thDef}[Null- und Bildraum] \label{vl04:def:nullundbildraum}
+    \index{Nullraum eines Operators}%
+    \index{Bildraum eines Operators}%
+    %
     Für $T\in L(X,Y)$ definieren wir den \emph{Nullraum (Kern) von $T$} als
     \[ N(T) \defeq \{ x\in X \Mid T(x) = 0 \}
         = T^{-1}(\{0\})
@@ -252,18 +259,18 @@
     der \emph{Bildraum} (engl.: \enquote{range}) von $T$.
     Es ist $R(T)$ ein linearer Unterraum von $Y$, i.\,A. aber nicht
     abgeschlossen.
-    
-    Beispiel: $X=C^0(\I)$,
-    \begin{align*}
-        &T\colon X\to X, \quad (Tf)(x) \defeq \int_0^x f(\xi) \dif{\xi}
-        \\
-        &R(T) = \{ g\in C^1(\I) \Mid g(0) = 0 \}
-    \end{align*}
-    Es gilt $T \in L(X,Y)$ aber $R(T)$ ist nicht abgeschlossen in $X$, denn:
-    \[ \setclosure{R(T)} = \{ g\in C^0(\I) \Mid g(0) = 0 \}  \]
-    (denn stetige Funktionen können durch $C^1$-Funktionen in der $C^0$-Norm
-    approximiert werden, siehe später). % TODO: future ref
 \end{thDef}
+    
+\nnBeispiel: $X=C^0(\I)$,
+\begin{align*}
+    &T\colon X\to X, \quad (Tf)(x) \defeq \int_0^x f(\xi) \dif{\xi}
+    \\
+    &R(T) = \{ g\in C^1(\I) \Mid g(0) = 0 \}
+\end{align*}
+Es gilt $T \in L(X,Y)$ aber $R(T)$ ist nicht abgeschlossen in $X$, denn:
+\[ \setclosure{R(T)} = \{ g\in C^0(\I) \Mid g(0) = 0 \}  \]
+(denn stetige Funktionen können durch $C^1$-Funktionen in der $C^0$-Norm
+approximiert werden, siehe später). % TODO: future ref
 
 \begin{thSatz}[Neumannsche Reihe] \label{vl04:neumannreihe}
     Sei $X$ ein Banachraum und sei $A\in L(X)$ mit $\norm{A}<1$.

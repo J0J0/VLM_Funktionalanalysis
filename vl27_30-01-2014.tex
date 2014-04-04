@@ -43,6 +43,7 @@ Für $x\in\R^n$ bezeichne im Folgenden $\abs{x} \defeq \norm{x}_2$ die euklidsch
 Norm von~$x$.
 
 % 10.20
+\thmnoindex%
 \begin{thEmpty}[Standardbeispiel für eine Dirac-Folge]
     Sei $\psi\in C^\infty(\R,\R)$ mit $\supp\psi\subset\R[\leq1]$.
     % TODO: Skizze
@@ -227,7 +228,7 @@ Das nächste Ziel ist, eine Charakterisierung von kompakten Mengen in $C^0(K)$
 (für ein Kompaktum $K\subset\R^n$) und in $\Lpp(\R^n)$ zu finden.
 
 % 10.24
-\begin{thSatz}[Arzel\`a-Ascoli] \label{vl27:arzelaascoli}
+\begin{thSatz}[Satz von Arzel\`a-Ascoli] \label{vl27:arzelaascoli}
     Sei $K\subset\R^n$ kompakt und $A\subset C^0(K,\R^m)$. Dann ist $A$ genau
     dann präkompakt, wenn folgende Eigenschaften erfüllt sind:
     \begin{enumerate}[(i)]
@@ -236,7 +237,7 @@ Das nächste Ziel ist, eine Charakterisierung von kompakten Mengen in $C^0(K)$
             $\sup_{f\in A} \, \norm{f}_{C^0(K,\R^n)} < \infty$.
             
         \item \label{vl27:arzelaascoli:ii}
-            $A$ ist \emph{gleichgradig stetig}, d.\,h.
+            $A$ ist \emph{gleichgradig stetig},\index{gleichgradig stetig} d.\,h.
             \[ \sup_{f\in A} \, \abs{f(x)-f(y)} \;\to\; 0 \fuer \abs{x-y}\to 0
             . \]
     \end{enumerate}
@@ -334,10 +335,14 @@ wobei
 \[ B_\epsilon(A_\epsilon) 
     \defeq \{ x\in X \Mid \dist(x,A_\epsilon) < \epsilon \}
 . \]
+% xxx Anhang: Beweis ^
 
 % 10.25
+\thmmanualindex
 \begin{thSatz}[Kompakte Mengen in $\Lpp(\R^n)$, Riesz-Fr\'echet-Kolmogorov]
     \label{vl27:kompaktLp}
+    \index{Satz von Riesz-Fr\'echet-Kolmogorov}%
+    \index{kompakte Mengen in $\Lpp(\R^n)$|see{Satz von Riesz-Fr\'echet-Kolmogorov}}%
     %
     Sei $p\in[1,\infty)$ und sei $A\subset\Lpp(\R^n)$. Dann ist $A$ präkompakt
     genau dann, wenn folgende Bedingungen erfüllt sind:

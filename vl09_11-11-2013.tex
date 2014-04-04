@@ -1,7 +1,7 @@
 % 5
-\chapter{Bairescher Kategoriensatz und seine Konsequenzen}
+\chapter{Baire'scher Kategoriensatz und seine Konsequenzen}
 % 5.1
-\begin{thSatz}[Bairescher Kategoriensatz] \label{vl09:baire}
+\begin{thSatz}[Baire'scher Kategoriensatz] \label{vl09:baire}
     Sei $(X,d)$ ein nicht-leerer vollständiger metrischer Raum. Sei $\kSeq A$
     eine Folge von in $X$ abgeschlossenen Mengen und gelte
     \[ X = \bigcup_{k\in\N} A_k  . \]
@@ -74,7 +74,7 @@ betrachte man $X=\Q$.
 \end{proof}
 
 % 5.3
-\begin{thSatz}[Banach-Steinhaus] \label{vl09:banachsteinhaus}
+\begin{thSatz}[Satz von Banach-Steinhaus] \label{vl09:banachsteinhaus}
     Sei $X$ ein Banachraum, $Y$ ein normierter Raum und $\mc T\subset L(X,Y)$.
     Für alle $x\in X$ gelte: $\sup_{T\in\mc T} \, \norm{Tx}_Y < \infty$.
     Dann folgt schon
@@ -219,10 +219,13 @@ ist. (Das Korollar ist also eine Verallgemeinerung dieser Tatsache.)
 \end{proof}
 
 % 5.8
-\begin{thDef}
+\thmmanualindex%
+\begin{thDef}[Offene Abbildung]
+    \index{offene Abbildung}%
+    %
     Seien $X,Y$ topologische Räume und $f\colon X\to Y$ eine Abbildung.
     Dann ist $f$ \emph{offen}, wenn Bilder offener Mengen offen sind, d.\,h.
-    wenn für alle in $X$ offenen Teilmengen $U\subset X$ auch $f(U)$ offen in
+    wenn für alle in~$X$ offenen Teilmengen $U\subset X$ auch $f(U)$ offen in
     $Y$ ist.
 \end{thDef}
 
