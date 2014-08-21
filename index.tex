@@ -71,6 +71,10 @@
 \newcommand*{\pcref}[1]{(\cref{#1})}
 \newcommand*{\pmycref}[1]{(\mycref{#1})}
 
+% this command is used for references to the appendix
+\newcommand{\apref}[1]{%
+\textsuperscript{\textcolor{red!40!black}{\,\ref{#1}}}}
+
 % make a even more clever \mycref that produces "Lemma 42a)" etc.
 % (uses the 'xstring' package)
 \newcommand{\mycref}[1]{\mycrefA{#1}{}{\,}{}}
@@ -148,7 +152,6 @@
 % this disables the index entry for the next thm
 \newcommand{\thmnoindex}{\renewcommand{\thmtoindex}[1]{\global\let\thmtoindex=\origthmtoindex}}
 \newcommand{\thmmanualindex}{\thmnoindex}
-
 
 %
 \newcommand{\nnSatz}{\textbf{Satz:} }
@@ -360,6 +363,9 @@ $\mkern2mu #1 \mkern1mu$%
 % set parsindent and parskip
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2ex plus 4pt minus 3pt}
+% FIXME
+\newcommand{\proofsep}{\\[0.8ex]}
+
 
 % xy specific settings
 \newcommand{\xyhookdirspacing}{4pt}
@@ -443,6 +449,9 @@ $\mkern2mu #1 \mkern1mu$%
 \mbox{}\newpage\phantomsection
 \addcontentsline{toc}{chapter}{Index}
 \printindex
+
+\appendix
+\input{addendum}
 
 \end{document}
 

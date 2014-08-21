@@ -1,0 +1,329 @@
+\chapter{Ergänzungen}
+{\itshape%
+In diesem Anhang möchte ich einige offene Behauptungen klären und ggf.
+zusätzliche Beispiele sammeln; oder zumindest auf entsprechende Literatur
+verweisen. Überwiegend geht es dabei um Dinge, die in den vorangehenden
+Kapiteln nicht ausgeführt oder mit \enquote{Beweis: selber.} abgehandelt
+wurden.
+
+Viel in diesem Teil kommt aus meinen eigenen Überlegungen oder Beweisskizzen,
+die ich mir während des Semesters oder hinterher ausgedacht hab, also kann es
+auch durchaus passieren, dass davon etwas falsch ist. Über Hinweise bezüglich
+Fehlern wäre ich dankbar.%
+}
+
+\section{Fortsetzung und Existenz gewisser Funktionale}
+\begin{thProposition} \label{a:exgewisserfunktionale}
+    Sei $X$ ein normierter Raum über $\K$. Dann gelten folgende Aussagen:
+    \begin{enumerate}[(i)]
+        \item \label{a:exgewisserfunktionale:i}
+            Ist $U\subset X$ ein Unteraum mit $\setclosure U \neq X$
+            und $x_0\in X\setminus \setclosure{U}$, so gibt es ein $x'\in X'$
+            mit $x'\vert_U = 0$ und $x'(x_0) \neq 0$.
+            
+        \item \label{a:exgewisserfunktionale:ii}
+            Ist $x_0\in X\setminus\{0\}$, so gibt es ein $x'\in X'$
+            mit $x'(x_0) = 1$.
+            
+        \item \label{a:exgewisserfunktionale:iii}
+            Ist $x_0\in X\setminus\{0\}$, so gibt es ein $x'\in X'$
+            mit $\norm{x'} = 1$ und $x'(x_0) = \norm{x_0}$.
+            
+        \item \label{a:exgewisserfunktionale:iv}
+            Ist $U\subset X$ ein Unterraum mit $\setclosure U \neq X$
+            und $x_0\in X\setminus \setclosure{U}$, so gibt es ein $x'\in X'$
+            mit folgenden Eigenschaften:
+            \[ x'(x_0)=1,\qquad
+                x'\vert_U = 0 \qqtextqq{und}
+                \norm{x'} \leq \dist(x_0, U)^{-1}
+            . \]
+    \end{enumerate}
+\end{thProposition}
+
+\begin{proof}
+    Der erste Teil ist das, was eigentlich im Beweis von
+    \cref{vl07:korollar4.16} gezeigt wird. Der zweite Teil folgt für $U=0$
+    direkt aus dem ersten und der dritte Teil wird mithilfe von
+    \cref{vl05:satz4.6} im unnummerierten Teil über \cref{vl07:satz4.18}
+    bewiesen.
+    \proofsep
+    Wir beweisen den vierten Teil, welcher insbesondere die vorherigen drei
+    Aussagen als Spezialfall beinhaltet. Sei also $U\subset X$ ein geeigneter
+    Unterraum und $x_0\in X$ mit $x_0\notin\setclosure U$. Wir setzen $\tilde U
+    \defeq U\oplus\spann\{x_0\}$ und definieren eine lineare Abbildung durch
+    (die lineare Fortsetzung von)
+    \begin{align*}
+        u'\colon \tilde U &\to \K  \\
+        U\ni u &\mapsto 0   \\
+        x_0    &\mapsto 1
+    . \end{align*}
+    Zeigen wir nun $\norm{u'} \leq \dist(x_0,U)^{-1}$, so folgt mit
+    \cref{vl05:satz4.6}: es existiert ein $x'\in X'$ mit
+    $x'\vert_{\tilde U} = u'$ und $\norm{x'} = \norm{u'}$; solch ein $x'$
+    erfüllt dann offenbar die Behauptung. Es gilt
+    \[ \tag{$\star$} \label{a:exgewisserfunktionale:star}
+        \norm{u'} = \sup_{\substack{x\in \tilde U,\\\norm{x}\leq 1}} \abs{u'(x)}
+        = \sup\bigl\{ \abs{u'(x)} \Mid
+            x = u+\lambda x_0, \; u\in U,\; \lambda\in\K,\; \norm{x}\leq 1
+        \bigr\}
+    . \]
+    Nach Definition von $u'$ gilt 
+    \[ u'(u+\lambda x_0)
+        = u'(u) + \lambda u'(x_0)
+        = 0 + \lambda\cdot 1 = \lambda
+    \]
+    für alle $u\in U,\,\lambda\in\K$. Wir können also innerhalb der
+    Supremumsbildung ohne Einschränkung $\lambda\neq0$ annehmen, womit
+    \[ \norm{u+\lambda x_0} = \abs\lambda \cdot \norm*{-\frac{1}{\lambda}u - x_0} \]
+    gilt, und da $U$ ein Unterraum ist, gilt außerdem $-\lambda^{-1}U = U$.
+    Mit diesen Überlegungen erhalten wir aus
+    \eqref{a:exgewisserfunktionale:star}:
+    \[ \norm{u'} = \sup\bigl\{ \abs\lambda \Mid u\in U,\; \lambda\in\K^\times,
+        \; \abs\lambda \cdot \norm{u-x_0} \leq 1 \bigr\}
+    . \]
+    Die letzte Bedingung impliziert außerdem
+    \[ \abs\lambda \leq \frac{1}{\norm{u-x_0}} \leq \frac{1}{\dist(x_0,U)}, \]
+    woraus wie gewünscht $\norm{u'} \leq \dist(x_0,U)^{-1}$ folgt.
+    \\
+\end{proof}
+
+\section{(Nicht) Reflexive Banachräume}
+Nach \cref{vl07:def:reflexiv} ist ein Banachraum~$X$ genau dann reflexiv, wenn
+$J_X$ surjektiv ist. Nach \cref{vl13:hilbertraumreflexiv} ist jeder Hilbertraum
+reflexiv und nach \cref{vl26:Lpreflexiv} die Räume $\Lpp(\Omega)$ für
+$p\in(1,\infty)$, insbesondere also auch $\ell^p(\K)$ für $p\in(1,\infty)$ und
+$\K\in\{\R,\C\}$.
+
+\begin{thBeispiel}[Nicht reflexiver Banachraum~I] \label{a:nichtreflI}
+    Wir betrachten den Raum $c_0$ aller Nullfolgen (über $\K$). Es gilt
+    \[ c_0' \cong \ell^1 \qtextq{sowie} (\ell^1)' \cong \ell^\infty  , \]
+    wobei wir letzteres aus den Übungen wissen und ersteres analog mit demselben
+    (isometrischen) Isomorphismus gezeigt werden kann. Nach
+    \cref{a:ellpundc0separabel} ist $c_0$ separabel, aber aus den Übungen wissen
+    wir, dass $\ell^\infty$ nicht separabel sein kann (weil es \cref{vl17:satz7.8}
+    widersprechen würde). Weil Separabilität eine topologische Invariante ist,
+    gilt also (topologisch)
+    \[ \thickmuskip=10mu
+        c_0'' \cong \ell^\infty \not\cong c_0
+    , \]
+    insbesondere kann also $J_{c_0}$ kein Isomorphismus sein.
+    Alternativ erhält man dies mittels $c_0' \cong \ell^1$ 
+    auch aus \cref{vl17:lemma7.9} und \cref{a:nichtreflII}.
+\end{thBeispiel}
+
+\begin{thBeispiel}[Nicht reflexive Banachräume~II] \label{a:nichtreflII} \hfill
+    \begin{itemize}
+        \item
+            Nach \cref{a:ellpundc0separabel} ist $\ell^1$ (über $\K$) separabel.
+            Würde
+            \[ \thickmuskip=10mu
+                (\ell^1) '' \cong (\ell^\infty)' \cong \ell^1
+            \]
+            gelten, so müsste $\ell^\infty$ nach \cref{vl17:lemma7.10} separabel sein.
+            Also kann insbesondere $J_{\ell^1}$ kein Isomorphismus sein.
+        
+        \item
+            Wegen $(\ell^1)' \cong \ell^\infty$ ist nach \cref{vl17:lemma7.9} also auch
+            $\ell^\infty$ nicht reflexiv.
+    \end{itemize}
+\end{thBeispiel}
+
+\section{Doppel-Annihilator}
+Sei $X$ ein normierter Raum. Nach \cref{vl07:satz4.22} gilt für jeden Unterraum
+$M\subset X$ die Gleichheit $(M^\perp)^\perp = \setclosure M$. Für einen
+Unterraum $N\subset X'$ gilt jedoch im Allgemeinen nur $(N^\perp)^\perp \supset
+\setclosure N$:
+
+\begin{thBeispiel} \label{a:doppelanihil}
+    Sei $X$ ein nicht reflexiver Banachraum. Mittels der Isometrie~$J_X$ aus
+    \cref{vl07:satz4.18} identifizieren wir $X$ mit dem Unterraum $J_X(X)$
+    von $X''$. Da $X$ nicht reflexiv ist, gilt $J_X(X) \subsetneq X''$.
+    Sei $x'\in (J_X(X))^\perp$. Dann gilt:
+    \[ \forall\,x''\in J_X(X)\colon\quad
+        x''(x') = 0
+    . \]
+    Dies ist aber nach Definition von $J_X$ äquivalent zu
+    \[ \forall\,x\in X\colon\quad
+        x'(x) = (J_Xx)(x') = 0
+    , \]
+    d.\,h. es gilt $x' = 0$ und somit folgt
+    $\bigl( J_X(X) \bigr)^\perp = 0$.
+    Wir erhalten
+    \[ \bigl(\bigl( J_X(X) \bigr)^\perp\bigr)^\perp
+        = \{0\}^\perp = X'' \supsetneq J_X(X)
+        = \setclosure{J_X(X)}
+    . \]
+    Die letzte Gleichheit folgt dabei aus dem folgenden einfachen 
+    Lemma \pref{a:isometrieabg}.
+\end{thBeispiel}
+
+\begin{thLemma} \label{a:isometrieabg}
+    Sei $X$ ein Banachraum und $Y$ ein normierter Raum sowie
+    $f\colon X\to Y$ eine lineare Isometrie. Dann ist $f$ abgeschlossen
+    (d.\,h. $f$ bildet abgeschlossene Mengen auf abgeschlossene
+    Mengen ab).
+\end{thLemma}
+
+\begin{proof}
+    Sei $A\subset X$ abgeschlossen. Sei $\nSeq y$ eine Folge in $f(A)$, welche
+    gegen $y\in Y$ konvergiert. Sei außerdem $\nSeq x$ eine Folge in~$A$ mit
+    $(f(x_n))_{n\in\N} = \nSeq y$. Weil $\nSeq y$ inbesondere eine Cauchy-Folge
+    ist, gilt
+    \[ \norm{x_n-x_m}_X = \norm{f(x_n-x_m)}_Y
+        = \norm{y_n-y_m}_Y \to 0 \fuer m,n\to\infty
+    , \]
+    d.\,h. auch $\nSeq x$ ist eine Cauchy-Folge in $X$. Weil $X$ vollständig
+    ist, konvergiert diese Folge gegen einen Grenzwert $x\in X$, welcher
+    in $A$ liegen muss, da $A$ abgeschlossen ist. Weil $f$ außerdem stetig ist,
+    gilt dann $f(x_n) \to f(x)$ für $n\to\infty$, woraus $f(x) = y$ und damit
+    $y\in f(A)$ folgt. Es folgt die Behauptung.
+    \\
+\end{proof}
+
+\section{Definition von Präkompaktheit}
+\begin{thProposition}[Äquivalente Formulierung von Präkompaktheit]
+    \label{a:praekompakt}%
+    %
+    Sei $(X,d)$ ein metrischer Raum und $A\subset X$. Dann ist $A$ genau dann
+    präkompakt, wenn für alle $\epsilon\in\R[>0]$ endlich viele
+    $a_1,\dots,a_n\in A$ existieren mit $A \subset \bigcup_{i=1}^n
+    B_\epsilon(a_i)$.
+\end{thProposition}
+
+\begin{proof}
+    Falls die obige Eigenschaft für $A$ gilt, so ist $A$ offenbar präkompakt.
+    Sei nun also $A$ präkompakt, $\epsilon\in\R[>0]$ und seien $n\in\N$ sowie
+    $x_1,\dots,x_n\in X$ mit $A\subset \bigcup_{i=1}^n B_{\epsilon/2}(x_i)$.
+    Ohne Einschränkung gelte außerdem $B_{\epsilon/2}(x_i)\cap A \neq \emptyset$
+    für alle $i\in\setOneto n$. Nach der Dreiecksungleichung gilt
+    \[ \forall\,i\in\setOneto n\;\forall\,y\in B_{\epsilon/2}(x_i)\colon\quad
+        B_{\epsilon/2}(x_i) \subset B_\epsilon(y)
+    . \]
+    Wählen wir nun zu jedem $x_i$ ein $a_i\in B_{\epsilon/2}(x_i)\cap A$,
+    so gilt also:
+    \[ A \subset \bigcup_{i=1}^n B_{\epsilon/2}(x_i)
+        \subset \bigcup_{i=1}^n B_\epsilon(a_i)
+    , \]
+    womit die Behauptung gezeigt ist.
+    \\
+\end{proof}
+
+Insbesondere erhält man so einen intrinsischen Begriff der Präkompaktheit eines
+metrischen Raums, der nicht von einem umgebenden Raum abhängt.
+
+\section{Separabelität (des Dualraums)}
+Sei $X$ ein Banachraum. \cref{vl17:lemma7.10} zeigt, dass $X$ separabel ist,
+falls $X'$ separabel ist. Die Umkehrung gilt im Allgemeinen nicht. Dazu stellen
+wir zunächst allgemein fest:
+
+\begin{thLemma}[Separabilität von \texorpdfstring{$\ell^p$}{lp} und $c_0$]
+    \label{a:ellpundc0separabel}%
+    %
+    Sei $p\in[1,\infty)$. Dann ist $\ell^p(\K)$ separabel (für
+    $\K\in\{\R,\C\}$). Außerdem ist $c_0(\K)$ (mit der $\emptyNorm_\infty$-Norm)
+    separabel.
+\end{thLemma}
+
+\begin{proof}
+    Dies folgt aus \cref{vl15:lemma6.19}, da
+    \[ \spann\bigl\{ e_n \Mid n\in\N \bigr\} \qtextq{mit} 
+        e_n = (\delta_{nk})_{k\in\N}
+    \]
+    dicht in $\ell^p$ bzw. $c_0$ liegt. (Dabei ist $\delta$ das Kroneckerdelta.)
+    \\
+\end{proof}
+
+\begin{thBeispiel}[Nicht separabler Dualraum] \label{a:dualnotsep:bsp}
+    Wir betrachten $\ell^1$ (über $\K$). Aus den Übungen wissen wir einerseits
+    \[ (\ell^1)' \cong \ell^\infty \]
+    und andererseits, dass $\ell^\infty$ nicht separabel ist (weil dies
+    \cref{vl17:satz7.8} widersprechen würde). Nach \cref{a:ellpundc0separabel} ist
+    aber $\ell^1$ separabel.
+\end{thBeispiel}
+
+Allerdings gilt:
+
+\begin{thLemma}[\enquote{Umkehrung} von \cref{vl17:lemma7.10}]
+    Ist $X$ ein reflexiver Banachraum, so gilt:
+    \[ X\text{ separabel} \qiffq X'\text{ separabel}  . \]
+\end{thLemma}
+
+\begin{proof}
+    Die Rückrichtung ist \cref{vl17:lemma7.10}. Die Hinrichtung folgt wie im
+    Beweis von \cref{vl17:satz7.11} mithilfe der Reflexivität von $X$ aus
+    \cref{vl17:lemma7.9} und \cref{vl17:lemma7.10}.
+    \\
+\end{proof}
+
+\section{Schwache Topologie}
+Ist $X$ ein normierter Raum, so ist die schwache Topologie auf $X$ ist nach
+\cref{vl18:def:schwachetop} die Initialtopologie auf $X$ bezüglich aller
+Abbildungen aus $X'$.
+
+\begin{thSatz}[Topologischer Vektorraum mit schwacher Topologie]
+    \label{a:schwachetopovekt}%
+    %
+    Sei $X$ ein normierter Raum. Dann ist $X$ auch bezüglich der schwachen
+    Topologie ein hausdorffscher topologischer Vektorraum.
+\end{thSatz}
+
+\begin{proof}
+    Im Folgenden trage $X$ die schwache Topologie.
+    Wir verwenden die universelle Eigenschaft der Initialtopologie:
+    Für einen weiteren topologischen Raum~$Z$ und eine Abbildung
+    $g\colon Z\to X$ ist $g$ genau dann stetig, wenn
+    für alle $x'\in X'$ die Komposition $x'\circ g$ stetig ist.
+    (Dass dadurch die schwache Topologie eindeutig charakterisiert ist, ist
+    eine einfache Übung oder findet sich beispielsweise in
+    \emph{Mengentheoretische Topologie}, Boto von Querenburg.)
+    Seien $a\colon X\times X\to X$ die Addition und
+    $m\colon\K\times X\to X$ die Skalarmultiplikation auf $X$ und seien
+    $a_\K$ und $m_\K$ die analogen (stetigen!) Abbildungen auf $\K$.
+    Sei $x'\in X'$.  Betrachte dann die folgenden beiden Diagramme:
+    \begin{equation*}
+        \xymatrix@C=1.5cm{
+            X\times X \ar[r]^-a \ar[rd]^-{x'\,\circ\,a} \ar[d]_{x'\times x'}
+            & X \ar[d]^{x'}
+            \\
+            \K\times\K \ar[r]_-{a_\K}
+            & \K
+        }
+        \hspace{2cm}
+        \xymatrix@C=1.5cm{
+            \K\times X \ar[r]^-m \ar[rd]^-{x'\,\circ\, m} \ar[d]_{\id\times x'}
+            & X \ar[d]^{x'}
+            \\
+            \K\times\K \ar[r]_-{m_\K}
+            & \K
+            \rlap{.}
+        }
+    \end{equation*}
+    Weil $x'$ linear ist, sind beide Diagramme kommutativ und weil $x'$ stetig
+    ist, sind auch
+    \[ x'\times x'\colon (x,y)\mapsto \bigl(x'(x),x'(y)\bigr)
+        \qundq
+        \id\times x'\colon (\alpha,x)\mapsto \bigl(\alpha,x'(x)\bigr)
+    \]
+    stetig. Somit sind auch $a_\K \circ (x'\times x') = x'\circ a$ 
+    und $m_\K\circ (\id\times x') = x'\circ m$ stetig.
+    Weil $x'\in X'$ beliebig war, folgt nun mit der universellen Eigenschaft der
+    Initialtopologie, dass $a$ und $m$ stetig sind.
+    \proofsep
+    Weil in einem topologischen Vektorraum alle Translationen Homöomorphismen
+    sind, genügt es, die Hausdorff-Eigenschaft für $0,x\in X$ zu prüfen. Nach
+    \mycref{a:exgewisserfunktionale:ii} existiert für alle $x\in X$ ein
+    $x'\in X'$ mit $x'(x) = 1$, womit
+    \[ (x')^{-1}\bigl( B_{1/2}(0) \bigr) \qundq
+        (x')^{-1}\bigl( B_{1/2}(1) \bigr)
+    \]
+    disjunkte offene Umgebungen von $0$ und $x$ sind. Also ist die schwache
+    Topologie auf~$X$ hausdorffsch.
+    \\
+\end{proof}
+
+\begin{thBemerkung}
+    Möchte man nur zeigen, dass $X$ mit der schwachen Topologie hausdorffsch ist,
+    so kann man im letzten Teil des Beweises von \cref{a:schwachetopovekt} 
+    zu zwei Punkten $x,y\in X$ ein Funktional $x'\in X'$ mit $x'(x-y)=1$ wählen
+    und dann analog die Umgebungen konstruieren.
+\end{thBemerkung}
