@@ -149,37 +149,6 @@
 \newcommand{\thmnoindex}{\renewcommand{\thmtoindex}[1]{\global\let\thmtoindex=\origthmtoindex}}
 \newcommand{\thmmanualindex}{\thmnoindex}
 
-%
-\newcommand{\nnSatz}{\textbf{Satz:} }
-\newcommand{\nnDef}{\textbf{Definition:} }
-\newcommand{\nnBeispiel}{\textbf{Beispiel:} }
-\newcommand{\nnBeispiele}{\textbf{Beispiele:} }
-\newcommand{\nnBemerkung}{\textbf{Bemerkung:} }
-\newcommand{\nnBemerkungen}{\textbf{Bemerkungen:} }
-\newcommand{\nnNotation}{\textbf{Notation:} }
-
-
-% make * work like ' in math mode
-% (code stolen from latex.ltx)
-\makeatletter
-\newcommand{\active@math@ast}{^\bgroup\ast@s}
-{\catcode`\*=\active \global\let*\active@math@ast}
-\newcommand{\ast@s}{%
-  \ast\futurelet\my@let@token\active@ast@s}
-\newcommand{\active@ast@s}{%
-  \ifx*\my@let@token
-    \expandafter\active@ast@@@s
-  \else
-    \ifx^\my@let@token
-      \expandafter\expandafter\expandafter\active@ast@@@t
-    \else
-      \egroup
-    \fi
-  \fi}
-\def\active@ast@@@s#1{\ast@s}
-\def\active@ast@@@t#1#2{#2\egroup}
-\makeatother
-\mathcode`\*="8000
 
 %
 \newcommand{\nnSatz}{\textbf{Satz:} }
